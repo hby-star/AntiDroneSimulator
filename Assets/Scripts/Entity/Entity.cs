@@ -57,4 +57,9 @@ public class Entity : MonoBehaviour
         origin.y += 0.1f;
         Gizmos.DrawRay(origin, Vector3.down * 0.2f);
     }
+
+    public void ZeroVelocity()
+    {
+        Rigidbody.velocity = Vector3.zero;
+    }
 }
