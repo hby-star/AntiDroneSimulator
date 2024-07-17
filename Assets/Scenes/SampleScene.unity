@@ -185,7 +185,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 10
-  rotationSpeed: 150
+  rotationSpeed: 400
   jumpForce: 5
 --- !u!54 &527398718
 Rigidbody:
@@ -595,7 +595,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 4830646531562464, guid: f0e5eaf939cc14040b5bd8cdbb482d1c, type: 3}
+    - targetCorrespondingSourceObject: {fileID: 4817981520447920, guid: f0e5eaf939cc14040b5bd8cdbb482d1c, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1664559410}
     m_AddedComponents:
@@ -641,6 +641,7 @@ GameObject:
   - component: {fileID: 1664559410}
   - component: {fileID: 1664559409}
   - component: {fileID: 1664559408}
+  - component: {fileID: 1664559411}
   m_Layer: 0
   m_Name: Camera
   m_TagString: Untagged
@@ -716,12 +717,32 @@ Transform:
   m_GameObject: {fileID: 1664559407}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.70000005, z: 0.1}
+  m_LocalPosition: {x: 0, y: 0.55, z: 0.15}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1948497621}
+  m_Father: {fileID: 1693512172}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1664559411
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1664559407}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d094ec2d219b1424c916c07c73abe64c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sensitivityVert: 3
+  minimumVert: -45
+  maximumVert: 45
+--- !u!4 &1693512172 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4817981520447920, guid: f0e5eaf939cc14040b5bd8cdbb482d1c, type: 3}
+  m_PrefabInstance: {fileID: 1579496546}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1853834834
 GameObject:
   m_ObjectHideFlags: 0
@@ -1957,11 +1978,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &1948497621 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4830646531562464, guid: f0e5eaf939cc14040b5bd8cdbb482d1c, type: 3}
-  m_PrefabInstance: {fileID: 1579496546}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

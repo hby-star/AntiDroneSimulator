@@ -17,6 +17,8 @@ public class PlayerGroundState : PlayerState
     {
         base.Update();
 
+        Player.Move(Player.moveSpeed, Player.rotationSpeed);
+
         if(Input.GetKeyDown(KeyCode.Space) && Player.IsGrounded())
         {
             EntityStateMachine.ChangeState(Player.JumpState);

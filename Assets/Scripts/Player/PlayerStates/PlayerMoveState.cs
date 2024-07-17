@@ -18,8 +18,6 @@ public class PlayerMoveState : PlayerGroundState
     {
         base.Update();
 
-        Player.Move(Player.moveSpeed, Player.rotationSpeed);
-
         if (HorizontalInput == 0 && VerticalInput == 0)
         {
             EntityStateMachine.ChangeState(Player.IdleState);
