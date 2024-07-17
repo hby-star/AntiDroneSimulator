@@ -18,6 +18,10 @@ public class PlayerJumpState : PlayerState
     {
         base.Update();
 
+        if(Player.Rigidbody.velocity.y < 0)
+        {
+            EntityStateMachine.ChangeState(Player.AirState);
+        }
 
     }
 
