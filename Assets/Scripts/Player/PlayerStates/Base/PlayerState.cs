@@ -21,6 +21,9 @@ public class PlayerState : EntityState
     public override void Update()
     {
         base.Update();
+
+        HorizontalInput = Input.GetAxis("Horizontal");
+        VerticalInput = Input.GetAxis("Vertical");
     }
 
     public override void Exit()

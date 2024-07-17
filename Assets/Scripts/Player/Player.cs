@@ -11,10 +11,6 @@ public class Player : Entity
     public PlayerIdleState IdleState;
     # endregion
 
-    [Header("Move Info")]
-    public float moveSpeed = 10f;
-    public float gravity = 9.8f;
-
     protected override void Awake()
     {
         base.Awake();

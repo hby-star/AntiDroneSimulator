@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class PlayerMoveState : PlayerGroundState
 {
-    public PlayerMoveState(EntityStateMachine entityStateMachine, Entity entity, string animationName, Player player) : base(entityStateMachine, entity, animationName, player)
+    public PlayerMoveState(EntityStateMachine entityStateMachine, Entity entity, string animationName, Player player) :
+        base(entityStateMachine, entity, animationName, player)
     {
     }
 
@@ -17,7 +18,7 @@ public class PlayerMoveState : PlayerGroundState
     {
         base.Update();
 
-        Player.Move(Player.moveSpeed, Player.gravity);
+        Player.Move(Player.moveSpeed, Player.rotationSpeed, Player.gravity);
 
         if (HorizontalInput == 0 && VerticalInput == 0)
         {

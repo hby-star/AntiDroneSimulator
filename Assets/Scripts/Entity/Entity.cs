@@ -10,13 +10,18 @@ public class Entity : MonoBehaviour
 
     public EntityStats EntityStats { get; private set; }
 
+    [Header("Move Info")]
+    public float moveSpeed = 10f;
+    public float rotationSpeed = 150f;
+    public float gravity = 9.8f;
+
     protected virtual void Awake()
     {
     }
 
     protected virtual void Start()
     {
-        Animator = GetComponent<Animator>();
+        Animator = GetComponentInChildren<Animator>();
         EntityStats = GetComponent<EntityStats>();
         CharacterController = GetComponent<CharacterController>();
     }
@@ -25,17 +30,23 @@ public class Entity : MonoBehaviour
     {
     }
 
-    public virtual void Move(float speed, float gravity)
+    public virtual void Move(float moveSpeed, float rotationSpeed, float gravity)
     {
-        float deltaX = Input.GetAxis("Horizontal") * speed;
-        float deltaZ = Input.GetAxis("Vertical") * speed;
-        Vector3 movement = new Vector3(deltaX, 0, deltaZ);
-        movement = Vector3.ClampMagnitude(movement, speed);
+        // Capture input
+        float horizontalInput = Input.GetAxis("Horizontal");
+        float verticalInput = Input.GetAxis("Vertical");
 
-        movement.y = gravity;
+        // Calculate movement
+        Vector3 moveDirection = transform.forward * verticalInput * moveSpeed;
+        moveDirection.y -= gravity * Time.deltaTime; // Apply gravity
 
-        movement *= Time.deltaTime;
-        movement = transform.TransformDirection(movement);
-        CharacterController.Move(movement);
+        // Move the character
+        CharacterController.Move(moveDirection * Time.deltaTime);
+
+        // Calculate rotation
+        Vector3 rotation = new Vector3(0, horizontalInput * rotationSpeed * Time.deltaTime, 0);
+
+        // Rotate the character
+        transform.Rotate(rotation);
     }
 }
