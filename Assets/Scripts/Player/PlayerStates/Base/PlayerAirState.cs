@@ -16,6 +16,11 @@ public class PlayerAirState : PlayerState
     public override void Update()
     {
         base.Update();
+
+        if(Player.IsGrounded())
+        {
+            EntityStateMachine.ChangeState(Player.IdleState);
+        }
     }
 
     public override void Exit()

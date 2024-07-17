@@ -9,7 +9,11 @@ public class Player : Entity
     public EntityStateMachine StateMachine;
     public PlayerMoveState MoveState;
     public PlayerIdleState IdleState;
+    public PlayerAirState AirState;
+    public PlayerJumpState JumpState;
     # endregion
+
+    public float jumpForce = 10f;
 
     protected override void Awake()
     {
@@ -19,6 +23,8 @@ public class Player : Entity
 
         MoveState = new PlayerMoveState(StateMachine, this, "Move", this);
         IdleState = new PlayerIdleState(StateMachine, this, "Idle", this);
+        AirState = new PlayerAirState(StateMachine, this, "Air", this);
+        JumpState = new PlayerJumpState(StateMachine, this, "Jump", this);
     }
 
     protected override void Start()
@@ -33,5 +39,10 @@ public class Player : Entity
         base.Update();
 
         StateMachine.CurrentState.Update();
+    }
+
+    public void Jump()
+    {
+        Rigidbody.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
     }
 }

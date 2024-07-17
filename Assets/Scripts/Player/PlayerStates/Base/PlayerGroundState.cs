@@ -16,6 +16,16 @@ public class PlayerGroundState : PlayerState
     public override void Update()
     {
         base.Update();
+
+        if(Input.GetKeyDown(KeyCode.Space) && Player.IsGrounded())
+        {
+            EntityStateMachine.ChangeState(Player.JumpState);
+        }
+
+        if (!Player.IsGrounded())
+        {
+            EntityStateMachine.ChangeState(Player.AirState);
+        }
     }
 
     public override void Exit()
