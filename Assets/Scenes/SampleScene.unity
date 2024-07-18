@@ -290,7 +290,7 @@ MonoBehaviour:
   soundSource: {fileID: 0}
   hitWallSound: {fileID: 0}
   hitEnemySound: {fileID: 0}
-  bulletImpact: {fileID: 100000, guid: 146d16ddb6bc6b844ad2df9fd7988554, type: 3}
+  bulletImpact: {fileID: 1848076118659425300, guid: 146d16ddb6bc6b844ad2df9fd7988554, type: 3}
 --- !u!43 &555441784
 Mesh:
   m_ObjectHideFlags: 0
@@ -1886,7 +1886,7 @@ Animator:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 969079743519434348}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 4c89d8affd612674b9c238ff8651667e, type: 3}
+  m_Avatar: {fileID: 9000000, guid: e3fd810ae971f264ba941f3c04c0195f, type: 3}
   m_Controller: {fileID: 9100000, guid: 7183e980771bbc6438a7fd251b2c6e78, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
