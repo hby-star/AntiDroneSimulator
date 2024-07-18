@@ -5,8 +5,7 @@ using UnityEngine;
 public class RayShooter : MonoBehaviour
 {
     [SerializeField] AudioSource soundSource;
-    [SerializeField] AudioClip hitWallSound;
-    [SerializeField] AudioClip hitEnemySound;
+    [SerializeField] AudioClip fireSound;
     [SerializeField] GameObject bulletImpact;
 
     private Camera _camera;
@@ -62,6 +61,7 @@ public class RayShooter : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
+            soundSource.PlayOneShot(fireSound);
             Vector3 point = new Vector3(_camera.pixelWidth / 2, _camera.pixelHeight / 2, 0);
             Ray ray = _camera.ScreenPointToRay(point);
             RaycastHit hit;
@@ -72,12 +72,10 @@ public class RayShooter : MonoBehaviour
                 if (target != null)
                 {
                     target.ReactToHit();
-                    soundSource.PlayOneShot(hitEnemySound);
                 }
                 else
                 {
                     StartCoroutine(BulletImpact(hit.point, hit.normal));
-                    soundSource.PlayOneShot(hitWallSound);
                 }
             }
         }
