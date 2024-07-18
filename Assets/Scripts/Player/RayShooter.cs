@@ -7,6 +7,7 @@ public class RayShooter : MonoBehaviour
     [SerializeField] AudioSource soundSource;
     [SerializeField] AudioClip hitWallSound;
     [SerializeField] AudioClip hitEnemySound;
+    [SerializeField] GameObject bulletImpact;
 
     private Camera _camera;
 
@@ -75,20 +76,24 @@ public class RayShooter : MonoBehaviour
                 }
                 else
                 {
-                    StartCoroutine(SphereIndicator(hit.point));
+                    StartCoroutine(BulletImpact(hit.point, hit.normal));
                     soundSource.PlayOneShot(hitWallSound);
                 }
             }
         }
     }
 
-    private IEnumerator SphereIndicator(Vector3 pos)
+    private IEnumerator BulletImpact(Vector3 pos, Vector3 normal)
     {
-        GameObject sphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-        sphere.transform.position = pos;
+        // Calculate the rotation so that the prefab's Y-axis points in the direction of the normal
+        Quaternion rotation = Quaternion.FromToRotation(Vector3.up, normal);
 
+        // Instantiate the bullet impact prefab with the adjusted rotation
+        GameObject impactEffect = Instantiate(bulletImpact, pos, rotation);
+
+        // Optional: Adjust if the effect should disappear after some time
         yield return new WaitForSeconds(1);
 
-        Destroy(sphere);
+        Destroy(impactEffect);
     }
 }

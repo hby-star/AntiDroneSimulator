@@ -290,6 +290,7 @@ MonoBehaviour:
   soundSource: {fileID: 0}
   hitWallSound: {fileID: 0}
   hitEnemySound: {fileID: 0}
+  bulletImpact: {fileID: 100000, guid: 146d16ddb6bc6b844ad2df9fd7988554, type: 3}
 --- !u!43 &555441784
 Mesh:
   m_ObjectHideFlags: 0
