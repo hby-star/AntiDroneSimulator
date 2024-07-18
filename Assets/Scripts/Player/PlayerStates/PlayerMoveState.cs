@@ -18,10 +18,14 @@ public class PlayerMoveState : PlayerGroundState
     {
         base.Update();
 
+
+
         if (HorizontalInput == 0 && VerticalInput == 0)
         {
             EntityStateMachine.ChangeState(Player.IdleState);
         }
+
+
     }
 
     public override void Exit()

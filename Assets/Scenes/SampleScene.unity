@@ -137,7 +137,6 @@ GameObject:
   - component: {fileID: 527398719}
   - component: {fileID: 527398720}
   - component: {fileID: 527398721}
-  - component: {fileID: 527398722}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -189,6 +188,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 10
   jumpForce: 5
+  maxBullets: 6
+  bullets: 6
+  soundSource: {fileID: 969079743519865791}
+  fireSound: {fileID: 8300000, guid: 293496b0af3029f4caae703eb9088dd8, type: 3}
+  bulletImpact: {fileID: 1848076118659425300, guid: 146d16ddb6bc6b844ad2df9fd7988554, type: 3}
 --- !u!54 &527398718
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -275,21 +279,6 @@ MonoBehaviour:
   minimumVert: -30
   maximumVert: 30
   target: {fileID: 969079743519865356}
---- !u!114 &527398722
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 527398713}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8bd2e7535f281a64c81b1fad4f997ae5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  soundSource: {fileID: 969079743519865791}
-  fireSound: {fileID: 8300000, guid: 293496b0af3029f4caae703eb9088dd8, type: 3}
-  bulletImpact: {fileID: 1848076118659425300, guid: 146d16ddb6bc6b844ad2df9fd7988554, type: 3}
 --- !u!43 &555441784
 Mesh:
   m_ObjectHideFlags: 0
@@ -2969,6 +2958,7 @@ GameObject:
   m_Component:
   - component: {fileID: 969079743519865356}
   - component: {fileID: 969079743512171982}
+  - component: {fileID: 969079743519865357}
   m_Layer: 0
   m_Name: Animator
   m_TagString: Untagged
@@ -4003,6 +3993,18 @@ Transform:
   - {fileID: 1547231592}
   m_Father: {fileID: 527398714}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &969079743519865357
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 969079743519434348}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8be6aede54f24ac488f2b09c5d30a9ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &969079743519865358
 Transform:
   m_ObjectHideFlags: 0

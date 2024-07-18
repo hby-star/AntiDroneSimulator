@@ -9,10 +9,12 @@ public class RayShooter : MonoBehaviour
     [SerializeField] GameObject bulletImpact;
 
     private Camera _camera;
+    private Player _player;
 
     void Start()
     {
         _camera = GetComponentInChildren<Camera>();
+        _player = GetComponent<Player>();
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
@@ -59,7 +61,7 @@ public class RayShooter : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && _player.CanAttack())
         {
             soundSource.PlayOneShot(fireSound);
             Vector3 point = new Vector3(_camera.pixelWidth / 2, _camera.pixelHeight / 2, 0);

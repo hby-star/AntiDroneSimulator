@@ -28,6 +28,21 @@ public class PlayerGroundState : PlayerState
         {
             EntityStateMachine.ChangeState(Player.AirState);
         }
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            if (Player.CanAttack() && !Player.IsBusy)
+            {
+                EntityStateMachine.ChangeState(Player.AttackState);
+            }
+            else
+            {
+                if (Player.bullets <= 0 && !Player.IsBusy)
+                {
+                    EntityStateMachine.ChangeState(Player.ReloadState);
+                }
+            }
+        }
     }
 
     public override void Exit()

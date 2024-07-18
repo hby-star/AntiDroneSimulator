@@ -25,10 +25,6 @@ public class EntityState
 
     public virtual void Update()
     {
-        if (_isAnimationFinished)
-        {
-            //EntityStateMachine.ChangeState(Entity.idleState);
-        }
     }
 
     public virtual void Exit()
@@ -39,6 +35,11 @@ public class EntityState
     public void AnimationFinished()
     {
         _isAnimationFinished = true;
+    }
+
+    public bool IsAnimationFinished()
+    {
+        return _isAnimationFinished;
     }
 
 }
