@@ -155,7 +155,10 @@ public class Player : Entity
             }
             else
             {
-                StartCoroutine(RayShooterBulletImpact(hit.point, hit.normal));
+                if (hitObject.tag == "Ground")
+                {
+                    StartCoroutine(RayShooterBulletImpact(hit.point, hit.normal));
+                }
             }
         }
     }
