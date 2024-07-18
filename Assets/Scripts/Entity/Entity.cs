@@ -11,7 +11,6 @@ public class Entity : MonoBehaviour
     public EntityStats EntityStats { get; private set; }
 
     [Header("Move Info")] public float moveSpeed = 10f;
-    public float rotationSpeed = 150f;
 
     protected virtual void Awake()
     {
@@ -28,15 +27,11 @@ public class Entity : MonoBehaviour
     {
     }
 
-    public virtual void Move(float moveSpeed, float rotationSpeed)
+    public virtual void Move(float moveSpeed)
     {
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
         float mouseX = Input.GetAxis("Mouse X");
-
-        // Calculate rotation based on horizontal input
-        Vector3 rotation = new Vector3(0, mouseX * rotationSpeed * Time.deltaTime, 0);
-        transform.Rotate(rotation);
 
         // Calculate movement based on vertical input & horizontal input
         Vector3 moveDirectionX = transform.forward * (verticalInput * moveSpeed);
