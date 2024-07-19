@@ -2576,7 +2576,7 @@ Transform:
   m_GameObject: {fileID: 868419976282733500}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2, z: 0}
+  m_LocalPosition: {x: 0, y: 2, z: -5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2893,13 +2893,11 @@ MonoBehaviour:
   mouseLookX: {fileID: 921008671400013899}
   mouseLookY: {fileID: 921008671400013900}
   speed: 10
-  attackRange: 10
-  attackRate: 1
-  attackDamage: 10
-  attackCooldown: 0
-  target: {fileID: 0}
   soundSource: {fileID: 868850427974807523}
   flySound: {fileID: 8300000, guid: da8cba425f89d414bbfefcafcff846bd, type: 3}
+  bombPrefab: {fileID: 5278478624696052950, guid: 5b64a00306ed0244088d72b7a813c031, type: 3}
+  attackRate: 1
+  attackDamage: 10
 --- !u!114 &921008671400013899
 MonoBehaviour:
   m_ObjectHideFlags: 0

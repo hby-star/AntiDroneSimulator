@@ -10,7 +10,6 @@ public class Drone : Entity
     public EntityStateMachine StateMachine;
     public DroneMoveState MoveState;
     public DroneIdleState IdleState;
-    public DroneAttackState AttackState;
 
     # endregion
 
@@ -22,16 +21,11 @@ public class Drone : Entity
     #endregion
 
     public float speed = 10f;
-    public float attackRange = 10f;
-    public float attackRate = 1f;
-    public float attackDamage = 10f;
-    public float attackCooldown = 0f;
-
-    public Player target;
 
     private Camera _camera;
 
     #region Audio
+
     public AudioSource soundSource;
     public AudioClip flySound;
 
@@ -44,6 +38,31 @@ public class Drone : Entity
             soundSource.Play();
         }
     }
+
+    #endregion
+
+    #region Attack
+
+    [SerializeField] GameObject bombPrefab;
+    private GameObject bomb;
+    private bool hasBomb = true;
+
+    public void Attack()
+    {
+        if (hasBomb)
+        {
+            Vector3 spawnPosition = transform.position + Vector3.down * 0.1f;
+            GameObject bombInstance = Instantiate(bombPrefab, spawnPosition, Quaternion.identity);
+            Rigidbody bombRb = bombInstance.GetComponent<Rigidbody>();
+            if (bombRb != null)
+            {
+                bombRb.velocity = Rigidbody.velocity;
+            }
+
+            hasBomb = false;
+        }
+    }
+
     #endregion
 
 
@@ -55,7 +74,6 @@ public class Drone : Entity
 
         MoveState = new DroneMoveState(StateMachine, this, "Move", this);
         IdleState = new DroneIdleState(StateMachine, this, "Idle", this);
-        AttackState = new DroneAttackState(StateMachine, this, "Attack", this);
     }
 
     protected override void Start()
@@ -63,7 +81,6 @@ public class Drone : Entity
         base.Start();
 
         StateMachine.Initialize(IdleState);
-        target = null;
         _camera = GetComponentInChildren<Camera>();
 
         SetOperate(false);
@@ -95,6 +112,11 @@ public class Drone : Entity
             Vector3 moveDirection = moveDirectionX + moveDirectionZ + moveDirectionY;
             moveDirection = Vector3.ClampMagnitude(moveDirection, moveSpeed);
             Rigidbody.velocity = new Vector3(moveDirection.x, moveDirection.y, moveDirection.z);
+
+            if (Input.GetKeyDown(KeyCode.F))
+            {
+                Attack();
+            }
         }
     }
 
