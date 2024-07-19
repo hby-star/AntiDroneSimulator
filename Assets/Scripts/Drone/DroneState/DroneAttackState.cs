@@ -17,16 +17,6 @@ public class DroneAttackState : DroneState
     public override void Update()
     {
         base.Update();
-
-        if (Drone.target == null)
-        {
-            EntityStateMachine.ChangeState(Drone.IdleState);
-        }
-        else
-        {
-            Vector3 direction = (Drone.target.transform.position - Drone.transform.position).normalized;
-            Drone.Attack();
-        }
     }
 
     public override void Exit()

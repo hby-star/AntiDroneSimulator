@@ -27,20 +27,6 @@ public class Entity : MonoBehaviour
     {
     }
 
-    public virtual void Move(float moveSpeed)
-    {
-        float horizontalInput = Input.GetAxis("Horizontal");
-        float verticalInput = Input.GetAxis("Vertical");
-        float mouseX = Input.GetAxis("Mouse X");
-
-        // Calculate movement based on vertical input & horizontal input
-        Vector3 moveDirectionX = transform.forward * (verticalInput * moveSpeed);
-        Vector3 moveDirectionZ = transform.right * (horizontalInput * moveSpeed);
-        Vector3 moveDirection = moveDirectionX + moveDirectionZ;
-        moveDirection = Vector3.ClampMagnitude(moveDirection, moveSpeed);
-        Rigidbody.velocity = new Vector3(moveDirection.x, Rigidbody.velocity.y, moveDirection.z);
-    }
-
     public virtual bool IsGrounded()
     {
         Vector3 origin = transform.position;

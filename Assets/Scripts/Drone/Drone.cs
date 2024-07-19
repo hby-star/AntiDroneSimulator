@@ -38,6 +38,7 @@ public class Drone : Entity
         base.Start();
 
         StateMachine.Initialize(IdleState);
+        target = null;
     }
 
     protected override void Update()
@@ -47,22 +48,15 @@ public class Drone : Entity
         StateMachine.CurrentState.Update();
     }
 
-    public void Move(Vector3 direction)
+    public void OperateMove(float moveSpeed)
     {
-        Rigidbody.velocity = direction * speed;
+        // wasd 控制水平移动， qe 控制垂直移动
+        float forwardInput = Input.GetAxis("Vertical");
+        float rightInput = Input.GetAxis("Horizontal");
+        float upInput = Input.GetKey(KeyCode.Q) ? 1 : 0;
+        float downInput = Input.GetKey(KeyCode.E) ? 1 : 0;
+
+        Vector3 moveDirection = new Vector3(rightInput, upInput - downInput, forwardInput).normalized;
+        Rigidbody.velocity = moveDirection * moveSpeed;
     }
-
-    public void Attack()
-    {
-        Collider[] hitColliders = Physics.OverlapSphere(transform.position, attackRange);
-
-        foreach (Collider hitCollider in hitColliders)
-        {
-            if (hitCollider.CompareTag("Player"))
-            {
-                hitCollider.GetComponent<Player>().TakeDamage(attackDamage);
-            }
-        }
-    }
-
 }

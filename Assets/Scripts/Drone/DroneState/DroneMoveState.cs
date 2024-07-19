@@ -17,14 +17,11 @@ public class DroneMoveState : DroneState
     {
         base.Update();
 
-        if (Drone.target == null)
+        Drone.OperateMove(Drone.speed);
+
+        if (FowardInput == 0 && RightInput == 0 && UpInput == 0 && DownInput == 0)
         {
             EntityStateMachine.ChangeState(Drone.IdleState);
-        }
-        else
-        {
-            Vector3 direction = (Drone.target.transform.position - Drone.transform.position).normalized;
-            Drone.Move(direction);
         }
     }
 

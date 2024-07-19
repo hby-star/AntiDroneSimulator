@@ -19,7 +19,7 @@ public class DroneIdleState : DroneState
     {
         base.Update();
 
-        if (Drone.target != null)
+        if (FowardInput != 0 || RightInput != 0 || UpInput != 0 || DownInput != 0)
         {
             EntityStateMachine.ChangeState(Drone.MoveState);
         }
