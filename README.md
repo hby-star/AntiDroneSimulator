@@ -1,3 +1,3 @@
-# AntiUAVSimulator
+# AntiDroneSimulator
 
-这是一个单兵训练反无人机模拟器。
+一个反无人机模拟器。
