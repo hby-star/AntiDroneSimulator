@@ -14,6 +14,13 @@ public class Drone : Entity
 
     # endregion
 
+    #region MouseLook
+
+    public MouseLook mouseLookX;
+    public MouseLook mouseLookY;
+
+    #endregion
+
     public float speed = 10f;
     public float attackRange = 10f;
     public float attackRate = 1f;
@@ -21,6 +28,8 @@ public class Drone : Entity
     public float attackCooldown = 0f;
 
     public Player target;
+
+    private Camera _camera;
 
     protected override void Awake()
     {
@@ -39,6 +48,9 @@ public class Drone : Entity
 
         StateMachine.Initialize(IdleState);
         target = null;
+        _camera = GetComponentInChildren<Camera>();
+
+        SetOperate(false);
     }
 
     protected override void Update()
@@ -50,13 +62,35 @@ public class Drone : Entity
 
     public void OperateMove(float moveSpeed)
     {
-        // wasd 控制水平移动， qe 控制垂直移动
-        float forwardInput = Input.GetAxis("Vertical");
-        float rightInput = Input.GetAxis("Horizontal");
-        float upInput = Input.GetKey(KeyCode.Q) ? 1 : 0;
-        float downInput = Input.GetKey(KeyCode.E) ? 1 : 0;
+        if (operateNow)
+        {
+            // wasd 控制水平移动， qe 控制垂直移动
+            float forwardInput = Input.GetAxis("Vertical");
+            float rightInput = Input.GetAxis("Horizontal");
+            float upInput = Input.GetKey(KeyCode.Q) ? 1 : 0;
+            float downInput = Input.GetKey(KeyCode.E) ? 1 : 0;
+            upInput = upInput - downInput;
 
-        Vector3 moveDirection = new Vector3(rightInput, upInput - downInput, forwardInput).normalized;
-        Rigidbody.velocity = moveDirection * moveSpeed;
+            // Calculate movement based on vertical input & horizontal input
+            Vector3 moveDirectionX = transform.forward * (forwardInput * moveSpeed);
+            Vector3 moveDirectionZ = transform.right * (rightInput * moveSpeed);
+            Vector3 moveDirectionY = transform.up * (upInput * moveSpeed);
+            Vector3 moveDirection = moveDirectionX + moveDirectionZ + moveDirectionY;
+            moveDirection = Vector3.ClampMagnitude(moveDirection, moveSpeed);
+            Rigidbody.velocity = new Vector3(moveDirection.x, moveDirection.y, moveDirection.z);
+        }
+    }
+
+    public void SetOperate(bool operate)
+    {
+        operateNow = operate;
+        _camera.gameObject.SetActive(operate);
+        mouseLookX.enabled = operate;
+        mouseLookY.enabled = operate;
+        transform.rotation = Quaternion.identity;
+        if (!operate)
+        {
+            StateMachine.ChangeState(IdleState);
+        }
     }
 }

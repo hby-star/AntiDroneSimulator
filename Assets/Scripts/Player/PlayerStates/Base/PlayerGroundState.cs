@@ -17,32 +17,37 @@ public class PlayerGroundState : PlayerState
     {
         base.Update();
 
-        Player.Move(Player.moveSpeed);
-
-        if(Input.GetKeyDown(KeyCode.Space) && Player.IsGrounded())
+        if (Player.operateNow)
         {
-            EntityStateMachine.ChangeState(Player.JumpState);
-        }
+            Player.OperateMove(Player.moveSpeed);
 
-        if (!Player.IsGrounded())
-        {
-            EntityStateMachine.ChangeState(Player.AirState);
-        }
-
-        if (Input.GetMouseButtonDown(0))
-        {
-            if (Player.CanAttack() && !Player.IsBusy)
+            if(Input.GetKeyDown(KeyCode.Space) && Player.IsGrounded())
             {
-                EntityStateMachine.ChangeState(Player.AttackState);
+                EntityStateMachine.ChangeState(Player.JumpState);
             }
-            else
+
+            if (!Player.IsGrounded())
             {
-                if (Player.bullets <= 0 && !Player.IsBusy)
+                EntityStateMachine.ChangeState(Player.AirState);
+            }
+
+            if (Input.GetMouseButtonDown(0))
+            {
+                if (Player.CanAttack() && !Player.IsBusy)
                 {
-                    EntityStateMachine.ChangeState(Player.ReloadState);
+                    EntityStateMachine.ChangeState(Player.AttackState);
+                }
+                else
+                {
+                    if (Player.bullets <= 0 && !Player.IsBusy)
+                    {
+                        EntityStateMachine.ChangeState(Player.ReloadState);
+                    }
                 }
             }
         }
+
+
     }
 
     public override void Exit()

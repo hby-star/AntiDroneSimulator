@@ -10,6 +10,8 @@ public class Entity : MonoBehaviour
 
     public EntityStats EntityStats { get; private set; }
 
+    public bool operateNow;
+
     [Header("Move Info")] public float moveSpeed = 10f;
 
     protected virtual void Awake()

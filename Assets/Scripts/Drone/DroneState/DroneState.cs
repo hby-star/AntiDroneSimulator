@@ -25,10 +25,13 @@ public class DroneState : EntityState
     {
         base.Update();
 
-        FowardInput = Input.GetAxis("Vertical");
-        RightInput = Input.GetAxis("Horizontal");
-        UpInput = Input.GetKey(KeyCode.Q) ? 1 : 0;
-        DownInput = Input.GetKey(KeyCode.E) ? 1 : 0;
+        if (Drone.operateNow)
+        {
+            FowardInput = Input.GetAxis("Vertical");
+            RightInput = Input.GetAxis("Horizontal");
+            UpInput = Input.GetKey(KeyCode.Q) ? 1 : 0;
+            DownInput = Input.GetKey(KeyCode.E) ? 1 : 0;
+        }
     }
 
     public override void Exit()
