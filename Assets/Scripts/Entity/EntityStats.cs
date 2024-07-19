@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class EntityStats : MonoBehaviour
 {
-    public int maxHeath;
+    public float maxHeath;
 
-    public int currentHeath;
+    public float currentHeath;
 
     public System.Action OnHealthChanged;
 
@@ -15,7 +15,7 @@ public class EntityStats : MonoBehaviour
         currentHeath = maxHeath;
     }
 
-    public virtual void TakeDamage(int damage)
+    public virtual void TakeDamage(float damage)
     {
         currentHeath -= damage;
         if(OnHealthChanged != null)

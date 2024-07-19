@@ -68,6 +68,11 @@ public class Player : Entity
         return bullets > 0;
     }
 
+    public void TakeDamage(float damage)
+    {
+        EntityStats.TakeDamage(damage);
+    }
+
     #region isBusy
 
     public bool IsBusy { get; private set; }
