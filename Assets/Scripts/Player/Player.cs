@@ -130,10 +130,11 @@ public class Player : Entity
     #region RayShooter
 
     [Header("Ray Shooter")] [SerializeField]
-    AudioSource soundSource;
+    public AudioSource soundSource;
 
     [SerializeField] AudioClip fireSound;
     [SerializeField] GameObject bulletImpact;
+    [SerializeField] public AudioClip reloadSound;
     private Camera _camera;
 
     private void RayShooterStart()

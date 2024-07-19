@@ -13,6 +13,8 @@ public class PlayerReloadState : PlayerGroundState
     {
         base.Enter();
 
+        Player.soundSource.PlayOneShot(Player.reloadSound);
+
         Player.Rigidbody.velocity = Vector3.zero;
 
         Player.StartCoroutine("BusyFor", 1f);
@@ -21,6 +23,7 @@ public class PlayerReloadState : PlayerGroundState
     public override void Update()
     {
         base.Update();
+
 
         if (IsAnimationFinished())
         {

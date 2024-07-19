@@ -12,12 +12,13 @@ public class PlayerIdleState : PlayerGroundState
     {
         base.Enter();
 
-        Player.ZeroVelocity();
     }
 
     public override void Update()
     {
         base.Update();
+
+        Player.ZeroVelocity();
 
         if (HorizontalInput != 0 || VerticalInput != 0)
         {

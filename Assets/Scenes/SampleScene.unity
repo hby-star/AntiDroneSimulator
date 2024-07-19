@@ -452,6 +452,7 @@ MonoBehaviour:
   soundSource: {fileID: 969079743519865791}
   fireSound: {fileID: 8300000, guid: 293496b0af3029f4caae703eb9088dd8, type: 3}
   bulletImpact: {fileID: 8913486584783115997, guid: 7b3f6d217c2df924faf6b18c6bb7b698, type: 3}
+  reloadSound: {fileID: 8300000, guid: 4d065ebd0386b9345ac4ec4d5377f76d, type: 3}
 --- !u!54 &527398718
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2866,8 +2867,8 @@ MonoBehaviour:
   axes: 2
   sensitivityHor: 9
   sensitivityVert: 9
-  minimumVert: -20
-  maximumVert: 20
+  minimumVert: -45
+  maximumVert: 45
   target: {fileID: 872460123408623964}
 --- !u!65 &928629661077848270
 BoxCollider:

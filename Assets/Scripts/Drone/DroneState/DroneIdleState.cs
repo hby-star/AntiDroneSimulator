@@ -12,12 +12,13 @@ public class DroneIdleState : DroneState
     {
         base.Enter();
 
-        Drone.ZeroVelocity();
     }
 
     public override void Update()
     {
         base.Update();
+
+        Drone.ZeroVelocity();
 
         if (FowardInput != 0 || RightInput != 0 || UpInput != 0 || DownInput != 0)
         {
