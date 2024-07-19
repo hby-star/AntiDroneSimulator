@@ -31,17 +31,27 @@ public class Entity : MonoBehaviour
 
     public virtual bool IsGrounded()
     {
-        Vector3 origin = transform.position;
-        origin.y += 0.1f;
-        return Physics.Raycast(origin, Vector3.down, 0.2f);
+        CapsuleCollider capsuleCollider = GetComponent<CapsuleCollider>();
+        if (capsuleCollider == null) return false;
+
+        Vector3 capsuleBottom = new Vector3(transform.position.x, transform.position.y + capsuleCollider.radius, transform.position.z);
+        Vector3 capsuleTop = new Vector3(transform.position.x, transform.position.y + capsuleCollider.height - capsuleCollider.radius, transform.position.z);
+
+        float distanceToGround = capsuleCollider.height / 2 - capsuleCollider.radius + 0.1f;
+        return Physics.CapsuleCast(capsuleTop, capsuleBottom, capsuleCollider.radius, Vector3.down, distanceToGround);
     }
 
     public void OnDrawGizmos()
     {
+        CapsuleCollider capsuleCollider = GetComponent<CapsuleCollider>();
+        if (capsuleCollider == null) return;
+
+        Vector3 capsuleBottom = new Vector3(transform.position.x, transform.position.y + capsuleCollider.radius, transform.position.z);
+        Vector3 capsuleTop = new Vector3(transform.position.x, transform.position.y + capsuleCollider.height - capsuleCollider.radius, transform.position.z);
+
         Gizmos.color = Color.red;
-        Vector3 origin = transform.position;
-        origin.y += 0.1f;
-        Gizmos.DrawRay(origin, Vector3.down * 0.2f);
+        Gizmos.DrawWireSphere(capsuleTop, capsuleCollider.radius);
+        Gizmos.DrawWireSphere(capsuleBottom, capsuleCollider.radius);
     }
 
     public void ZeroVelocity()
