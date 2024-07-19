@@ -31,6 +31,22 @@ public class Drone : Entity
 
     private Camera _camera;
 
+    #region Audio
+    public AudioSource soundSource;
+    public AudioClip flySound;
+
+    void AudioUpdate()
+    {
+        if (!soundSource.isPlaying)
+        {
+            soundSource.clip = flySound;
+            soundSource.loop = true;
+            soundSource.Play();
+        }
+    }
+    #endregion
+
+
     protected override void Awake()
     {
         base.Awake();
@@ -58,6 +74,7 @@ public class Drone : Entity
         base.Update();
 
         StateMachine.CurrentState.Update();
+        AudioUpdate();
     }
 
     public void OperateMove(float moveSpeed)
