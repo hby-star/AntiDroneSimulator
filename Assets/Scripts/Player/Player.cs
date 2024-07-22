@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class Player : Entity
 {
@@ -14,12 +15,14 @@ public class Player : Entity
     public PlayerJumpState JumpState;
     public PlayerAttackState AttackState;
     public PlayerReloadState ReloadState;
+    public PlayerDashState DashState;
 
     # endregion
 
     public float jumpForce = 10f;
     public int maxBullets = 6;
     public int bullets = 6;
+    public float dashSpeed = 10f;
 
     #region MouseLook
 
@@ -41,6 +44,7 @@ public class Player : Entity
         JumpState = new PlayerJumpState(StateMachine, this, "Jump", this);
         AttackState = new PlayerAttackState(StateMachine, this, "Attack", this);
         ReloadState = new PlayerReloadState(StateMachine, this, "Reload", this);
+        DashState = new PlayerDashState(StateMachine, this, "Dash", this);
     }
 
     protected override void Start()
@@ -60,23 +64,6 @@ public class Player : Entity
         base.Update();
 
         StateMachine.CurrentState.Update();
-    }
-
-    public void OperateMove(float moveSpeed)
-    {
-        if (operateNow)
-        {
-            float horizontalInput = Input.GetAxis("Horizontal");
-            float verticalInput = Input.GetAxis("Vertical");
-            float mouseX = Input.GetAxis("Mouse X");
-
-            // Calculate movement based on vertical input & horizontal input
-            Vector3 moveDirectionX = transform.forward * (verticalInput * moveSpeed);
-            Vector3 moveDirectionZ = transform.right * (horizontalInput * moveSpeed);
-            Vector3 moveDirection = moveDirectionX + moveDirectionZ;
-            moveDirection = Vector3.ClampMagnitude(moveDirection, moveSpeed);
-            Rigidbody.velocity = new Vector3(moveDirection.x, Rigidbody.velocity.y, moveDirection.z);
-        }
     }
 
     public void Jump()
@@ -112,6 +99,31 @@ public class Player : Entity
         }
     }
 
+    public virtual bool IsGrounded()
+    {
+        CapsuleCollider capsuleCollider = Collider as CapsuleCollider;
+        if (capsuleCollider == null) return false;
+
+        Vector3 capsuleBottom = new Vector3(transform.position.x, transform.position.y + capsuleCollider.radius, transform.position.z);
+        Vector3 capsuleTop = new Vector3(transform.position.x, transform.position.y + capsuleCollider.height - capsuleCollider.radius, transform.position.z);
+
+        float distanceToGround = capsuleCollider.height / 2 - capsuleCollider.radius + 0.1f;
+        return Physics.CapsuleCast(capsuleTop, capsuleBottom, capsuleCollider.radius, Vector3.down, distanceToGround);
+    }
+
+    public void OnDrawGizmos()
+    {
+        CapsuleCollider capsuleCollider = Collider as CapsuleCollider;
+        if (capsuleCollider == null) return;
+
+        Vector3 capsuleBottom = new Vector3(transform.position.x, transform.position.y + capsuleCollider.radius, transform.position.z);
+        Vector3 capsuleTop = new Vector3(transform.position.x, transform.position.y + capsuleCollider.height - capsuleCollider.radius, transform.position.z);
+
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(capsuleTop, capsuleCollider.radius);
+        Gizmos.DrawWireSphere(capsuleBottom, capsuleCollider.radius);
+    }
+
     #region isBusy
 
     public bool IsBusy { get; private set; }
@@ -132,6 +144,7 @@ public class Player : Entity
     [SerializeField] public AudioSource soundSource;
     [SerializeField] public AudioClip reloadSound;
     [SerializeField] public AudioClip fireSound;
+    [SerializeField] public AudioClip dashSound;
 
     #endregion
 

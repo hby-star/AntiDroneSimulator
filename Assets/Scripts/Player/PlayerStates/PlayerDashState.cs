@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerDashState : PlayerGroundState
 {
+    private float originalColliderHeight;
+
     public PlayerDashState(EntityStateMachine entityStateMachine, Entity entity, string animationName, Player player) :
         base(entityStateMachine, entity, animationName, player)
     {
@@ -12,6 +14,12 @@ public class PlayerDashState : PlayerGroundState
     public override void Enter()
     {
         base.Enter();
+        CapsuleCollider capsuleCollider = Player.Collider as CapsuleCollider;
+        if (capsuleCollider != null)
+        {
+            originalColliderHeight = capsuleCollider.height;
+            capsuleCollider.height = originalColliderHeight / 2;
+        }
 
         Player.soundSource.PlayOneShot(Player.dashSound);
 
@@ -26,14 +34,23 @@ public class PlayerDashState : PlayerGroundState
         {
             EntityStateMachine.ChangeState(Player.IdleState);
         }
+        else
+        {
+            Vector3 dashDirection = Player.transform.forward;
 
-        Vector3 dashDirection = Player.transform.forward;
+            Player.Rigidbody.velocity = dashDirection.normalized * Player.dashSpeed;
 
-        Player.Rigidbody.velocity = dashDirection.normalized * Player.dashSpeed;
+        }
     }
 
     public override void Exit()
     {
+        CapsuleCollider capsuleCollider = Player.Collider as CapsuleCollider;
+        if (capsuleCollider != null)
+        {
+            capsuleCollider.height = originalColliderHeight;
+        }
+
         base.Exit();
     }
 }
