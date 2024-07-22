@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class PlayerState : EntityState
 {
-    protected float HorizontalInput;
-    protected float VerticalInput;
     protected Player Player;
 
     public PlayerState(EntityStateMachine entityStateMachine, Entity entity, string animationName, Player player) : base(entityStateMachine, entity, animationName)
@@ -21,12 +19,6 @@ public class PlayerState : EntityState
     public override void Update()
     {
         base.Update();
-
-        if (Player.operateNow)
-        {
-            HorizontalInput = Input.GetAxis("Horizontal");
-            VerticalInput = Input.GetAxis("Vertical");
-        }
 
     }
 

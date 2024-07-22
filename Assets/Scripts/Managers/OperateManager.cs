@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ScaneManager : MonoBehaviour
+public class OperateManager : MonoBehaviour
 {
     public Player player;
     public Drone drone;

@@ -428,8 +428,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2899d4a4b86e5934388e3648cf973879, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHeath: 0
-  currentHeath: 0
+  maxHeath: 100
+  currentHeath: 100
 --- !u!114 &527398717
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -447,11 +447,13 @@ MonoBehaviour:
   jumpForce: 5
   maxBullets: 6
   bullets: 6
+  dashSpeed: 20
   mouseLookX: {fileID: 527398720}
   mouseLookY: {fileID: 527398721}
   soundSource: {fileID: 969079743519865791}
   reloadSound: {fileID: 8300000, guid: 4d065ebd0386b9345ac4ec4d5377f76d, type: 3}
   fireSound: {fileID: 8300000, guid: 293496b0af3029f4caae703eb9088dd8, type: 3}
+  dashSound: {fileID: 8300000, guid: e7b8be42c3a5e97418b0417f3b4e94cd, type: 3}
   bulletImpact: {fileID: 8913486584783115997, guid: 7b3f6d217c2df924faf6b18c6bb7b698, type: 3}
 --- !u!54 &527398718
 Rigidbody:
@@ -499,7 +501,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.3
   m_Height: 1.75
   m_Direction: 1
   m_Center: {x: 0, y: 0.85, z: 0}
@@ -3970,6 +3972,7 @@ GameObject:
   - component: {fileID: 921008671400013897}
   - component: {fileID: 921008671400013899}
   - component: {fileID: 921008671400013900}
+  - component: {fileID: 921008671400013901}
   m_Layer: 0
   m_Name: Drone
   m_TagString: Player
@@ -4610,6 +4613,20 @@ MonoBehaviour:
   minimumVert: -45
   maximumVert: 45
   target: {fileID: 872460123408623964}
+--- !u!114 &921008671400013901
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 868419976282733500}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2899d4a4b86e5934388e3648cf973879, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHeath: 100
+  currentHeath: 100
 --- !u!65 &928629661077848270
 BoxCollider:
   m_ObjectHideFlags: 0

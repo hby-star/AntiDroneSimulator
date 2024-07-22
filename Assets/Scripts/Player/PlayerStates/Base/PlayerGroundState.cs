@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class PlayerGroundState : PlayerState
 {
-    public PlayerGroundState(EntityStateMachine entityStateMachine, Entity entity, string animationName, Player player) : base(entityStateMachine, entity, animationName, player)
+    public PlayerGroundState(EntityStateMachine entityStateMachine, Entity entity, string animationName, Player player)
+        : base(entityStateMachine, entity, animationName, player)
     {
     }
 
@@ -19,9 +20,7 @@ public class PlayerGroundState : PlayerState
 
         if (Player.operateNow)
         {
-            Player.OperateMove(Player.moveSpeed);
-
-            if(Input.GetKeyDown(KeyCode.Space) && Player.IsGrounded())
+            if (Input.GetKeyDown(KeyCode.Space) && Player.IsGrounded())
             {
                 EntityStateMachine.ChangeState(Player.JumpState);
             }
@@ -45,14 +44,16 @@ public class PlayerGroundState : PlayerState
                     }
                 }
             }
+
+            if (Input.GetKeyDown(KeyCode.C) && !Player.IsBusy)
+            {
+                EntityStateMachine.ChangeState(Player.DashState);
+            }
         }
-
-
     }
 
     public override void Exit()
     {
         base.Exit();
     }
-
 }

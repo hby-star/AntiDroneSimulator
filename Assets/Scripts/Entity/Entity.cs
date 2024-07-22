@@ -8,6 +8,8 @@ public class Entity : MonoBehaviour
     public Animator Animator { get; private set; }
     public Rigidbody Rigidbody { get; private set; }
 
+    public Collider Collider { get; private set; }
+
     public EntityStats EntityStats { get; private set; }
 
     public bool operateNow;
@@ -23,39 +25,15 @@ public class Entity : MonoBehaviour
         Animator = GetComponentInChildren<Animator>();
         EntityStats = GetComponent<EntityStats>();
         Rigidbody = GetComponent<Rigidbody>();
+        Collider = GetComponent<Collider>();
     }
 
     protected virtual void Update()
     {
     }
 
-    public virtual bool IsGrounded()
+    public void ZeroHorVelocity()
     {
-        CapsuleCollider capsuleCollider = GetComponent<CapsuleCollider>();
-        if (capsuleCollider == null) return false;
-
-        Vector3 capsuleBottom = new Vector3(transform.position.x, transform.position.y + capsuleCollider.radius, transform.position.z);
-        Vector3 capsuleTop = new Vector3(transform.position.x, transform.position.y + capsuleCollider.height - capsuleCollider.radius, transform.position.z);
-
-        float distanceToGround = capsuleCollider.height / 2 - capsuleCollider.radius + 0.1f;
-        return Physics.CapsuleCast(capsuleTop, capsuleBottom, capsuleCollider.radius, Vector3.down, distanceToGround);
-    }
-
-    public void OnDrawGizmos()
-    {
-        CapsuleCollider capsuleCollider = GetComponent<CapsuleCollider>();
-        if (capsuleCollider == null) return;
-
-        Vector3 capsuleBottom = new Vector3(transform.position.x, transform.position.y + capsuleCollider.radius, transform.position.z);
-        Vector3 capsuleTop = new Vector3(transform.position.x, transform.position.y + capsuleCollider.height - capsuleCollider.radius, transform.position.z);
-
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(capsuleTop, capsuleCollider.radius);
-        Gizmos.DrawWireSphere(capsuleBottom, capsuleCollider.radius);
-    }
-
-    public void ZeroVelocity()
-    {
-        Rigidbody.velocity = Vector3.zero;
+        Rigidbody.velocity = new Vector3(0, Rigidbody.velocity.y, 0);
     }
 }

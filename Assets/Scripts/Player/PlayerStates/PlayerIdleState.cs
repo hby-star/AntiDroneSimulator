@@ -18,9 +18,9 @@ public class PlayerIdleState : PlayerGroundState
     {
         base.Update();
 
-        Player.ZeroVelocity();
+        Player.ZeroHorVelocity();
 
-        if (HorizontalInput != 0 || VerticalInput != 0)
+        if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
         {
             EntityStateMachine.ChangeState(Player.MoveState);
         }
