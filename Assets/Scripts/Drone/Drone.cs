@@ -13,17 +13,6 @@ public class Drone : Entity
 
     # endregion
 
-    #region MouseLook
-
-    public MouseLook mouseLookX;
-    public MouseLook mouseLookY;
-
-    #endregion
-
-    public float speed = 10f;
-
-    private Camera _camera;
-
     #region Audio
 
     public AudioSource soundSource;
@@ -65,6 +54,11 @@ public class Drone : Entity
 
     #endregion
 
+    public float speed = 10f;
+
+    private Camera _camera;
+
+    public bool isLeader = false;
 
     protected override void Awake()
     {
@@ -81,9 +75,15 @@ public class Drone : Entity
         base.Start();
 
         StateMachine.Initialize(IdleState);
+
+        if (!isLeader)
+        {
+            return;
+        }
+
         _camera = GetComponentInChildren<Camera>();
 
-        SetOperate(false);
+        SetOperate(true);
     }
 
     protected override void Update()
@@ -98,8 +98,15 @@ public class Drone : Entity
     {
         operateNow = operate;
         _camera.gameObject.SetActive(operate);
-        mouseLookX.enabled = operate;
-        mouseLookY.enabled = operate;
+
+        if (isLeader)
+        {
+            mouseLookX.enabled = operate;
+        }
+        else
+        {
+            mouseLookX.enabled = false;
+        }
         transform.rotation = Quaternion.identity;
         if (!operate)
         {
@@ -113,20 +120,28 @@ public class Drone : Entity
     public float UpInput;
     public bool AttackInput;
 
+    public MouseLook mouseLookX;
+
     void OnEnable()
     {
-        Messenger<float>.AddListener(InputEvent.DRONE_HORIZONTAL_INPUT, (value) => { HorizontalInput = value; });
-        Messenger<float>.AddListener(InputEvent.DRONE_VERTICAL_INPUT, (value) => { VerticalInput = value; });
-        Messenger<float>.AddListener(InputEvent.DRONE_UP_INPUT, (value) => { UpInput = value; });
-        Messenger<bool>.AddListener(InputEvent.DRONE_ATTACK_INPUT, (value) => { AttackInput = value; });
+        if (isLeader)
+        {
+            Messenger<float>.AddListener(InputEvent.DRONE_HORIZONTAL_INPUT, (value) => { HorizontalInput = value; });
+            Messenger<float>.AddListener(InputEvent.DRONE_VERTICAL_INPUT, (value) => { VerticalInput = value; });
+            Messenger<float>.AddListener(InputEvent.DRONE_UP_INPUT, (value) => { UpInput = value; });
+            Messenger<bool>.AddListener(InputEvent.DRONE_ATTACK_INPUT, (value) => { AttackInput = value; });
+        }
     }
 
     void OnDisable()
     {
-        Messenger<float>.RemoveListener(InputEvent.DRONE_HORIZONTAL_INPUT, (value) => { HorizontalInput = value; });
-        Messenger<float>.RemoveListener(InputEvent.DRONE_VERTICAL_INPUT, (value) => { VerticalInput = value; });
-        Messenger<float>.RemoveListener(InputEvent.DRONE_UP_INPUT, (value) => { UpInput = value; });
-        Messenger<bool>.RemoveListener(InputEvent.DRONE_ATTACK_INPUT, (value) => { AttackInput = value; });
+        if (isLeader)
+        {
+            Messenger<float>.RemoveListener(InputEvent.DRONE_HORIZONTAL_INPUT, (value) => { HorizontalInput = value; });
+            Messenger<float>.RemoveListener(InputEvent.DRONE_VERTICAL_INPUT, (value) => { VerticalInput = value; });
+            Messenger<float>.RemoveListener(InputEvent.DRONE_UP_INPUT, (value) => { UpInput = value; });
+            Messenger<bool>.RemoveListener(InputEvent.DRONE_ATTACK_INPUT, (value) => { AttackInput = value; });
+        }
     }
 
     #endregion

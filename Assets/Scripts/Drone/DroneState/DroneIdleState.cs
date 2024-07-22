@@ -18,7 +18,7 @@ public class DroneIdleState : DroneState
     {
         base.Update();
 
-        Drone.ZeroHorVelocity();
+        Drone.ZeroVelocity();
 
         if (Drone.HorizontalInput != 0 || Drone.VerticalInput != 0 || Drone.UpInput != 0)
         {

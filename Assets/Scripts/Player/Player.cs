@@ -27,14 +27,6 @@ public class Player : Entity
     public float standColliderHeight = 1.75f;
     public float crouchColliderHeight = 1.0f;
 
-    #region MouseLook
-
-    public MouseLook mouseLookX;
-    public MouseLook mouseLookY;
-
-    #endregion
-
-
     protected override void Awake()
     {
         base.Awake();
@@ -60,7 +52,7 @@ public class Player : Entity
 
         RayShooterStart();
 
-        SetOperate(true);
+        SetOperate(false);
     }
 
     protected override void Update()
@@ -276,6 +268,9 @@ public class Player : Entity
     public bool DashInput;
     public bool CrouchInput;
     public bool AttackInput;
+
+    public MouseLook mouseLookX;
+    public MouseLook mouseLookY;
 
     void OnEnable()
     {
