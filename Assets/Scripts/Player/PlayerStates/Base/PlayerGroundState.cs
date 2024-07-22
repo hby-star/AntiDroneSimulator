@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerGroundState : PlayerState
 {
-     private static bool _isCrouching = false;
+    private static bool _isCrouching = false;
 
     public PlayerGroundState(EntityStateMachine entityStateMachine, Entity entity, string animationName, Player player)
         : base(entityStateMachine, entity, animationName, player)
@@ -22,17 +22,32 @@ public class PlayerGroundState : PlayerState
 
         if (Player.operateNow)
         {
-            if (Input.GetKeyDown(KeyCode.Space) && Player.IsGrounded() && !Player.IsBusy && !_isCrouching)
+            // move
+            if ((Player.HorizontalInput != 0 || Player.VerticalInput != 0) && !Player.IsBusy && !_isCrouching)
+            {
+                EntityStateMachine.ChangeState(Player.MoveState);
+            }
+
+            // idle
+            if (Player.HorizontalInput == 0 && Player.VerticalInput == 0 && !Player.IsBusy && !_isCrouching)
+            {
+                EntityStateMachine.ChangeState(Player.IdleState);
+            }
+
+            // jump
+            if (Player.JumpInput && Player.IsGrounded() && !Player.IsBusy && !_isCrouching)
             {
                 EntityStateMachine.ChangeState(Player.JumpState);
             }
 
+            // air
             if (!Player.IsGrounded() && !Player.IsBusy && !_isCrouching)
             {
                 EntityStateMachine.ChangeState(Player.AirState);
             }
 
-            if (Input.GetMouseButtonDown(0) && !Player.IsBusy && !_isCrouching)
+            // attack
+            if (Player.AttackInput && !Player.IsBusy && !_isCrouching)
             {
                 if (Player.CanAttack() && !Player.IsBusy)
                 {
@@ -48,13 +63,13 @@ public class PlayerGroundState : PlayerState
             }
 
             // dash
-            if (Input.GetKeyDown(KeyCode.C) && !Player.IsBusy && !_isCrouching)
+            if (Player.DashInput && !Player.IsBusy && !_isCrouching)
             {
                 EntityStateMachine.ChangeState(Player.DashState);
             }
 
             // crouch
-            if (Input.GetKeyDown(KeyCode.LeftControl) && !Player.IsBusy)
+            if (Player.CrouchInput && !Player.IsBusy)
             {
                 if (!_isCrouching)
                 {

@@ -5,10 +5,7 @@ using UnityEngine;
 public class DroneState : EntityState
 {
     protected Drone Drone;
-    protected float FowardInput;
-    protected float RightInput;
-    protected float UpInput;
-    protected float DownInput;
+
 
 
     public DroneState(EntityStateMachine entityStateMachine, Entity entity, string animationName, Drone drone) : base(entityStateMachine, entity, animationName)
@@ -25,12 +22,9 @@ public class DroneState : EntityState
     {
         base.Update();
 
-        if (Drone.operateNow)
+        if (Drone.AttackInput)
         {
-            FowardInput = Input.GetAxis("Vertical");
-            RightInput = Input.GetAxis("Horizontal");
-            UpInput = Input.GetKey(KeyCode.Q) ? 1 : 0;
-            DownInput = Input.GetKey(KeyCode.E) ? 1 : 0;
+            Drone.Attack();
         }
     }
 

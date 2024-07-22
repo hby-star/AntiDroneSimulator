@@ -36,4 +36,9 @@ public class Entity : MonoBehaviour
     {
         Rigidbody.velocity = new Vector3(0, Rigidbody.velocity.y, 0);
     }
+
+    public void ZeroVelocity()
+    {
+        Rigidbody.velocity = Vector3.zero;
+    }
 }

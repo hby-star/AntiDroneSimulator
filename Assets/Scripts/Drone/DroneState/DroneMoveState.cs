@@ -17,9 +17,9 @@ public class DroneMoveState : DroneState
     {
         base.Update();
 
-        Drone.OperateMove(Drone.speed);
+        Move(Drone.speed);
 
-        if (FowardInput == 0 && RightInput == 0 && UpInput == 0 && DownInput == 0)
+        if (Drone.HorizontalInput == 0 && Drone.VerticalInput == 0 && Drone.UpInput == 0)
         {
             EntityStateMachine.ChangeState(Drone.IdleState);
         }
@@ -28,6 +28,19 @@ public class DroneMoveState : DroneState
     public override void Exit()
     {
         base.Exit();
+    }
+
+    public void Move(float moveSpeed)
+    {
+        if (Drone.operateNow)
+        {
+            Vector3 moveDirectionX = Drone.transform.forward * (Drone.HorizontalInput * moveSpeed);
+            Vector3 moveDirectionZ = Drone.transform.right * (Drone.VerticalInput * moveSpeed);
+            Vector3 moveDirectionY = Drone.transform.up * (Drone.UpInput * moveSpeed);
+            Vector3 moveDirection = moveDirectionX + moveDirectionZ + moveDirectionY;
+            moveDirection = Vector3.ClampMagnitude(moveDirection, moveSpeed);
+            Drone.Rigidbody.velocity = new Vector3(moveDirection.x, moveDirection.y, moveDirection.z);
+        }
     }
 
 }

@@ -94,32 +94,6 @@ public class Drone : Entity
         AudioUpdate();
     }
 
-    public void OperateMove(float moveSpeed)
-    {
-        if (operateNow)
-        {
-            // wasd 控制水平移动， qe 控制垂直移动
-            float forwardInput = Input.GetAxis("Vertical");
-            float rightInput = Input.GetAxis("Horizontal");
-            float upInput = Input.GetKey(KeyCode.Q) ? 1 : 0;
-            float downInput = Input.GetKey(KeyCode.E) ? 1 : 0;
-            upInput = upInput - downInput;
-
-            // Calculate movement based on vertical input & horizontal input
-            Vector3 moveDirectionX = transform.forward * (forwardInput * moveSpeed);
-            Vector3 moveDirectionZ = transform.right * (rightInput * moveSpeed);
-            Vector3 moveDirectionY = transform.up * (upInput * moveSpeed);
-            Vector3 moveDirection = moveDirectionX + moveDirectionZ + moveDirectionY;
-            moveDirection = Vector3.ClampMagnitude(moveDirection, moveSpeed);
-            Rigidbody.velocity = new Vector3(moveDirection.x, moveDirection.y, moveDirection.z);
-
-            if (Input.GetKeyDown(KeyCode.F))
-            {
-                Attack();
-            }
-        }
-    }
-
     public void SetOperate(bool operate)
     {
         operateNow = operate;
@@ -132,4 +106,29 @@ public class Drone : Entity
             StateMachine.ChangeState(IdleState);
         }
     }
+
+    #region Handle Input
+    public float HorizontalInput;
+    public float VerticalInput;
+    public float UpInput;
+    public bool AttackInput;
+
+    void OnEnable()
+    {
+        Messenger<float>.AddListener(InputEvent.DRONE_HORIZONTAL_INPUT, (value) => { HorizontalInput = value; });
+        Messenger<float>.AddListener(InputEvent.DRONE_VERTICAL_INPUT, (value) => { VerticalInput = value; });
+        Messenger<float>.AddListener(InputEvent.DRONE_UP_INPUT, (value) => { UpInput = value; });
+        Messenger<bool>.AddListener(InputEvent.DRONE_ATTACK_INPUT, (value) => { AttackInput = value; });
+    }
+
+    void OnDisable()
+    {
+        Messenger<float>.RemoveListener(InputEvent.DRONE_HORIZONTAL_INPUT, (value) => { HorizontalInput = value; });
+        Messenger<float>.RemoveListener(InputEvent.DRONE_VERTICAL_INPUT, (value) => { VerticalInput = value; });
+        Messenger<float>.RemoveListener(InputEvent.DRONE_UP_INPUT, (value) => { UpInput = value; });
+        Messenger<bool>.RemoveListener(InputEvent.DRONE_ATTACK_INPUT, (value) => { AttackInput = value; });
+    }
+
+    #endregion
+
 }

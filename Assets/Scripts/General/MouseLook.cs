@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 [AddComponentMenu("Control Script/Mouse Look")]
@@ -19,6 +20,21 @@ public class MouseLook : MonoBehaviour {
 
     private float verticalRot = 0;
 
+    public float CameraHorizontalInput;
+    public float CameraVerticalInput;
+
+    private void OnEnable()
+    {
+        Messenger<float>.AddListener(InputEvent.CAMERA_HORIZONTAL_INPUT, (value) => { CameraHorizontalInput = value; });
+        Messenger<float>.AddListener(InputEvent.CAMERA_VERTICAL_INPUT, (value) => { CameraVerticalInput = value; });
+    }
+
+    private void OnDisable()
+    {
+        Messenger<float>.RemoveListener(InputEvent.CAMERA_HORIZONTAL_INPUT, (value) => { CameraHorizontalInput = value; });
+        Messenger<float>.RemoveListener(InputEvent.CAMERA_VERTICAL_INPUT, (value) => { CameraVerticalInput = value; });
+    }
+
     void Start() {
         Rigidbody body = target != null ? target.GetComponent<Rigidbody>() : GetComponent<Rigidbody>();
         if (body != null) {
@@ -29,19 +45,19 @@ public class MouseLook : MonoBehaviour {
 
     void Update() {
         if (axes == RotationAxes.MouseX) {
-            float rotationY = Input.GetAxis("Mouse X") * sensitivityHor;
+            float rotationY = CameraHorizontalInput * sensitivityHor;
             target.Rotate(0, rotationY, 0);
         }
         else if (axes == RotationAxes.MouseY) {
-            verticalRot -= Input.GetAxis("Mouse Y") * sensitivityVert;
+            verticalRot -= CameraVerticalInput * sensitivityVert;
             verticalRot = Mathf.Clamp(verticalRot, minimumVert, maximumVert);
             target.localEulerAngles = new Vector3(verticalRot, target.localEulerAngles.y, 0);
         }
         else {
-            verticalRot -= Input.GetAxis("Mouse Y") * sensitivityVert;
+            verticalRot -= CameraVerticalInput * sensitivityVert;
             verticalRot = Mathf.Clamp(verticalRot, minimumVert, maximumVert);
 
-            float delta = Input.GetAxis("Mouse X") * sensitivityHor;
+            float delta = CameraHorizontalInput * sensitivityHor;
             float horizontalRot = target.localEulerAngles.y + delta;
 
             target.localEulerAngles = new Vector3(verticalRot, horizontalRot, 0);

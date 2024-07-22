@@ -19,11 +19,6 @@ public class PlayerIdleState : PlayerGroundState
         base.Update();
 
         Player.ZeroHorVelocity();
-
-        if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
-        {
-            EntityStateMachine.ChangeState(Player.MoveState);
-        }
     }
 
     public override void Exit()
