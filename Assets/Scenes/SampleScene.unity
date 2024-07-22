@@ -345,7 +345,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 527398717}
-  drone: {fileID: 921008671400013897}
+  drone: {fileID: 0}
 --- !u!1 &206450403
 GameObject:
   m_ObjectHideFlags: 0
@@ -531,6 +531,8 @@ MonoBehaviour:
   minimumVert: -45
   maximumVert: 45
   target: {fileID: 527398714}
+  CameraHorizontalInput: 0
+  CameraVerticalInput: 0
 --- !u!114 &527398721
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -549,6 +551,8 @@ MonoBehaviour:
   minimumVert: -30
   maximumVert: 30
   target: {fileID: 969079743519865356}
+  CameraHorizontalInput: 0
+  CameraVerticalInput: 0
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -2910,7 +2914,6 @@ MonoBehaviour:
   HorizontalInput: 0
   VerticalInput: 0
   UpInput: 0
-  DownInput: 0
   AttackInput: 0
 --- !u!114 &921008671400013899
 MonoBehaviour:
@@ -2930,6 +2933,8 @@ MonoBehaviour:
   minimumVert: -45
   maximumVert: 45
   target: {fileID: 872460123408623964}
+  CameraHorizontalInput: 0
+  CameraVerticalInput: 0
 --- !u!114 &921008671400013900
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2948,6 +2953,8 @@ MonoBehaviour:
   minimumVert: -45
   maximumVert: 45
   target: {fileID: 872460123408623964}
+  CameraHorizontalInput: 0
+  CameraVerticalInput: 0
 --- !u!114 &921008671400013901
 MonoBehaviour:
   m_ObjectHideFlags: 0

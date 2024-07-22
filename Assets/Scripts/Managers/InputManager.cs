@@ -21,16 +21,18 @@ public class InputManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        HandleOperateSwitch();
+        if(player != null && drone != null)
+        {
+            HandleOperateSwitch();
+        }
 
-
-        if (player.operateNow)
+        if (player && player.operateNow)
         {
             HandlePlayerInput();
             HandleCameraInput();
         }
 
-        if (drone.operateNow)
+        if (drone && drone.operateNow)
         {
             HandleDroneInput();
             HandleCameraInput();
