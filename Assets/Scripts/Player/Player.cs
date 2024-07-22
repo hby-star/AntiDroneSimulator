@@ -16,6 +16,7 @@ public class Player : Entity
     public PlayerAttackState AttackState;
     public PlayerReloadState ReloadState;
     public PlayerDashState DashState;
+    public PlayerCrouchState CrouchState;
 
     # endregion
 
@@ -23,6 +24,8 @@ public class Player : Entity
     public int maxBullets = 6;
     public int bullets = 6;
     public float dashSpeed = 10f;
+    public float standColliderHeight = 1.75f;
+    public float crouchColliderHeight = 1.0f;
 
     #region MouseLook
 
@@ -45,6 +48,7 @@ public class Player : Entity
         AttackState = new PlayerAttackState(StateMachine, this, "Attack", this);
         ReloadState = new PlayerReloadState(StateMachine, this, "Reload", this);
         DashState = new PlayerDashState(StateMachine, this, "Dash", this);
+        CrouchState = new PlayerCrouchState(StateMachine, this, "Crouch", this);
     }
 
     protected override void Start()
@@ -99,13 +103,27 @@ public class Player : Entity
         }
     }
 
-    public virtual bool IsGrounded()
+    public void SetColliderHeight(float height)
+    {
+        CapsuleCollider capsuleCollider = Collider as CapsuleCollider;
+        if (capsuleCollider != null)
+        {
+            float originalHeight = capsuleCollider.height;
+            Vector3 center = capsuleCollider.center;
+            capsuleCollider.height = height;
+            capsuleCollider.center = new Vector3(center.x, (height - 0.05f) / 2, center.z);
+        }
+    }
+
+    public bool IsGrounded()
     {
         CapsuleCollider capsuleCollider = Collider as CapsuleCollider;
         if (capsuleCollider == null) return false;
 
-        Vector3 capsuleBottom = new Vector3(transform.position.x, transform.position.y + capsuleCollider.radius, transform.position.z);
-        Vector3 capsuleTop = new Vector3(transform.position.x, transform.position.y + capsuleCollider.height - capsuleCollider.radius, transform.position.z);
+        Vector3 capsuleBottom = new Vector3(transform.position.x, transform.position.y + capsuleCollider.radius,
+            transform.position.z);
+        Vector3 capsuleTop = new Vector3(transform.position.x,
+            transform.position.y + capsuleCollider.height - capsuleCollider.radius, transform.position.z);
 
         float distanceToGround = capsuleCollider.height / 2 - capsuleCollider.radius + 0.1f;
         return Physics.CapsuleCast(capsuleTop, capsuleBottom, capsuleCollider.radius, Vector3.down, distanceToGround);
@@ -116,8 +134,10 @@ public class Player : Entity
         CapsuleCollider capsuleCollider = Collider as CapsuleCollider;
         if (capsuleCollider == null) return;
 
-        Vector3 capsuleBottom = new Vector3(transform.position.x, transform.position.y + capsuleCollider.radius, transform.position.z);
-        Vector3 capsuleTop = new Vector3(transform.position.x, transform.position.y + capsuleCollider.height - capsuleCollider.radius, transform.position.z);
+        Vector3 capsuleBottom = new Vector3(transform.position.x, transform.position.y + capsuleCollider.radius,
+            transform.position.z);
+        Vector3 capsuleTop = new Vector3(transform.position.x,
+            transform.position.y + capsuleCollider.height - capsuleCollider.radius, transform.position.z);
 
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(capsuleTop, capsuleCollider.radius);

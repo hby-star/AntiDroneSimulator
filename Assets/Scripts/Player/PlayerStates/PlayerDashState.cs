@@ -14,12 +14,8 @@ public class PlayerDashState : PlayerGroundState
     public override void Enter()
     {
         base.Enter();
-        CapsuleCollider capsuleCollider = Player.Collider as CapsuleCollider;
-        if (capsuleCollider != null)
-        {
-            originalColliderHeight = capsuleCollider.height;
-            capsuleCollider.height = originalColliderHeight / 2;
-        }
+
+        Player.SetColliderHeight(Player.crouchColliderHeight);
 
         Player.soundSource.PlayOneShot(Player.dashSound);
 
@@ -45,11 +41,7 @@ public class PlayerDashState : PlayerGroundState
 
     public override void Exit()
     {
-        CapsuleCollider capsuleCollider = Player.Collider as CapsuleCollider;
-        if (capsuleCollider != null)
-        {
-            capsuleCollider.height = originalColliderHeight;
-        }
+        Player.SetColliderHeight(Player.standColliderHeight);
 
         base.Exit();
     }

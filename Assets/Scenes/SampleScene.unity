@@ -448,6 +448,8 @@ MonoBehaviour:
   maxBullets: 6
   bullets: 6
   dashSpeed: 20
+  standColliderHeight: 1.75
+  crouchColliderHeight: 1
   mouseLookX: {fileID: 527398720}
   mouseLookY: {fileID: 527398721}
   soundSource: {fileID: 969079743519865791}
