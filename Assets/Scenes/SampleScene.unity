@@ -355,6 +355,7 @@ GameObject:
   - component: {fileID: 177480483}
   - component: {fileID: 177480484}
   - component: {fileID: 177480485}
+  - component: {fileID: 177480486}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -392,8 +393,7 @@ MonoBehaviour:
   player: {fileID: 527398717}
   drone: {fileID: 7966612106362951819}
   operateEntityNow: 0
-  operatePlayerNow: 0
-  operateDroneNow: 1
+  operateTarget: 0
   operateCamera: {fileID: 0}
 --- !u!114 &177480485
 MonoBehaviour:
@@ -407,6 +407,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 600fecb3faffe4f4aa76f199a82bf517, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &177480486
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 177480480}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 529d6660d4f26fc47be2c93b902d423a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentAlgorithm: 1
 --- !u!1 &206450403
 GameObject:
   m_ObjectHideFlags: 0

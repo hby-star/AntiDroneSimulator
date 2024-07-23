@@ -23,18 +23,6 @@ public class MouseLook : MonoBehaviour {
     public float CameraHorizontalInput;
     public float CameraVerticalInput;
 
-    private void OnEnable()
-    {
-        Messenger<float>.AddListener(InputEvent.CAMERA_HORIZONTAL_INPUT, (value) => { CameraHorizontalInput = value; });
-        Messenger<float>.AddListener(InputEvent.CAMERA_VERTICAL_INPUT, (value) => { CameraVerticalInput = value; });
-    }
-
-    private void OnDisable()
-    {
-        Messenger<float>.RemoveListener(InputEvent.CAMERA_HORIZONTAL_INPUT, (value) => { CameraHorizontalInput = value; });
-        Messenger<float>.RemoveListener(InputEvent.CAMERA_VERTICAL_INPUT, (value) => { CameraVerticalInput = value; });
-    }
-
     void Start() {
         Rigidbody body = target != null ? target.GetComponent<Rigidbody>() : GetComponent<Rigidbody>();
         if (body != null) {

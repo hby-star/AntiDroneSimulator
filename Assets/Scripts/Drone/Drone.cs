@@ -14,8 +14,10 @@ public class Drone : Entity
     # endregion
 
     #region Attack
-    [Header("Attack Info")]
-    [SerializeField] GameObject bombPrefab;
+
+    [Header("Attack Info")] [SerializeField]
+    GameObject bombPrefab;
+
     private GameObject bomb;
     private bool hasBomb = true;
 
@@ -38,8 +40,8 @@ public class Drone : Entity
     #endregion
 
     #region Control
-    [Header("Control Info")]
-    public bool isLeader = false;
+
+    [Header("Control Info")] public bool isLeader = false;
 
     public IDroneControlAlgorithm DroneControlAlgorithm;
 
@@ -72,12 +74,14 @@ public class Drone : Entity
 
         StateMachine.Initialize(IdleState);
 
-        DroneControlAlgorithm = new Flocking();
+        DroneControlAlgorithm = AlgorithmManager.Instance.GetAlgorithm();
         DroneControlAlgorithm.DroneControlSet(this);
 
         droneCamera = GetComponentInChildren<Camera>();
 
-        SetOperate(InputManager.Instance.operateDroneNow && isLeader);
+        SetOperate(InputManager.Instance.operateTarget == InputManager.OperateTarget.Drone && isLeader);
+
+        Rigidbody.freezeRotation = true;
     }
 
     protected override void Update()
@@ -89,14 +93,13 @@ public class Drone : Entity
         AudioUpdate();
         MouseLookUpdate();
 
-        DroneControlAlgorithm.DroneControlUpdate();
-
+        if (!operateNow)
+            DroneControlAlgorithm.DroneControlUpdate();
     }
 
     #region MouseLook
 
-    [Header("Mouse Look Info")]
-    public float sensitivityHor = 9.0f;
+    [Header("Mouse Look Info")] public float sensitivityHor = 9.0f;
 
     public Transform mouseLookTarget;
     public Camera droneCamera { get; private set; }
@@ -117,8 +120,8 @@ public class Drone : Entity
     #endregion
 
     #region Audio
-    [Header("Audio Info")]
-    public AudioSource soundSource;
+
+    [Header("Audio Info")] public AudioSource soundSource;
     public AudioClip flySound;
 
     void AudioUpdate()
@@ -136,10 +139,10 @@ public class Drone : Entity
     #region Handle Input
 
     public float HorizontalInput { get; private set; }
-    public float VerticalInput{ get; private set; }
-    public float UpInput{ get; private set; }
-    public bool AttackInput{ get; private set; }
-    public float CameraHorizontalInput{ get; private set; }
+    public float VerticalInput { get; private set; }
+    public float UpInput { get; private set; }
+    public bool AttackInput { get; private set; }
+    public float CameraHorizontalInput { get; private set; }
 
     void OnEnable()
     {
@@ -149,7 +152,7 @@ public class Drone : Entity
             Messenger<float>.AddListener(InputEvent.DRONE_VERTICAL_INPUT, (value) => { VerticalInput = value; });
             Messenger<float>.AddListener(InputEvent.DRONE_UP_INPUT, (value) => { UpInput = value; });
             Messenger<bool>.AddListener(InputEvent.DRONE_ATTACK_INPUT, (value) => { AttackInput = value; });
-            Messenger<float>.AddListener(InputEvent.CAMERA_HORIZONTAL_INPUT,
+            Messenger<float>.AddListener(InputEvent.DRONE_CAMERA_HORIZONTAL_INPUT,
                 (value) => { CameraHorizontalInput = value; });
         }
     }
@@ -162,12 +165,10 @@ public class Drone : Entity
             Messenger<float>.RemoveListener(InputEvent.DRONE_VERTICAL_INPUT, (value) => { VerticalInput = value; });
             Messenger<float>.RemoveListener(InputEvent.DRONE_UP_INPUT, (value) => { UpInput = value; });
             Messenger<bool>.RemoveListener(InputEvent.DRONE_ATTACK_INPUT, (value) => { AttackInput = value; });
-            Messenger<float>.RemoveListener(InputEvent.CAMERA_HORIZONTAL_INPUT,
+            Messenger<float>.RemoveListener(InputEvent.DRONE_CAMERA_HORIZONTAL_INPUT,
                 (value) => { CameraHorizontalInput = value; });
         }
     }
 
     #endregion
-
-
 }

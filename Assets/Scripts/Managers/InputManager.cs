@@ -42,18 +42,17 @@ public class InputManager : MonoBehaviour
 
     #endregion
 
-    public Player player;
-    public Drone drone;
-    public bool operateEntityNow;
-    public bool operatePlayerNow;
-    public bool operateDroneNow;
-    public Camera operateCamera;
-
-    enum OperateTarget
+    public enum OperateTarget
     {
         Player,
         Drone
     }
+
+    public Player player;
+    public Drone drone;
+    public bool operateEntityNow;
+    public OperateTarget operateTarget;
+    public Camera operateCamera;
 
 
     void Start()
@@ -67,26 +66,23 @@ public class InputManager : MonoBehaviour
 
         if (operateEntityNow)
         {
-            operatePlayerNow = player.IsOperateNow();
-            operateDroneNow = drone.IsOperateNow();
+            OperateTarget target = player.IsOperateNow() ? OperateTarget.Player : OperateTarget.Drone;
 
             if (player != null && drone != null)
             {
                 HandleOperateSwitch();
             }
 
-            if (player && operatePlayerNow)
+            if (player && operateTarget == OperateTarget.Player)
             {
                 operateCamera = player.playerCamera;
                 HandlePlayerInput();
-                HandleCameraInput();
             }
 
-            if (drone && operateDroneNow)
+            if (drone && operateTarget == OperateTarget.Drone)
             {
                 operateCamera = drone.droneCamera;
                 HandleDroneInput();
-                HandleCameraInput();
             }
         }
     }
@@ -96,8 +92,8 @@ public class InputManager : MonoBehaviour
         // Tab 切换操作对象
         if (Input.GetKeyDown(KeyCode.Tab))
         {
-            OperateTarget target = player.IsOperateNow() ? OperateTarget.Drone : OperateTarget.Player;
-            switch (target)
+            operateTarget = operateTarget == OperateTarget.Player ? OperateTarget.Drone : OperateTarget.Player;
+            switch (operateTarget)
             {
                 case OperateTarget.Player:
                     player.SetOperate(true);
@@ -135,6 +131,12 @@ public class InputManager : MonoBehaviour
 
         // Player Crouch
         Messenger<bool>.Broadcast(InputEvent.PLAYER_CROUCH_INPUT, Input.GetKeyDown(KeyCode.LeftControl));
+
+        // Player Camera Horizontal
+        Messenger<float>.Broadcast(InputEvent.PLAYER_CAMERA_HORIZONTAL_INPUT, Input.GetAxis("Mouse X"));
+
+        // Player Camera Vertical
+        Messenger<float>.Broadcast(InputEvent.PLAYER_CAMERA_VERTICAL_INPUT, Input.GetAxis("Mouse Y"));
     }
 
     void HandleDroneInput()
@@ -154,15 +156,9 @@ public class InputManager : MonoBehaviour
 
         // Drone Attack
         Messenger<bool>.Broadcast(InputEvent.DRONE_ATTACK_INPUT, Input.GetKeyDown(KeyCode.F));
-    }
 
-    void HandleCameraInput()
-    {
-        // Camera Horizontal
-        Messenger<float>.Broadcast(InputEvent.CAMERA_HORIZONTAL_INPUT, Input.GetAxis("Mouse X"));
-
-        // Camera Vertical
-        Messenger<float>.Broadcast(InputEvent.CAMERA_VERTICAL_INPUT, Input.GetAxis("Mouse Y"));
+        // Drone Camera Horizontal
+        Messenger<float>.Broadcast(InputEvent.DRONE_CAMERA_HORIZONTAL_INPUT, Input.GetAxis("Mouse X"));
     }
 
     void HandleGameInput()

@@ -207,7 +207,9 @@ public class Player : Entity
 
         AttackStart();
 
-        SetOperate(InputManager.Instance.operatePlayerNow);
+        SetOperate(InputManager.Instance.operateTarget == InputManager.OperateTarget.Player);
+
+        Rigidbody.freezeRotation = true;
     }
 
     protected override void Update()
@@ -323,9 +325,9 @@ public class Player : Entity
         Messenger<bool>.AddListener(InputEvent.PLAYER_DASH_INPUT, (value) => { DashInput = value; });
         Messenger<bool>.AddListener(InputEvent.PLAYER_CROUCH_INPUT, (value) => { CrouchInput = value; });
         Messenger<bool>.AddListener(InputEvent.PLAYER_ATTACK_INPUT, (value) => { AttackInput = value; });
-        Messenger<float>.AddListener(InputEvent.CAMERA_HORIZONTAL_INPUT,
+        Messenger<float>.AddListener(InputEvent.PLAYER_CAMERA_HORIZONTAL_INPUT,
             (value) => { CameraHorizontalInput = value; });
-        Messenger<float>.AddListener(InputEvent.CAMERA_VERTICAL_INPUT, (value) => { CameraVerticalInput = value; });
+        Messenger<float>.AddListener(InputEvent.PLAYER_CAMERA_VERTICAL_INPUT, (value) => { CameraVerticalInput = value; });
     }
 
     void OnDisable()
@@ -336,9 +338,9 @@ public class Player : Entity
         Messenger<bool>.RemoveListener(InputEvent.PLAYER_DASH_INPUT, (value) => { DashInput = value; });
         Messenger<bool>.RemoveListener(InputEvent.PLAYER_CROUCH_INPUT, (value) => { CrouchInput = value; });
         Messenger<bool>.RemoveListener(InputEvent.PLAYER_ATTACK_INPUT, (value) => { AttackInput = value; });
-        Messenger<float>.RemoveListener(InputEvent.CAMERA_HORIZONTAL_INPUT,
+        Messenger<float>.RemoveListener(InputEvent.PLAYER_CAMERA_HORIZONTAL_INPUT,
             (value) => { CameraHorizontalInput = value; });
-        Messenger<float>.RemoveListener(InputEvent.CAMERA_VERTICAL_INPUT, (value) => { CameraVerticalInput = value; });
+        Messenger<float>.RemoveListener(InputEvent.PLAYER_CAMERA_VERTICAL_INPUT, (value) => { CameraVerticalInput = value; });
     }
 
     #endregion

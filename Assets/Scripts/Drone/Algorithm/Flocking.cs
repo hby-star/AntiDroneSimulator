@@ -28,6 +28,8 @@ public class Flocking : IDroneControlAlgorithm
         }
     }
 
+
+
     public List<Drone> GetNeighbors()
     {
         List<Drone> neighbors = new List<Drone>();
