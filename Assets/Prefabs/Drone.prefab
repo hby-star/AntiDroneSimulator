@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 4230406066024909837}
   - component: {fileID: 3766623996669697188}
   - component: {fileID: 5914683260098743116}
-  - component: {fileID: 2189994902381780297}
   - component: {fileID: 4892926585000079637}
   m_Layer: 0
   m_Name: Drone
@@ -123,27 +122,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHeath: 100
   currentHeath: 100
---- !u!114 &2189994902381780297
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 53710042011631870}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 151b8dd52f753c04a99e5249b96a6dd8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  separationDistance: 15
-  alignmentDistance: 80
-  cohesionDistance: 100
-  separationWeight: 2
-  alignmentWeight: 4
-  cohesionWeight: 1
-  maxSpeed: 20
-  maxForce: 30
-  isLeader: 0
 --- !u!65 &4892926585000079637
 BoxCollider:
   m_ObjectHideFlags: 0

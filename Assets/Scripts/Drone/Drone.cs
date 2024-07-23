@@ -60,6 +60,8 @@ public class Drone : Entity
 
     public bool isLeader = false;
 
+    public IDroneControlAlgorithm DroneControlAlgorithm;
+
     protected override void Awake()
     {
         base.Awake();
@@ -75,6 +77,9 @@ public class Drone : Entity
         base.Start();
 
         StateMachine.Initialize(IdleState);
+
+        DroneControlAlgorithm = new Flocking();
+        DroneControlAlgorithm.DroneControlSet(this);
 
         if (!isLeader)
         {
@@ -92,6 +97,11 @@ public class Drone : Entity
 
         StateMachine.CurrentState.Update();
         AudioUpdate();
+
+        if (!isLeader)
+        {
+            DroneControlAlgorithm.DroneControlUpdate();
+        }
     }
 
     public void SetOperate(bool operate)
