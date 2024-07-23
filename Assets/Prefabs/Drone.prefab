@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4230406066024909837}
   - component: {fileID: 5914683260098743116}
   - component: {fileID: 4892926585000079637}
+  - component: {fileID: 2987680342642238867}
   m_Layer: 0
   m_Name: Drone
   m_TagString: Player
@@ -76,7 +77,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0edc1d54601966e4681cce0b944c6692, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  operateNow: 0
   moveSpeed: 10
   bombPrefab: {fileID: 5278478624696052950, guid: 5b64a00306ed0244088d72b7a813c031, type: 3}
   isLeader: 0
@@ -84,11 +84,6 @@ MonoBehaviour:
   mouseLookTarget: {fileID: 2424916829615425556}
   soundSource: {fileID: 8234029062686397238}
   flySound: {fileID: 8300000, guid: da8cba425f89d414bbfefcafcff846bd, type: 3}
-  HorizontalInput: 0
-  VerticalInput: 0
-  UpInput: 0
-  AttackInput: 0
-  CameraHorizontalInput: 0
 --- !u!114 &5914683260098743116
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -124,6 +119,18 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2.2, y: 1, z: 2.2}
   m_Center: {x: 0, y: 0, z: -0.04}
+--- !u!114 &2987680342642238867
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 53710042011631870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d5279a6a99a2e74ea1843a589673ef4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &446857200805012625
 GameObject:
   m_ObjectHideFlags: 0
