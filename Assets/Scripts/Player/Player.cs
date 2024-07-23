@@ -81,7 +81,7 @@ public class Player : Entity
 
     void OnGUI()
     {
-        if (operateNow)
+        if (operateNow && InputManager.Instance.operateEntityNow)
         {
             int crosshairSize = 12;
             int lineLength = 5;
@@ -207,7 +207,7 @@ public class Player : Entity
 
         AttackStart();
 
-        SetOperate(false);
+        SetOperate(InputManager.Instance.operatePlayerNow);
     }
 
     protected override void Update()
@@ -252,7 +252,7 @@ public class Player : Entity
     public Transform targetY;
 
     private float verticalRot = 0;
-    private Camera playerCamera;
+    public Camera playerCamera { get; private set; }
 
     void MouseLookUpdate()
     {

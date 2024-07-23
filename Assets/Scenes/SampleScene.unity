@@ -354,6 +354,7 @@ GameObject:
   m_Component:
   - component: {fileID: 177480483}
   - component: {fileID: 177480484}
+  - component: {fileID: 177480485}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -390,8 +391,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 527398717}
   drone: {fileID: 7966612106362951819}
+  operateEntityNow: 0
   operatePlayerNow: 0
   operateDroneNow: 1
+  operateCamera: {fileID: 0}
+--- !u!114 &177480485
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 177480480}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 600fecb3faffe4f4aa76f199a82bf517, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &206450403
 GameObject:
   m_ObjectHideFlags: 0
@@ -561,13 +576,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 10
-  maxBullets: 6
-  bullets: 6
-  bulletImpact: {fileID: 8913486584783115997, guid: 7b3f6d217c2df924faf6b18c6bb7b698, type: 3}
   jumpForce: 5
   dashSpeed: 15
   standColliderHeight: 1.75
   crouchColliderHeight: 1
+  maxBullets: 6
+  bullets: 6
+  bulletImpact: {fileID: 8913486584783115997, guid: 7b3f6d217c2df924faf6b18c6bb7b698, type: 3}
   sensitivityHor: 9
   sensitivityVert: 9
   minimumVert: -45
@@ -578,14 +593,6 @@ MonoBehaviour:
   reloadSound: {fileID: 8300000, guid: 4d065ebd0386b9345ac4ec4d5377f76d, type: 3}
   fireSound: {fileID: 8300000, guid: 293496b0af3029f4caae703eb9088dd8, type: 3}
   dashSound: {fileID: 8300000, guid: e7b8be42c3a5e97418b0417f3b4e94cd, type: 3}
-  HorizontalInput: 0
-  VerticalInput: 0
-  JumpInput: 0
-  DashInput: 0
-  CrouchInput: 0
-  AttackInput: 0
-  CameraHorizontalInput: 0
-  CameraVerticalInput: 0
 --- !u!54 &527398718
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -6869,11 +6876,6 @@ MonoBehaviour:
   mouseLookTarget: {fileID: 8475059150653332626}
   soundSource: {fileID: 2774034480916055984}
   flySound: {fileID: 8300000, guid: da8cba425f89d414bbfefcafcff846bd, type: 3}
-  HorizontalInput: 0
-  VerticalInput: 0
-  UpInput: 0
-  AttackInput: 0
-  CameraHorizontalInput: 0
 --- !u!81 &8379427406411489098
 AudioListener:
   m_ObjectHideFlags: 0

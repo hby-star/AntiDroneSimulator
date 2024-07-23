@@ -14,4 +14,7 @@
 
     public const string CAMERA_HORIZONTAL_INPUT = "CAMERA_HORIZONTAL_INPUT";
     public const string CAMERA_VERTICAL_INPUT = "CAMERA_VERTICAL_INPUT";
+
+    public const string GAME_PAUSE_INPUT = "GAME_PAUSE_INPUT";
+    public const string OBSERVER_MODE_INPUT = "OBSERVER_MODE_INPUT";
 }

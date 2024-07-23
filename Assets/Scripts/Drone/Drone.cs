@@ -99,8 +99,7 @@ public class Drone : Entity
     public float sensitivityHor = 9.0f;
 
     public Transform mouseLookTarget;
-
-    private Camera droneCamera;
+    public Camera droneCamera { get; private set; }
 
 
     void MouseLookUpdate()

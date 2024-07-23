@@ -44,8 +44,10 @@ public class InputManager : MonoBehaviour
 
     public Player player;
     public Drone drone;
+    public bool operateEntityNow;
     public bool operatePlayerNow;
     public bool operateDroneNow;
+    public Camera operateCamera;
 
     enum OperateTarget
     {
@@ -56,27 +58,36 @@ public class InputManager : MonoBehaviour
 
     void Start()
     {
+        operateEntityNow = true;
     }
 
     void Update()
     {
-        operatePlayerNow = player.IsOperateNow();
-        operateDroneNow = drone.IsOperateNow();
-        if (player != null && drone != null)
-        {
-            HandleOperateSwitch();
-        }
+        HandleGameInput();
 
-        if (player && operatePlayerNow)
+        if (operateEntityNow)
         {
-            HandlePlayerInput();
-            HandleCameraInput();
-        }
+            operatePlayerNow = player.IsOperateNow();
+            operateDroneNow = drone.IsOperateNow();
 
-        if (drone && operateDroneNow)
-        {
-            HandleDroneInput();
-            HandleCameraInput();
+            if (player != null && drone != null)
+            {
+                HandleOperateSwitch();
+            }
+
+            if (player && operatePlayerNow)
+            {
+                operateCamera = player.playerCamera;
+                HandlePlayerInput();
+                HandleCameraInput();
+            }
+
+            if (drone && operateDroneNow)
+            {
+                operateCamera = drone.droneCamera;
+                HandleDroneInput();
+                HandleCameraInput();
+            }
         }
     }
 
@@ -131,6 +142,9 @@ public class InputManager : MonoBehaviour
         // Drone Horizontal
         Messenger<float>.Broadcast(InputEvent.DRONE_HORIZONTAL_INPUT, Input.GetAxis("Vertical"));
 
+        // Drone Vertical
+        Messenger<float>.Broadcast(InputEvent.DRONE_VERTICAL_INPUT, Input.GetAxis("Horizontal"));
+
         // Drone Up
         bool up = Input.GetKey(KeyCode.Q);
         bool down = Input.GetKey(KeyCode.E);
@@ -149,5 +163,20 @@ public class InputManager : MonoBehaviour
 
         // Camera Vertical
         Messenger<float>.Broadcast(InputEvent.CAMERA_VERTICAL_INPUT, Input.GetAxis("Mouse Y"));
+    }
+
+    void HandleGameInput()
+    {
+        // Game Pause
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            Messenger.Broadcast(InputEvent.GAME_PAUSE_INPUT);
+        }
+
+        // Observer Mode
+        if (Input.GetKeyDown(KeyCode.O))
+        {
+            Messenger.Broadcast(InputEvent.OBSERVER_MODE_INPUT);
+        }
     }
 }
