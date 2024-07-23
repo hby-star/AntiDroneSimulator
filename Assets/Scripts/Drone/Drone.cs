@@ -97,6 +97,7 @@ public class Drone : Entity
 
         StateMachine.CurrentState.Update();
         AudioUpdate();
+        MouseLookUpdate();
 
         if (!isLeader)
         {
@@ -108,15 +109,6 @@ public class Drone : Entity
     {
         operateNow = operate;
         _camera.gameObject.SetActive(operate);
-
-        if (isLeader)
-        {
-            mouseLookX.enabled = operate;
-        }
-        else
-        {
-            mouseLookX.enabled = false;
-        }
         transform.rotation = Quaternion.identity;
         if (!operate)
         {
@@ -124,13 +116,35 @@ public class Drone : Entity
         }
     }
 
+    #region MouseLook
+
+    public float sensitivityHor = 9.0f;
+
+    public Transform target;
+
+    void MouseLookUpdate()
+    {
+        if (isLeader && operateNow)
+            MouseXLookUpdate();
+    }
+
+    void MouseXLookUpdate()
+    {
+        float rotationY = CameraHorizontalInput * sensitivityHor;
+        target.Rotate(0, rotationY, 0);
+    }
+
+    #endregion
+
+
     #region Handle Input
+
     public float HorizontalInput;
     public float VerticalInput;
     public float UpInput;
     public bool AttackInput;
 
-    public MouseLook mouseLookX;
+    public float CameraHorizontalInput;
 
     void OnEnable()
     {
@@ -140,6 +154,8 @@ public class Drone : Entity
             Messenger<float>.AddListener(InputEvent.DRONE_VERTICAL_INPUT, (value) => { VerticalInput = value; });
             Messenger<float>.AddListener(InputEvent.DRONE_UP_INPUT, (value) => { UpInput = value; });
             Messenger<bool>.AddListener(InputEvent.DRONE_ATTACK_INPUT, (value) => { AttackInput = value; });
+            Messenger<float>.AddListener(InputEvent.CAMERA_HORIZONTAL_INPUT,
+                (value) => { CameraHorizontalInput = value; });
         }
     }
 
@@ -151,9 +167,10 @@ public class Drone : Entity
             Messenger<float>.RemoveListener(InputEvent.DRONE_VERTICAL_INPUT, (value) => { VerticalInput = value; });
             Messenger<float>.RemoveListener(InputEvent.DRONE_UP_INPUT, (value) => { UpInput = value; });
             Messenger<bool>.RemoveListener(InputEvent.DRONE_ATTACK_INPUT, (value) => { AttackInput = value; });
+            Messenger<float>.RemoveListener(InputEvent.CAMERA_HORIZONTAL_INPUT,
+                (value) => { CameraHorizontalInput = value; });
         }
     }
 
     #endregion
-
 }

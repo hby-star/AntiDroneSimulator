@@ -88,9 +88,6 @@ public class InputManager : MonoBehaviour
     void HandleDroneInput()
     {
         // Drone Horizontal
-        Messenger<float>.Broadcast(InputEvent.DRONE_VERTICAL_INPUT, Input.GetAxis("Horizontal"));
-
-        // Drone Vertical
         Messenger<float>.Broadcast(InputEvent.DRONE_HORIZONTAL_INPUT, Input.GetAxis("Vertical"));
 
         // Drone Up

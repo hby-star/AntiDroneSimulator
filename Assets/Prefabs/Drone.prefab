@@ -83,11 +83,17 @@ MonoBehaviour:
   bombPrefab: {fileID: 5278478624696052950, guid: 5b64a00306ed0244088d72b7a813c031, type: 3}
   speed: 10
   isLeader: 0
+  sensitivityHor: 9
+  sensitivityVert: 9
+  minimumVert: -45
+  maximumVert: 45
+  target: {fileID: 2424916829615425556}
   HorizontalInput: 0
   VerticalInput: 0
   UpInput: 0
   AttackInput: 0
-  mouseLookX: {fileID: 3766623996669697188}
+  CameraHorizontalInput: 0
+  CameraVerticalInput: 0
 --- !u!114 &3766623996669697188
 MonoBehaviour:
   m_ObjectHideFlags: 0

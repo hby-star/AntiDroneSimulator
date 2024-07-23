@@ -60,6 +60,8 @@ public class Player : Entity
         base.Update();
 
         StateMachine.CurrentState.Update();
+
+        MouseLookUpdate();
     }
 
     public void Jump()
@@ -77,17 +79,10 @@ public class Player : Entity
         return bullets > 0;
     }
 
-    public void TakeDamage(float damage)
-    {
-        EntityStats.TakeDamage(damage);
-    }
-
     public void SetOperate(bool operate)
     {
         operateNow = operate;
         _camera.gameObject.SetActive(operate);
-        mouseLookX.enabled = operate;
-        mouseLookY.enabled = operate;
         transform.rotation = Quaternion.identity;
         if (!operate)
         {
@@ -135,6 +130,45 @@ public class Player : Entity
         Gizmos.DrawWireSphere(capsuleTop, capsuleCollider.radius);
         Gizmos.DrawWireSphere(capsuleBottom, capsuleCollider.radius);
     }
+
+    #region MouseLook
+
+    public float sensitivityHor = 9.0f;
+    public float sensitivityVert = 9.0f;
+
+    public float minimumVert = -45.0f;
+    public float maximumVert = 45.0f;
+
+    public Transform targetX;
+    public Transform targetY;
+
+    private float verticalRot = 0;
+
+    void MouseLookUpdate()
+    {
+        if (operateNow)
+        {
+            MouseXLookUpdate();
+            MouseYLookUpdate();
+        }
+
+    }
+
+    void MouseXLookUpdate()
+    {
+        float rotationY = CameraHorizontalInput * sensitivityHor;
+        targetX.Rotate(0, rotationY, 0);
+    }
+
+    void MouseYLookUpdate()
+    {
+        verticalRot -= CameraVerticalInput * sensitivityVert;
+        verticalRot = Mathf.Clamp(verticalRot, minimumVert, maximumVert);
+        targetY.localEulerAngles = new Vector3(verticalRot, targetY.localEulerAngles.y, 0);
+    }
+
+    #endregion
+
 
     #region isBusy
 
@@ -269,8 +303,8 @@ public class Player : Entity
     public bool CrouchInput;
     public bool AttackInput;
 
-    public MouseLook mouseLookX;
-    public MouseLook mouseLookY;
+    public float CameraHorizontalInput;
+    public float CameraVerticalInput;
 
     void OnEnable()
     {
@@ -280,6 +314,9 @@ public class Player : Entity
         Messenger<bool>.AddListener(InputEvent.PLAYER_DASH_INPUT, (value) => { DashInput = value; });
         Messenger<bool>.AddListener(InputEvent.PLAYER_CROUCH_INPUT, (value) => { CrouchInput = value; });
         Messenger<bool>.AddListener(InputEvent.PLAYER_ATTACK_INPUT, (value) => { AttackInput = value; });
+        Messenger<float>.AddListener(InputEvent.CAMERA_HORIZONTAL_INPUT,
+            (value) => { CameraHorizontalInput = value; });
+        Messenger<float>.AddListener(InputEvent.CAMERA_VERTICAL_INPUT, (value) => { CameraVerticalInput = value; });
     }
 
     void OnDisable()
@@ -290,6 +327,9 @@ public class Player : Entity
         Messenger<bool>.RemoveListener(InputEvent.PLAYER_DASH_INPUT, (value) => { DashInput = value; });
         Messenger<bool>.RemoveListener(InputEvent.PLAYER_CROUCH_INPUT, (value) => { CrouchInput = value; });
         Messenger<bool>.RemoveListener(InputEvent.PLAYER_ATTACK_INPUT, (value) => { AttackInput = value; });
+        Messenger<float>.RemoveListener(InputEvent.CAMERA_HORIZONTAL_INPUT,
+            (value) => { CameraHorizontalInput = value; });
+        Messenger<float>.RemoveListener(InputEvent.CAMERA_VERTICAL_INPUT, (value) => { CameraVerticalInput = value; });
     }
     #endregion
 

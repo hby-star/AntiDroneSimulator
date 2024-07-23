@@ -522,8 +522,6 @@ GameObject:
   - component: {fileID: 527398716}
   - component: {fileID: 527398718}
   - component: {fileID: 527398719}
-  - component: {fileID: 527398720}
-  - component: {fileID: 527398721}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -581,6 +579,12 @@ MonoBehaviour:
   dashSpeed: 15
   standColliderHeight: 1.75
   crouchColliderHeight: 1
+  sensitivityHor: 9
+  sensitivityVert: 9
+  minimumVert: -45
+  maximumVert: 45
+  targetX: {fileID: 527398714}
+  targetY: {fileID: 969079743519865356}
   soundSource: {fileID: 969079743519865791}
   reloadSound: {fileID: 8300000, guid: 4d065ebd0386b9345ac4ec4d5377f76d, type: 3}
   fireSound: {fileID: 8300000, guid: 293496b0af3029f4caae703eb9088dd8, type: 3}
@@ -592,8 +596,8 @@ MonoBehaviour:
   DashInput: 0
   CrouchInput: 0
   AttackInput: 0
-  mouseLookX: {fileID: 527398720}
-  mouseLookY: {fileID: 527398721}
+  CameraHorizontalInput: 0
+  CameraVerticalInput: 0
 --- !u!54 &527398718
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -644,46 +648,6 @@ CapsuleCollider:
   m_Height: 1.75
   m_Direction: 1
   m_Center: {x: 0, y: 0.85, z: 0}
---- !u!114 &527398720
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 527398713}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d094ec2d219b1424c916c07c73abe64c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  axes: 1
-  sensitivityHor: 9
-  sensitivityVert: 9
-  minimumVert: -45
-  maximumVert: 45
-  target: {fileID: 527398714}
-  CameraHorizontalInput: 0
-  CameraVerticalInput: 0
---- !u!114 &527398721
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 527398713}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d094ec2d219b1424c916c07c73abe64c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  axes: 2
-  sensitivityHor: 9
-  sensitivityVert: 9
-  minimumVert: -30
-  maximumVert: 30
-  target: {fileID: 969079743519865356}
-  CameraHorizontalInput: 0
-  CameraVerticalInput: 0
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -6938,11 +6902,13 @@ MonoBehaviour:
   bombPrefab: {fileID: 5278478624696052950, guid: 5b64a00306ed0244088d72b7a813c031, type: 3}
   speed: 10
   isLeader: 1
+  sensitivityHor: 9
+  target: {fileID: 8475059150653332626}
   HorizontalInput: 0
   VerticalInput: 0
   UpInput: 0
   AttackInput: 0
-  mouseLookX: {fileID: 6953488515597338658}
+  CameraHorizontalInput: 0
 --- !u!81 &8379427406411489098
 AudioListener:
   m_ObjectHideFlags: 0
