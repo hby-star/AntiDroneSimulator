@@ -353,7 +353,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 177480483}
-  - component: {fileID: 177480482}
   - component: {fileID: 177480484}
   m_Layer: 0
   m_Name: Managers
@@ -362,18 +361,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &177480482
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 177480480}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7eba8a16a5bae744ab996971cc58c9e5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &177480483
 Transform:
   m_ObjectHideFlags: 0
@@ -403,6 +390,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 527398717}
   drone: {fileID: 7966612106362951819}
+  operatePlayerNow: 0
+  operateDroneNow: 1
 --- !u!1 &206450403
 GameObject:
   m_ObjectHideFlags: 0
@@ -571,11 +560,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cee6ff71c471e84489ee294171ac9c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  operateNow: 0
   moveSpeed: 10
-  jumpForce: 5
   maxBullets: 6
   bullets: 6
+  bulletImpact: {fileID: 8913486584783115997, guid: 7b3f6d217c2df924faf6b18c6bb7b698, type: 3}
+  jumpForce: 5
   dashSpeed: 15
   standColliderHeight: 1.75
   crouchColliderHeight: 1
@@ -589,7 +578,6 @@ MonoBehaviour:
   reloadSound: {fileID: 8300000, guid: 4d065ebd0386b9345ac4ec4d5377f76d, type: 3}
   fireSound: {fileID: 8300000, guid: 293496b0af3029f4caae703eb9088dd8, type: 3}
   dashSound: {fileID: 8300000, guid: e7b8be42c3a5e97418b0417f3b4e94cd, type: 3}
-  bulletImpact: {fileID: 8913486584783115997, guid: 7b3f6d217c2df924faf6b18c6bb7b698, type: 3}
   HorizontalInput: 0
   VerticalInput: 0
   JumpInput: 0
@@ -6724,7 +6712,6 @@ GameObject:
   - component: {fileID: 8475059150653332626}
   - component: {fileID: 2156487856099826962}
   - component: {fileID: 7966612106362951819}
-  - component: {fileID: 6953488515597338658}
   - component: {fileID: 445664435099869130}
   - component: {fileID: 1719625916859753875}
   m_Layer: 0
@@ -6781,26 +6768,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1227847527952728122}
   m_Mesh: {fileID: 4300000, guid: 43e0923f55103b246a665d6e482ecb1a, type: 2}
---- !u!114 &6953488515597338658
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6090182367446307960}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d094ec2d219b1424c916c07c73abe64c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  axes: 1
-  sensitivityHor: 9
-  sensitivityVert: 9
-  minimumVert: -45
-  maximumVert: 45
-  target: {fileID: 8475059150653332626}
-  CameraHorizontalInput: 0
-  CameraVerticalInput: 0
 --- !u!4 &6986824138072926270
 Transform:
   m_ObjectHideFlags: 0
@@ -6895,15 +6862,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0edc1d54601966e4681cce0b944c6692, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  operateNow: 1
   moveSpeed: 10
-  soundSource: {fileID: 2774034480916055984}
-  flySound: {fileID: 8300000, guid: da8cba425f89d414bbfefcafcff846bd, type: 3}
   bombPrefab: {fileID: 5278478624696052950, guid: 5b64a00306ed0244088d72b7a813c031, type: 3}
-  speed: 10
   isLeader: 1
   sensitivityHor: 9
-  target: {fileID: 8475059150653332626}
+  mouseLookTarget: {fileID: 8475059150653332626}
+  soundSource: {fileID: 2774034480916055984}
+  flySound: {fileID: 8300000, guid: da8cba425f89d414bbfefcafcff846bd, type: 3}
   HorizontalInput: 0
   VerticalInput: 0
   UpInput: 0

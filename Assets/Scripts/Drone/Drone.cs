@@ -5,7 +5,7 @@ using UnityEngine.Serialization;
 
 public class Drone : Entity
 {
-    # region Drone States
+    # region States
 
     public EntityStateMachine StateMachine;
     public DroneMoveState MoveState;
@@ -13,25 +13,8 @@ public class Drone : Entity
 
     # endregion
 
-    #region Audio
-
-    public AudioSource soundSource;
-    public AudioClip flySound;
-
-    void AudioUpdate()
-    {
-        if (!soundSource.isPlaying)
-        {
-            soundSource.clip = flySound;
-            soundSource.loop = true;
-            soundSource.Play();
-        }
-    }
-
-    #endregion
-
     #region Attack
-
+    [Header("Attack Info")]
     [SerializeField] GameObject bombPrefab;
     private GameObject bomb;
     private bool hasBomb = true;
@@ -54,13 +37,24 @@ public class Drone : Entity
 
     #endregion
 
-    public float speed = 10f;
-
-    private Camera _camera;
-
+    #region Control
+    [Header("Control Info")]
     public bool isLeader = false;
 
     public IDroneControlAlgorithm DroneControlAlgorithm;
+
+    public void SetOperate(bool operate)
+    {
+        operateNow = operate;
+        droneCamera.gameObject.SetActive(operate);
+        transform.rotation = Quaternion.identity;
+        if (!operate)
+        {
+            StateMachine.ChangeState(IdleState);
+        }
+    }
+
+    #endregion
 
     protected override void Awake()
     {
@@ -81,14 +75,9 @@ public class Drone : Entity
         DroneControlAlgorithm = new Flocking();
         DroneControlAlgorithm.DroneControlSet(this);
 
-        if (!isLeader)
-        {
-            return;
-        }
+        droneCamera = GetComponentInChildren<Camera>();
 
-        _camera = GetComponentInChildren<Camera>();
-
-        SetOperate(true);
+        SetOperate(InputManager.Instance.operateDroneNow && isLeader);
     }
 
     protected override void Update()
@@ -96,31 +85,23 @@ public class Drone : Entity
         base.Update();
 
         StateMachine.CurrentState.Update();
+
         AudioUpdate();
         MouseLookUpdate();
 
-        if (!isLeader)
-        {
-            DroneControlAlgorithm.DroneControlUpdate();
-        }
-    }
+        DroneControlAlgorithm.DroneControlUpdate();
 
-    public void SetOperate(bool operate)
-    {
-        operateNow = operate;
-        _camera.gameObject.SetActive(operate);
-        transform.rotation = Quaternion.identity;
-        if (!operate)
-        {
-            StateMachine.ChangeState(IdleState);
-        }
     }
 
     #region MouseLook
 
+    [Header("Mouse Look Info")]
     public float sensitivityHor = 9.0f;
 
-    public Transform target;
+    public Transform mouseLookTarget;
+
+    private Camera droneCamera;
+
 
     void MouseLookUpdate()
     {
@@ -131,20 +112,35 @@ public class Drone : Entity
     void MouseXLookUpdate()
     {
         float rotationY = CameraHorizontalInput * sensitivityHor;
-        target.Rotate(0, rotationY, 0);
+        mouseLookTarget.Rotate(0, rotationY, 0);
     }
 
     #endregion
 
+    #region Audio
+    [Header("Audio Info")]
+    public AudioSource soundSource;
+    public AudioClip flySound;
+
+    void AudioUpdate()
+    {
+        if (!soundSource.isPlaying)
+        {
+            soundSource.clip = flySound;
+            soundSource.loop = true;
+            soundSource.Play();
+        }
+    }
+
+    #endregion
 
     #region Handle Input
 
-    public float HorizontalInput;
-    public float VerticalInput;
-    public float UpInput;
-    public bool AttackInput;
-
-    public float CameraHorizontalInput;
+    public float HorizontalInput { get; private set; }
+    public float VerticalInput{ get; private set; }
+    public float UpInput{ get; private set; }
+    public bool AttackInput{ get; private set; }
+    public float CameraHorizontalInput{ get; private set; }
 
     void OnEnable()
     {
@@ -173,4 +169,6 @@ public class Drone : Entity
     }
 
     #endregion
+
+
 }

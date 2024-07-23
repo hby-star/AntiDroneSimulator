@@ -1,11 +1,51 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class InputManager : MonoBehaviour
 {
+    #region Singleton
+
+    private static InputManager _instance;
+
+    public static InputManager Instance
+    {
+        get
+        {
+            if (_instance == null)
+            {
+                _instance = FindObjectOfType<InputManager>();
+                if (_instance == null)
+                {
+                    GameObject obj = new GameObject("InputManager");
+                    _instance = obj.AddComponent<InputManager>();
+                }
+            }
+
+            return _instance;
+        }
+    }
+
+    void Awake()
+    {
+        if (_instance == null)
+        {
+            _instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    #endregion
+
     public Player player;
     public Drone drone;
+    public bool operatePlayerNow;
+    public bool operateDroneNow;
 
     enum OperateTarget
     {
@@ -13,26 +53,27 @@ public class InputManager : MonoBehaviour
         Drone
     }
 
-    // Start is called before the first frame update
+
     void Start()
     {
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if(player != null && drone != null)
+        operatePlayerNow = player.IsOperateNow();
+        operateDroneNow = drone.IsOperateNow();
+        if (player != null && drone != null)
         {
             HandleOperateSwitch();
         }
 
-        if (player && player.operateNow)
+        if (player && operatePlayerNow)
         {
             HandlePlayerInput();
             HandleCameraInput();
         }
 
-        if (drone && drone.operateNow)
+        if (drone && operateDroneNow)
         {
             HandleDroneInput();
             HandleCameraInput();
@@ -44,7 +85,7 @@ public class InputManager : MonoBehaviour
         // Tab 切换操作对象
         if (Input.GetKeyDown(KeyCode.Tab))
         {
-            OperateTarget target = player.operateNow ? OperateTarget.Drone : OperateTarget.Player;
+            OperateTarget target = player.IsOperateNow() ? OperateTarget.Drone : OperateTarget.Player;
             switch (target)
             {
                 case OperateTarget.Player:

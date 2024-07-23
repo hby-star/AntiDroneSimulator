@@ -20,7 +20,7 @@ public class PlayerGroundState : PlayerState
     {
         base.Update();
 
-        if (Player.operateNow)
+        if (Player.IsOperateNow())
         {
             // move
             if ((Player.HorizontalInput != 0 || Player.VerticalInput != 0) && !Player.IsBusy && !_isCrouching)

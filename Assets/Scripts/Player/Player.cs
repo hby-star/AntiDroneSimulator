@@ -6,7 +6,7 @@ using UnityEngine.Serialization;
 
 public class Player : Entity
 {
-    # region Player States
+    # region States
 
     public EntityStateMachine StateMachine;
     public PlayerMoveState MoveState;
@@ -20,74 +20,16 @@ public class Player : Entity
 
     # endregion
 
+    #region Move
+
     public float jumpForce = 10f;
-    public int maxBullets = 6;
-    public int bullets = 6;
     public float dashSpeed = 10f;
     public float standColliderHeight = 1.75f;
     public float crouchColliderHeight = 1.0f;
 
-    protected override void Awake()
-    {
-        base.Awake();
-
-        StateMachine = new EntityStateMachine();
-
-        MoveState = new PlayerMoveState(StateMachine, this, "Move", this);
-        IdleState = new PlayerIdleState(StateMachine, this, "Idle", this);
-        AirState = new PlayerAirState(StateMachine, this, "Air", this);
-        JumpState = new PlayerJumpState(StateMachine, this, "Jump", this);
-        AttackState = new PlayerAttackState(StateMachine, this, "Attack", this);
-        ReloadState = new PlayerReloadState(StateMachine, this, "Reload", this);
-        DashState = new PlayerDashState(StateMachine, this, "Dash", this);
-        CrouchState = new PlayerCrouchState(StateMachine, this, "Crouch", this);
-    }
-
-    protected override void Start()
-    {
-        base.Start();
-
-        StateMachine.Initialize(IdleState);
-        bullets = 6;
-
-        RayShooterStart();
-
-        SetOperate(false);
-    }
-
-    protected override void Update()
-    {
-        base.Update();
-
-        StateMachine.CurrentState.Update();
-
-        MouseLookUpdate();
-    }
-
     public void Jump()
     {
         Rigidbody.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-    }
-
-    public void AnimationFinished()
-    {
-        StateMachine.CurrentState.AnimationFinished();
-    }
-
-    public bool CanAttack()
-    {
-        return bullets > 0;
-    }
-
-    public void SetOperate(bool operate)
-    {
-        operateNow = operate;
-        _camera.gameObject.SetActive(operate);
-        transform.rotation = Quaternion.identity;
-        if (!operate)
-        {
-            StateMachine.ChangeState(IdleState);
-        }
     }
 
     public void SetColliderHeight(float height)
@@ -116,6 +58,173 @@ public class Player : Entity
         return Physics.CapsuleCast(capsuleTop, capsuleBottom, capsuleCollider.radius, Vector3.down, distanceToGround);
     }
 
+    #endregion
+
+    #region Attack
+
+    [Header("Attack Info")] public int maxBullets = 6;
+    public int bullets = 6;
+    public GameObject bulletImpact;
+
+    public bool CanAttack()
+    {
+        return bullets > 0;
+    }
+
+    private void AttackStart()
+    {
+        playerCamera = GetComponentInChildren<Camera>();
+
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+    }
+
+    void OnGUI()
+    {
+        if (operateNow)
+        {
+            int crosshairSize = 12;
+            int lineLength = 5;
+            int lineWidth = 2;
+            float posX = playerCamera.pixelWidth / 2 - crosshairSize / 4;
+            float posY = playerCamera.pixelHeight / 2 - crosshairSize / 2;
+
+            // Create a 1x1 texture for lines
+            Texture2D lineTexture = new Texture2D(1, 1);
+            lineTexture.SetPixel(0, 0, Color.white);
+            lineTexture.Apply();
+
+            // Horizontal line
+            GUI.DrawTexture(
+                new Rect(playerCamera.pixelWidth / 2 - lineLength / 2, playerCamera.pixelHeight / 2 - lineWidth / 2,
+                    lineLength,
+                    lineWidth), lineTexture);
+            // Vertical line
+            GUI.DrawTexture(
+                new Rect(playerCamera.pixelWidth / 2 - lineWidth / 2, playerCamera.pixelHeight / 2 - lineLength / 2,
+                    lineWidth,
+                    lineLength), lineTexture);
+            // Left line
+            GUI.DrawTexture(
+                new Rect(playerCamera.pixelWidth / 2 - lineLength - crosshairSize / 2,
+                    playerCamera.pixelHeight / 2 - lineWidth / 2,
+                    lineLength, lineWidth), lineTexture);
+            // Right line
+            GUI.DrawTexture(
+                new Rect(playerCamera.pixelWidth / 2 + crosshairSize / 2, playerCamera.pixelHeight / 2 - lineWidth / 2,
+                    lineLength,
+                    lineWidth), lineTexture);
+            // Top line
+            GUI.DrawTexture(
+                new Rect(playerCamera.pixelWidth / 2 - lineWidth / 2,
+                    playerCamera.pixelHeight / 2 - lineLength - crosshairSize / 2,
+                    lineWidth, lineLength), lineTexture);
+            // Bottom line
+            GUI.DrawTexture(
+                new Rect(playerCamera.pixelWidth / 2 - lineWidth / 2, playerCamera.pixelHeight / 2 + crosshairSize / 2,
+                    lineWidth,
+                    lineLength), lineTexture);
+        }
+    }
+
+    public void Attack()
+    {
+        soundSource.PlayOneShot(fireSound);
+        Vector3 point = new Vector3(playerCamera.pixelWidth / 2, playerCamera.pixelHeight / 2, 0);
+        Ray ray = playerCamera.ScreenPointToRay(point);
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit))
+        {
+            GameObject hitObject = hit.transform.gameObject;
+            ReactiveTarget target = hitObject.GetComponent<ReactiveTarget>();
+            if (target != null)
+            {
+                target.ReactToHit();
+            }
+            else
+            {
+                if (hitObject.tag == "Ground")
+                {
+                    StartCoroutine(AttackBulletImpact(hit.point, hit.normal));
+                }
+            }
+        }
+    }
+
+    private IEnumerator AttackBulletImpact(Vector3 pos, Vector3 normal)
+    {
+        // Calculate the rotation so that the prefab's Y-axis points in the direction of the normal
+        Quaternion rotation = Quaternion.FromToRotation(Vector3.up, normal);
+
+        // Instantiate the bullet impact prefab with the adjusted rotation
+        GameObject impactEffect = Instantiate(bulletImpact, pos, rotation);
+
+        // Optional: Adjust if the effect should disappear after some time
+        yield return new WaitForSeconds(1);
+
+        Destroy(impactEffect);
+    }
+
+    #endregion
+
+    #region Control
+
+    public void SetOperate(bool operate)
+    {
+        operateNow = operate;
+        playerCamera.gameObject.SetActive(operate);
+        transform.rotation = Quaternion.identity;
+        if (!operate)
+        {
+            StateMachine.ChangeState(IdleState);
+        }
+    }
+
+    #endregion
+
+    protected override void Awake()
+    {
+        base.Awake();
+
+        StateMachine = new EntityStateMachine();
+
+        MoveState = new PlayerMoveState(StateMachine, this, "Move", this);
+        IdleState = new PlayerIdleState(StateMachine, this, "Idle", this);
+        AirState = new PlayerAirState(StateMachine, this, "Air", this);
+        JumpState = new PlayerJumpState(StateMachine, this, "Jump", this);
+        AttackState = new PlayerAttackState(StateMachine, this, "Attack", this);
+        ReloadState = new PlayerReloadState(StateMachine, this, "Reload", this);
+        DashState = new PlayerDashState(StateMachine, this, "Dash", this);
+        CrouchState = new PlayerCrouchState(StateMachine, this, "Crouch", this);
+    }
+
+    protected override void Start()
+    {
+        base.Start();
+
+        StateMachine.Initialize(IdleState);
+        bullets = 6;
+
+        AttackStart();
+
+        SetOperate(false);
+    }
+
+    protected override void Update()
+    {
+        base.Update();
+
+        StateMachine.CurrentState.Update();
+
+        MouseLookUpdate();
+    }
+
+
+    public void AnimationFinished()
+    {
+        StateMachine.CurrentState.AnimationFinished();
+    }
+
     public void OnDrawGizmos()
     {
         CapsuleCollider capsuleCollider = Collider as CapsuleCollider;
@@ -133,7 +242,7 @@ public class Player : Entity
 
     #region MouseLook
 
-    public float sensitivityHor = 9.0f;
+    [Header("Mouse Look Info")] public float sensitivityHor = 9.0f;
     public float sensitivityVert = 9.0f;
 
     public float minimumVert = -45.0f;
@@ -143,6 +252,7 @@ public class Player : Entity
     public Transform targetY;
 
     private float verticalRot = 0;
+    private Camera playerCamera;
 
     void MouseLookUpdate()
     {
@@ -151,7 +261,6 @@ public class Player : Entity
             MouseXLookUpdate();
             MouseYLookUpdate();
         }
-
     }
 
     void MouseXLookUpdate()
@@ -168,7 +277,6 @@ public class Player : Entity
     }
 
     #endregion
-
 
     #region isBusy
 
@@ -187,124 +295,25 @@ public class Player : Entity
 
     #region Audio
 
-    [SerializeField] public AudioSource soundSource;
+    [Header("Audio Info")] [SerializeField]
+    public AudioSource soundSource;
+
     [SerializeField] public AudioClip reloadSound;
     [SerializeField] public AudioClip fireSound;
     [SerializeField] public AudioClip dashSound;
 
     #endregion
 
-    #region RayShooter
-
-    [Header("Ray Shooter")] [SerializeField]
-    GameObject bulletImpact;
-
-    private Camera _camera;
-
-    private void RayShooterStart()
-    {
-        _camera = GetComponentInChildren<Camera>();
-
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
-    }
-
-    void OnGUI()
-    {
-        if (operateNow)
-        {
-            int crosshairSize = 12;
-            int lineLength = 5;
-            int lineWidth = 2;
-            float posX = _camera.pixelWidth / 2 - crosshairSize / 4;
-            float posY = _camera.pixelHeight / 2 - crosshairSize / 2;
-
-            // Create a 1x1 texture for lines
-            Texture2D lineTexture = new Texture2D(1, 1);
-            lineTexture.SetPixel(0, 0, Color.white);
-            lineTexture.Apply();
-
-            // Horizontal line
-            GUI.DrawTexture(
-                new Rect(_camera.pixelWidth / 2 - lineLength / 2, _camera.pixelHeight / 2 - lineWidth / 2, lineLength,
-                    lineWidth), lineTexture);
-            // Vertical line
-            GUI.DrawTexture(
-                new Rect(_camera.pixelWidth / 2 - lineWidth / 2, _camera.pixelHeight / 2 - lineLength / 2, lineWidth,
-                    lineLength), lineTexture);
-            // Left line
-            GUI.DrawTexture(
-                new Rect(_camera.pixelWidth / 2 - lineLength - crosshairSize / 2,
-                    _camera.pixelHeight / 2 - lineWidth / 2,
-                    lineLength, lineWidth), lineTexture);
-            // Right line
-            GUI.DrawTexture(
-                new Rect(_camera.pixelWidth / 2 + crosshairSize / 2, _camera.pixelHeight / 2 - lineWidth / 2,
-                    lineLength,
-                    lineWidth), lineTexture);
-            // Top line
-            GUI.DrawTexture(
-                new Rect(_camera.pixelWidth / 2 - lineWidth / 2,
-                    _camera.pixelHeight / 2 - lineLength - crosshairSize / 2,
-                    lineWidth, lineLength), lineTexture);
-            // Bottom line
-            GUI.DrawTexture(
-                new Rect(_camera.pixelWidth / 2 - lineWidth / 2, _camera.pixelHeight / 2 + crosshairSize / 2, lineWidth,
-                    lineLength), lineTexture);
-        }
-    }
-
-    public void RayShooterFire()
-    {
-        soundSource.PlayOneShot(fireSound);
-        Vector3 point = new Vector3(_camera.pixelWidth / 2, _camera.pixelHeight / 2, 0);
-        Ray ray = _camera.ScreenPointToRay(point);
-        RaycastHit hit;
-        if (Physics.Raycast(ray, out hit))
-        {
-            GameObject hitObject = hit.transform.gameObject;
-            ReactiveTarget target = hitObject.GetComponent<ReactiveTarget>();
-            if (target != null)
-            {
-                target.ReactToHit();
-            }
-            else
-            {
-                if (hitObject.tag == "Ground")
-                {
-                    StartCoroutine(RayShooterBulletImpact(hit.point, hit.normal));
-                }
-            }
-        }
-    }
-
-    private IEnumerator RayShooterBulletImpact(Vector3 pos, Vector3 normal)
-    {
-        // Calculate the rotation so that the prefab's Y-axis points in the direction of the normal
-        Quaternion rotation = Quaternion.FromToRotation(Vector3.up, normal);
-
-        // Instantiate the bullet impact prefab with the adjusted rotation
-        GameObject impactEffect = Instantiate(bulletImpact, pos, rotation);
-
-        // Optional: Adjust if the effect should disappear after some time
-        yield return new WaitForSeconds(1);
-
-        Destroy(impactEffect);
-    }
-
-    #endregion
-
     #region Handle Input
 
-    public float HorizontalInput;
-    public float VerticalInput;
-    public bool JumpInput;
-    public bool DashInput;
-    public bool CrouchInput;
-    public bool AttackInput;
-
-    public float CameraHorizontalInput;
-    public float CameraVerticalInput;
+    public float HorizontalInput { get; private set; }
+    public float VerticalInput { get; private set; }
+    public bool JumpInput { get; private set; }
+    public bool DashInput { get; private set; }
+    public bool CrouchInput { get; private set; }
+    public bool AttackInput { get; private set; }
+    public float CameraHorizontalInput { get; private set; }
+    public float CameraVerticalInput { get; private set; }
 
     void OnEnable()
     {
@@ -331,6 +340,6 @@ public class Player : Entity
             (value) => { CameraHorizontalInput = value; });
         Messenger<float>.RemoveListener(InputEvent.CAMERA_VERTICAL_INPUT, (value) => { CameraVerticalInput = value; });
     }
-    #endregion
 
+    #endregion
 }

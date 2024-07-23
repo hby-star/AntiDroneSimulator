@@ -28,7 +28,7 @@ public class PlayerMoveState : PlayerGroundState
 
     public void Move()
     {
-        if (Player.operateNow)
+        if (Player.IsOperateNow())
         {
             // Calculate movement based on vertical input & horizontal input
             Vector3 moveDirectionX = Player.transform.forward * (Player.VerticalInput * Player.moveSpeed);

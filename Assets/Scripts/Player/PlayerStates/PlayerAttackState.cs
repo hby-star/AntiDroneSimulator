@@ -18,7 +18,7 @@ public class PlayerAttackState : PlayerState
 
         Player.Rigidbody.velocity = 0.5f * Player.Rigidbody.velocity;
         Player.bullets--;
-        Player.RayShooterFire();
+        Player.Attack();
     }
 
     public override void Update()

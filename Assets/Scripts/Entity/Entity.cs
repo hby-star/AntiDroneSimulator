@@ -7,12 +7,11 @@ public class Entity : MonoBehaviour
 {
     public Animator Animator { get; private set; }
     public Rigidbody Rigidbody { get; private set; }
-
     public Collider Collider { get; private set; }
 
     public EntityStats EntityStats { get; private set; }
 
-    public bool operateNow;
+    protected bool operateNow;
 
     [Header("Move Info")] public float moveSpeed = 10f;
 
@@ -40,5 +39,10 @@ public class Entity : MonoBehaviour
     public void ZeroVelocity()
     {
         Rigidbody.velocity = Vector3.zero;
+    }
+
+    public bool IsOperateNow()
+    {
+        return operateNow;
     }
 }

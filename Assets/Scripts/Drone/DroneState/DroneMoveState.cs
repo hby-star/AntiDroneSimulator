@@ -17,7 +17,7 @@ public class DroneMoveState : DroneState
     {
         base.Update();
 
-        Move(Drone.speed);
+        Move(Drone.moveSpeed);
 
         if (Drone.HorizontalInput == 0 && Drone.VerticalInput == 0 && Drone.UpInput == 0)
         {
@@ -32,7 +32,7 @@ public class DroneMoveState : DroneState
 
     public void Move(float moveSpeed)
     {
-        if (Drone.operateNow)
+        if (Drone.IsOperateNow())
         {
             Vector3 moveDirectionX = Drone.transform.forward * (Drone.HorizontalInput * moveSpeed);
             Vector3 moveDirectionZ = Drone.transform.right * (Drone.VerticalInput * moveSpeed);
