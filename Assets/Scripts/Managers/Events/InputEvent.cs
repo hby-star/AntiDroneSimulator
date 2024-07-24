@@ -4,6 +4,7 @@
     public const string PLAYER_VERTICAL_INPUT = "PLAYER_VERTICAL_INPUT";
     public const string PLAYER_JUMP_INPUT = "PLAYER_JUMP_INPUT";
     public const string PLAYER_ATTACK_INPUT = "PLAYER_ATTACK_INPUT";
+    public const string PLAYER_RELOAD_INPUT = "PLAYER_RELOAD_INPUT";
     public const string PLAYER_DASH_INPUT = "PLAYER_DASH_INPUT";
     public const string PLAYER_CROUCH_INPUT = "PLAYER_CROUCH_INPUT";
     public const string PLAYER_CAMERA_HORIZONTAL_INPUT = "PLAYER_CAMERA_HORIZONTAL_INPUT";

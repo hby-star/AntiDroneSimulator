@@ -112,22 +112,20 @@ public class InputManager : MonoBehaviour
         // Player Horizontal
         Messenger<float>.Broadcast(InputEvent.PLAYER_HORIZONTAL_INPUT, Input.GetAxis("Horizontal"));
 
-
         // Player Vertical
         Messenger<float>.Broadcast(InputEvent.PLAYER_VERTICAL_INPUT, Input.GetAxis("Vertical"));
-
 
         // Player Jump
         Messenger<bool>.Broadcast(InputEvent.PLAYER_JUMP_INPUT, Input.GetKeyDown(KeyCode.Space));
 
-
         // Player Attack
         Messenger<bool>.Broadcast(InputEvent.PLAYER_ATTACK_INPUT, Input.GetMouseButtonDown(0));
 
+        // Player Reload
+        Messenger<bool>.Broadcast(InputEvent.PLAYER_RELOAD_INPUT, Input.GetMouseButtonDown(2));
 
         // Player Dash
         Messenger<bool>.Broadcast(InputEvent.PLAYER_DASH_INPUT, Input.GetMouseButtonDown(1));
-
 
         // Player Crouch
         Messenger<bool>.Broadcast(InputEvent.PLAYER_CROUCH_INPUT, Input.GetKeyDown(KeyCode.LeftControl));

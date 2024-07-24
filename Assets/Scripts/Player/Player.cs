@@ -314,6 +314,7 @@ public class Player : Entity
     public bool DashInput { get; private set; }
     public bool CrouchInput { get; private set; }
     public bool AttackInput { get; private set; }
+    public bool ReloadInput { get; private set; }
     public float CameraHorizontalInput { get; private set; }
     public float CameraVerticalInput { get; private set; }
 
@@ -325,6 +326,7 @@ public class Player : Entity
         Messenger<bool>.AddListener(InputEvent.PLAYER_DASH_INPUT, (value) => { DashInput = value; });
         Messenger<bool>.AddListener(InputEvent.PLAYER_CROUCH_INPUT, (value) => { CrouchInput = value; });
         Messenger<bool>.AddListener(InputEvent.PLAYER_ATTACK_INPUT, (value) => { AttackInput = value; });
+        Messenger<bool>.AddListener(InputEvent.PLAYER_RELOAD_INPUT, (value) => { ReloadInput = value; });
         Messenger<float>.AddListener(InputEvent.PLAYER_CAMERA_HORIZONTAL_INPUT,
             (value) => { CameraHorizontalInput = value; });
         Messenger<float>.AddListener(InputEvent.PLAYER_CAMERA_VERTICAL_INPUT, (value) => { CameraVerticalInput = value; });
@@ -338,6 +340,7 @@ public class Player : Entity
         Messenger<bool>.RemoveListener(InputEvent.PLAYER_DASH_INPUT, (value) => { DashInput = value; });
         Messenger<bool>.RemoveListener(InputEvent.PLAYER_CROUCH_INPUT, (value) => { CrouchInput = value; });
         Messenger<bool>.RemoveListener(InputEvent.PLAYER_ATTACK_INPUT, (value) => { AttackInput = value; });
+        Messenger<bool>.RemoveListener(InputEvent.PLAYER_RELOAD_INPUT, (value) => { ReloadInput = value; });
         Messenger<float>.RemoveListener(InputEvent.PLAYER_CAMERA_HORIZONTAL_INPUT,
             (value) => { CameraHorizontalInput = value; });
         Messenger<float>.RemoveListener(InputEvent.PLAYER_CAMERA_VERTICAL_INPUT, (value) => { CameraVerticalInput = value; });

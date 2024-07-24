@@ -62,6 +62,15 @@ public class PlayerGroundState : PlayerState
                 }
             }
 
+            // reload
+            if (Player.ReloadInput && !Player.IsBusy && !_isCrouching)
+            {
+                if (Player.bullets < Player.maxBullets && !Player.IsBusy)
+                {
+                    EntityStateMachine.ChangeState(Player.ReloadState);
+                }
+            }
+
             // dash
             if (Player.DashInput && !Player.IsBusy && !_isCrouching)
             {
