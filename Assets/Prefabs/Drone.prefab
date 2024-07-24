@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4892926585000079637}
   m_Layer: 0
   m_Name: Drone
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -116,8 +116,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2.2, y: 1, z: 2.2}
-  m_Center: {x: 0, y: 0, z: -0.04}
+  m_Size: {x: 2.2, y: 0.5, z: 2.2}
+  m_Center: {x: 0, y: 0.2, z: -0.04}
 --- !u!1 &446857200805012625
 GameObject:
   m_ObjectHideFlags: 0
