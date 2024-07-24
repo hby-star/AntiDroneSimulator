@@ -16,24 +16,17 @@ public class Drone : Entity
     #region Attack
 
     [Header("Attack Info")] [SerializeField]
-    GameObject bombPrefab;
-
-    private GameObject bomb;
+    GameObject bomb;
     private bool hasBomb = true;
 
     public void Attack()
     {
         if (hasBomb)
         {
-            Vector3 spawnPosition = transform.position + Vector3.down * 1f;
-            GameObject bombInstance = Instantiate(bombPrefab, spawnPosition, Quaternion.identity);
-            bombInstance.transform.forward = transform.forward;
-            Rigidbody bombRb = bombInstance.GetComponent<Rigidbody>();
-            if (bombRb != null)
-            {
-                bombRb.velocity = Rigidbody.velocity;
-            }
-
+            bomb.transform.parent = null;
+            bomb.AddComponent<Rigidbody>();
+            Rigidbody bombRigidbody = bomb.GetComponent<Rigidbody>();
+            bombRigidbody.velocity = Rigidbody.velocity;
             hasBomb = false;
         }
     }
