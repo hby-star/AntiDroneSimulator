@@ -7,6 +7,7 @@ using UnityEngine.Serialization;
 public class Bomb : MonoBehaviour
 {
     public ParticleSystem explosion;
+    public float explosionRadius = 5f;
 
     // Start is called before the first frame update
     void Start()
@@ -16,7 +17,6 @@ public class Bomb : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
     }
 
     private void OnTriggerEnter(Collider other)
@@ -24,11 +24,28 @@ public class Bomb : MonoBehaviour
         explosion = Instantiate(explosion, transform.position, transform.rotation);
         explosion.Play();
 
-        if (other.tag != "Ground")
+        Collider[] colliders = Physics.OverlapSphere(transform.position, explosionRadius);
+
+        foreach (Collider nearbyObject in colliders)
         {
-            Destroy(other.gameObject);
+            Rigidbody rb = nearbyObject.GetComponent<Rigidbody>();
+            if (rb != null)
+            {
+                rb.AddExplosionForce(1000, transform.position, explosionRadius);
+            }
+
+            if (nearbyObject.tag == "Player")
+            {
+                Destroy(nearbyObject.gameObject);
+            }
         }
 
         Destroy(gameObject);
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, explosionRadius);
     }
 }
