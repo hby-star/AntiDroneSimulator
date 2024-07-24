@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -15,8 +16,11 @@ public class Drone : Entity
 
     #region Attack
 
-    [Header("Attack Info")] [SerializeField]
-    GameObject bomb;
+    [Header("Attack Info")]
+    [SerializeField] GameObject bomb;
+
+    [SerializeField] private float bombBelowLength = 0.3f;
+
     private bool hasBomb = true;
 
     public void Attack()
@@ -29,6 +33,79 @@ public class Drone : Entity
             bombRigidbody.velocity = Rigidbody.velocity;
             hasBomb = false;
         }
+    }
+
+    #endregion
+
+    #region BombPath
+
+    [Header("Bomb Path Info")] public int numberOfPoints = 30;
+    public float timeBetweenPoints = 0.1f;
+    public GameObject sphereMarkerPrefab; // 用于标记的球体预制体
+    private GameObject sphereMarkerInstance; // 实例化的球体标记
+    private LineRenderer lineRenderer;
+
+    void BombPathStart()
+    {
+        lineRenderer = GetComponent<LineRenderer>();
+        lineRenderer.positionCount = 0;
+        sphereMarkerInstance = Instantiate(sphereMarkerPrefab, Vector3.zero, Quaternion.identity);
+        sphereMarkerInstance.SetActive(false);
+    }
+
+    void BombPathUpdate()
+    {
+        if (hasBomb)
+        {
+            lineRenderer.positionCount = numberOfPoints;
+            Vector3[] points = new Vector3[numberOfPoints];
+            Vector3 startingPosition = transform.position;
+            startingPosition.y -= bombBelowLength;
+            Vector3 startingVelocity = Rigidbody.velocity;
+            bool hitDetected = false;
+
+            for (int i = 0; i < numberOfPoints; i++)
+            {
+                float time = i * timeBetweenPoints;
+                Vector3 position = CalculatePosition(startingPosition, startingVelocity, time);
+                points[i] = position;
+
+                // 检测碰撞
+                if (!hitDetected)
+                {
+                    if (Physics.Raycast(startingPosition, position - startingPosition, out RaycastHit hit,
+                            (position - startingPosition).magnitude))
+                    {
+                        if (hit.collider.CompareTag("Ground"))
+                        {
+                            // 更新球体标记的位置并显示
+                            sphereMarkerInstance.transform.position = hit.point;
+                            sphereMarkerInstance.SetActive(true);
+                            hitDetected = true;
+                        }
+                    }
+                }
+            }
+
+            // 如果没有检测到碰撞，则隐藏球体标记
+            if (!hitDetected)
+            {
+                sphereMarkerInstance.SetActive(false);
+            }
+            lineRenderer.SetPositions(points);
+        }
+        else
+        {
+            lineRenderer.positionCount = 0;
+            sphereMarkerInstance.SetActive(false);
+        }
+    }
+
+    Vector3 CalculatePosition(Vector3 start, Vector3 velocity, float time)
+    {
+        Vector3 position = start + velocity * time;
+        position.y += 0.5f * Physics.gravity.y * time * time;
+        return position;
     }
 
     #endregion
@@ -73,9 +150,11 @@ public class Drone : Entity
 
         droneCamera = GetComponentInChildren<Camera>();
 
-        SetOperate(InputManager.Instance.operateTarget == InputManager.OperateTarget.Drone && isLeader);
+        SetOperate((InputManager.Instance.operateTarget == InputManager.OperateTarget.Drone) && isLeader);
 
         Rigidbody.freezeRotation = true;
+
+        BombPathStart();
     }
 
     protected override void Update()
@@ -87,8 +166,14 @@ public class Drone : Entity
         AudioUpdate();
         MouseLookUpdate();
 
-        if (!operateNow)
+        if (operateNow)
+        {
+            BombPathUpdate();
+        }
+        else
+        {
             DroneControlAlgorithm.DroneControlUpdate();
+        }
     }
 
     #region React To Hit

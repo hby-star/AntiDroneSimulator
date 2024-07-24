@@ -11,7 +11,7 @@ public class Entity : MonoBehaviour
 
     public EntityStats EntityStats { get; private set; }
 
-    protected bool operateNow;
+    protected bool operateNow = false;
 
     [Header("Move Info")] public float moveSpeed = 10f;
 

@@ -2035,6 +2035,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Drone
       objectReference: {fileID: 0}
+    - target: {fileID: 112575254185650033, guid: 1bd525a891c1e944481f520e9f7a1346, type: 3}
+      propertyPath: explosionRadius
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 2424916829615425556, guid: 1bd525a891c1e944481f520e9f7a1346, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -2078,6 +2082,14 @@ PrefabInstance:
     - target: {fileID: 4230406066024909837, guid: 1bd525a891c1e944481f520e9f7a1346, type: 3}
       propertyPath: isLeader
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4230406066024909837, guid: 1bd525a891c1e944481f520e9f7a1346, type: 3}
+      propertyPath: numberOfPoints
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 4230406066024909837, guid: 1bd525a891c1e944481f520e9f7a1346, type: 3}
+      propertyPath: timeBetweenPoints
+      value: 0.1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
