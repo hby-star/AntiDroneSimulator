@@ -75,7 +75,7 @@ public class Drone : Entity
 
         StateMachine.Initialize(IdleState);
 
-        DroneControlAlgorithm = AlgorithmManager.Instance.GetAlgorithm();
+        DroneControlAlgorithm = DroneAlgorithmManager.Instance.GetAlgorithm();
         DroneControlAlgorithm.DroneControlSet(this);
 
         droneCamera = GetComponentInChildren<Camera>();

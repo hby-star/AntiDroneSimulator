@@ -2,23 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AlgorithmManager : MonoBehaviour
+public class DroneAlgorithmManager : MonoBehaviour
 {
     #region Singleton
 
-    private static AlgorithmManager _instance;
+    private static DroneAlgorithmManager _instance;
 
-    public static AlgorithmManager Instance
+    public static DroneAlgorithmManager Instance
     {
         get
         {
             if (_instance == null)
             {
-                _instance = FindObjectOfType<AlgorithmManager>();
+                _instance = FindObjectOfType<DroneAlgorithmManager>();
                 if (_instance == null)
                 {
                     GameObject obj = new GameObject("AlgorithmManager");
-                    _instance = obj.AddComponent<AlgorithmManager>();
+                    _instance = obj.AddComponent<DroneAlgorithmManager>();
                 }
             }
 
