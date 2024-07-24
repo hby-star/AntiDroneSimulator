@@ -136,7 +136,7 @@ public class Player : Entity
         if (Physics.Raycast(ray, out hit))
         {
             GameObject hitObject = hit.transform.gameObject;
-            ReactiveTarget target = hitObject.GetComponent<ReactiveTarget>();
+            Drone target = hitObject.GetComponent<Drone>();
             if (target != null)
             {
                 target.ReactToHit();

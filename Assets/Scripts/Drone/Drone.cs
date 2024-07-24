@@ -98,6 +98,24 @@ public class Drone : Entity
             DroneControlAlgorithm.DroneControlUpdate();
     }
 
+    #region React To Hit
+
+    public void ReactToHit()
+    {
+        StartCoroutine(Die());
+    }
+
+    private IEnumerator Die()
+    {
+        this.transform.Rotate(-75, 0, 0);
+
+        yield return new WaitForSeconds(0.5f);
+
+        Destroy(this.gameObject);
+    }
+
+    #endregion
+
     #region MouseLook
 
     [Header("Mouse Look Info")] public float sensitivityHor = 9.0f;
