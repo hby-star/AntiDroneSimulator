@@ -25,8 +25,9 @@ public class Drone : Entity
     {
         if (hasBomb)
         {
-            Vector3 spawnPosition = transform.position + Vector3.down * 0.1f;
+            Vector3 spawnPosition = transform.position + Vector3.down * 0.5f;
             GameObject bombInstance = Instantiate(bombPrefab, spawnPosition, Quaternion.identity);
+            bombInstance.transform.forward = transform.forward;
             Rigidbody bombRb = bombInstance.GetComponent<Rigidbody>();
             if (bombRb != null)
             {

@@ -78,7 +78,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 10
-  bombPrefab: {fileID: 5278478624696052950, guid: 5b64a00306ed0244088d72b7a813c031, type: 3}
+  bombPrefab: {fileID: 758784716004994615, guid: 649fe7fb1b0268845b2dc1ef1c5a9d0e, type: 3}
   isLeader: 0
   sensitivityHor: 9
   mouseLookTarget: {fileID: 2424916829615425556}

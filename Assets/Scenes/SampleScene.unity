@@ -393,7 +393,7 @@ MonoBehaviour:
   player: {fileID: 527398717}
   drone: {fileID: 7966612106362951819}
   operateEntityNow: 0
-  operateTarget: 0
+  operateTarget: 1
   operateCamera: {fileID: 0}
 --- !u!114 &177480485
 MonoBehaviour:
@@ -419,7 +419,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 529d6660d4f26fc47be2c93b902d423a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentAlgorithm: 1
+  currentAlgorithm: 0
 --- !u!1 &206450403
 GameObject:
   m_ObjectHideFlags: 0
@@ -6884,7 +6884,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 10
-  bombPrefab: {fileID: 5278478624696052950, guid: 5b64a00306ed0244088d72b7a813c031, type: 3}
+  bombPrefab: {fileID: 758784716004994615, guid: 649fe7fb1b0268845b2dc1ef1c5a9d0e, type: 3}
   isLeader: 1
   sensitivityHor: 9
   mouseLookTarget: {fileID: 8475059150653332626}
