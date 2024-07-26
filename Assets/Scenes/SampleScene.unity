@@ -658,6 +658,7 @@ MonoBehaviour:
   currentBullets: 1
   maxBullets: 1
   gunType: 2
+  bulletSize: 50
 --- !u!1001 &448238923
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2925,6 +2926,10 @@ MonoBehaviour:
   currentBullets: 1
   maxBullets: 1
   gunType: 1
+  netPrefab: {fileID: 647565524557730373, guid: 14928b59992f90d488cea5a1d5880b6f, type: 3}
+  spherePrefab: {fileID: 4806936558254727506, guid: c1b04d07e1431714db94c5f6beec0637, type: 3}
+  netSpeed: 50
+  gravity: 9.8
 --- !u!95 &969079743512171982
 Animator:
   serializedVersion: 5

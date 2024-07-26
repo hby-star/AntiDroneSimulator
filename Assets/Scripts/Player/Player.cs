@@ -74,8 +74,8 @@ public class Player : Entity
         currentGunIndex = 0;
         SetGun(currentGunIndex);
 
-        // Cursor.lockState = CursorLockMode.Locked;
-        // Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     private void SetGun(int index)
