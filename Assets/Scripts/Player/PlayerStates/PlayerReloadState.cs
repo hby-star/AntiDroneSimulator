@@ -13,7 +13,7 @@ public class PlayerReloadState : PlayerGroundState
     {
         base.Enter();
 
-        Player.soundSource.PlayOneShot(Player.reloadSound);
+        Player.Reload();
 
         Player.Rigidbody.velocity = Vector3.zero;
 
@@ -34,7 +34,7 @@ public class PlayerReloadState : PlayerGroundState
 
     public override void Exit()
     {
-        Player.bullets = Player.maxBullets;
+        Player.Reload();
 
         base.Exit();
     }

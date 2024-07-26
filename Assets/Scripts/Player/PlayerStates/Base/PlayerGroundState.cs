@@ -53,19 +53,12 @@ public class PlayerGroundState : PlayerState
                 {
                     EntityStateMachine.ChangeState(Player.AttackState);
                 }
-                else
-                {
-                    if (Player.bullets <= 0 && !Player.IsBusy)
-                    {
-                        EntityStateMachine.ChangeState(Player.ReloadState);
-                    }
-                }
             }
 
             // reload
             if (Player.ReloadInput && !Player.IsBusy && !_isCrouching)
             {
-                if (Player.bullets < Player.maxBullets && !Player.IsBusy)
+                if (Player.CanReload() && !Player.IsBusy)
                 {
                     EntityStateMachine.ChangeState(Player.ReloadState);
                 }
@@ -90,6 +83,12 @@ public class PlayerGroundState : PlayerState
                     _isCrouching = false;
                     EntityStateMachine.ChangeState(Player.IdleState);
                 }
+            }
+
+            // change gun
+            if (Player.ChangeGunInput && !Player.IsBusy)
+            {
+                Player.ChangeGun();
             }
         }
     }
