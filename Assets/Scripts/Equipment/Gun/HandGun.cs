@@ -16,16 +16,16 @@ public class HandGun : Gun
     {
         base.Fire();
 
-        Vector3 point = new Vector3(playerCamera.pixelWidth / 2, playerCamera.pixelHeight / 2, 0);
+        Vector3 point = new Vector3(Screen.width / 2, Screen.height / 2, 0);
         Ray ray = playerCamera.ScreenPointToRay(point);
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit))
         {
             GameObject hitObject = hit.transform.gameObject;
-            Drone target = hitObject.GetComponent<Drone>();
-            if (target != null)
+            Drone drone = hitObject.GetComponent<Drone>();
+            if (drone != null)
             {
-                target.ReactToHit();
+                drone.ReactToHit();
             }
             else
             {
@@ -42,10 +42,10 @@ public class HandGun : Gun
         if (InputManager.Instance.operateEntityNow)
         {
             int crosshairSize = 12;
-            int lineLength = 5;
+            int lineLength = 6;
             int lineWidth = 2;
-            float posX = playerCamera.pixelWidth / 2 - crosshairSize / 4;
-            float posY = playerCamera.pixelHeight / 2 - crosshairSize / 2;
+            float posX = Screen.width / 2 - crosshairSize / 4;
+            float posY = Screen.height / 2 - crosshairSize / 2;
 
             // Create a 1x1 texture for lines
             Texture2D lineTexture = new Texture2D(1, 1);
@@ -54,32 +54,32 @@ public class HandGun : Gun
 
             // Horizontal line
             GUI.DrawTexture(
-                new Rect(playerCamera.pixelWidth / 2 - lineLength / 2, playerCamera.pixelHeight / 2 - lineWidth / 2,
+                new Rect(Screen.width / 2 - lineLength / 2, Screen.height / 2 - lineWidth / 2,
                     lineLength,
                     lineWidth), lineTexture);
             // Vertical line
             GUI.DrawTexture(
-                new Rect(playerCamera.pixelWidth / 2 - lineWidth / 2, playerCamera.pixelHeight / 2 - lineLength / 2,
+                new Rect(Screen.width / 2 - lineWidth / 2, Screen.height / 2 - lineLength / 2,
                     lineWidth,
                     lineLength), lineTexture);
             // Left line
             GUI.DrawTexture(
-                new Rect(playerCamera.pixelWidth / 2 - lineLength - crosshairSize / 2,
-                    playerCamera.pixelHeight / 2 - lineWidth / 2,
+                new Rect(Screen.width / 2 - lineLength - crosshairSize / 2,
+                    Screen.height / 2 - lineWidth / 2,
                     lineLength, lineWidth), lineTexture);
             // Right line
             GUI.DrawTexture(
-                new Rect(playerCamera.pixelWidth / 2 + crosshairSize / 2, playerCamera.pixelHeight / 2 - lineWidth / 2,
+                new Rect(Screen.width / 2 + crosshairSize / 2, Screen.height / 2 - lineWidth / 2,
                     lineLength,
                     lineWidth), lineTexture);
             // Top line
             GUI.DrawTexture(
-                new Rect(playerCamera.pixelWidth / 2 - lineWidth / 2,
-                    playerCamera.pixelHeight / 2 - lineLength - crosshairSize / 2,
+                new Rect(Screen.width / 2 - lineWidth / 2,
+                    Screen.height / 2 - lineLength - crosshairSize / 2,
                     lineWidth, lineLength), lineTexture);
             // Bottom line
             GUI.DrawTexture(
-                new Rect(playerCamera.pixelWidth / 2 - lineWidth / 2, playerCamera.pixelHeight / 2 + crosshairSize / 2,
+                new Rect(Screen.width / 2 - lineWidth / 2, Screen.height / 2 + crosshairSize / 2,
                     lineWidth,
                     lineLength), lineTexture);
         }

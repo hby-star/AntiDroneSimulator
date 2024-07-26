@@ -63,7 +63,7 @@ public class Player : Entity
     #region Attack
 
     [Header("Attack Info")]
-    public List<Equipment> guns;
+    public List<Gun> guns;
     public Equipment currentEquipment;
     private int currentGunIndex;
 
@@ -82,6 +82,7 @@ public class Player : Entity
     {
         for(int i = 0; i < guns.Count; i++)
         {
+            guns[i].playerCamera = playerCamera;
             guns[i].gameObject.SetActive(i == index);
         }
         currentEquipment = guns[index];
