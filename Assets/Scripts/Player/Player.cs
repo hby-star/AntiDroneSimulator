@@ -174,7 +174,7 @@ public class Player : Entity
 
         AttackStart();
 
-        SetOperate(InputManager.Instance.operateTarget == InputManager.OperateTarget.Player);
+        SetOperate(InputManager.Instance.currentEntity is Player);
 
         Rigidbody.freezeRotation = true;
     }

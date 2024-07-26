@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2424916829615425556}
   - component: {fileID: 4230406066024909837}
-  - component: {fileID: 5914683260098743116}
   - component: {fileID: 5320754610288429460}
   - component: {fileID: 4892926585000079637}
   - component: {fileID: 636250095825889449}
@@ -62,20 +61,6 @@ MonoBehaviour:
   mouseLookTarget: {fileID: 2424916829615425556}
   soundSource: {fileID: 8234029062686397238}
   flySound: {fileID: 8300000, guid: da8cba425f89d414bbfefcafcff846bd, type: 3}
---- !u!114 &5914683260098743116
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 53710042011631870}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2899d4a4b86e5934388e3648cf973879, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHeath: 100
-  currentHeath: 100
 --- !u!54 &5320754610288429460
 Rigidbody:
   m_ObjectHideFlags: 0

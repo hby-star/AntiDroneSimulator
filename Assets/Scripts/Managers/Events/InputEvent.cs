@@ -19,4 +19,10 @@
 
     public const string GAME_PAUSE_INPUT = "GAME_PAUSE_INPUT";
     public const string OBSERVER_MODE_INPUT = "OBSERVER_MODE_INPUT";
+
+    public const string Vehicle_ENTER_INPUT = "Vehicle_ENTER_INPUT";
+    public const string Vehicle_HORIZONTAL_INPUT = "Vehicle_HORIZONTAL_INPUT";
+    public const string Vehicle_VERTICAL_INPUT = "Vehicle_VERTICAL_INPUT";
+    public const string Vehicle_CAMERA_HORIZONTAL_INPUT = "Vehicle_CAMERA_HORIZONTAL_INPUT";
+    public const string Vehicle_CAMERA_VERTICAL_INPUT = "Vehicle_CAMERA_VERTICAL_INPUT";
 }

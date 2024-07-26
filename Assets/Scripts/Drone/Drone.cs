@@ -150,7 +150,7 @@ public class Drone : Entity
 
         droneCamera = GetComponentInChildren<Camera>();
 
-        SetOperate((InputManager.Instance.operateTarget == InputManager.OperateTarget.Drone) && isLeader);
+        SetOperate((InputManager.Instance.currentEntity is Drone) && isLeader);
 
         Rigidbody.freezeRotation = true;
 

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class InputManager : MonoBehaviour
 {
@@ -42,22 +43,18 @@ public class InputManager : MonoBehaviour
 
     #endregion
 
-    public enum OperateTarget
-    {
-        Player,
-        Drone
-    }
-
-    public Player player;
-    public Drone drone;
-    public bool operateEntityNow;
-    public OperateTarget operateTarget;
-    public Camera operateCamera;
+    public List<Entity> operateEntities;
+    [NonSerialized] public bool operateEntityNow;
+    public int operateEntityIndex { get; private set; }
+    public Entity currentEntity { get; private set; }
+    public Camera currentCamera { get; private set; }
 
 
     void Start()
     {
         operateEntityNow = true;
+        operateEntityIndex = 0;
+        currentEntity = operateEntities[operateEntityIndex];
     }
 
     void Update()
@@ -66,44 +63,42 @@ public class InputManager : MonoBehaviour
 
         if (operateEntityNow)
         {
-            OperateTarget target = player.IsOperateNow() ? OperateTarget.Player : OperateTarget.Drone;
-
-            if (player != null && drone != null)
+            if (operateEntities.Count > 1)
             {
                 HandleOperateSwitch();
             }
 
-            if (player && operateTarget == OperateTarget.Player)
+            if (currentEntity is Player player)
             {
-                operateCamera = player.playerCamera;
+                currentCamera = player.playerCamera;
                 HandlePlayerInput();
             }
-
-            if (drone && operateTarget == OperateTarget.Drone)
+            else if (currentEntity is Drone drone)
             {
-                operateCamera = drone.droneCamera;
+                currentCamera = drone.droneCamera;
                 HandleDroneInput();
+            }
+            else if (currentEntity is Vehicle vehicle)
+            {
+                currentCamera = vehicle.vehicleCamera;
+                HandleVehicleInput();
             }
         }
     }
+
 
     void HandleOperateSwitch()
     {
         // Tab 切换操作对象
         if (Input.GetKeyDown(KeyCode.Tab))
         {
-            operateTarget = operateTarget == OperateTarget.Player ? OperateTarget.Drone : OperateTarget.Player;
-            switch (operateTarget)
+            operateEntityIndex++;
+            if (operateEntityIndex >= operateEntities.Count)
             {
-                case OperateTarget.Player:
-                    player.SetOperate(true);
-                    drone.SetOperate(false);
-                    break;
-                case OperateTarget.Drone:
-                    player.SetOperate(false);
-                    drone.SetOperate(true);
-                    break;
+                operateEntityIndex = 0;
             }
+
+            currentEntity = operateEntities[operateEntityIndex];
         }
     }
 
@@ -161,6 +156,26 @@ public class InputManager : MonoBehaviour
         // Drone Camera Horizontal
         Messenger<float>.Broadcast(InputEvent.DRONE_CAMERA_HORIZONTAL_INPUT, Input.GetAxis("Mouse X"));
     }
+
+    void HandleVehicleInput()
+    {
+        // Vehicle Enter
+        Messenger<bool>.Broadcast(InputEvent.Vehicle_ENTER_INPUT, Input.GetKeyDown(KeyCode.F));
+
+        // Vehicle Horizontal
+        Messenger<float>.Broadcast(InputEvent.Vehicle_HORIZONTAL_INPUT, Input.GetAxis("Horizontal"));
+
+        // Vehicle Vertical
+        Messenger<float>.Broadcast(InputEvent.Vehicle_VERTICAL_INPUT, Input.GetAxis("Vertical"));
+
+        // Vehicle Camera Horizontal
+        Messenger<float>.Broadcast(InputEvent.Vehicle_CAMERA_HORIZONTAL_INPUT, Input.GetAxis("Mouse X"));
+
+        // Vehicle Camera Vertical
+        Messenger<float>.Broadcast(InputEvent.Vehicle_CAMERA_VERTICAL_INPUT, Input.GetAxis("Mouse Y"));
+    }
+
+
 
     void HandleGameInput()
     {

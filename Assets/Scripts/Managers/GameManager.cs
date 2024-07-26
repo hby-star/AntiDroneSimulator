@@ -110,7 +110,7 @@ public class GameManager : MonoBehaviour
 
     void SwitchToTempCamera()
     {
-        SavedCamera = InputManager.Instance.operateCamera;
+        SavedCamera = InputManager.Instance.currentCamera;
         SavedCamera.enabled = false;
         TempCamera.transform.position = SavedCamera.transform.position;
         TempCamera.transform.rotation = SavedCamera.transform.rotation;

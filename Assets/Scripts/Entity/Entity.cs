@@ -9,8 +9,6 @@ public class Entity : MonoBehaviour
     public Rigidbody Rigidbody { get; private set; }
     public Collider Collider { get; private set; }
 
-    public EntityStats EntityStats { get; private set; }
-
     protected bool operateNow = false;
 
     [Header("Move Info")] public float moveSpeed = 10f;
@@ -22,7 +20,6 @@ public class Entity : MonoBehaviour
     protected virtual void Start()
     {
         Animator = GetComponentInChildren<Animator>();
-        EntityStats = GetComponent<EntityStats>();
         Rigidbody = GetComponent<Rigidbody>();
         Collider = GetComponent<Collider>();
     }
