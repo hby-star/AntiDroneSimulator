@@ -1,49 +1,68 @@
 # AntiDroneSimulator
 
-## 1. 玩家设计
+```mermaid
+flowchart LR
+	Start(开始)
+	Start --> Player
+	Start --> Drone
+	Start --> Vehicle
+	Start --> Terrain
+	
+	Player(玩家)
+	Player --> Equipment
+	Player --> Action
+	
+	Drone(无人机)
+	Drone --> Serach
+	Drone --> Attack
+	
+	Vehicle(载具)
+	Vehicle --> Function
 
-### 1.1 基础操作
+	Terrain(地形)
+	Terrain --> City
+	Terrain --> Flat
 
-* 移动
-  *  [W]	[A]	[S]	[D]
-* 转动视角
-  * [MouseX]	[MouseY]
-* 开火
-  * [Mouse 0]
-* 装弹
-  * [Mouse 2]
-* 跳跃
-  * [Space]
-* 翻滚
-  * [Mouse 1]
-* 蹲下、起立
-  * [LeftControl]
+	Equipment(装备)
+	GeneralGun(普通的枪)
+	EMPGun(电磁枪)
+	SkyWallGun(便携式网枪)
+	Shield(便携式盾牌)	
+	Equipment --> GeneralGun
+	Equipment --> EMPGun
+	Equipment --> SkyWallGun
+	Equipment --> Shield
+	
 
+	Action(动作)
+	PlayerAttack(开火)
+	PlayerEvade(闪避)
+	PlayerHide(躲藏)
+	Action --> PlayerAttack
+	Action --> PlayerEvade
+	Action --> PlayerHide
+	
+	Serach(搜索敌人)
+	Serach --> SerachAlg(搜索算法...)
 
-
-## 2. 无人机设计
-
-### 2.1 基础操作
-
-* 飞行
-  * [W]	[A]	[S]	[D]	[Q]	[E] 
-* 发射导弹
-  * [F]
-
-### 2.2 无人机控制算法
-
-* 静止
-* 随机移动
-* Flocking 算法
-
-
-
-## 3. 技能设计
-
-* 切换控制
-  * [Tab]
-* 时间暂停
-  * [P]
-* 观察者模式
-  * [O]
+	
+	Attack(攻击敌人)
+	Attack --> AttackAlg(攻击算法...)
+	Attack --> AttackFunc(攻击方式...)
+	
+	
+	Function(功能)
+	ForMove(供快速移动)
+	ForHide(供躲避)
+	ForSerach(供探测无人机)
+	ForDisturb(供干扰无人机)
+	Function --> ForMove
+	Function --> ForHide
+	Function --> ForSerach
+	Function --> ForDisturb
+	
+	City(城市)
+	Flat(平坦地区)
+		
+```
 
