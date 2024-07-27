@@ -97,11 +97,14 @@ public class PlayerGroundState : PlayerState
             }
 
             // interact
-            if (Player.PlayerEnterVehicleInput && !Player.IsBusy)
+            if (!Player.IsBusy &&
+                (Player.PlayerEnterVehicleInput ||
+                 Player.PlayerUseVehicleEmpInput ||
+                 Player.PlayerUseVehicleRadarInput ||
+                 Player.PlayerUseVehicleElectromagneticInterferenceInput))
             {
                 Player.InteractUpdate();
             }
-
         }
     }
 

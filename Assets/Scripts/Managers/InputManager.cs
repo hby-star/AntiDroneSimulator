@@ -146,8 +146,18 @@ public class InputManager : MonoBehaviour
         // Player Change Gun
         Messenger<bool>.Broadcast(InputEvent.PLAYER_CHANGE_GUN_INPUT, Input.GetKeyDown(KeyCode.LeftShift));
 
+        // Interact with vehicle
         // Player enter vehicle
-        Messenger<bool>.Broadcast(InputEvent.Vehicle_ENTER_EXIT_INPUT, Input.GetKeyDown(KeyCode.E));
+        Messenger<bool>.Broadcast(InputEvent.VEHICLE_ENTER_EXIT_INPUT, Input.GetKeyDown(KeyCode.E));
+
+        // Player use radar
+        Messenger<bool>.Broadcast(InputEvent.VECHILE_RADAR_SWITCH_INPUT, Input.GetKeyDown(KeyCode.Alpha1));
+
+        // Player use electric interference
+        Messenger<bool>.Broadcast(InputEvent.VECHILE_ELERTIC_INTERFERENCE_INPUT, Input.GetKeyDown(KeyCode.Alpha2));
+
+        // Player use emp
+        Messenger<bool>.Broadcast(InputEvent.VECHILE_EMP_USE_INPUT, Input.GetKeyDown(KeyCode.Alpha3));
     }
 
     void HandleDroneInput()
@@ -175,19 +185,19 @@ public class InputManager : MonoBehaviour
     void HandleVehicleInput()
     {
         // Vehicle Horizontal
-        Messenger<float>.Broadcast(InputEvent.Vehicle_HORIZONTAL_INPUT, Input.GetAxis("Horizontal"));
+        Messenger<float>.Broadcast(InputEvent.VEHICLE_HORIZONTAL_INPUT, Input.GetAxis("Horizontal"));
 
         // Vehicle Vertical
-        Messenger<float>.Broadcast(InputEvent.Vehicle_VERTICAL_INPUT, Input.GetAxis("Vertical"));
+        Messenger<float>.Broadcast(InputEvent.VEHICLE_VERTICAL_INPUT, Input.GetAxis("Vertical"));
 
         // Vehicle Camera Horizontal
-        Messenger<float>.Broadcast(InputEvent.Vehicle_CAMERA_HORIZONTAL_INPUT, Input.GetAxis("Mouse X"));
+        Messenger<float>.Broadcast(InputEvent.VEHICLE_CAMERA_HORIZONTAL_INPUT, Input.GetAxis("Mouse X"));
 
         // Vehicle Camera Vertical
-        Messenger<float>.Broadcast(InputEvent.Vehicle_CAMERA_VERTICAL_INPUT, Input.GetAxis("Mouse Y"));
+        Messenger<float>.Broadcast(InputEvent.VEHICLE_CAMERA_VERTICAL_INPUT, Input.GetAxis("Mouse Y"));
 
         // Player exit vehicle
-        Messenger<bool>.Broadcast(InputEvent.Vehicle_ENTER_EXIT_INPUT, Input.GetKeyDown(KeyCode.E));
+        Messenger<bool>.Broadcast(InputEvent.VEHICLE_ENTER_EXIT_INPUT, Input.GetKeyDown(KeyCode.E));
     }
 
 

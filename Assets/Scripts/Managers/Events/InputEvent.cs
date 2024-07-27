@@ -20,11 +20,14 @@
     public const string DRONE_CAMERA_HORIZONTAL_INPUT = "DRONE_CAMERA_HORIZONTAL_INPUT";
 
     // Vehicle
-    public const string Vehicle_HORIZONTAL_INPUT = "Vehicle_HORIZONTAL_INPUT";
-    public const string Vehicle_VERTICAL_INPUT = "Vehicle_VERTICAL_INPUT";
-    public const string Vehicle_CAMERA_HORIZONTAL_INPUT = "Vehicle_CAMERA_HORIZONTAL_INPUT";
-    public const string Vehicle_CAMERA_VERTICAL_INPUT = "Vehicle_CAMERA_VERTICAL_INPUT";
-    public const string Vehicle_ENTER_EXIT_INPUT = "Vehicle_ENTER_EXIT_INPUT";
+    public const string VEHICLE_HORIZONTAL_INPUT = "VEHICLE_HORIZONTAL_INPUT";
+    public const string VEHICLE_VERTICAL_INPUT = "VEHICLE_VERTICAL_INPUT";
+    public const string VEHICLE_CAMERA_HORIZONTAL_INPUT = "VEHICLE_CAMERA_HORIZONTAL_INPUT";
+    public const string VEHICLE_CAMERA_VERTICAL_INPUT = "VEHICLE_CAMERA_VERTICAL_INPUT";
+    public const string VEHICLE_ENTER_EXIT_INPUT = "VEHICLE_ENTER_EXIT_INPUT";
+    public const string VECHILE_RADAR_SWITCH_INPUT = "VECHILE_RADAR_SWITCH_INPUT";
+    public const string VECHILE_EMP_USE_INPUT = "VECHILE_EMP_USE_INPUT";
+    public const string VECHILE_ELERTIC_INTERFERENCE_INPUT = "VECHILE_ELERTIC_INTERFERENCE_INPUT";
 
     // Game
     public const string GAME_PAUSE_INPUT = "GAME_PAUSE_INPUT";

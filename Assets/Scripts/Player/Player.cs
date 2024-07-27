@@ -137,8 +137,7 @@ public class Player : Entity
 
     #region Control
 
-    [Header("Control Info")]
-    public float interactRange = 1.5f;
+    [Header("Control Info")] public float interactRange = 1.5f;
 
     public override void SetOperate(bool operate)
     {
@@ -166,6 +165,50 @@ public class Player : Entity
                     vehicle.currentPlayer = this;
                     vehicle.StartCoroutine(vehicle.BusyFor(1f));
                     InputManager.Instance.ChangeOperateEntity(vehicle);
+                    break;
+                }
+            }
+        }
+
+        if (PlayerUseVehicleEmpInput)
+        {
+            foreach (var collider in colliders)
+            {
+                Vehicle vehicle = collider.GetComponent<Vehicle>();
+                if (vehicle)
+                {
+                    vehicle.EmpAttack();
+                    break;
+                }
+            }
+        }
+
+        if (PlayerUseVehicleRadarInput)
+        {
+            foreach (var collider in colliders)
+            {
+                Vehicle vehicle = collider.GetComponent<Vehicle>();
+                if (vehicle)
+                {
+                    List<Vector3> positions = new List<Vector3>();
+                    positions = vehicle.RadarDetection();
+                    foreach (var position in positions)
+                    {
+                        Debug.Log("Radar Detection: " + position);
+                    }
+                    break;
+                }
+            }
+        }
+
+        if (PlayerUseVehicleElectromagneticInterferenceInput)
+        {
+            foreach (var collider in colliders)
+            {
+                Vehicle vehicle = collider.GetComponent<Vehicle>();
+                if (vehicle)
+                {
+                    vehicle.ElectromagneticInterferenceAttack();
                     break;
                 }
             }
@@ -296,7 +339,12 @@ public class Player : Entity
     public bool ChangeGunInput { get; private set; }
     public float CameraHorizontalInput { get; private set; }
     public float CameraVerticalInput { get; private set; }
+
+    // Interact with vehicle
     public bool PlayerEnterVehicleInput { get; private set; }
+    public bool PlayerUseVehicleEmpInput { get; private set; }
+    public bool PlayerUseVehicleRadarInput { get; private set; }
+    public bool PlayerUseVehicleElectromagneticInterferenceInput { get; private set; }
 
     void OnEnable()
     {
@@ -313,7 +361,14 @@ public class Player : Entity
         Messenger<float>.AddListener(InputEvent.PLAYER_CAMERA_VERTICAL_INPUT,
             (value) => { CameraVerticalInput = value; });
 
-        Messenger<bool>.AddListener(InputEvent.Vehicle_ENTER_EXIT_INPUT, (value) => { PlayerEnterVehicleInput = value; });
+        // Interact with vehicle
+        Messenger<bool>.AddListener(InputEvent.VEHICLE_ENTER_EXIT_INPUT,
+            (value) => { PlayerEnterVehicleInput = value; });
+        Messenger<bool>.AddListener(InputEvent.VECHILE_EMP_USE_INPUT, (value) => { PlayerUseVehicleEmpInput = value; });
+        Messenger<bool>.AddListener(InputEvent.VECHILE_RADAR_SWITCH_INPUT,
+            (value) => { PlayerUseVehicleRadarInput = value; });
+        Messenger<bool>.AddListener(InputEvent.VECHILE_ELERTIC_INTERFERENCE_INPUT,
+            (value) => { PlayerUseVehicleElectromagneticInterferenceInput = value; });
     }
 
     void OnDisable()
@@ -331,7 +386,8 @@ public class Player : Entity
         Messenger<float>.RemoveListener(InputEvent.PLAYER_CAMERA_VERTICAL_INPUT,
             (value) => { CameraVerticalInput = value; });
 
-        Messenger<bool>.RemoveListener(InputEvent.Vehicle_ENTER_EXIT_INPUT, (value) => { PlayerEnterVehicleInput = value; });
+        Messenger<bool>.RemoveListener(InputEvent.VEHICLE_ENTER_EXIT_INPUT,
+            (value) => { PlayerEnterVehicleInput = value; });
     }
 
     #endregion

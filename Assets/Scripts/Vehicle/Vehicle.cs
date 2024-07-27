@@ -14,6 +14,8 @@ public class Vehicle : Entity
 
     #endregion
 
+    #region Move
+
     public Player currentPlayer;
 
     public WheelCollider wheelLf;
@@ -24,6 +26,83 @@ public class Vehicle : Entity
     public float maxSteerAngle = 30;
     public float currentSteerAngle;
     public float motorForce = 50;
+
+    #endregion
+
+
+    #region Functions
+
+    [Header("Function Info")]
+    // 电磁脉冲
+    public int empCurCount = 3;
+
+    public int empMaxCount = 3;
+    public float empRadius = 50;
+
+    // 雷达
+    public float radarRadius = 100;
+
+    // 电磁干扰
+    public float electromagneticInterferenceRadius = 50;
+
+    private List<Drone> DetectDrones(float radius)
+    {
+        Collider[] hitColliders = Physics.OverlapSphere(transform.position, radius);
+        List<Drone> detectedDrones = new List<Drone>();
+
+        foreach (var hitCollider in hitColliders)
+        {
+            Drone drone = hitCollider.GetComponent<Drone>();
+            if (drone != null)
+            {
+                detectedDrones.Add(drone);
+            }
+        }
+
+        return detectedDrones;
+    }
+
+    // EMP Attack
+    public void EmpAttack()
+    {
+        if (empCurCount > 0)
+        {
+            List<Drone> drones = DetectDrones(empRadius);
+            foreach (var drone in drones)
+            {
+                drone.ReactToHit(Drone.HitType.EmpBullet);
+            }
+
+            empCurCount--;
+        }
+    }
+
+    // Radar Detection
+    public List<Vector3> RadarDetection()
+    {
+        List<Drone> drones = DetectDrones(radarRadius);
+        List<Vector3> dronePositions = new List<Vector3>();
+
+        foreach (var drone in drones)
+        {
+            dronePositions.Add(drone.transform.position);
+        }
+
+        return dronePositions;
+    }
+
+    // Electromagnetic Interference Attack
+    public void ElectromagneticInterferenceAttack()
+    {
+        List<Drone> drones = DetectDrones(electromagneticInterferenceRadius);
+        foreach (var drone in drones)
+        {
+            drone.ReactToHit(Drone.HitType.ElectricInterference);
+        }
+    }
+
+    #endregion
+
 
     protected override void Awake()
     {
@@ -81,6 +160,23 @@ public class Vehicle : Entity
         }
     }
 
+    private void OnDrawGizmos()
+    {
+        // radar
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(transform.position, radarRadius);
+
+
+        // electromagnetic interference
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, electromagneticInterferenceRadius);
+
+
+        // emp
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(transform.position, empRadius);
+    }
+
 
     #region HandleInput
 
@@ -92,26 +188,26 @@ public class Vehicle : Entity
 
     void OnEnable()
     {
-        Messenger<float>.AddListener(InputEvent.Vehicle_HORIZONTAL_INPUT, (value) => { HorizontalInput = value; });
-        Messenger<float>.AddListener(InputEvent.Vehicle_VERTICAL_INPUT, (value) => { VerticalInput = value; });
-        Messenger<float>.AddListener(InputEvent.Vehicle_CAMERA_HORIZONTAL_INPUT,
+        Messenger<float>.AddListener(InputEvent.VEHICLE_HORIZONTAL_INPUT, (value) => { HorizontalInput = value; });
+        Messenger<float>.AddListener(InputEvent.VEHICLE_VERTICAL_INPUT, (value) => { VerticalInput = value; });
+        Messenger<float>.AddListener(InputEvent.VEHICLE_CAMERA_HORIZONTAL_INPUT,
             (value) => { CameraHorizontalInput = value; });
-        Messenger<float>.AddListener(InputEvent.Vehicle_CAMERA_VERTICAL_INPUT,
+        Messenger<float>.AddListener(InputEvent.VEHICLE_CAMERA_VERTICAL_INPUT,
             (value) => { CameraVerticalInput = value; });
 
-        Messenger<bool>.AddListener(InputEvent.Vehicle_ENTER_EXIT_INPUT, (value) => { PlayerExitInput = value; });
+        Messenger<bool>.AddListener(InputEvent.VEHICLE_ENTER_EXIT_INPUT, (value) => { PlayerExitInput = value; });
     }
 
     void OnDisable()
     {
-        Messenger<float>.RemoveListener(InputEvent.Vehicle_HORIZONTAL_INPUT, (value) => { HorizontalInput = value; });
-        Messenger<float>.RemoveListener(InputEvent.Vehicle_VERTICAL_INPUT, (value) => { VerticalInput = value; });
-        Messenger<float>.RemoveListener(InputEvent.Vehicle_CAMERA_HORIZONTAL_INPUT,
+        Messenger<float>.RemoveListener(InputEvent.VEHICLE_HORIZONTAL_INPUT, (value) => { HorizontalInput = value; });
+        Messenger<float>.RemoveListener(InputEvent.VEHICLE_VERTICAL_INPUT, (value) => { VerticalInput = value; });
+        Messenger<float>.RemoveListener(InputEvent.VEHICLE_CAMERA_HORIZONTAL_INPUT,
             (value) => { CameraHorizontalInput = value; });
-        Messenger<float>.RemoveListener(InputEvent.Vehicle_CAMERA_VERTICAL_INPUT,
+        Messenger<float>.RemoveListener(InputEvent.VEHICLE_CAMERA_VERTICAL_INPUT,
             (value) => { CameraVerticalInput = value; });
 
-        Messenger<bool>.RemoveListener(InputEvent.Vehicle_ENTER_EXIT_INPUT, (value) => { PlayerExitInput = value; });
+        Messenger<bool>.RemoveListener(InputEvent.VEHICLE_ENTER_EXIT_INPUT, (value) => { PlayerExitInput = value; });
     }
 
     #endregion
