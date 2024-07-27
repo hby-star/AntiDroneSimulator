@@ -390,13 +390,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c222e77d4988e9142a1449e5b9436a68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  operateEntityNow: 1
   operateEntities:
   - {fileID: 527398717}
   - {fileID: 1169717142}
-  operateEntityIndex: 0
-  currentEntity: {fileID: 0}
-  currentCamera: {fileID: 0}
 --- !u!114 &177480485
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2648,7 +2644,8 @@ MonoBehaviour:
   wheelLb: {fileID: 998478696}
   wheelRb: {fileID: 1626381824}
   maxSteerAngle: 30
-  motorForce: 50
+  currentSteerAngle: 0
+  motorForce: 500
   vehicleCamera: {fileID: 0}
 --- !u!1001 &1342843936
 PrefabInstance:
@@ -3142,7 +3139,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1945942127}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -7011,7 +7008,7 @@ Animator:
   m_GameObject: {fileID: 1384911044967621901}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 530e0a67643ac134fb195a1c6a208455, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
