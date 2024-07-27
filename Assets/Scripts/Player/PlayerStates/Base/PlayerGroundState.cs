@@ -22,6 +22,11 @@ public class PlayerGroundState : PlayerState
 
         if (Player.IsOperateNow())
         {
+            if (Player.StateMachine.CurrentState is not PlayerCrouchState)
+            {
+                _isCrouching = false;
+            }
+
             // move
             if ((Player.HorizontalInput != 0 || Player.VerticalInput != 0) && !Player.IsBusy && !_isCrouching)
             {
