@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerDashState : PlayerGroundState
 {
     private float originalColliderHeight;
+    private Vector3 savedVeciocity;
 
     public PlayerDashState(EntityStateMachine entityStateMachine, Entity entity, string animationName, Player player) :
         base(entityStateMachine, entity, animationName, player)
@@ -14,6 +15,8 @@ public class PlayerDashState : PlayerGroundState
     public override void Enter()
     {
         base.Enter();
+
+        savedVeciocity = Player.Rigidbody.velocity;
 
         Player.SetColliderHeight(Player.crouchColliderHeight);
 
@@ -34,7 +37,7 @@ public class PlayerDashState : PlayerGroundState
         {
             Vector3 dashDirection = Player.transform.forward;
 
-            Player.Rigidbody.velocity = dashDirection.normalized * Player.dashSpeed;
+            Player.Rigidbody.velocity = dashDirection.normalized * Player.dashSpeed + savedVeciocity;
 
         }
     }
