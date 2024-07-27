@@ -2660,6 +2660,11 @@ MonoBehaviour:
   maxSteerAngle: 30
   currentSteerAngle: 0
   motorForce: 500
+  empCurCount: 3
+  empMaxCount: 3
+  empRadius: 50
+  radarRadius: 100
+  electromagneticInterferenceRadius: 50
 --- !u!1001 &1342843936
 PrefabInstance:
   m_ObjectHideFlags: 0

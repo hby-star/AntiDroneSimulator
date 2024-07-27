@@ -160,17 +160,15 @@ public class Vehicle : Entity
         }
     }
 
-    private void OnDrawGizmos()
+    private void OnDrawGizmosSelected()
     {
         // radar
         Gizmos.color = Color.green;
         Gizmos.DrawWireSphere(transform.position, radarRadius);
 
-
         // electromagnetic interference
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, electromagneticInterferenceRadius);
-
 
         // emp
         Gizmos.color = Color.blue;

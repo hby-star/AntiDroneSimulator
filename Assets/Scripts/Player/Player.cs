@@ -35,7 +35,7 @@ public class Player : Entity
     public void SetColliderHeight(float height)
     {
         CapsuleCollider capsuleCollider = Collider as CapsuleCollider;
-        if (capsuleCollider != null)
+        if (capsuleCollider)
         {
             float originalHeight = capsuleCollider.height;
             Vector3 center = capsuleCollider.center;
@@ -261,20 +261,22 @@ public class Player : Entity
         StateMachine.CurrentState.AnimationFinished();
     }
 
-    void OnDrawGizmos()
+    private void OnDrawGizmosSelected()
     {
         // Draw the capsule collider
         CapsuleCollider capsuleCollider = Collider as CapsuleCollider;
-        if (capsuleCollider == null) return;
-
-        Vector3 capsuleBottom = new Vector3(transform.position.x, transform.position.y + capsuleCollider.radius,
-            transform.position.z);
-        Vector3 capsuleTop = new Vector3(transform.position.x,
-            transform.position.y + capsuleCollider.height - capsuleCollider.radius, transform.position.z);
-
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(capsuleTop, capsuleCollider.radius);
-        Gizmos.DrawWireSphere(capsuleBottom, capsuleCollider.radius);
+        if (capsuleCollider)
+        {
+            Gizmos.color = Color.red;
+            Vector3 point1 = new Vector3(transform.position.x, transform.position.y + capsuleCollider.height / 2,
+                transform.position.z);
+            Vector3 point2 = new Vector3(transform.position.x, transform.position.y - capsuleCollider.height / 2,
+                transform.position.z);
+            Gizmos.DrawWireSphere(point1, capsuleCollider.radius);
+            Gizmos.DrawWireSphere(point2, capsuleCollider.radius);
+            Gizmos.DrawLine(point1 + Vector3.right * capsuleCollider.radius, point2 + Vector3.right * capsuleCollider.radius);
+            Gizmos.DrawLine(point1 - Vector3.right * capsuleCollider.radius, point2 - Vector3.right * capsuleCollider.radius);
+        }
 
         // Draw the interaction sphere
         Gizmos.color = Color.green;

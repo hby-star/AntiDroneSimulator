@@ -43,7 +43,7 @@ public class Bomb : MonoBehaviour
         Destroy(gameObject);
     }
 
-    private void OnDrawGizmos()
+    private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, explosionRadius);
