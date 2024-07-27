@@ -122,6 +122,12 @@ public class InputManager : MonoBehaviour
         // Player Vertical
         Messenger<float>.Broadcast(InputEvent.PLAYER_VERTICAL_INPUT, Input.GetAxis("Vertical"));
 
+        // Player Camera Horizontal
+        Messenger<float>.Broadcast(InputEvent.PLAYER_CAMERA_HORIZONTAL_INPUT, Input.GetAxis("Mouse X"));
+
+        // Player Camera Vertical
+        Messenger<float>.Broadcast(InputEvent.PLAYER_CAMERA_VERTICAL_INPUT, Input.GetAxis("Mouse Y"));
+
         // Player Jump
         Messenger<bool>.Broadcast(InputEvent.PLAYER_JUMP_INPUT, Input.GetKeyDown(KeyCode.Space));
 
@@ -140,14 +146,8 @@ public class InputManager : MonoBehaviour
         // Player Change Gun
         Messenger<bool>.Broadcast(InputEvent.PLAYER_CHANGE_GUN_INPUT, Input.GetKeyDown(KeyCode.LeftShift));
 
-        // Player Camera Horizontal
-        Messenger<float>.Broadcast(InputEvent.PLAYER_CAMERA_HORIZONTAL_INPUT, Input.GetAxis("Mouse X"));
-
-        // Player Camera Vertical
-        Messenger<float>.Broadcast(InputEvent.PLAYER_CAMERA_VERTICAL_INPUT, Input.GetAxis("Mouse Y"));
-
         // Player enter vehicle
-        Messenger<bool>.Broadcast(InputEvent.Vehicle_ENTER_INPUT, Input.GetKeyDown(KeyCode.E));
+        Messenger<bool>.Broadcast(InputEvent.Vehicle_ENTER_EXIT_INPUT, Input.GetKeyDown(KeyCode.E));
     }
 
     void HandleDroneInput()
@@ -187,7 +187,7 @@ public class InputManager : MonoBehaviour
         Messenger<float>.Broadcast(InputEvent.Vehicle_CAMERA_VERTICAL_INPUT, Input.GetAxis("Mouse Y"));
 
         // Player exit vehicle
-        Messenger<bool>.Broadcast(InputEvent.Vehicle_ENTER_INPUT, Input.GetKeyDown(KeyCode.E));
+        Messenger<bool>.Broadcast(InputEvent.Vehicle_ENTER_EXIT_INPUT, Input.GetKeyDown(KeyCode.E));
     }
 
 

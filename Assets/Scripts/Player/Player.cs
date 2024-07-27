@@ -313,7 +313,7 @@ public class Player : Entity
         Messenger<float>.AddListener(InputEvent.PLAYER_CAMERA_VERTICAL_INPUT,
             (value) => { CameraVerticalInput = value; });
 
-        Messenger<bool>.AddListener(InputEvent.Vehicle_ENTER_INPUT, (value) => { PlayerEnterVehicleInput = value; });
+        Messenger<bool>.AddListener(InputEvent.Vehicle_ENTER_EXIT_INPUT, (value) => { PlayerEnterVehicleInput = value; });
     }
 
     void OnDisable()
@@ -331,7 +331,7 @@ public class Player : Entity
         Messenger<float>.RemoveListener(InputEvent.PLAYER_CAMERA_VERTICAL_INPUT,
             (value) => { CameraVerticalInput = value; });
 
-        Messenger<bool>.RemoveListener(InputEvent.Vehicle_ENTER_INPUT, (value) => { PlayerEnterVehicleInput = value; });
+        Messenger<bool>.RemoveListener(InputEvent.Vehicle_ENTER_EXIT_INPUT, (value) => { PlayerEnterVehicleInput = value; });
     }
 
     #endregion
