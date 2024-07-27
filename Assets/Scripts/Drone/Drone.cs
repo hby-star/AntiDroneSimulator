@@ -173,9 +173,26 @@ public class Drone : Entity
 
     #region React To Hit
 
-    public void ReactToHit()
+    public enum HitType
     {
-        StartCoroutine(Die());
+        NormalBullet,
+        EmpBullet,
+        NetBullet,
+        ElectricInterference,
+    }
+
+    public void ReactToHit(HitType hitType)
+    {
+        if (hitType == HitType.ElectricInterference)
+        {
+            DroneControlAlgorithm = new Stay();
+            DroneControlAlgorithm.DroneControlSet(this);
+        }
+        else
+        {
+            StartCoroutine(Die());
+        }
+
     }
 
     private IEnumerator Die()

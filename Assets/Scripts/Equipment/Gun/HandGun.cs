@@ -25,7 +25,7 @@ public class HandGun : Gun
             Drone drone = hitObject.GetComponent<Drone>();
             if (drone != null)
             {
-                drone.ReactToHit();
+                drone.ReactToHit(Drone.HitType.NormalBullet);
             }
             else
             {
