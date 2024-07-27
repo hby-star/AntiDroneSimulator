@@ -16,8 +16,8 @@ public class Drone : Entity
 
     #region Attack
 
-    [Header("Attack Info")]
-    [SerializeField] GameObject bomb;
+    [Header("Attack Info")] [SerializeField]
+    GameObject bomb;
 
     [SerializeField] private float bombBelowLength = 0.3f;
 
@@ -55,7 +55,7 @@ public class Drone : Entity
 
     void BombPathUpdate()
     {
-        if (hasBomb)
+        if (hasBomb && operateNow)
         {
             lineRenderer.positionCount = numberOfPoints;
             Vector3[] points = new Vector3[numberOfPoints];
@@ -92,6 +92,7 @@ public class Drone : Entity
             {
                 sphereMarkerInstance.SetActive(false);
             }
+
             lineRenderer.SetPositions(points);
         }
         else
@@ -163,11 +164,8 @@ public class Drone : Entity
         AudioUpdate();
         MouseLookUpdate();
 
-        if (operateNow)
-        {
-            BombPathUpdate();
-        }
-        else
+        BombPathUpdate();
+        if (!operateNow)
         {
             DroneControlAlgorithm.DroneControlUpdate();
         }
