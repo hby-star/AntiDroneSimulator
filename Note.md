@@ -35,7 +35,7 @@ flowchart LR
 	
 
 	Action(动作)
-	PlayerAttack(开火)
+	PlayerAttack(攻击)
 	PlayerEvade(闪避)
 	PlayerHide(躲藏)
 	Action --> PlayerAttack
@@ -52,14 +52,16 @@ flowchart LR
 	
 	
 	Function(功能)
-	ForMove(供快速移动)
-	ForHide(供躲避)
-	ForSerach(供探测无人机)
-	ForDisturb(供干扰无人机)
+	ForMove(快速移动)
+	ForHide(躲避)
+	ForSerach(探测无人机)
+	ForDisturb(干扰无人机)
+	ForAttack(攻击无人机)
 	Function --> ForMove
 	Function --> ForHide
 	Function --> ForSerach
 	Function --> ForDisturb
+	Function --> ForAttack
 	
 	City(城市)
 	Flat(平坦地区)
