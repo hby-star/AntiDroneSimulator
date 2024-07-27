@@ -392,7 +392,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   operateEntities:
   - {fileID: 527398717}
-  - {fileID: 1169717142}
 --- !u!114 &177480485
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -823,6 +822,7 @@ MonoBehaviour:
   - {fileID: 305454922}
   - {fileID: 2072135498}
   currentEquipment: {fileID: 0}
+  interactRange: 2
   sensitivityHor: 9
   sensitivityVert: 9
   minimumVert: -45
@@ -2639,6 +2639,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 10
+  currentPlayer: {fileID: 0}
   wheelLf: {fileID: 1755305821}
   wheelRf: {fileID: 919574645}
   wheelLb: {fileID: 998478696}
@@ -2646,7 +2647,6 @@ MonoBehaviour:
   maxSteerAngle: 30
   currentSteerAngle: 0
   motorForce: 500
-  vehicleCamera: {fileID: 0}
 --- !u!1001 &1342843936
 PrefabInstance:
   m_ObjectHideFlags: 0

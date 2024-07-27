@@ -62,8 +62,7 @@ public class Player : Entity
 
     #region Attack
 
-    [Header("Attack Info")]
-    public List<Gun> guns;
+    [Header("Attack Info")] public List<Gun> guns;
     public Equipment currentEquipment;
     private int currentGunIndex;
 
@@ -78,11 +77,12 @@ public class Player : Entity
 
     private void SetGun(int index)
     {
-        for(int i = 0; i < guns.Count; i++)
+        for (int i = 0; i < guns.Count; i++)
         {
             guns[i].playerCamera = Camera;
             guns[i].gameObject.SetActive(i == index);
         }
+
         currentEquipment = guns[index];
     }
 
@@ -99,10 +99,11 @@ public class Player : Entity
 
     public bool CanAttack()
     {
-        if(currentEquipment is Gun gun)
+        if (currentEquipment is Gun gun)
         {
             return gun.CanFire();
         }
+
         return false;
     }
 
@@ -120,6 +121,7 @@ public class Player : Entity
         {
             return gun.CanReload();
         }
+
         return false;
     }
 
@@ -135,6 +137,9 @@ public class Player : Entity
 
     #region Control
 
+    [Header("Control Info")]
+    public float interactRange = 1.5f;
+
     public override void SetOperate(bool operate)
     {
         base.SetOperate(operate);
@@ -142,6 +147,28 @@ public class Player : Entity
         if (!operate)
         {
             StateMachine.ChangeState(IdleState);
+        }
+    }
+
+    public override void InteractUpdate()
+    {
+        Collider[] colliders = Physics.OverlapSphere(transform.position, interactRange);
+
+        if (PlayerEnterVehicleInput)
+        {
+            foreach (var collider in colliders)
+            {
+                Vehicle vehicle = collider.GetComponent<Vehicle>();
+                if (vehicle)
+                {
+                    transform.parent = vehicle.transform;
+                    gameObject.SetActive(false);
+                    vehicle.currentPlayer = this;
+                    vehicle.StartCoroutine(vehicle.BusyFor(1f));
+                    InputManager.Instance.ChangeOperateEntity(vehicle);
+                    break;
+                }
+            }
         }
     }
 
@@ -191,8 +218,9 @@ public class Player : Entity
         StateMachine.CurrentState.AnimationFinished();
     }
 
-    public void OnDrawGizmos()
+    void OnDrawGizmos()
     {
+        // Draw the capsule collider
         CapsuleCollider capsuleCollider = Collider as CapsuleCollider;
         if (capsuleCollider == null) return;
 
@@ -204,6 +232,10 @@ public class Player : Entity
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(capsuleTop, capsuleCollider.radius);
         Gizmos.DrawWireSphere(capsuleBottom, capsuleCollider.radius);
+
+        // Draw the interaction sphere
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(transform.position, interactRange);
     }
 
     #region MouseLook
@@ -243,21 +275,6 @@ public class Player : Entity
 
     #endregion
 
-    #region isBusy
-
-    public bool IsBusy { get; private set; }
-
-    public IEnumerator BusyFor(float seconds)
-    {
-        IsBusy = true;
-
-        yield return new WaitForSeconds(seconds);
-
-        IsBusy = false;
-    }
-
-    #endregion
-
     #region Audio
 
     [Header("Audio Info")] [SerializeField]
@@ -293,7 +310,8 @@ public class Player : Entity
         Messenger<bool>.AddListener(InputEvent.PLAYER_CHANGE_GUN_INPUT, (value) => { ChangeGunInput = value; });
         Messenger<float>.AddListener(InputEvent.PLAYER_CAMERA_HORIZONTAL_INPUT,
             (value) => { CameraHorizontalInput = value; });
-        Messenger<float>.AddListener(InputEvent.PLAYER_CAMERA_VERTICAL_INPUT, (value) => { CameraVerticalInput = value; });
+        Messenger<float>.AddListener(InputEvent.PLAYER_CAMERA_VERTICAL_INPUT,
+            (value) => { CameraVerticalInput = value; });
 
         Messenger<bool>.AddListener(InputEvent.Vehicle_ENTER_INPUT, (value) => { PlayerEnterVehicleInput = value; });
     }
@@ -310,7 +328,8 @@ public class Player : Entity
         Messenger<bool>.RemoveListener(InputEvent.PLAYER_CHANGE_GUN_INPUT, (value) => { ChangeGunInput = value; });
         Messenger<float>.RemoveListener(InputEvent.PLAYER_CAMERA_HORIZONTAL_INPUT,
             (value) => { CameraHorizontalInput = value; });
-        Messenger<float>.RemoveListener(InputEvent.PLAYER_CAMERA_VERTICAL_INPUT, (value) => { CameraVerticalInput = value; });
+        Messenger<float>.RemoveListener(InputEvent.PLAYER_CAMERA_VERTICAL_INPUT,
+            (value) => { CameraVerticalInput = value; });
 
         Messenger<bool>.RemoveListener(InputEvent.Vehicle_ENTER_INPUT, (value) => { PlayerEnterVehicleInput = value; });
     }

@@ -98,10 +98,20 @@ public class InputManager : MonoBehaviour
                 operateEntityIndex = 0;
             }
 
-            currentEntity.SetOperate(false);
-            currentEntity = operateEntities[operateEntityIndex];
-            currentEntity.SetOperate(true);
+            ChangeOperateEntity(operateEntities[operateEntityIndex]);
         }
+    }
+
+    public void ChangeOperateEntity(Entity newEntity)
+    {
+        if(!newEntity)
+        {
+            Debug.LogError("ChangeOperateEntity: newEntity is null");
+            return;
+        }
+        currentEntity.SetOperate(false);
+        currentEntity = newEntity;
+        currentEntity.SetOperate(true);
     }
 
     void HandlePlayerInput()
@@ -175,6 +185,9 @@ public class InputManager : MonoBehaviour
 
         // Vehicle Camera Vertical
         Messenger<float>.Broadcast(InputEvent.Vehicle_CAMERA_VERTICAL_INPUT, Input.GetAxis("Mouse Y"));
+
+        // Player exit vehicle
+        Messenger<bool>.Broadcast(InputEvent.Vehicle_ENTER_INPUT, Input.GetKeyDown(KeyCode.E));
     }
 
 

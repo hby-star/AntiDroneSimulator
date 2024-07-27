@@ -19,6 +19,12 @@ public class VehicleState : EntityState
     public override void Update()
     {
         base.Update();
+
+        // interact
+        if (Vehicle.PlayerExitInput && !Vehicle.IsBusy)
+        {
+            Vehicle.InteractUpdate();
+        }
     }
 
     public override void Exit()

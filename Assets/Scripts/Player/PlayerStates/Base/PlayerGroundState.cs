@@ -90,6 +90,13 @@ public class PlayerGroundState : PlayerState
             {
                 Player.ChangeGun();
             }
+
+            // interact
+            if (Player.PlayerEnterVehicleInput && !Player.IsBusy)
+            {
+                Player.InteractUpdate();
+            }
+
         }
     }
 

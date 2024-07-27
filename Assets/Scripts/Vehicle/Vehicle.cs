@@ -14,6 +14,7 @@ public class Vehicle : Entity
 
     #endregion
 
+    public Player currentPlayer;
 
     public WheelCollider wheelLf;
     public WheelCollider wheelRf;
@@ -42,6 +43,7 @@ public class Vehicle : Entity
 
         SetOperate(InputManager.Instance.currentEntity is Vehicle);
 
+        currentPlayer = null;
     }
 
     protected override void Update()
@@ -62,9 +64,26 @@ public class Vehicle : Entity
         }
     }
 
+    public override void InteractUpdate()
+    {
+        if (PlayerExitInput)
+        {
+            if (InputManager.Instance.currentEntity is Vehicle)
+            {
+                if (currentPlayer)
+                {
+                    currentPlayer.transform.parent = null;
+                    currentPlayer.gameObject.SetActive(true);
+                    InputManager.Instance.ChangeOperateEntity(currentPlayer);
+                    currentPlayer = null;
+                }
+            }
+        }
+    }
 
 
     #region HandleInput
+
     public float HorizontalInput { get; private set; }
     public float VerticalInput { get; private set; }
     public float CameraHorizontalInput { get; private set; }
@@ -75,8 +94,10 @@ public class Vehicle : Entity
     {
         Messenger<float>.AddListener(InputEvent.Vehicle_HORIZONTAL_INPUT, (value) => { HorizontalInput = value; });
         Messenger<float>.AddListener(InputEvent.Vehicle_VERTICAL_INPUT, (value) => { VerticalInput = value; });
-        Messenger<float>.AddListener(InputEvent.Vehicle_CAMERA_HORIZONTAL_INPUT, (value) => { CameraHorizontalInput = value; });
-        Messenger<float>.AddListener(InputEvent.Vehicle_CAMERA_VERTICAL_INPUT, (value) => { CameraVerticalInput = value; });
+        Messenger<float>.AddListener(InputEvent.Vehicle_CAMERA_HORIZONTAL_INPUT,
+            (value) => { CameraHorizontalInput = value; });
+        Messenger<float>.AddListener(InputEvent.Vehicle_CAMERA_VERTICAL_INPUT,
+            (value) => { CameraVerticalInput = value; });
 
         Messenger<bool>.AddListener(InputEvent.Vehicle_ENTER_INPUT, (value) => { PlayerExitInput = value; });
     }
@@ -85,12 +106,13 @@ public class Vehicle : Entity
     {
         Messenger<float>.RemoveListener(InputEvent.Vehicle_HORIZONTAL_INPUT, (value) => { HorizontalInput = value; });
         Messenger<float>.RemoveListener(InputEvent.Vehicle_VERTICAL_INPUT, (value) => { VerticalInput = value; });
-        Messenger<float>.RemoveListener(InputEvent.Vehicle_CAMERA_HORIZONTAL_INPUT, (value) => { CameraHorizontalInput = value; });
-        Messenger<float>.RemoveListener(InputEvent.Vehicle_CAMERA_VERTICAL_INPUT, (value) => { CameraVerticalInput = value; });
+        Messenger<float>.RemoveListener(InputEvent.Vehicle_CAMERA_HORIZONTAL_INPUT,
+            (value) => { CameraHorizontalInput = value; });
+        Messenger<float>.RemoveListener(InputEvent.Vehicle_CAMERA_VERTICAL_INPUT,
+            (value) => { CameraVerticalInput = value; });
 
         Messenger<bool>.RemoveListener(InputEvent.Vehicle_ENTER_INPUT, (value) => { PlayerExitInput = value; });
     }
 
     #endregion
-
 }

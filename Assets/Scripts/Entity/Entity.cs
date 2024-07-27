@@ -37,6 +37,10 @@ public class Entity : MonoBehaviour
         transform.rotation = Quaternion.identity;
     }
 
+    public virtual void InteractUpdate()
+    {
+    }
+
     public void ZeroHorVelocity()
     {
         Rigidbody.velocity = new Vector3(0, Rigidbody.velocity.y, 0);
@@ -51,4 +55,20 @@ public class Entity : MonoBehaviour
     {
         return operateNow;
     }
+
+    #region isBusy
+
+    public bool IsBusy { get; private set; }
+
+    public IEnumerator BusyFor(float seconds)
+    {
+        IsBusy = true;
+
+        yield return new WaitForSeconds(seconds);
+
+        IsBusy = false;
+    }
+
+    #endregion
+
 }
