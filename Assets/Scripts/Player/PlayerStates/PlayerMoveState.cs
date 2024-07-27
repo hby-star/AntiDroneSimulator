@@ -18,7 +18,7 @@ public class PlayerMoveState : PlayerGroundState
     {
         base.Update();
 
-        Move();
+        Move(Player.moveSpeed);
     }
 
     public override void Exit()
@@ -26,15 +26,15 @@ public class PlayerMoveState : PlayerGroundState
         base.Exit();
     }
 
-    public void Move()
+    public void Move(float moveSpeed)
     {
         if (Player.IsOperateNow())
         {
             // Calculate movement based on vertical input & horizontal input
-            Vector3 moveDirectionX = Player.transform.forward * (Player.VerticalInput * Player.moveSpeed);
-            Vector3 moveDirectionZ = Player.transform.right * (Player.HorizontalInput * Player.moveSpeed);
+            Vector3 moveDirectionX = Player.transform.forward * (Player.VerticalInput * moveSpeed);
+            Vector3 moveDirectionZ = Player.transform.right * (Player.HorizontalInput * moveSpeed);
             Vector3 moveDirection = moveDirectionX + moveDirectionZ;
-            moveDirection = Vector3.ClampMagnitude(moveDirection, Player.moveSpeed);
+            moveDirection = Vector3.ClampMagnitude(moveDirection, moveSpeed);
             Player.Rigidbody.velocity = new Vector3(moveDirection.x, Player.Rigidbody.velocity.y, moveDirection.z);
         }
     }

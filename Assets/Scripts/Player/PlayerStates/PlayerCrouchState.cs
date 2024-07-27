@@ -22,11 +22,26 @@ public class PlayerCrouchState : PlayerGroundState
     public override void Update()
     {
         base.Update();
+
+        Move(Player.moveSpeed / 2);
     }
 
     public override void Exit()
     {
         Player.SetColliderHeight(Player.standColliderHeight);
         base.Exit();
+    }
+
+    public void Move(float moveSpeed)
+    {
+        if (Player.IsOperateNow())
+        {
+            // Calculate movement based on vertical input & horizontal input
+            Vector3 moveDirectionX = Player.transform.forward * (Player.VerticalInput * moveSpeed);
+            Vector3 moveDirectionZ = Player.transform.right * (Player.HorizontalInput * moveSpeed);
+            Vector3 moveDirection = moveDirectionX + moveDirectionZ;
+            moveDirection = Vector3.ClampMagnitude(moveDirection, moveSpeed);
+            Player.Rigidbody.velocity = new Vector3(moveDirection.x, Player.Rigidbody.velocity.y, moveDirection.z);
+        }
     }
 }

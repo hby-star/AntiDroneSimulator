@@ -818,7 +818,7 @@ MonoBehaviour:
   jumpForce: 5
   dashSpeed: 15
   standColliderHeight: 1.75
-  crouchColliderHeight: 1
+  crouchColliderHeight: 0.7
   guns:
   - {fileID: 969079743519865403}
   - {fileID: 305454922}
