@@ -116,11 +116,10 @@ public class Drone : Entity
 
     public IDroneControlAlgorithm DroneControlAlgorithm;
 
-    public void SetOperate(bool operate)
+    public override void SetOperate(bool operate)
     {
-        operateNow = operate;
-        droneCamera.gameObject.SetActive(operate);
-        transform.rotation = Quaternion.identity;
+        base.SetOperate(operate);
+
         if (!operate)
         {
             StateMachine.ChangeState(IdleState);
@@ -147,8 +146,6 @@ public class Drone : Entity
 
         DroneControlAlgorithm = DroneAlgorithmManager.Instance.GetAlgorithm();
         DroneControlAlgorithm.DroneControlSet(this);
-
-        droneCamera = GetComponentInChildren<Camera>();
 
         SetOperate((InputManager.Instance.currentEntity is Drone) && isLeader);
 
@@ -199,8 +196,6 @@ public class Drone : Entity
     [Header("Mouse Look Info")] public float sensitivityHor = 9.0f;
 
     public Transform mouseLookTarget;
-    public Camera droneCamera { get; private set; }
-
 
     void MouseLookUpdate()
     {

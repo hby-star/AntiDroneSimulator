@@ -70,17 +70,17 @@ public class InputManager : MonoBehaviour
 
             if (currentEntity is Player player)
             {
-                currentCamera = player.playerCamera;
+                currentCamera = player.Camera;
                 HandlePlayerInput();
             }
             else if (currentEntity is Drone drone)
             {
-                currentCamera = drone.droneCamera;
+                currentCamera = drone.Camera;
                 HandleDroneInput();
             }
             else if (currentEntity is Vehicle vehicle)
             {
-                currentCamera = vehicle.vehicleCamera;
+                currentCamera = vehicle.Camera;
                 HandleVehicleInput();
             }
         }
@@ -98,7 +98,9 @@ public class InputManager : MonoBehaviour
                 operateEntityIndex = 0;
             }
 
+            currentEntity.SetOperate(false);
             currentEntity = operateEntities[operateEntityIndex];
+            currentEntity.SetOperate(true);
         }
     }
 
@@ -133,6 +135,9 @@ public class InputManager : MonoBehaviour
 
         // Player Camera Vertical
         Messenger<float>.Broadcast(InputEvent.PLAYER_CAMERA_VERTICAL_INPUT, Input.GetAxis("Mouse Y"));
+
+        // Player enter vehicle
+        Messenger<bool>.Broadcast(InputEvent.Vehicle_ENTER_INPUT, Input.GetKeyDown(KeyCode.E));
     }
 
     void HandleDroneInput()
@@ -159,9 +164,6 @@ public class InputManager : MonoBehaviour
 
     void HandleVehicleInput()
     {
-        // Vehicle Enter
-        Messenger<bool>.Broadcast(InputEvent.Vehicle_ENTER_INPUT, Input.GetKeyDown(KeyCode.F));
-
         // Vehicle Horizontal
         Messenger<float>.Broadcast(InputEvent.Vehicle_HORIZONTAL_INPUT, Input.GetAxis("Horizontal"));
 

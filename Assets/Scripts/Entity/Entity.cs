@@ -8,6 +8,7 @@ public class Entity : MonoBehaviour
     public Animator Animator { get; private set; }
     public Rigidbody Rigidbody { get; private set; }
     public Collider Collider { get; private set; }
+    public Camera Camera { get; private set; }
 
     protected bool operateNow = false;
 
@@ -22,10 +23,18 @@ public class Entity : MonoBehaviour
         Animator = GetComponentInChildren<Animator>();
         Rigidbody = GetComponent<Rigidbody>();
         Collider = GetComponent<Collider>();
+        Camera = GetComponentInChildren<Camera>();
     }
 
     protected virtual void Update()
     {
+    }
+
+    public virtual void SetOperate(bool operateNow)
+    {
+        this.operateNow = operateNow;
+        Camera.gameObject.SetActive(operateNow);
+        transform.rotation = Quaternion.identity;
     }
 
     public void ZeroHorVelocity()

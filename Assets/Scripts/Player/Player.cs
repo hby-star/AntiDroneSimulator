@@ -69,8 +69,6 @@ public class Player : Entity
 
     private void AttackStart()
     {
-        playerCamera = GetComponentInChildren<Camera>();
-
         currentGunIndex = 0;
         SetGun(currentGunIndex);
 
@@ -82,7 +80,7 @@ public class Player : Entity
     {
         for(int i = 0; i < guns.Count; i++)
         {
-            guns[i].playerCamera = playerCamera;
+            guns[i].playerCamera = Camera;
             guns[i].gameObject.SetActive(i == index);
         }
         currentEquipment = guns[index];
@@ -137,11 +135,10 @@ public class Player : Entity
 
     #region Control
 
-    public void SetOperate(bool operate)
+    public override void SetOperate(bool operate)
     {
-        operateNow = operate;
-        playerCamera.gameObject.SetActive(operate);
-        transform.rotation = Quaternion.identity;
+        base.SetOperate(operate);
+
         if (!operate)
         {
             StateMachine.ChangeState(IdleState);
@@ -221,7 +218,6 @@ public class Player : Entity
     public Transform targetY;
 
     private float verticalRot = 0;
-    public Camera playerCamera { get; private set; }
 
     void MouseLookUpdate()
     {
@@ -283,6 +279,7 @@ public class Player : Entity
     public bool ChangeGunInput { get; private set; }
     public float CameraHorizontalInput { get; private set; }
     public float CameraVerticalInput { get; private set; }
+    public bool PlayerEnterVehicleInput { get; private set; }
 
     void OnEnable()
     {
@@ -297,6 +294,8 @@ public class Player : Entity
         Messenger<float>.AddListener(InputEvent.PLAYER_CAMERA_HORIZONTAL_INPUT,
             (value) => { CameraHorizontalInput = value; });
         Messenger<float>.AddListener(InputEvent.PLAYER_CAMERA_VERTICAL_INPUT, (value) => { CameraVerticalInput = value; });
+
+        Messenger<bool>.AddListener(InputEvent.Vehicle_ENTER_INPUT, (value) => { PlayerEnterVehicleInput = value; });
     }
 
     void OnDisable()
@@ -312,6 +311,8 @@ public class Player : Entity
         Messenger<float>.RemoveListener(InputEvent.PLAYER_CAMERA_HORIZONTAL_INPUT,
             (value) => { CameraHorizontalInput = value; });
         Messenger<float>.RemoveListener(InputEvent.PLAYER_CAMERA_VERTICAL_INPUT, (value) => { CameraVerticalInput = value; });
+
+        Messenger<bool>.RemoveListener(InputEvent.Vehicle_ENTER_INPUT, (value) => { PlayerEnterVehicleInput = value; });
     }
 
     #endregion
