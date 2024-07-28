@@ -51,6 +51,7 @@ flowchart LR
 	Attack(攻击敌人)
 	Attack --> AttackAlg(攻击算法)
 	Attack --> AttackMethod(攻击方式)
+	AttackAlg --> stay(待机)
 	AttackAlg --> forward(直接靠近)
 	AttackAlg --> downAndForward(先下降再水平靠近)
 	AttackAlg --> upAndForward(先上升水平再靠近)

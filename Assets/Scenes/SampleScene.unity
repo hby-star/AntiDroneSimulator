@@ -419,7 +419,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentAlgorithm: 0
-  currentAttackAlgorithm: 2
+  currentAttackAlgorithm: 0
 --- !u!1 &206450403
 GameObject:
   m_ObjectHideFlags: 0

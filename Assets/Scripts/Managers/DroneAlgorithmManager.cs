@@ -52,6 +52,7 @@ public class DroneAlgorithmManager : MonoBehaviour
 
     public enum AttackAlgorithm
     {
+        Stay,
         Forward,
         DownAndForward,
         UpAndForward,

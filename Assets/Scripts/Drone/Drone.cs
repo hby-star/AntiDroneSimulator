@@ -67,57 +67,59 @@ public class Drone : Entity
         if (targetPlayer)
         {
             // 攻击玩家
-        switch (DroneAlgorithmManager.Instance.currentAttackAlgorithm)
-        {
-            case DroneAlgorithmManager.AttackAlgorithm.Forward:
-                //直接向玩家飞去
-                Vector3 direction = (targetPlayer.transform.position - transform.position).normalized;
-                transform.position += direction * moveSpeed * Time.deltaTime;
-                break;
-            case DroneAlgorithmManager.AttackAlgorithm.DownAndForward:
-                //先向下飞一段距离，再向玩家飞去
-                if (Mathf.Abs(transform.position.y - targetPlayer.transform.position.y) > attackDistance)
-                {
-                    Vector3 downDirection = new Vector3(0, -1, 0);
-                    transform.position += downDirection * moveSpeed * Time.deltaTime;
-                }
-                else
-                {
-                    Vector3 forwardDirection = (targetPlayer.transform.position - transform.position).normalized;
-                    transform.position += forwardDirection * moveSpeed * Time.deltaTime;
-                }
+            switch (DroneAlgorithmManager.Instance.currentAttackAlgorithm)
+            {
+                case DroneAlgorithmManager.AttackAlgorithm.Stay:
+                    // do nothing
+                    break;
+                case DroneAlgorithmManager.AttackAlgorithm.Forward:
+                    //直接向玩家飞去
+                    Vector3 direction = (targetPlayer.transform.position - transform.position).normalized;
+                    transform.position += direction * moveSpeed * Time.deltaTime;
+                    break;
+                case DroneAlgorithmManager.AttackAlgorithm.DownAndForward:
+                    //先向下飞一段距离，再向玩家飞去
+                    if (Mathf.Abs(transform.position.y - targetPlayer.transform.position.y) > attackDistance)
+                    {
+                        Vector3 downDirection = new Vector3(0, -1, 0);
+                        transform.position += downDirection * moveSpeed * Time.deltaTime;
+                    }
+                    else
+                    {
+                        Vector3 forwardDirection = (targetPlayer.transform.position - transform.position).normalized;
+                        transform.position += forwardDirection * moveSpeed * Time.deltaTime;
+                    }
 
-                break;
-            case DroneAlgorithmManager.AttackAlgorithm.UpAndForward:
-                // 先向上飞一段距离，再水平飞向玩家上方
-                if (Mathf.Abs(transform.position.y - targetPlayer.transform.position.y) < 50f)
-                {
-                    Vector3 upDirection = new Vector3(0, 1, 0);
-                    transform.position += upDirection * moveSpeed * Time.deltaTime;
-                }
-                else
-                {
-                    Vector3 forwardDirection = (targetPlayer.transform.position - transform.position).normalized;
-                    forwardDirection.y = 0;
-                    transform.position += forwardDirection * moveSpeed * Time.deltaTime;
-                }
+                    break;
+                case DroneAlgorithmManager.AttackAlgorithm.UpAndForward:
+                    // 先向上飞一段距离，再水平飞向玩家上方
+                    if (Mathf.Abs(transform.position.y - targetPlayer.transform.position.y) < 50f)
+                    {
+                        Vector3 upDirection = new Vector3(0, 1, 0);
+                        transform.position += upDirection * moveSpeed * Time.deltaTime;
+                    }
+                    else
+                    {
+                        Vector3 forwardDirection = (targetPlayer.transform.position - transform.position).normalized;
+                        forwardDirection.y = 0;
+                        transform.position += forwardDirection * moveSpeed * Time.deltaTime;
+                    }
 
-                break;
+                    break;
+            }
+
+            // 攻击距离内释放炸弹
+            if (Vector3.Distance(transform.position, targetPlayer.transform.position) < attackDistance)
+            {
+                Attack();
+            }
+
+            // 炸弹路径上有玩家则释放炸弹
+            if (IsPlayerDetectedOnPath())
+            {
+                Attack();
+            }
         }
-
-        // 攻击距离内释放炸弹
-        if (Vector3.Distance(transform.position, targetPlayer.transform.position) < attackDistance)
-        {
-            Attack();
-        }
-
-        // 炸弹路径上有玩家则释放炸弹
-        if (IsPlayerDetectedOnPath())
-        {
-            Attack();
-        }
-        }
-
     }
 
     private void SearchPlayerUpdate()
