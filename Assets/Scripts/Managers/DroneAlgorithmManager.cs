@@ -50,7 +50,14 @@ public class DroneAlgorithmManager : MonoBehaviour
         RandomMove,
     }
 
+    public enum AttackAlgorithm
+    {
+        Forward,
+        DownAndForward,
+    }
+
     public Algorithm currentAlgorithm;
+    public AttackAlgorithm currentAttackAlgorithm;
 
     public IDroneControlAlgorithm GetAlgorithm()
     {

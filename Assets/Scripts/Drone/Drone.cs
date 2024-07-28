@@ -16,12 +16,16 @@ public class Drone : Entity
 
     #region Attack
 
-    [Header("Attack Info")] [SerializeField]
-    GameObject bomb;
+    [Header("Attack Info")]
+    public float serachRadius = 50;
+    public float attackSerachRadius = 80;
+    public float attackDistance = 5;
+    [SerializeField] GameObject bomb;
+    private Player targetPlayer;
 
     [SerializeField] private float bombBelowLength = 0.3f;
 
-    private bool hasBomb = true;
+    public bool hasBomb;
 
     public void Attack()
     {
@@ -32,6 +36,83 @@ public class Drone : Entity
             Rigidbody bombRigidbody = bomb.GetComponent<Rigidbody>();
             bombRigidbody.velocity = Rigidbody.velocity;
             hasBomb = false;
+        }
+    }
+
+    private void AttackStart()
+    {
+        hasBomb = true;
+        targetPlayer = null;
+    }
+
+    private void AttackPlayerUpdate()
+    {
+        // 检测玩家是否还存在
+        Collider[] hitColliders = Physics.OverlapSphere(transform.position, attackSerachRadius);
+        bool stillAlive = false;
+        foreach (var hitCollider in hitColliders)
+        {
+            Player player = hitCollider.GetComponent<Player>();
+            if(player == targetPlayer)
+            {
+                stillAlive = true;
+                break;
+            }
+        }
+        if (!stillAlive)
+        {
+            targetPlayer = null;
+        }
+
+        // 攻击玩家
+        switch (DroneAlgorithmManager.Instance.currentAttackAlgorithm)
+        {
+            case DroneAlgorithmManager.AttackAlgorithm.Forward:
+                //直接向玩家飞去
+                Vector3 direction = (targetPlayer.transform.position - transform.position).normalized;
+                transform.position += direction * moveSpeed * Time.deltaTime;
+                break;
+            case DroneAlgorithmManager.AttackAlgorithm.DownAndForward:
+                //先向下飞一段距离，再向玩家飞去
+                if(Mathf.Abs(transform.position.y - targetPlayer.transform.position.y) > attackDistance)
+                {
+                    Vector3 downDirection = (new Vector3(0, targetPlayer.transform.position.y, 0) - transform.position).normalized;
+                    transform.position += downDirection * moveSpeed * Time.deltaTime;
+                }
+                else
+                {
+                    Vector3 forwardDirection = (targetPlayer.transform.position - transform.position).normalized;
+                    transform.position += forwardDirection * moveSpeed * Time.deltaTime;
+                }
+                break;
+        }
+
+        // 攻击距离内释放炸弹
+        if (Vector3.Distance(transform.position, targetPlayer.transform.position) < attackDistance)
+        {
+            Attack();
+        }
+
+        // 炸弹路径上有玩家则释放炸弹
+        if (IsPlayerDetectedOnPath())
+        {
+            Attack();
+        }
+    }
+
+    private void SearchPlayerUpdate()
+    {
+        DroneControlAlgorithm.DroneControlUpdate();
+
+        Collider[] hitColliders = Physics.OverlapSphere(transform.position, serachRadius);
+        foreach (var hitCollider in hitColliders)
+        {
+            Player player = hitCollider.GetComponent<Player>();
+            if (player != null)
+            {
+                targetPlayer = player;
+                break;
+            }
         }
     }
 
@@ -109,6 +190,32 @@ public class Drone : Entity
         return position;
     }
 
+    public bool IsPlayerDetectedOnPath()
+    {
+        if (hasBomb)
+        {
+            Vector3 startingPosition = transform.position;
+            startingPosition.y -= bombBelowLength;
+            Vector3 startingVelocity = Rigidbody.velocity;
+
+            for (int i = 0; i < numberOfPoints; i++)
+            {
+                float time = i * timeBetweenPoints;
+                Vector3 position = CalculatePosition(startingPosition, startingVelocity, time);
+
+                if (Physics.Raycast(startingPosition, position - startingPosition, out RaycastHit hit,
+                        (position - startingPosition).magnitude))
+                {
+                    if (hit.collider.CompareTag("Player"))
+                    {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
     #endregion
 
     #region Control
@@ -153,6 +260,7 @@ public class Drone : Entity
         Rigidbody.freezeRotation = true;
 
         BombPathStart();
+        AttackStart();
     }
 
     protected override void Update()
@@ -162,12 +270,27 @@ public class Drone : Entity
         StateMachine.CurrentState.Update();
 
         AudioUpdate();
-        MouseLookUpdate();
 
-        BombPathUpdate();
-        if (!operateNow)
+        if (operateNow)
         {
-            DroneControlAlgorithm.DroneControlUpdate();
+            // 摄像机控制
+            MouseLookUpdate();
+
+            // 炸弹路径指示
+            BombPathUpdate();
+        }
+        else
+        {
+            if (targetPlayer && hasBomb)
+            {
+                // 攻击玩家
+                AttackPlayerUpdate();
+            }
+            else
+            {
+                // 搜索玩家
+                SearchPlayerUpdate();
+            }
         }
     }
 
@@ -192,7 +315,6 @@ public class Drone : Entity
         {
             StartCoroutine(Die());
         }
-
     }
 
     private IEnumerator Die()
@@ -214,7 +336,7 @@ public class Drone : Entity
 
     void MouseLookUpdate()
     {
-        if (isLeader && operateNow)
+        if (operateNow)
             MouseXLookUpdate();
     }
 

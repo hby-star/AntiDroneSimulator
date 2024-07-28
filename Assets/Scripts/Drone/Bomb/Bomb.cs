@@ -8,10 +8,12 @@ public class Bomb : MonoBehaviour
 {
     public ParticleSystem explosion;
     public float explosionRadius = 5f;
+    private Drone drone;
 
     // Start is called before the first frame update
     void Start()
     {
+        drone = GetComponentInParent<Drone>();
     }
 
     // Update is called once per frame
@@ -21,9 +23,6 @@ public class Bomb : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        explosion = Instantiate(explosion, transform.position, transform.rotation);
-        explosion.Play();
-
         Collider[] colliders = Physics.OverlapSphere(transform.position, explosionRadius);
 
         foreach (Collider nearbyObject in colliders)
@@ -31,16 +30,18 @@ public class Bomb : MonoBehaviour
             Rigidbody rb = nearbyObject.GetComponent<Rigidbody>();
             if (rb != null)
             {
-                rb.AddExplosionForce(1000, transform.position, explosionRadius);
+                rb.AddExplosionForce(10, transform.position, explosionRadius);
             }
 
             if (nearbyObject.tag == "Player")
             {
+                drone.hasBomb = false;
+                explosion = Instantiate(explosion, transform.position, transform.rotation);
+                explosion.Play();
                 Destroy(nearbyObject.gameObject);
+                Destroy(gameObject);
             }
         }
-
-        Destroy(gameObject);
     }
 
     private void OnDrawGizmosSelected()
