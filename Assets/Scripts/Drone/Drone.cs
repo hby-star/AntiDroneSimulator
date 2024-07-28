@@ -226,7 +226,7 @@ public class Drone : Entity
                 if (Physics.Raycast(startingPosition, position - startingPosition, out RaycastHit hit,
                         (position - startingPosition).magnitude))
                 {
-                    if (hit.collider.CompareTag("Ground"))
+                    if (hit.collider.CompareTag("Ground") || hit.collider.CompareTag("Vehicle"))
                     {
                         Collider[] hitColliders = Physics.OverlapSphere(hit.point, attackDistance);
                         foreach (var hitCollider in hitColliders)

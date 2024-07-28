@@ -23,29 +23,39 @@ public class Bomb : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (other.tag == "Drone")
+        {
+            return;
+        }
+
+        drone.hasBomb = false;
+        explosion = Instantiate(explosion, transform.position, transform.rotation);
+        explosion.Play();
+
         Collider[] colliders = Physics.OverlapSphere(transform.position, explosionRadius);
+
 
         foreach (Collider nearbyObject in colliders)
         {
-            Rigidbody rb = nearbyObject.GetComponent<Rigidbody>();
-            if (rb != null)
-            {
-                rb.AddExplosionForce(10, transform.position, explosionRadius);
-            }
+            Vector3 directionToTarget = nearbyObject.transform.position - transform.position;
+            RaycastHit[] hits = Physics.RaycastAll(transform.position, directionToTarget, explosionRadius);
 
-            if (nearbyObject.tag == "Player" || nearbyObject.tag == "Ground")
+            foreach (RaycastHit hit in hits)
             {
-                drone.hasBomb = false;
-                explosion = Instantiate(explosion, transform.position, transform.rotation);
-                explosion.Play();
-                if (nearbyObject.tag == "Player")
+                if (hit.collider == nearbyObject && nearbyObject.tag == "Player")
                 {
                     Destroy(nearbyObject.gameObject);
+                    break;
                 }
-
-                Destroy(gameObject);
+                else if (hit.collider != nearbyObject)
+                {
+                    // If there's an obstruction, break out of the loop
+                    break;
+                }
             }
         }
+
+        Destroy(gameObject);
     }
 
     private void OnDrawGizmosSelected()

@@ -223,7 +223,7 @@ public class Player : Entity
         {
             if (!isShiledPlaced)
             {
-                Vector3 shieldPosition = transform.position + transform.forward * 3;
+                Vector3 shieldPosition = transform.position + transform.forward * 2;
                 shieldPosition.y = transform.position.y + 0.75f;
                 GameObject newShield = Instantiate(shieldPrefab, shieldPosition, Quaternion.identity);
                 newShield.transform.forward = transform.forward;
