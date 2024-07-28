@@ -18,6 +18,9 @@ public class PlayerMoveState : PlayerGroundState
     {
         base.Update();
 
+        Player.Animator.SetFloat("Horizontal", Player.HorizontalInput);
+        Player.Animator.SetFloat("Vertical", Player.VerticalInput);
+
         Move(Player.moveSpeed);
     }
 

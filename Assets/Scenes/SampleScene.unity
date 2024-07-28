@@ -616,7 +616,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 255997187}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -5, y: 1, z: -5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -626,7 +626,7 @@ Transform:
   - {fileID: 244739672}
   - {fileID: 612049639}
   - {fileID: 1616714201}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 2655969573149844234}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &264670123
 GameObject:
@@ -4340,7 +4340,7 @@ SkinnedMeshRenderer:
   - {fileID: 969079743519865394}
   - {fileID: 969079743519865398}
   m_BlendShapeWeights: []
-  m_RootBone: {fileID: 969079743519865396}
+  m_RootBone: {fileID: 969079743519865344}
   m_AABB:
     m_Center: {x: 0.00000019557774, y: 0.02314423, z: -0.012039062}
     m_Extent: {x: 0.021052625, y: 0.18440202, z: 0.10292031}
@@ -7654,6 +7654,7 @@ Transform:
   m_Children:
   - {fileID: 8425704384350704339}
   - {fileID: 888329339}
+  - {fileID: 255997188}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &2776300863243094982
@@ -7741,7 +7742,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2655969573149844234}
   m_Layer: 0
-  m_Name: school
+  m_Name: Terrain
   m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8172,4 +8173,3 @@ SceneRoots:
   - {fileID: 2062493581}
   - {fileID: 1169717138}
   - {fileID: 2655969573149844234}
-  - {fileID: 255997188}
