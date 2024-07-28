@@ -51,8 +51,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 10
+  serachRadius: 70
+  attackSerachRadius: 100
+  attackDistance: 5
   bomb: {fileID: 4770471879145732844}
   bombBelowLength: 0.3
+  hasBomb: 0
   numberOfPoints: 50
   timeBetweenPoints: 0.1
   sphereMarkerPrefab: {fileID: 2778238490166903029, guid: ec0f3dd02cbd1884d95d6840e8d5e326, type: 3}

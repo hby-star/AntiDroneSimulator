@@ -16,8 +16,7 @@ public class Drone : Entity
 
     #region Attack
 
-    [Header("Attack Info")]
-    public float serachRadius = 50;
+    [Header("Attack Info")] public float serachRadius = 50;
     public float attackSerachRadius = 80;
     public float attackDistance = 5;
     [SerializeField] GameObject bomb;
@@ -53,18 +52,21 @@ public class Drone : Entity
         foreach (var hitCollider in hitColliders)
         {
             Player player = hitCollider.GetComponent<Player>();
-            if(player)
+            if (player)
             {
                 stillAlive = true;
                 break;
             }
         }
+
         if (!stillAlive)
         {
             targetPlayer = null;
         }
 
-        // 攻击玩家
+        if (targetPlayer)
+        {
+            // 攻击玩家
         switch (DroneAlgorithmManager.Instance.currentAttackAlgorithm)
         {
             case DroneAlgorithmManager.AttackAlgorithm.Forward:
@@ -74,7 +76,7 @@ public class Drone : Entity
                 break;
             case DroneAlgorithmManager.AttackAlgorithm.DownAndForward:
                 //先向下飞一段距离，再向玩家飞去
-                if(Mathf.Abs(transform.position.y - targetPlayer.transform.position.y) > attackDistance)
+                if (Mathf.Abs(transform.position.y - targetPlayer.transform.position.y) > attackDistance)
                 {
                     Vector3 downDirection = new Vector3(0, -1, 0);
                     transform.position += downDirection * moveSpeed * Time.deltaTime;
@@ -84,6 +86,7 @@ public class Drone : Entity
                     Vector3 forwardDirection = (targetPlayer.transform.position - transform.position).normalized;
                     transform.position += forwardDirection * moveSpeed * Time.deltaTime;
                 }
+
                 break;
             case DroneAlgorithmManager.AttackAlgorithm.UpAndForward:
                 // 先向上飞一段距离，再水平飞向玩家上方
@@ -98,6 +101,7 @@ public class Drone : Entity
                     forwardDirection.y = 0;
                     transform.position += forwardDirection * moveSpeed * Time.deltaTime;
                 }
+
                 break;
         }
 
@@ -112,6 +116,8 @@ public class Drone : Entity
         {
             Attack();
         }
+        }
+
     }
 
     private void SearchPlayerUpdate()
@@ -235,6 +241,7 @@ public class Drone : Entity
                 }
             }
         }
+
         return false;
     }
 
