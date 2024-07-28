@@ -16,7 +16,7 @@ public class Vehicle : Entity
 
     #region Move
 
-    public Player currentPlayer;
+    [NonSerialized] public Player currentPlayer;
 
     public WheelCollider wheelLf;
     public WheelCollider wheelRf;
@@ -24,7 +24,7 @@ public class Vehicle : Entity
     public WheelCollider wheelRb;
 
     public float maxSteerAngle = 30;
-    public float currentSteerAngle;
+    [NonSerialized] public float currentSteerAngle;
     public float motorForce = 50;
 
     #endregion

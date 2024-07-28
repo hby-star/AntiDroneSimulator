@@ -823,7 +823,7 @@ MonoBehaviour:
   - {fileID: 969079743519865403}
   - {fileID: 305454922}
   - {fileID: 2072135498}
-  currentEquipment: {fileID: 0}
+  shieldPrefab: {fileID: 609340164047278902, guid: 40098e15728d83b4d8b2c8b7b70ff70f, type: 3}
   interactRange: 2
   sensitivityHor: 9
   sensitivityVert: 9
@@ -2651,8 +2651,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3c734e9a5a25ea41a84d5ae67d1e221, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 10
-  currentPlayer: {fileID: 0}
+  moveSpeed: 0
   wheelLf: {fileID: 1755305821}
   wheelRf: {fileID: 919574645}
   wheelLb: {fileID: 998478696}

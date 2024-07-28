@@ -62,14 +62,19 @@ public class Player : Entity
 
     #region Attack
 
-    [Header("Attack Info")] public List<Gun> guns;
-    public Equipment currentEquipment;
+    [Header("Attack Info")]
+    public List<Gun> guns;
+    public GameObject shieldPrefab;
+    private bool isShiledPlaced;
+    private Equipment currentEquipment;
     private int currentGunIndex;
 
     private void AttackStart()
     {
         currentGunIndex = 0;
         SetGun(currentGunIndex);
+
+        isShiledPlaced = false;
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
@@ -213,6 +218,31 @@ public class Player : Entity
                 }
             }
         }
+
+        if (PlayerPlacePickupShieldInput)
+        {
+            if (!isShiledPlaced)
+            {
+                Vector3 shieldPosition = transform.position + transform.forward * 3;
+                shieldPosition.y = transform.position.y + 0.75f;
+                GameObject newShield = Instantiate(shieldPrefab, shieldPosition, Quaternion.identity);
+                newShield.transform.forward = transform.forward;
+                isShiledPlaced = true;
+            }
+            else
+            {
+                foreach (var collider in colliders)
+                {
+                    Shield shield = collider.GetComponent<Shield>();
+                    if (shield)
+                    {
+                        Destroy(shield.gameObject);
+                        isShiledPlaced = false;
+                        break;
+                    }
+                }
+            }
+        }
     }
 
     #endregion
@@ -347,6 +377,7 @@ public class Player : Entity
     public bool PlayerUseVehicleEmpInput { get; private set; }
     public bool PlayerUseVehicleRadarInput { get; private set; }
     public bool PlayerUseVehicleElectromagneticInterferenceInput { get; private set; }
+    public bool PlayerPlacePickupShieldInput { get; private set; }
 
     void OnEnable()
     {
@@ -371,6 +402,10 @@ public class Player : Entity
             (value) => { PlayerUseVehicleRadarInput = value; });
         Messenger<bool>.AddListener(InputEvent.VECHILE_ELERTIC_INTERFERENCE_INPUT,
             (value) => { PlayerUseVehicleElectromagneticInterferenceInput = value; });
+
+        // Interact with shield
+        Messenger<bool>.AddListener(InputEvent.PLAYER_PLACE_PICKUP_SHIELD_INPUT,
+            (value) => { PlayerPlacePickupShieldInput = value; });
     }
 
     void OnDisable()
@@ -388,8 +423,18 @@ public class Player : Entity
         Messenger<float>.RemoveListener(InputEvent.PLAYER_CAMERA_VERTICAL_INPUT,
             (value) => { CameraVerticalInput = value; });
 
+        // Interact with vehicle
         Messenger<bool>.RemoveListener(InputEvent.VEHICLE_ENTER_EXIT_INPUT,
             (value) => { PlayerEnterVehicleInput = value; });
+        Messenger<bool>.RemoveListener(InputEvent.VECHILE_EMP_USE_INPUT, (value) => { PlayerUseVehicleEmpInput = value; });
+        Messenger<bool>.RemoveListener(InputEvent.VECHILE_RADAR_SWITCH_INPUT,
+            (value) => { PlayerUseVehicleRadarInput = value; });
+        Messenger<bool>.RemoveListener(InputEvent.VECHILE_ELERTIC_INTERFERENCE_INPUT ,
+            (value) => { PlayerUseVehicleElectromagneticInterferenceInput = value; });
+
+        // Interact with shield
+        Messenger<bool>.RemoveListener(InputEvent.PLAYER_PLACE_PICKUP_SHIELD_INPUT,
+            (value) => { PlayerPlacePickupShieldInput = value; });
     }
 
     #endregion

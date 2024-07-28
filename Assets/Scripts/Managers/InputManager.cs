@@ -158,6 +158,10 @@ public class InputManager : MonoBehaviour
 
         // Player use emp
         Messenger<bool>.Broadcast(InputEvent.VECHILE_EMP_USE_INPUT, Input.GetKeyDown(KeyCode.Alpha3));
+
+        // Interact with shield
+        // Player place & pickup shield
+        Messenger<bool>.Broadcast(InputEvent.PLAYER_PLACE_PICKUP_SHIELD_INPUT, Input.GetKeyDown(KeyCode.Q));
     }
 
     void HandleDroneInput()

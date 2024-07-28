@@ -101,7 +101,8 @@ public class PlayerGroundState : PlayerState
                 (Player.PlayerEnterVehicleInput ||
                  Player.PlayerUseVehicleEmpInput ||
                  Player.PlayerUseVehicleRadarInput ||
-                 Player.PlayerUseVehicleElectromagneticInterferenceInput))
+                 Player.PlayerUseVehicleElectromagneticInterferenceInput ||
+                 Player.PlayerPlacePickupShieldInput))
             {
                 Player.InteractUpdate();
             }

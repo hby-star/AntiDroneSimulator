@@ -1,14 +1,14 @@
-﻿using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
 public class Shield : Equipment
 {
-    public int currentHealth;
-    public int maxHealth;
+    public float shieldHealth;
+    public float maxShieldHealth;
 
-    void Start()
+    protected virtual void Start()
     {
         Type = EquipmentType.Shield;
-        maxHealth = 1000;
-        currentHealth = maxHealth;
     }
 }
