@@ -54,6 +54,7 @@ public class DroneAlgorithmManager : MonoBehaviour
     {
         Forward,
         DownAndForward,
+        UpAndForward,
     }
 
     public Algorithm currentAlgorithm;

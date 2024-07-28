@@ -27,7 +27,7 @@ flowchart LR
 	GeneralGun(手枪)
 	EMPGun(电磁枪)
 	SkyWallGun(专用网枪)
-	Shield(便携式盾牌)	
+	Shield(折叠盾牌)	
 	Equipment --> GeneralGun
 	Equipment --> EMPGun
 	Equipment --> SkyWallGun
@@ -52,10 +52,11 @@ flowchart LR
 	Attack --> AttackAlg(攻击算法)
 	Attack --> AttackMethod(攻击方式)
 	AttackAlg --> forward(直接靠近)
-	AttackAlg --> down(先下降再靠近)
+	AttackAlg --> downAndForward(先下降再水平靠近)
+	AttackAlg --> upAndForward(先上升水平再靠近)
 	AttackAlg --> More(更多...)
-	AttackMethod --> hit(撞击)
-	AttackMethod --> bomb(投放导弹)
+	AttackMethod --> hit(直接靠近到一定距离然后投放炸弹)
+	AttackMethod --> bomb(检测炸弹路径然后投放炸弹)
 	
 	Function(功能)
 	ForMove(快速移动)
@@ -68,8 +69,8 @@ flowchart LR
 	Function --> ForSerach
 	Function --> ForDisturb
 	Function --> ForAttack
-	ForHide --> InCar(车内防护效果)
-	ForHide --> BehindCar(车底防护效果)
+	ForHide --> InCar(在车内)
+	ForHide --> BehindCar(在车底)
 	
 	City(城市)
 	Flat(平坦地区)

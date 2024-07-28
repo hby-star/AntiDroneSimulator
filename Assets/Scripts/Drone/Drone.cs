@@ -53,7 +53,7 @@ public class Drone : Entity
         foreach (var hitCollider in hitColliders)
         {
             Player player = hitCollider.GetComponent<Player>();
-            if(player == targetPlayer)
+            if(player)
             {
                 stillAlive = true;
                 break;
@@ -76,12 +76,26 @@ public class Drone : Entity
                 //先向下飞一段距离，再向玩家飞去
                 if(Mathf.Abs(transform.position.y - targetPlayer.transform.position.y) > attackDistance)
                 {
-                    Vector3 downDirection = (new Vector3(0, targetPlayer.transform.position.y, 0) - transform.position).normalized;
+                    Vector3 downDirection = new Vector3(0, -1, 0);
                     transform.position += downDirection * moveSpeed * Time.deltaTime;
                 }
                 else
                 {
                     Vector3 forwardDirection = (targetPlayer.transform.position - transform.position).normalized;
+                    transform.position += forwardDirection * moveSpeed * Time.deltaTime;
+                }
+                break;
+            case DroneAlgorithmManager.AttackAlgorithm.UpAndForward:
+                // 先向上飞一段距离，再水平飞向玩家上方
+                if (Mathf.Abs(transform.position.y - targetPlayer.transform.position.y) < 50f)
+                {
+                    Vector3 upDirection = new Vector3(0, 1, 0);
+                    transform.position += upDirection * moveSpeed * Time.deltaTime;
+                }
+                else
+                {
+                    Vector3 forwardDirection = (targetPlayer.transform.position - transform.position).normalized;
+                    forwardDirection.y = 0;
                     transform.position += forwardDirection * moveSpeed * Time.deltaTime;
                 }
                 break;
@@ -206,9 +220,17 @@ public class Drone : Entity
                 if (Physics.Raycast(startingPosition, position - startingPosition, out RaycastHit hit,
                         (position - startingPosition).magnitude))
                 {
-                    if (hit.collider.CompareTag("Player"))
+                    if (hit.collider.CompareTag("Ground"))
                     {
-                        return true;
+                        Collider[] hitColliders = Physics.OverlapSphere(hit.point, attackDistance);
+                        foreach (var hitCollider in hitColliders)
+                        {
+                            Player player = hitCollider.GetComponent<Player>();
+                            if (player != null)
+                            {
+                                return true;
+                            }
+                        }
                     }
                 }
             }

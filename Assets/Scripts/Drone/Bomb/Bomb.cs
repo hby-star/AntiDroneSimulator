@@ -33,12 +33,16 @@ public class Bomb : MonoBehaviour
                 rb.AddExplosionForce(10, transform.position, explosionRadius);
             }
 
-            if (nearbyObject.tag == "Player")
+            if (nearbyObject.tag == "Player" || nearbyObject.tag == "Ground")
             {
                 drone.hasBomb = false;
                 explosion = Instantiate(explosion, transform.position, transform.rotation);
                 explosion.Play();
-                Destroy(nearbyObject.gameObject);
+                if (nearbyObject.tag == "Player")
+                {
+                    Destroy(nearbyObject.gameObject);
+                }
+
                 Destroy(gameObject);
             }
         }
