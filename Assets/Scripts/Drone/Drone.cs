@@ -71,7 +71,7 @@ public class Drone : Entity
             {
                 case DroneAlgorithmManager.AttackAlgorithm.Stay:
                     // do nothing
-                    break;
+                    return;
                 case DroneAlgorithmManager.AttackAlgorithm.Forward:
                     //直接向玩家飞去
                     Vector3 direction = (targetPlayer.transform.position - transform.position).normalized;

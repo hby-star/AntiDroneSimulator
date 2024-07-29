@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class DroneAlgorithmManager : MonoBehaviour
 {
@@ -43,7 +44,7 @@ public class DroneAlgorithmManager : MonoBehaviour
 
     #region Algorithm
 
-    public enum Algorithm
+    public enum SearchAlgorithm
     {
         Stay,
         Flocking,
@@ -58,18 +59,18 @@ public class DroneAlgorithmManager : MonoBehaviour
         UpAndForward,
     }
 
-    public Algorithm currentAlgorithm;
+    public SearchAlgorithm currentSearchAlgorithm;
     public AttackAlgorithm currentAttackAlgorithm;
 
     public IDroneControlAlgorithm GetAlgorithm()
     {
-        switch (currentAlgorithm)
+        switch (currentSearchAlgorithm)
         {
-            case Algorithm.Stay:
+            case SearchAlgorithm.Stay:
                 return new Stay();
-            case Algorithm.Flocking:
+            case SearchAlgorithm.Flocking:
                 return new Flocking();
-            case Algorithm.RandomMove:
+            case SearchAlgorithm.RandomMove:
                 return new RandomMove();
             default:
                 return new Stay();

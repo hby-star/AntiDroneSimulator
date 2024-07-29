@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 
 public class InputManager : MonoBehaviour
@@ -34,6 +35,10 @@ public class InputManager : MonoBehaviour
         {
             _instance = this;
             DontDestroyOnLoad(gameObject);
+            operateEntityNow = true;
+            operateEntityIndex = 0;
+            currentEntity = operateEntities[operateEntityIndex];
+            currentCamera = currentEntity.Camera;
         }
         else
         {
@@ -52,9 +57,6 @@ public class InputManager : MonoBehaviour
 
     void Start()
     {
-        operateEntityNow = true;
-        operateEntityIndex = 0;
-        currentEntity = operateEntities[operateEntityIndex];
     }
 
     void Update()
@@ -68,17 +70,17 @@ public class InputManager : MonoBehaviour
                 HandleOperateSwitch();
             }
 
-            if (currentEntity is Player player)
+            if (currentEntity is Player player && GameObject.FindWithTag("Player"))
             {
                 currentCamera = player.Camera;
                 HandlePlayerInput();
             }
-            else if (currentEntity is Drone drone)
+            else if (currentEntity is Drone drone && GameObject.FindWithTag("Drone"))
             {
                 currentCamera = drone.Camera;
                 HandleDroneInput();
             }
-            else if (currentEntity is Vehicle vehicle)
+            else if (currentEntity is Vehicle vehicle && GameObject.FindWithTag("Vehicle"))
             {
                 currentCamera = vehicle.Camera;
                 HandleVehicleInput();
