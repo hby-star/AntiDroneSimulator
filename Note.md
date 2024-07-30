@@ -1,5 +1,7 @@
 # AntiDroneSimulator
 
+## 1. 整体架构
+
 ```mermaid
 flowchart LR
 	Start(开始)
@@ -78,3 +80,14 @@ flowchart LR
 		
 ```
 
+
+
+## 2. 无人机控制
+
+### 2.1 追踪算法
+
+1. 摄像机获取RGB图像
+2. 通过http网络通信传递到后端python服务器
+3. 后端使用YOLO算法检测目标并返回检测信息、
+4. 根据检测信息判断角色位置
+5. 根据角色位置调整运动轨迹
