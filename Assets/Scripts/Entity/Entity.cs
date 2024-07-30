@@ -24,6 +24,8 @@ public class Entity : MonoBehaviour
         Rigidbody = GetComponent<Rigidbody>();
         Collider = GetComponent<Collider>();
         Camera = GetComponentInChildren<Camera>();
+
+        Rigidbody.freezeRotation = true;
     }
 
     protected virtual void Update()

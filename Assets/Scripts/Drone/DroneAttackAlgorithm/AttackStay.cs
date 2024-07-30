@@ -2,16 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Stay : IDroneControlAlgorithm
+public class AttackStay : IDroneAttackAlgorithm
 {
-    public void DroneControlSet(Drone drone)
+    public void DroneAttackAlgorithmSet(Drone drone)
     {
         // do nothing
     }
 
-    public void DroneControlUpdate()
+    public void DroneAttackAlgorithmUpdate()
     {
         // do nothing
     }
 }
-

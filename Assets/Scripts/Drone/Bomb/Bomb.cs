@@ -7,7 +7,7 @@ using UnityEngine.Serialization;
 public class Bomb : MonoBehaviour
 {
     public ParticleSystem explosion;
-    public float explosionRadius = 5f;
+    public float explosionRadius = 10f;
     private Drone drone;
 
     // Start is called before the first frame update
@@ -34,7 +34,6 @@ public class Bomb : MonoBehaviour
 
         Collider[] colliders = Physics.OverlapSphere(transform.position, explosionRadius);
 
-
         foreach (Collider nearbyObject in colliders)
         {
             Vector3 directionToTarget = nearbyObject.transform.position - transform.position;
@@ -44,7 +43,7 @@ public class Bomb : MonoBehaviour
             {
                 if (hit.collider == nearbyObject && nearbyObject.tag == "Player")
                 {
-                    Destroy(nearbyObject.gameObject);
+                    Debug.Log("Player hit by bomb");
                     break;
                 }
                 else if (hit.collider != nearbyObject)

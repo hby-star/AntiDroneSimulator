@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
@@ -16,11 +17,8 @@ public class Drone : Entity
 
     #region Attack
 
-    [Header("Attack Info")] public float serachRadius = 50;
-    public float attackSerachRadius = 80;
-    public float attackDistance = 5;
-    [SerializeField] GameObject bomb;
-    private Player targetPlayer;
+    [Header("Attack Info")] [SerializeField]
+    GameObject bomb;
 
     [SerializeField] private float bombBelowLength = 0.3f;
 
@@ -38,103 +36,213 @@ public class Drone : Entity
         }
     }
 
-    private void AttackStart()
+    #endregion
+
+    #region Operate
+
+    [Header("Operate Info")] public bool isLeader = false;
+
+    public override void SetOperate(bool operate)
     {
+        base.SetOperate(operate);
+
+        if (!operate)
+        {
+            StateMachine.ChangeState(IdleState);
+        }
+    }
+
+    #endregion
+
+    #region Algorithm
+
+    public IDroneSearchAlgorithm DroneSearchAlgorithm;
+    public IDroneAttackAlgorithm DroneAttackAlgorithm;
+
+    [NonSerialized] public Player targetPlayer;
+
+    public float serachRadius = 50;
+    public float attackSerachRadius = 80;
+
+    void DroneAlgorithmStart()
+    {
+        // 初始化无人机进攻状态
         hasBomb = true;
         targetPlayer = null;
+
+        // 初始化无人机算法
+        DroneSearchAlgorithm = DroneAlgorithmManager.Instance.GetDroneSearchAlgorithm();
+        DroneSearchAlgorithm.DroneSearchAlgorithmSet(this);
+        DroneAttackAlgorithm = DroneAlgorithmManager.Instance.GetDroneAttackAlgorithm();
+        DroneAttackAlgorithm.DroneAttackAlgorithmSet(this);
     }
 
     private void AttackPlayerUpdate()
     {
-        // 检测玩家是否还存在
-        Collider[] hitColliders = Physics.OverlapSphere(transform.position, attackSerachRadius);
-        bool stillAlive = false;
-        foreach (var hitCollider in hitColliders)
+        // 攻击玩家
+        DroneAttackAlgorithm.DroneAttackAlgorithmUpdate();
+
+        // 攻击距离内释放炸弹
+        if (Vector3.Distance(transform.position, targetPlayer.transform.position) <
+            (bomb.GetComponent<Bomb>().explosionRadius / 2))
         {
-            Player player = hitCollider.GetComponent<Player>();
-            if (player)
-            {
-                stillAlive = true;
-                break;
-            }
+            Attack();
         }
 
-        if (!stillAlive)
+        // 炸弹路径上有玩家则释放炸弹
+        if (IsPlayerDetectedOnPath())
         {
-            targetPlayer = null;
-        }
-
-        if (targetPlayer)
-        {
-            // 攻击玩家
-            switch (DroneAlgorithmManager.Instance.currentAttackAlgorithm)
-            {
-                case DroneAlgorithmManager.AttackAlgorithm.Stay:
-                    // do nothing
-                    return;
-                case DroneAlgorithmManager.AttackAlgorithm.Forward:
-                    //直接向玩家飞去
-                    Vector3 direction = (targetPlayer.transform.position - transform.position).normalized;
-                    transform.position += direction * moveSpeed * Time.deltaTime;
-                    break;
-                case DroneAlgorithmManager.AttackAlgorithm.DownAndForward:
-                    //先向下飞一段距离，再向玩家飞去
-                    if (Mathf.Abs(transform.position.y - targetPlayer.transform.position.y) > attackDistance)
-                    {
-                        Vector3 downDirection = new Vector3(0, -1, 0);
-                        transform.position += downDirection * moveSpeed * Time.deltaTime;
-                    }
-                    else
-                    {
-                        Vector3 forwardDirection = (targetPlayer.transform.position - transform.position).normalized;
-                        transform.position += forwardDirection * moveSpeed * Time.deltaTime;
-                    }
-
-                    break;
-                case DroneAlgorithmManager.AttackAlgorithm.UpAndForward:
-                    // 先向上飞一段距离，再水平飞向玩家上方
-                    if (Mathf.Abs(transform.position.y - targetPlayer.transform.position.y) < 50f)
-                    {
-                        Vector3 upDirection = new Vector3(0, 1, 0);
-                        transform.position += upDirection * moveSpeed * Time.deltaTime;
-                    }
-                    else
-                    {
-                        Vector3 forwardDirection = (targetPlayer.transform.position - transform.position).normalized;
-                        forwardDirection.y = 0;
-                        transform.position += forwardDirection * moveSpeed * Time.deltaTime;
-                    }
-
-                    break;
-            }
-
-            // 攻击距离内释放炸弹
-            if (Vector3.Distance(transform.position, targetPlayer.transform.position) < attackDistance)
-            {
-                Attack();
-            }
-
-            // 炸弹路径上有玩家则释放炸弹
-            if (IsPlayerDetectedOnPath())
-            {
-                Attack();
-            }
+            Attack();
         }
     }
 
     private void SearchPlayerUpdate()
     {
-        DroneControlAlgorithm.DroneControlUpdate();
+        DroneSearchAlgorithm.DroneSearchAlgorithmUpdate();
+    }
 
+    private Player FindPlayer()
+    {
         Collider[] hitColliders = Physics.OverlapSphere(transform.position, serachRadius);
         foreach (var hitCollider in hitColliders)
         {
             Player player = hitCollider.GetComponent<Player>();
             if (player != null)
             {
-                targetPlayer = player;
-                break;
+                return player;
             }
+        }
+
+        return null;
+    }
+
+    #endregion
+
+    protected override void Awake()
+    {
+        base.Awake();
+
+        StateMachine = new EntityStateMachine();
+
+        MoveState = new DroneMoveState(StateMachine, this, "Move", this);
+        IdleState = new DroneIdleState(StateMachine, this, "Idle", this);
+    }
+
+    protected override void Start()
+    {
+        base.Start();
+
+        StateMachine.Initialize(IdleState);
+
+        // 无人机操作
+        SetOperate((InputManager.Instance.currentEntity is Drone) && isLeader);
+        BombPathStart();
+
+        // 无人机算法
+        DroneAlgorithmStart();
+    }
+
+    protected override void Update()
+    {
+        base.Update();
+
+        StateMachine.CurrentState.Update();
+
+        // 无人机音效
+        AudioUpdate();
+
+        if (operateNow)
+        {
+            // 摄像机控制
+            MouseLookUpdate();
+
+            // 炸弹路径指示
+            BombPathUpdate();
+        }
+        else
+        {
+            // 搜索玩家
+            targetPlayer = FindPlayer();
+
+            if (targetPlayer && hasBomb)
+            {
+                // 攻击玩家
+                AttackPlayerUpdate();
+            }
+            else
+            {
+                // 搜索玩家
+                SearchPlayerUpdate();
+            }
+        }
+    }
+
+    #region React To Hit
+
+    public enum HitType
+    {
+        NormalBullet,
+        EmpBullet,
+        NetBullet,
+        ElectricInterference,
+    }
+
+    public void ReactToHit(HitType hitType)
+    {
+        if (hitType == HitType.ElectricInterference)
+        {
+            DroneSearchAlgorithm = new SearchStay();
+            DroneSearchAlgorithm.DroneSearchAlgorithmSet(this);
+        }
+        else
+        {
+            StartCoroutine(Die());
+        }
+    }
+
+    private IEnumerator Die()
+    {
+        this.transform.Rotate(-75, 0, 0);
+
+        yield return new WaitForSeconds(0.5f);
+
+        Destroy(this.gameObject);
+    }
+
+    #endregion
+
+    #region MouseLook
+
+    [Header("Mouse Look Info")] public float sensitivityHor = 9.0f;
+
+    public Transform mouseLookTarget;
+
+    void MouseLookUpdate()
+    {
+        if (operateNow)
+            MouseXLookUpdate();
+    }
+
+    void MouseXLookUpdate()
+    {
+        float rotationY = CameraHorizontalInput * sensitivityHor;
+        mouseLookTarget.Rotate(0, rotationY, 0);
+    }
+
+    #endregion
+
+    #region Audio
+
+    [Header("Audio Info")] public AudioSource soundSource;
+    public AudioClip flySound;
+
+    void AudioUpdate()
+    {
+        if (!soundSource.isPlaying)
+        {
+            soundSource.clip = flySound;
+            soundSource.loop = true;
+            soundSource.Play();
         }
     }
 
@@ -230,7 +338,8 @@ public class Drone : Entity
                 {
                     if (hit.collider.CompareTag("Ground") || hit.collider.CompareTag("Vehicle"))
                     {
-                        Collider[] hitColliders = Physics.OverlapSphere(hit.point, attackDistance);
+                        Collider[] hitColliders =
+                            Physics.OverlapSphere(hit.point, bomb.GetComponent<Bomb>().explosionRadius / 2);
                         foreach (var hitCollider in hitColliders)
                         {
                             Player player = hitCollider.GetComponent<Player>();
@@ -245,153 +354,6 @@ public class Drone : Entity
         }
 
         return false;
-    }
-
-    #endregion
-
-    #region Control
-
-    [Header("Control Info")] public bool isLeader = false;
-
-    public IDroneControlAlgorithm DroneControlAlgorithm;
-
-    public override void SetOperate(bool operate)
-    {
-        base.SetOperate(operate);
-
-        if (!operate)
-        {
-            StateMachine.ChangeState(IdleState);
-        }
-    }
-
-    #endregion
-
-    protected override void Awake()
-    {
-        base.Awake();
-
-        StateMachine = new EntityStateMachine();
-
-        MoveState = new DroneMoveState(StateMachine, this, "Move", this);
-        IdleState = new DroneIdleState(StateMachine, this, "Idle", this);
-    }
-
-    protected override void Start()
-    {
-        base.Start();
-
-        StateMachine.Initialize(IdleState);
-
-        DroneControlAlgorithm = DroneAlgorithmManager.Instance.GetAlgorithm();
-        DroneControlAlgorithm.DroneControlSet(this);
-
-        SetOperate((InputManager.Instance.currentEntity is Drone) && isLeader);
-
-        Rigidbody.freezeRotation = true;
-
-        BombPathStart();
-        AttackStart();
-    }
-
-    protected override void Update()
-    {
-        base.Update();
-
-        StateMachine.CurrentState.Update();
-
-        AudioUpdate();
-
-        if (operateNow)
-        {
-            // 摄像机控制
-            MouseLookUpdate();
-
-            // 炸弹路径指示
-            BombPathUpdate();
-        }
-        else
-        {
-            if (targetPlayer && hasBomb)
-            {
-                // 攻击玩家
-                AttackPlayerUpdate();
-            }
-            else
-            {
-                // 搜索玩家
-                SearchPlayerUpdate();
-            }
-        }
-    }
-
-    #region React To Hit
-
-    public enum HitType
-    {
-        NormalBullet,
-        EmpBullet,
-        NetBullet,
-        ElectricInterference,
-    }
-
-    public void ReactToHit(HitType hitType)
-    {
-        if (hitType == HitType.ElectricInterference)
-        {
-            DroneControlAlgorithm = new Stay();
-            DroneControlAlgorithm.DroneControlSet(this);
-        }
-        else
-        {
-            StartCoroutine(Die());
-        }
-    }
-
-    private IEnumerator Die()
-    {
-        this.transform.Rotate(-75, 0, 0);
-
-        yield return new WaitForSeconds(0.5f);
-
-        Destroy(this.gameObject);
-    }
-
-    #endregion
-
-    #region MouseLook
-
-    [Header("Mouse Look Info")] public float sensitivityHor = 9.0f;
-
-    public Transform mouseLookTarget;
-
-    void MouseLookUpdate()
-    {
-        if (operateNow)
-            MouseXLookUpdate();
-    }
-
-    void MouseXLookUpdate()
-    {
-        float rotationY = CameraHorizontalInput * sensitivityHor;
-        mouseLookTarget.Rotate(0, rotationY, 0);
-    }
-
-    #endregion
-
-    #region Audio
-
-    [Header("Audio Info")] public AudioSource soundSource;
-    public AudioClip flySound;
-
-    void AudioUpdate()
-    {
-        if (!soundSource.isPlaying)
-        {
-            soundSource.clip = flySound;
-            soundSource.loop = true;
-            soundSource.Play();
-        }
     }
 
     #endregion

@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Flocking : IDroneControlAlgorithm
+public class Flocking : IDroneSearchAlgorithm
 {
     public float separationDistance = 15.0f; // 分离距离
     public float alignmentDistance = 50.0f; // 对齐距离
@@ -15,12 +15,12 @@ public class Flocking : IDroneControlAlgorithm
     public Vector3 currnetVelocity; // 速度
     public Drone currentDrone; // 当前无人机
 
-    public void DroneControlSet(Drone drone)
+    public void DroneSearchAlgorithmSet(Drone drone)
     {
         currentDrone = drone;
     }
 
-    public void DroneControlUpdate()
+    public void DroneSearchAlgorithmUpdate()
     {
         if (!currentDrone.isLeader)
         {

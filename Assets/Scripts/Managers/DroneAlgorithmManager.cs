@@ -62,18 +62,35 @@ public class DroneAlgorithmManager : MonoBehaviour
     public SearchAlgorithm currentSearchAlgorithm;
     public AttackAlgorithm currentAttackAlgorithm;
 
-    public IDroneControlAlgorithm GetAlgorithm()
+    public IDroneSearchAlgorithm GetDroneSearchAlgorithm()
     {
         switch (currentSearchAlgorithm)
         {
             case SearchAlgorithm.Stay:
-                return new Stay();
+                return new SearchStay();
             case SearchAlgorithm.Flocking:
                 return new Flocking();
             case SearchAlgorithm.RandomMove:
                 return new RandomMove();
             default:
-                return new Stay();
+                return new SearchStay();
+        }
+    }
+
+    public IDroneAttackAlgorithm GetDroneAttackAlgorithm()
+    {
+        switch (currentAttackAlgorithm)
+        {
+            case AttackAlgorithm.Stay:
+                return new AttackStay();
+            case AttackAlgorithm.Forward:
+                return new Forward();
+            case AttackAlgorithm.DownAndForward:
+                return new DownAndForward();
+            case AttackAlgorithm.UpAndForward:
+                return new UpAndForward();
+            default:
+                return new AttackStay();
         }
     }
 

@@ -272,8 +272,6 @@ public class Player : Entity
         AttackStart();
 
         SetOperate(InputManager.Instance.currentEntity is Player);
-
-        Rigidbody.freezeRotation = true;
     }
 
     protected override void Update()

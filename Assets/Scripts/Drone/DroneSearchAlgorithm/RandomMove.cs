@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class RandomMove : IDroneControlAlgorithm
+public class RandomMove : IDroneSearchAlgorithm
 {
     public Drone currentDrone;
 
@@ -14,14 +14,14 @@ public class RandomMove : IDroneControlAlgorithm
     private Vector3 targetPosition;
     public float speed = 5.0f; // Speed at which the drone moves towards the target position
 
-    public void DroneControlSet(Drone drone)
+    public void DroneSearchAlgorithmSet(Drone drone)
     {
         currentDrone = drone;
         // Initialize targetPosition to the current position of the drone
         targetPosition = currentDrone.transform.position;
     }
 
-    public void DroneControlUpdate()
+    public void DroneSearchAlgorithmUpdate()
     {
         // Check if the drone has reached the target position or if it's the first update
         if (Vector3.Distance(currentDrone.transform.position, targetPosition) < 1.0f)
