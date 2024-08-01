@@ -14,7 +14,7 @@ public class Forward : IDroneAttackAlgorithm
     public void DroneAttackAlgorithmUpdate()
     {
         // 直接向玩家飞去
-        Vector3 direction = currentDrone.targetPlayer.transform.position - currentDrone.transform.position;
+        Vector3 direction = currentDrone.TargetPlayer.transform.position - currentDrone.transform.position;
         currentDrone.transform.position += direction.normalized * currentDrone.moveSpeed * Time.deltaTime;
     }
 }

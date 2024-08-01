@@ -12,7 +12,6 @@ public class Flocking : IDroneSearchAlgorithm
     public float maxSpeed = 15f; // 最大速度
     public float maxForce = 15f; // 最大力
 
-    public Vector3 currnetVelocity; // 速度
     public Drone currentDrone; // 当前无人机
 
     public void DroneSearchAlgorithmSet(Drone drone)
@@ -30,19 +29,20 @@ public class Flocking : IDroneSearchAlgorithm
         {
             RandomLeaderUpdate();
         }
+
+        currentDrone.MoveToCurrentMoveDirection(currentDrone.moveSpeed);
     }
 
     #region RandomLeader
 
     public float minX = -50.0f;
     public float maxX = 50.0f;
-    public float minY = 5.0f;
-    public float maxY = 20.0f;
+    public float minY = 20f;
+    public float maxY = 100f;
     public float minZ = -50.0f;
     public float maxZ = 50.0f;
 
     private Vector3 targetPosition = Vector3.zero;
-    private float speed = 5.0f; // Speed at which the drone moves towards the target position
 
     public void RandomLeaderUpdate()
     {
@@ -51,15 +51,15 @@ public class Flocking : IDroneSearchAlgorithm
         {
             // Generate a new target position within the specified bounds
             targetPosition = new Vector3(
-                Random.Range(minX, maxX),
-                Random.Range(minY, maxY),
-                Random.Range(minZ, maxZ)
+                Random.Range(currentDrone.transform.position.x - 20, currentDrone.transform.position.x + 20),
+                Random.Range(currentDrone.transform.position.y - 20, currentDrone.transform.position.y + 20),
+                Random.Range(currentDrone.transform.position.z - 20, currentDrone.transform.position.z + 20)
             );
+
         }
 
-        // Move the drone towards the target position
         Vector3 direction = (targetPosition - currentDrone.transform.position).normalized;
-        currentDrone.Rigidbody.velocity = direction * speed;
+        currentDrone.SetCurrentMoveDirection(direction);
     }
 
     #endregion
@@ -110,24 +110,15 @@ public class Flocking : IDroneSearchAlgorithm
 
         Vector3 totalForce = separation * separationWeight + alignment * alignmentWeight + cohesion * cohesionWeight;
         totalForce = Vector3.ClampMagnitude(totalForce, maxForce);
+        totalForce.y = 0;
 
-        currnetVelocity += totalForce * Time.deltaTime;
-        currnetVelocity = Vector3.ClampMagnitude(currnetVelocity, maxSpeed);
-
-        // 尽量与leader在同一平面
-        if (leader != null)
+        // 尽量与leader位于同一平面
+        if(Mathf.Abs(currentDrone.transform.position.y - leader.transform.position.y) > 1.0f)
         {
-            currnetVelocity.y = leader.Rigidbody.velocity.y *
-                         Mathf.Min(1, Mathf.Abs(currentDrone.transform.position.y - leader.transform.position.y));
+            totalForce.y = leader.transform.position.y - currentDrone.transform.position.y;
         }
 
-        currentDrone.transform.position += currnetVelocity * Time.deltaTime;
-
-        if (currnetVelocity.sqrMagnitude > 0.1f)
-        {
-            currnetVelocity.y = 0;
-            currentDrone.transform.rotation = Quaternion.LookRotation(currnetVelocity);
-        }
+        currentDrone.SetCurrentMoveDirection(totalForce.normalized);
     }
 
 
@@ -160,7 +151,7 @@ public class Flocking : IDroneSearchAlgorithm
         {
             steer.Normalize();
             steer *= maxSpeed;
-            steer -= currnetVelocity;
+            steer -= currentDrone.Rigidbody.velocity;
             steer = Vector3.ClampMagnitude(steer, maxForce);
         }
 
@@ -187,7 +178,7 @@ public class Flocking : IDroneSearchAlgorithm
             sum /= count;
             sum.Normalize();
             sum *= maxSpeed;
-            Vector3 steer = sum - currnetVelocity;
+            Vector3 steer = sum - currentDrone.Rigidbody.velocity;
             steer = Vector3.ClampMagnitude(steer, maxForce);
             return steer;
         }
@@ -209,7 +200,7 @@ public class Flocking : IDroneSearchAlgorithm
         sum = leader.Rigidbody.velocity;
         sum.Normalize();
         sum *= maxSpeed;
-        Vector3 steer = sum - currnetVelocity;
+        Vector3 steer = sum - currentDrone.Rigidbody.velocity;
         steer = Vector3.ClampMagnitude(steer, maxForce);
         return steer;
     }
@@ -266,7 +257,7 @@ public class Flocking : IDroneSearchAlgorithm
         Vector3 desired = target - currentDrone.transform.position;
         desired.Normalize();
         desired *= maxSpeed;
-        Vector3 steer = desired - currnetVelocity;
+        Vector3 steer = desired - currentDrone.Rigidbody.velocity;
         steer = Vector3.ClampMagnitude(steer, maxForce);
         return steer;
     }

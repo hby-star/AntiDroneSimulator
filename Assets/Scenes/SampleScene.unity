@@ -418,7 +418,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 529d6660d4f26fc47be2c93b902d423a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentSearchAlgorithm: 0
+  currentSearchAlgorithm: 2
   currentAttackAlgorithm: 0
 --- !u!1 &216312027
 GameObject:

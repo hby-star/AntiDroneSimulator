@@ -51,20 +51,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 10
-  serachRadius: 70
-  attackSerachRadius: 100
-  attackDistance: 5
   bomb: {fileID: 4770471879145732844}
   bombBelowLength: 0.3
   hasBomb: 0
-  numberOfPoints: 50
-  timeBetweenPoints: 0.1
-  sphereMarkerPrefab: {fileID: 2778238490166903029, guid: ec0f3dd02cbd1884d95d6840e8d5e326, type: 3}
   isLeader: 0
+  serachRadius: 70
+  attackSerachRadius: 100
   sensitivityHor: 9
   mouseLookTarget: {fileID: 2424916829615425556}
   soundSource: {fileID: 8234029062686397238}
   flySound: {fileID: 8300000, guid: da8cba425f89d414bbfefcafcff846bd, type: 3}
+  numberOfPoints: 50
+  timeBetweenPoints: 0.1
+  sphereMarkerPrefab: {fileID: 2778238490166903029, guid: ec0f3dd02cbd1884d95d6840e8d5e326, type: 3}
 --- !u!54 &5320754610288429460
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -493,7 +492,7 @@ Transform:
   m_GameObject: {fileID: 4372532307159876418}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -825,13 +824,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7316179920139087935}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.38268343, y: 0, z: 0, w: 0.92387956}
-  m_LocalPosition: {x: 0, y: 5, z: -5}
+  m_LocalRotation: {x: 0.17364816, y: 0, z: 0, w: 0.9848078}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7024027834163119293}
-  m_LocalEulerAnglesHint: {x: 45, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 20, y: 0, z: 0}
 --- !u!20 &2676178731694363507
 Camera:
   m_ObjectHideFlags: 0

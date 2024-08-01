@@ -3,7 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Networking;
 using UnityEngine.Serialization;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 public class Drone : Entity
 {
@@ -56,19 +59,20 @@ public class Drone : Entity
 
     #region Algorithm
 
+    private const string DroneServerObjectDetectionUrl = "http://localhost:8000//drone_object_detection/";
     public IDroneSearchAlgorithm DroneSearchAlgorithm;
     public IDroneAttackAlgorithm DroneAttackAlgorithm;
 
-    [NonSerialized] public Player targetPlayer;
-
-    public float serachRadius = 50;
-    public float attackSerachRadius = 80;
+    [NonSerialized] public Player TargetPlayer;
+    [NonSerialized] public Vector3 CurrentMoveDirection;
+    private float lastSendRequestTime = 0;
+    public float sendRequestInterval = 1;
 
     void DroneAlgorithmStart()
     {
         // 初始化无人机进攻状态
         hasBomb = true;
-        targetPlayer = null;
+        TargetPlayer = null;
 
         // 初始化无人机算法
         DroneSearchAlgorithm = DroneAlgorithmManager.Instance.GetDroneSearchAlgorithm();
@@ -83,7 +87,7 @@ public class Drone : Entity
         DroneAttackAlgorithm.DroneAttackAlgorithmUpdate();
 
         // 攻击距离内释放炸弹
-        if (Vector3.Distance(transform.position, targetPlayer.transform.position) <
+        if (Vector3.Distance(transform.position, TargetPlayer.transform.position) <
             (bomb.GetComponent<Bomb>().explosionRadius / 2))
         {
             Attack();
@@ -103,17 +107,106 @@ public class Drone : Entity
 
     private Player FindPlayer()
     {
-        Collider[] hitColliders = Physics.OverlapSphere(transform.position, serachRadius);
-        foreach (var hitCollider in hitColliders)
+        if (Time.time - lastSendRequestTime > sendRequestInterval)
         {
-            Player player = hitCollider.GetComponent<Player>();
-            if (player != null)
-            {
-                return player;
-            }
+            //StartCoroutine(SendObjectDetectionRequest());
+            lastSendRequestTime = Time.time;
         }
 
         return null;
+    }
+
+    IEnumerator SendObjectDetectionRequest()
+    {
+        // 将渲染的结果保存到RenderTexture
+        RenderTexture renderTexture = new RenderTexture(Screen.width, Screen.height, 24);
+        Camera.targetTexture = renderTexture;
+
+        // 创建一个Texture2D来保存图像数据
+        Texture2D screenShot = new Texture2D(Screen.width, Screen.height, TextureFormat.RGB24, false);
+
+        // 渲染摄像机
+        Camera.Render();
+
+        // 从RenderTexture读取像素
+        RenderTexture.active = renderTexture;
+        screenShot.ReadPixels(new Rect(0, 0, Screen.width, Screen.height), 0, 0);
+        screenShot.Apply();
+
+        // 重置摄像机的目标纹理和活动渲染纹理
+        Camera.targetTexture = null;
+        RenderTexture.active = null;
+
+        // 销毁RenderTexture
+        Destroy(renderTexture);
+
+        // 编码图像为JPEG
+        byte[] bytes = screenShot.EncodeToJPG();
+
+        // 创建一个WWWForm并添加图像数据
+        WWWForm form = new WWWForm();
+        form.AddBinaryData("image", bytes, "screenshot.jpg", "image/jpeg");
+
+        // 发送POST请求
+        UnityWebRequest www = UnityWebRequest.Post(DroneServerObjectDetectionUrl, form);
+        yield return www.SendWebRequest();
+
+        if (www.result == UnityWebRequest.Result.Success)
+        {
+            ProcessObjectDetectionResponse(www.downloadHandler.text);
+        }
+        else
+        {
+            Debug.Log("Image upload failed: " + www.error);
+        }
+    }
+
+    void ProcessObjectDetectionResponse(string jsonResponse)
+    {
+        JObject json = JObject.Parse(jsonResponse);
+        JToken outputToken = json["output"];
+        if (outputToken != null)
+        {
+            string output = outputToken.ToString();
+            Debug.Log("Output: " + output);
+
+            // 解析output数据
+            JArray outputData = JArray.Parse(output);
+            foreach (var item in outputData)
+            {
+                string name = item["name"].ToString();
+                int classId = (int)item["class"];
+                float confidence = (float)item["confidence"];
+                float x1 = (float)item["box"]["x1"];
+                float y1 = (float)item["box"]["y1"];
+                float x2 = (float)item["box"]["x2"];
+                float y2 = (float)item["box"]["y2"];
+
+                Debug.Log($"Detected object: {name}, Class: {classId}, Confidence: {confidence}, Box: ({x1}, {y1}, {x2}, {y2})");
+            }
+        }
+    }
+
+    public void SetCurrentMoveDirection(Vector3 moveDirection)
+    {
+        CurrentMoveDirection = moveDirection;
+    }
+
+    public void MoveToCurrentMoveDirection(float speed)
+    {
+        // 先水平转向到目标方向
+        Vector3 horMoveDirection = CurrentMoveDirection;
+        horMoveDirection.y = 0;
+
+        // 平滑转向
+        Quaternion targetRotation = Quaternion.LookRotation(horMoveDirection);
+        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * speed / 2);
+
+        // 再向前移动
+        Rigidbody.velocity = transform.forward * horMoveDirection.magnitude * speed;
+
+        // 再垂直移动
+        Rigidbody.velocity += transform.up * CurrentMoveDirection.normalized.y * speed;
     }
 
     #endregion
@@ -162,9 +255,9 @@ public class Drone : Entity
         else
         {
             // 搜索玩家
-            targetPlayer = FindPlayer();
+            TargetPlayer = FindPlayer();
 
-            if (targetPlayer && hasBomb)
+            if (TargetPlayer && hasBomb)
             {
                 // 攻击玩家
                 AttackPlayerUpdate();
