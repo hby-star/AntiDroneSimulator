@@ -2402,6 +2402,10 @@ PrefabInstance:
       value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 4230406066024909837, guid: 1bd525a891c1e944481f520e9f7a1346, type: 3}
+      propertyPath: getTrainningData
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4230406066024909837, guid: 1bd525a891c1e944481f520e9f7a1346, type: 3}
       propertyPath: timeBetweenPoints
       value: 0.1
       objectReference: {fileID: 0}

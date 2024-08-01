@@ -13,24 +13,27 @@ public class RoutePlanningHelper
 {
     private const string DroneServerRoutePlanningUrl = "http://localhost:8000//drone_route_planning/";
 
-    private struct RoutePlanningRequest
+    public struct RoutePlanningRequest
     {
         public Vector3 DronePosition;
-        public Vector3 DroneVelocity;
         public Vector4 PlayerPositionInCamera;
-        public Vector4 ObstaleInfo;
+        public Vector3 ObstalePosition;
+
+        public Vector2 ScreenSize;
+        public float DetectObstacleDistance;
     }
 
     private RoutePlanningRequest routePlanningRequest;
     private Vector3 responseDirection;
 
-    public void SetRoutePlanningRequest(Vector3 dronePosition, Vector3 droneVelocity, Vector4 playerPositionInCamera,
-        Vector4 obstaleInfo)
+    public void SetRoutePlanningRequest(Vector3 dronePosition, Vector4 playerPositionInCamera,
+        Vector4 obstaleInfo, Vector2 screenSize, float detectObstacleDistance)
     {
         routePlanningRequest.DronePosition = dronePosition;
-        routePlanningRequest.DroneVelocity = droneVelocity;
         routePlanningRequest.PlayerPositionInCamera = playerPositionInCamera;
-        routePlanningRequest.ObstaleInfo = obstaleInfo;
+        routePlanningRequest.ObstalePosition = obstaleInfo;
+        routePlanningRequest.ScreenSize = screenSize;
+        routePlanningRequest.DetectObstacleDistance = detectObstacleDistance;
     }
 
     public IEnumerator SendRoutePlanningRequest()
@@ -48,7 +51,7 @@ public class RoutePlanningHelper
         // 发送请求
         yield return request.SendWebRequest();
 
-        if(request.result == UnityWebRequest.Result.Success)
+        if (request.result == UnityWebRequest.Result.Success)
         {
             string responseJson = request.downloadHandler.text;
             responseDirection = JsonConvert.DeserializeObject<Vector3>(responseJson);

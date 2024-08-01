@@ -85,12 +85,13 @@ public class Drone : Entity
 
     public IDroneSearchAlgorithm DroneSearchAlgorithm;
     public IDroneAttackAlgorithm DroneAttackAlgorithm;
+    public bool getTrainningData = false;
 
     [NonSerialized] public Player TargetPlayer;
     [NonSerialized] public Vector3 CurrentMoveDirection;
     private float lastSendRequestTime = 0;
     public float sendRequestInterval = 1; // 发送请求的间隔
-    public float detectObstacleDistance = 20; // 避障距离
+    public float detectObstacleDistance = 10; // 避障距离
 
     private ObjectDetectionHelper objectDetectionHelper;
     private RoutePlanningHelper routePlanningHelper;
@@ -109,7 +110,7 @@ public class Drone : Entity
         DroneAttackAlgorithm.DroneAttackAlgorithmSet(this);
 
         // 初始化服务器通信工具
-        objectDetectionHelper = new ObjectDetectionHelper();
+        objectDetectionHelper = new ObjectDetectionHelper(this);
         routePlanningHelper = new RoutePlanningHelper();
     }
 
@@ -145,17 +146,10 @@ public class Drone : Entity
         return null;
     }
 
-    // 发送目标检测请求
-
-
-    // 处理目标检测响应
-
-
-    // 获取距离最近的障碍物方向和距离
-    Vector4 GetObstacleInfo()
+    // 获取距离最近的障碍物的相对位置
+    public Vector3 GetObstaclePosition()
     {
-        Vector4 obstacleInfo = new Vector4(0, 0, 0, detectObstacleDistance + 1);
-        float minDistance = detectObstacleDistance;
+        Vector3 obstaclePosition = new Vector3(detectObstacleDistance, detectObstacleDistance, detectObstacleDistance);
 
         // 检测前后左右上下以及8个拐角方向的障碍物
         Vector3[] directions = new Vector3[]
@@ -175,17 +169,15 @@ public class Drone : Entity
                 // 忽略玩家
                 if (!hit.collider.CompareTag("Player"))
                 {
-                    float distance = hit.distance;
-                    if (distance < minDistance)
+                    if (hit.distance < obstaclePosition.magnitude)
                     {
-                        minDistance = distance;
-                        obstacleInfo = new Vector4(hit.point.x, hit.point.y, hit.point.z, distance);
+                        obstaclePosition = hit.point - transform.position;
                     }
                 }
             }
         }
 
-        return obstacleInfo;
+        return obstaclePosition;
     }
 
     #endregion
@@ -212,6 +204,7 @@ public class Drone : Entity
 
         // 无人机算法
         DroneAlgorithmStart();
+
     }
 
     protected override void Update()
@@ -219,6 +212,12 @@ public class Drone : Entity
         base.Update();
 
         StateMachine.CurrentState.Update();
+
+        if(getTrainningData)
+        {
+            objectDetectionHelper.GetTrainingDataSendRequest(Camera);
+            return;
+        }
 
         // 无人机音效
         AudioUpdate();
