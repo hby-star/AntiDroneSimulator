@@ -55,143 +55,13 @@ public class Drone : Entity
         }
     }
 
-    #endregion
-
-    #region Algorithm
-
-    private const string DroneServerObjectDetectionUrl = "http://localhost:8000//drone_object_detection/";
-    public IDroneSearchAlgorithm DroneSearchAlgorithm;
-    public IDroneAttackAlgorithm DroneAttackAlgorithm;
-
-    [NonSerialized] public Player TargetPlayer;
-    [NonSerialized] public Vector3 CurrentMoveDirection;
-    private float lastSendRequestTime = 0;
-    public float sendRequestInterval = 1;
-
-    void DroneAlgorithmStart()
-    {
-        // 初始化无人机进攻状态
-        hasBomb = true;
-        TargetPlayer = null;
-
-        // 初始化无人机算法
-        DroneSearchAlgorithm = DroneAlgorithmManager.Instance.GetDroneSearchAlgorithm();
-        DroneSearchAlgorithm.DroneSearchAlgorithmSet(this);
-        DroneAttackAlgorithm = DroneAlgorithmManager.Instance.GetDroneAttackAlgorithm();
-        DroneAttackAlgorithm.DroneAttackAlgorithmSet(this);
-    }
-
-    private void AttackPlayerUpdate()
-    {
-        // 攻击玩家
-        DroneAttackAlgorithm.DroneAttackAlgorithmUpdate();
-
-        // 攻击距离内释放炸弹
-        if (Vector3.Distance(transform.position, TargetPlayer.transform.position) <
-            (bomb.GetComponent<Bomb>().explosionRadius / 2))
-        {
-            Attack();
-        }
-
-        // 炸弹路径上有玩家则释放炸弹
-        if (IsPlayerDetectedOnPath())
-        {
-            Attack();
-        }
-    }
-
-    private void SearchPlayerUpdate()
-    {
-        DroneSearchAlgorithm.DroneSearchAlgorithmUpdate();
-    }
-
-    private Player FindPlayer()
-    {
-        if (Time.time - lastSendRequestTime > sendRequestInterval)
-        {
-            //StartCoroutine(SendObjectDetectionRequest());
-            lastSendRequestTime = Time.time;
-        }
-
-        return null;
-    }
-
-    IEnumerator SendObjectDetectionRequest()
-    {
-        // 将渲染的结果保存到RenderTexture
-        RenderTexture renderTexture = new RenderTexture(Screen.width, Screen.height, 24);
-        Camera.targetTexture = renderTexture;
-
-        // 创建一个Texture2D来保存图像数据
-        Texture2D screenShot = new Texture2D(Screen.width, Screen.height, TextureFormat.RGB24, false);
-
-        // 渲染摄像机
-        Camera.Render();
-
-        // 从RenderTexture读取像素
-        RenderTexture.active = renderTexture;
-        screenShot.ReadPixels(new Rect(0, 0, Screen.width, Screen.height), 0, 0);
-        screenShot.Apply();
-
-        // 重置摄像机的目标纹理和活动渲染纹理
-        Camera.targetTexture = null;
-        RenderTexture.active = null;
-
-        // 销毁RenderTexture
-        Destroy(renderTexture);
-
-        // 编码图像为JPEG
-        byte[] bytes = screenShot.EncodeToJPG();
-
-        // 创建一个WWWForm并添加图像数据
-        WWWForm form = new WWWForm();
-        form.AddBinaryData("image", bytes, "screenshot.jpg", "image/jpeg");
-
-        // 发送POST请求
-        UnityWebRequest www = UnityWebRequest.Post(DroneServerObjectDetectionUrl, form);
-        yield return www.SendWebRequest();
-
-        if (www.result == UnityWebRequest.Result.Success)
-        {
-            ProcessObjectDetectionResponse(www.downloadHandler.text);
-        }
-        else
-        {
-            Debug.Log("Image upload failed: " + www.error);
-        }
-    }
-
-    void ProcessObjectDetectionResponse(string jsonResponse)
-    {
-        JObject json = JObject.Parse(jsonResponse);
-        JToken outputToken = json["output"];
-        if (outputToken != null)
-        {
-            string output = outputToken.ToString();
-            Debug.Log("Output: " + output);
-
-            // 解析output数据
-            JArray outputData = JArray.Parse(output);
-            foreach (var item in outputData)
-            {
-                string name = item["name"].ToString();
-                int classId = (int)item["class"];
-                float confidence = (float)item["confidence"];
-                float x1 = (float)item["box"]["x1"];
-                float y1 = (float)item["box"]["y1"];
-                float x2 = (float)item["box"]["x2"];
-                float y2 = (float)item["box"]["y2"];
-
-                Debug.Log($"Detected object: {name}, Class: {classId}, Confidence: {confidence}, Box: ({x1}, {y1}, {x2}, {y2})");
-            }
-        }
-    }
-
+    // 设置当前移动方向
     public void SetCurrentMoveDirection(Vector3 moveDirection)
     {
         CurrentMoveDirection = moveDirection;
     }
 
+    // 向当前移动方向移动
     public void MoveToCurrentMoveDirection(float speed)
     {
         // 先水平转向到目标方向
@@ -203,10 +73,119 @@ public class Drone : Entity
         transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * speed / 2);
 
         // 再向前移动
-        Rigidbody.velocity = transform.forward * horMoveDirection.magnitude * speed;
+        Rigidbody.velocity = transform.forward * (horMoveDirection.magnitude * speed);
 
         // 再垂直移动
-        Rigidbody.velocity += transform.up * CurrentMoveDirection.normalized.y * speed;
+        Rigidbody.velocity += transform.up * (CurrentMoveDirection.normalized.y * speed);
+    }
+
+    #endregion
+
+    #region Algorithm
+
+    public IDroneSearchAlgorithm DroneSearchAlgorithm;
+    public IDroneAttackAlgorithm DroneAttackAlgorithm;
+
+    [NonSerialized] public Player TargetPlayer;
+    [NonSerialized] public Vector3 CurrentMoveDirection;
+    private float lastSendRequestTime = 0;
+    public float sendRequestInterval = 1; // 发送请求的间隔
+    public float detectObstacleDistance = 20; // 避障距离
+
+    private ObjectDetectionHelper objectDetectionHelper;
+    private RoutePlanningHelper routePlanningHelper;
+
+    // 无人机算法初始化
+    void DroneAlgorithmStart()
+    {
+        // 初始化无人机进攻状态
+        hasBomb = true;
+        TargetPlayer = null;
+
+        // 初始化无人机算法
+        DroneSearchAlgorithm = DroneAlgorithmManager.Instance.GetDroneSearchAlgorithm();
+        DroneSearchAlgorithm.DroneSearchAlgorithmSet(this);
+        DroneAttackAlgorithm = DroneAlgorithmManager.Instance.GetDroneAttackAlgorithm();
+        DroneAttackAlgorithm.DroneAttackAlgorithmSet(this);
+
+        // 初始化服务器通信工具
+        objectDetectionHelper = new ObjectDetectionHelper();
+        routePlanningHelper = new RoutePlanningHelper();
+    }
+
+    // 更新攻击算法
+    private void AttackPlayerUpdate()
+    {
+        // 攻击玩家
+        DroneAttackAlgorithm.DroneAttackAlgorithmUpdate();
+
+        // 攻击距离内释放炸弹
+        if (Vector3.Distance(transform.position, TargetPlayer.transform.position) <
+            (bomb.GetComponent<Bomb>().explosionRadius / 2))
+        {
+            Attack();
+        }
+    }
+
+    // 更新搜索算法
+    private void SearchPlayerUpdate()
+    {
+        DroneSearchAlgorithm.DroneSearchAlgorithmUpdate();
+    }
+
+    // 搜索玩家
+    private Player FindPlayer()
+    {
+        if (Time.time - lastSendRequestTime > sendRequestInterval)
+        {
+            StartCoroutine(objectDetectionHelper.SendObjectDetectionRequest(Camera));
+            lastSendRequestTime = Time.time;
+        }
+
+        return null;
+    }
+
+    // 发送目标检测请求
+
+
+    // 处理目标检测响应
+
+
+    // 获取距离最近的障碍物方向和距离
+    Vector4 GetObstacleInfo()
+    {
+        Vector4 obstacleInfo = new Vector4(0, 0, 0, detectObstacleDistance + 1);
+        float minDistance = detectObstacleDistance;
+
+        // 检测前后左右上下以及8个拐角方向的障碍物
+        Vector3[] directions = new Vector3[]
+        {
+            transform.forward, -transform.forward, transform.right, -transform.right, transform.up, -transform.up,
+            transform.forward + transform.right + transform.up, transform.forward + transform.right - transform.up,
+            transform.forward - transform.right + transform.up, transform.forward - transform.right - transform.up,
+            -transform.forward + transform.right + transform.up, -transform.forward + transform.right - transform.up,
+            -transform.forward - transform.right + transform.up, -transform.forward - transform.right - transform.up
+        };
+
+        foreach (var direction in directions)
+        {
+            RaycastHit hit;
+            if (Physics.Raycast(transform.position, direction, out hit, detectObstacleDistance))
+            {
+                // 忽略玩家
+                if (!hit.collider.CompareTag("Player"))
+                {
+                    float distance = hit.distance;
+                    if (distance < minDistance)
+                    {
+                        minDistance = distance;
+                        obstacleInfo = new Vector4(hit.point.x, hit.point.y, hit.point.z, distance);
+                    }
+                }
+            }
+        }
+
+        return obstacleInfo;
     }
 
     #endregion
