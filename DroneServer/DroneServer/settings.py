@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'DroneObjectDetection',
+    'DroneRoutePlanning',
     'rest_framework',
     'drf_yasg',
 ]

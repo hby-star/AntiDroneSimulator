@@ -3,6 +3,7 @@ from django.http import JsonResponse
 from drf_yasg import openapi
 from drf_yasg.utils import swagger_auto_schema
 from rest_framework.decorators import api_view
+from rest_framework import status
 
 from DroneObjectDetection.Algorithm.yolo import yolo
 
@@ -23,14 +24,27 @@ from DroneObjectDetection.Algorithm.yolo import yolo
             properties={
                 'output': openapi.Schema(type=openapi.TYPE_STRING, description='Output of the object detection model')
             }
-        )}
+        ),
+        400: openapi.Schema(
+            type=openapi.TYPE_OBJECT,
+            properties={
+                'error': openapi.Schema(type=openapi.TYPE_STRING, description='Error message')
+            }
+        ),
+        500: openapi.Schema(
+            type=openapi.TYPE_OBJECT,
+            properties={
+                'error': openapi.Schema(type=openapi.TYPE_STRING, description='Internal server error')
+            }
+        )
+    }
 )
 @api_view(['POST'])
 def drone_object_detection(request):
     try:
         # Get the uploaded file
         if 'image' not in request.FILES:
-            return JsonResponse({'error': 'No image file uploaded'})
+            return JsonResponse({'error': 'No image file uploaded'}, status=status.HTTP_400_BAD_REQUEST)
 
         uploaded_file = request.FILES['image']
 
@@ -44,4 +58,4 @@ def drone_object_detection(request):
 
         return JsonResponse({'output': res_json})
     except Exception as e:
-        return JsonResponse({'error': str(e)})
+        return JsonResponse({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)

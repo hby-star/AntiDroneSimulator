@@ -21,6 +21,7 @@ from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
 
 import DroneObjectDetection.views as drone_object_detection_views
+import DroneRoutePlanning.views as drone_route_planning_views
 
 schema_view = get_schema_view(
     openapi.Info(
@@ -39,4 +40,5 @@ urlpatterns = [
     path('redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
 
     path('drone_object_detection/', drone_object_detection_views.drone_object_detection, name='drone_object_detection'),
+    path('drone_route_planning/', drone_route_planning_views.drone_route_planning, name='drone_route_planning'),
 ]
