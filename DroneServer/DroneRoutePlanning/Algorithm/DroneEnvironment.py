@@ -20,6 +20,7 @@ class DroneEnvironment:
         self.drone_position = drone_position  # 无人机位置
         self.person_position_in_camera = person_position_in_camera  # 人在相机中的位置
         self.obstacle_position = obstacle_positions  # 障碍物位置
+
         self.screen_size = screen_size  # 屏幕大小
         self.detect_obstacle_distance = detect_obstacle_distance  # 检测障碍物的距离
 
