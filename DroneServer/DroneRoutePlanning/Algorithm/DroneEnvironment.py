@@ -3,9 +3,11 @@ import math
 import numpy as np
 
 drone_move_directions = np.array([
-    [1, 0, 0], [-1, 0, 0], [0, 1, 0], [0, -1, 0], [0, 0, 1], [0, 0, -1],
-    [1, 1, 1], [-1, -1, -1], [1, 1, -1], [-1, -1, 1], [1, -1, 1], [-1, 1, -1],
-    [1, -1, -1], [-1, 1, 1]
+    [-2, 0, 4], [-1, 0, 4], [0, 0, 4], [1, 0, 4], [2, 0, 4],
+
+    [-2, 2, 4], [-1, 2, 4], [0, 2, 4], [1, 2, 4], [2, 2, 4],
+
+    [-2, -2, 4], [-1, -2, 4], [0, -2, 4], [1, -2, 4], [2, -2, 4]
 ])
 
 
@@ -13,7 +15,7 @@ class DroneEnvironment:
     def __init__(self, drone_position, person_position_in_camera, obstacle_positions, screen_size,
                  detect_obstacle_distance):
         self.state_size = 10  # 状态空间大小 3+4+3
-        self.action_size = 14  # 动作空间大小 14
+        self.action_size = 15  # 动作空间大小 15
 
         self.drone_position = drone_position  # 无人机位置
         self.person_position_in_camera = person_position_in_camera  # 人在相机中的位置
@@ -65,7 +67,7 @@ class DroneEnvironment:
             reward_obstacle = 1 / (1 + distance)
 
         # 追踪奖励和障碍物奖励的加权和作为总奖励
-        reward = reward_tracking + reward_obstacle
+        reward = reward_tracking + reward_obstacle * 2
 
         state = np.concatenate(
             [self.drone_position, self.person_position_in_camera, self.obstacle_position])

@@ -53,8 +53,10 @@ def drone_object_detection(request):
 
         # Run the YOLO model
         results = yolo(input_image)
-
-        res_json = results[0].tojson()
+        if results:
+            res_json = results[0].tojson()
+        else:
+            res_json = '[]'
 
         return JsonResponse({'output': res_json})
     except Exception as e:

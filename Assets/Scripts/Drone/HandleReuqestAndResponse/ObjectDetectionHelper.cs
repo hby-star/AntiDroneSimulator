@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Networking;
@@ -14,29 +15,58 @@ public class ObjectDetectionHelper
     public ObjectDetectionHelper(Drone drone)
     {
         this.drone = drone;
+        TrainingDataPath += this.drone.name + "_training_data.json";
     }
 
     private const string DroneServerObjectDetectionUrl = "http://localhost:8000//drone_object_detection/";
-    public const string TrainingDataPath = "./TrainingData.json";
+    public string TrainingDataPath = "Assets/Scripts/Drone/HandleReuqestAndResponse/";
     private Drone drone;
 
     public Vector3[] Directions = new Vector3[]
     {
-        new Vector3(0, 1, 0),
-        new Vector3(0, -1, 0),
-        new Vector3(1, 0, 0),
-        new Vector3(-1, 0, 0),
-        new Vector3(0, 0, 1),
-        new Vector3(0, 0, -1),
+        // horizontal
+        new (-2,0,4),
+        new (-1,0,4),
+        new (0,0,4),
+        new (1,0,4),
+        new (2,0,4),
 
-        new Vector3(1, 1, 1),
-        new Vector3(-1, -1, -1),
-        new Vector3(1, -1, 1),
-        new Vector3(-1, 1, -1),
-        new Vector3(1, 1, -1),
-        new Vector3(-1, -1, 1),
-        new Vector3(1, -1, -1),
-        new Vector3(-1, 1, 1),
+        // up & horizontal
+        new (-2,2,4),
+        new (-1,2,4),
+        new (0,2,4),
+        new (1,2,4),
+        new (2,2,4),
+
+        // down & horizontal
+        new (-2,-2,4),
+        new (-1,-2,4),
+        new (0,-2,4),
+        new (1,-2,4),
+        new (2,-2,4),
+    };
+
+    public Vector3[] RandomDirections = new Vector3[]
+    {
+        new (0,0,1),
+        new (0,0,-1),
+        new (0,1,0),
+        new (0,-1,0),
+        new (1,0,0),
+        new (-1,0,0),
+
+        new (0,1,1),
+        new (0,1,-1),
+        new (0,-1,1),
+        new (0,-1,-1),
+        new (1,0,1),
+        new (1,0,-1),
+        new (-1,0,1),
+        new (-1,0,-1),
+        new (1,1,0),
+        new (1,-1,0),
+        new (-1,1,0),
+        new (-1,-1,0),
     };
 
     public struct RoutePlanningTrainingData
@@ -193,6 +223,11 @@ public class ObjectDetectionHelper
         UnityWebRequest www = UnityWebRequest.Post(DroneServerObjectDetectionUrl, form);
         www.SendWebRequest();
 
+        while (!www.isDone)
+        {
+            // 等待请求完成
+        }
+
         if (www.result == UnityWebRequest.Result.Success)
         {
             var json = JObject.Parse(www.downloadHandler.text);
@@ -210,9 +245,9 @@ public class ObjectDetectionHelper
                     X2 = item["box"]["x2"].ToObject<float>(),
                     Y2 = item["box"]["y2"].ToObject<float>()
                 };
-                detectedObjects.Add(detectedObject);
+                //detectedObjects.Add(detectedObject);
 
-                if (detectedObject.Name == "person" && detectedObject.Confidence > 0.5)
+                if (detectedObject.Name == "person")
                 {
                     trainingData.PlayerPositionInCamera = new Vector4(detectedObject.X1, detectedObject.Y1,
                         detectedObject.X2, detectedObject.Y2);
@@ -220,6 +255,17 @@ public class ObjectDetectionHelper
                     return true;
                 }
             }
+
+            // 未检测到人时，无人机随机移动
+            // 无人机随机移动
+            Vector3 direction = RandomDirections[new Random().Next(RandomDirections.Length)];
+            Vector3 horizontalDirection = new Vector3(direction.x, 0, direction.z);
+            if (horizontalDirection != Vector3.zero)
+            {
+                drone.transform.forward = horizontalDirection.normalized;
+            }
+            drone.transform.position += direction;
+            //Debug.Log("No person detected, drone moves randomly.");
         }
 
         return false;
@@ -228,20 +274,49 @@ public class ObjectDetectionHelper
 
     public void SaveTrainData(string path)
     {
-        // 以json格式保存训练数据
-        trainingData.Direction = Directions[new Random().Next(Directions.Length)];
-        trainingData.Reward = ComputeReward(trainingData.DronePosition, trainingData.PlayerPositionInCamera,
-            trainingData.ObstalePosition);
-        trainingData.NextDronePosition = trainingData.DronePosition + trainingData.Direction;
-        trainingData.Done = IsDone(trainingData.DronePosition, trainingData.PlayerPositionInCamera);
+        try
+        {
+            // 以json格式保存训练数据
+            trainingData.Direction = Directions[new Random().Next(Directions.Length)];
+            trainingData.Reward = ComputeReward(trainingData.DronePosition, trainingData.PlayerPositionInCamera,
+                trainingData.ObstalePosition);
+            trainingData.NextDronePosition = trainingData.DronePosition + trainingData.Direction;
+            trainingData.Done = IsDone(trainingData.DronePosition, trainingData.PlayerPositionInCamera);
 
-        string json = JsonConvert.SerializeObject(trainingData, Formatting.Indented);
-        System.IO.File.WriteAllText(path, json);
+            // 配置JsonSerializerSettings来忽略自引用循环
+            JsonSerializerSettings settings = new JsonSerializerSettings
+            {
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+            };
 
-        // 更新Drone的位置
-        Vector3 horizontalDirection = new Vector3(trainingData.Direction.x, 0, trainingData.Direction.z);
-        drone.transform.forward = horizontalDirection.normalized;
-        drone.transform.position = trainingData.NextDronePosition;
+            string json = JsonConvert.SerializeObject(trainingData, Formatting.Indented, settings);
+
+            // 检查json内容
+            if (string.IsNullOrEmpty(json))
+            {
+                Debug.LogError("JSON content is empty or null.");
+                return;
+            }
+
+            // 以追加方式写入文件
+            using (StreamWriter sw = new StreamWriter(path, true))
+            {
+                sw.WriteLine(json + ",");
+            }
+            Debug.Log($"TrainingData appended to {path}");
+
+            // 更新无人机位置
+            Vector3 horizontalDirection = new Vector3(trainingData.Direction.x, 0, trainingData.Direction.z);
+            if (horizontalDirection != Vector3.zero)
+            {
+                drone.transform.forward = horizontalDirection.normalized;
+            }
+            drone.transform.position = trainingData.NextDronePosition;
+        }
+        catch (Exception ex)
+        {
+            Debug.LogError($"Failed to save TrainingData: {ex.Message}");
+        }
     }
 
     float ComputeReward(Vector3 dronePosition, Vector4 playerPositionInCamera, Vector3 obstaclePosition)
@@ -254,22 +329,27 @@ public class ObjectDetectionHelper
         distance /= Vector2.Distance(Vector2.zero, screenCenter);
         if (distance > Vector2.Distance(Vector2.zero, screenCenter))
         {
-            reward = -10;
+            reward -= -10;
         }
         else
         {
-            reward = 1 / (1 + distance);
+            reward += 1 / (1 + distance);
         }
 
         float distanceToObstacle = Vector3.Distance(dronePosition, obstaclePosition);
         distanceToObstacle /= trainingData.DetectObstacleDistance;
         if (distanceToObstacle < 1)
         {
-            reward = -10;
+            reward -= -10;
         }
         else
         {
             reward += 1 / (1 + distanceToObstacle);
+        }
+
+        if(drone.CanAttackPlayer())
+        {
+            reward += 30;
         }
 
         return reward;
@@ -283,6 +363,11 @@ public class ObjectDetectionHelper
         float distance = Vector2.Distance(playerCenter, screenCenter);
         distance /= Vector2.Distance(Vector2.zero, screenCenter);
         if (distance > Vector2.Distance(Vector2.zero, screenCenter))
+        {
+            return true;
+        }
+
+        if(drone.CanAttackPlayer())
         {
             return true;
         }

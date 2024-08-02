@@ -90,8 +90,8 @@ public class Drone : Entity
     [NonSerialized] public Player TargetPlayer;
     [NonSerialized] public Vector3 CurrentMoveDirection;
     private float lastSendRequestTime = 0;
-    public float sendRequestInterval = 1; // 发送请求的间隔
-    public float detectObstacleDistance = 10; // 避障距离
+    public float sendRequestInterval = 1f; // 发送请求的间隔
+    public float detectObstacleDistance = 5; // 避障距离
 
     private ObjectDetectionHelper objectDetectionHelper;
     private RoutePlanningHelper routePlanningHelper;
@@ -126,6 +126,22 @@ public class Drone : Entity
         {
             Attack();
         }
+    }
+
+    public bool CanAttackPlayer()
+    {
+        Collider[] hitColliders = Physics.OverlapSphere(transform.position, bomb.GetComponent<Bomb>().explosionRadius / 2);
+
+        foreach (var hitCollider in hitColliders)
+        {
+            Player player = hitCollider.GetComponent<Player>();
+            if (player != null)
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     // 更新搜索算法
@@ -213,11 +229,13 @@ public class Drone : Entity
 
         StateMachine.CurrentState.Update();
 
-        if(getTrainningData)
+        if(getTrainningData && Time.time - lastSendRequestTime > sendRequestInterval)
         {
+            lastSendRequestTime = Time.time;
             objectDetectionHelper.GetTrainingDataSendRequest(Camera);
-            return;
         }
+
+        return;
 
         // 无人机音效
         AudioUpdate();
