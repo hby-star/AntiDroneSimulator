@@ -126,8 +126,8 @@ if __name__ == '__main__':
     BATCH_SIZE = 128
     GAMMA = 0.99
     EPS_START = 0.99
-    EPS_END = 0.05
-    EPS_DECAY = 1000
+    EPS_END = 0.01
+    EPS_DECAY = 500
     TAU = 0.005
     LR = 1e-4
 
@@ -139,7 +139,6 @@ if __name__ == '__main__':
     # 初始化网络
     policy_net = DQN(n_observations, n_actions).to(device)
     target_net = DQN(n_observations, n_actions).to(device)
-    policy_net.load_state_dict(torch.load('model/sim_env_model.pth', weights_only=True))
     target_net.load_state_dict(policy_net.state_dict())
 
     # 设置优化器
@@ -151,7 +150,7 @@ if __name__ == '__main__':
 
     # 设置训练次数
     if torch.cuda.is_available() or torch.backends.mps.is_available():
-        num_episodes = 500
+        num_episodes = EPS_DECAY
     else:
         num_episodes = 50
 
@@ -193,10 +192,10 @@ if __name__ == '__main__':
             # 如果回合结束，记录持续时间并更新图像
             if done:
                 episode_durations.append(t + 1)
-                plot_durations(update_interval=10)
+                plot_durations(update_interval=20)
                 break
 
-    # torch.save(target_net.state_dict(), 'model/sim_env_model.pth')
+    torch.save(target_net.state_dict(), 'model/sim_env_model.pth')
     print('Complete')
     # 显示结果
     plot_durations(show_result=True)
