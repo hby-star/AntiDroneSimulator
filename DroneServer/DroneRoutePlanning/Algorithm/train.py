@@ -1,137 +1,204 @@
-import json
-import numpy as np
+import math
+import random
+from itertools import count
+
+import matplotlib
+import matplotlib.pyplot as plt
 import torch
 import torch.nn as nn
 import torch.optim as optim
-import random
-import matplotlib.pyplot as plt
 
-from collections import deque
-
-from DroneRoutePlanning.Algorithm.DQN import DQN
-from collections import namedtuple
-
-Transition = namedtuple('Transition', ('state', 'action', 'reward', 'next_state', 'done'))
+from DroneRoutePlanning.Algorithm.DQN import DQN, ReplayMemory, Transition
+from DroneRoutePlanning.Algorithm.DroneEnvironment import DroneEnvironment
 
 
-# 读取训练数据
-def load_training_data(filename):
-    with open(filename, 'r') as f:
-        data = json.load(f)
-    return data
+def select_action(_state):
+    global steps_done
+    sample = random.random()
+    # 计算epsilon阈值，随着步数的增加，epsilon逐渐减小
+    eps_threshold = EPS_END + (EPS_START - EPS_END) * math.exp(-1. * steps_done / EPS_DECAY)
+    steps_done += 1
+    # 以epsilon的概率选择随机动作
+    if sample > eps_threshold:
+        with torch.no_grad():
+            # 否则选择使得Q值最大的动作
+            return policy_net(_state).max(1).indices.view(1, 1)
+    else:
+        return torch.tensor([[env.action_space.sample()]], device=device, dtype=torch.long)
 
 
-# 解析训练数据
-def parse_training_data(data):
-    states = []
-    actions = []
-    rewards = []
-    next_states = []
-    dones = []
-    for entry in data:
-        state = [
-            entry['DronePosition']['x'], entry['DronePosition']['y'], entry['DronePosition']['z'],
-            entry['PlayerPositionInCamera']['x'], entry['PlayerPositionInCamera']['y'],
-            entry['PlayerPositionInCamera']['z'], entry['PlayerPositionInCamera']['w'],
-            entry['ObstalePosition']['x'], entry['ObstalePosition']['y'], entry['ObstalePosition']['z'],
-        ]
-        next_state = [
-            entry['NextDronePosition']['x'], entry['NextDronePosition']['y'], entry['NextDronePosition']['z'],
-            entry['PlayerPositionInCamera']['x'], entry['PlayerPositionInCamera']['y'],
-            entry['PlayerPositionInCamera']['z'], entry['PlayerPositionInCamera']['w'],
-            entry['ObstalePosition']['x'], entry['ObstalePosition']['y'], entry['ObstalePosition']['z'],
-        ]
-        action = entry['Direction']
-        reward = entry['Reward']
-        done = entry['Done']
+def plot_durations(show_result=False, update_interval=10):
+    # 每隔一定的间隔或者训练结束时更新图像
+    if len(episode_durations) % update_interval != 0 and not show_result:
+        return
 
-        states.append(state)
-        actions.append(action)
-        rewards.append(reward)
-        next_states.append(next_state)
-        dones.append(done)
-    return np.array(states), np.array(actions), np.array(rewards), np.array(next_states), np.array(dones)
+    plt.figure(1)
+    durations_t = torch.tensor(episode_durations, dtype=torch.float)
+    if show_result:
+        plt.title('Result')
+    else:
+        plt.clf()
+        plt.title('Training...')
+    plt.xlabel('Episode')
+    plt.ylabel('Duration')
+    plt.plot(durations_t.numpy())
+    # 计算并绘制每100个episode的平均持续时间
+    if len(durations_t) >= 100:
+        means = durations_t.unfold(0, 100, 1).mean(1).view(-1)
+        means = torch.cat((torch.zeros(99), means))
+        plt.plot(means.numpy())
+
+    plt.pause(0.001)
+
+    if is_ipython:
+        if not show_result:
+            display.display(plt.gcf())
+            display.clear_output(wait=True)
+        else:
+            display.display(plt.gcf())
 
 
 def optimize_model():
-    if len(memory) < batch_size:
+    # 如果记忆库中的转换数量小于批量大小，则不进行优化
+    if len(memory) < BATCH_SIZE:
         return
-    transitions = random.sample(memory, batch_size)
+    transitions = memory.sample(BATCH_SIZE)
+    # 将批量转换转置以便我们可以批量处理它们
     batch = Transition(*zip(*transitions))
 
-    state_batch = torch.tensor(np.array(batch.state), dtype=torch.float32)  # Convert to float
-    action_batch = torch.tensor(batch.action)
-    reward_batch = torch.tensor(batch.reward).float()  # Convert to float
-    next_state_batch = torch.tensor(np.array(batch.next_state), dtype=torch.float32)  # Convert to float
-    done_batch = torch.tensor(np.array(batch.done, dtype=bool))
+    # 计算非最终状态的掩码，并连接批处理元素
+    non_final_mask = torch.tensor(tuple(map(lambda s: s is not None,
+                                            batch.next_state)), device=device, dtype=torch.bool)
+    non_final_next_states = torch.cat([s for s in batch.next_state
+                                       if s is not None])
+    state_batch = torch.cat(batch.state)
+    action_batch = torch.cat(batch.action)
+    reward_batch = torch.cat(batch.reward)
 
-    state_action_values = model(state_batch).gather(1, action_batch.unsqueeze(1))
-    next_state_values = torch.zeros(batch_size)
-    next_state_values[~done_batch] = target_model(next_state_batch[~done_batch]).max(1)[0].detach()
-    expected_state_action_values = (next_state_values * gamma) + reward_batch
+    # 计算Q(s_t, a)，然后我们选择已经采取的动作的列
+    state_action_values = policy_net(state_batch).gather(1, action_batch)
 
+    # 计算所有下一个状态的V(s_{t+1})
+    next_state_values = torch.zeros(BATCH_SIZE, device=device)
+    with torch.no_grad():
+        next_state_values[non_final_mask] = target_net(non_final_next_states).max(1).values
+    # 计算期望的Q值
+    expected_state_action_values = (next_state_values * GAMMA) + reward_batch
+
+    # 计算Huber损失
+    criterion = nn.SmoothL1Loss()
     loss = criterion(state_action_values, expected_state_action_values.unsqueeze(1))
+
+    # 优化模型
     optimizer.zero_grad()
     loss.backward()
+    # 对梯度进行裁剪
+    torch.nn.utils.clip_grad_value_(policy_net.parameters(), 100)
     optimizer.step()
-    losses.append(loss.item())
 
 
-# 加载和解析训练数据
-data = load_training_data('data/training_data.json')
-states, actions, rewards, next_states, dones = parse_training_data(data)
+if __name__ == '__main__':
+    # 设置matplotlib
+    is_ipython = 'inline' in matplotlib.get_backend()
+    if is_ipython:
+        from IPython import display
 
-# 初始化DQN模型
-state_size = len(states[0])
-action_size = len(actions[0])
-model = DQN(state_size, action_size)
+    plt.ion()
 
-target_model = DQN(state_size, action_size)
-target_model.load_state_dict(model.state_dict())
+    # 使用GPU
+    device = torch.device(
+        "cuda" if torch.cuda.is_available() else
+        "mps" if torch.backends.mps.is_available() else
+        "cpu"
+    )
 
-# 训练DQN模型
-batch_size = 32
-gamma = 0.99
-learning_rate = 0.001
-target_update = 10
+    print(f"Using {device} device")
 
-optimizer = optim.Adam(model.parameters(), lr=learning_rate)
-criterion = nn.MSELoss()
+    # 初始化环境
+    env = DroneEnvironment(drone_position=[0, 0, 0],
+                           person_position_in_camera=[200, 140, 220, 150],
+                           obstacle_positions=[5, 5, 5],
+                           screen_size=[552, 326],
+                           detect_obstacle_distance=10,
+                           max_steps=1000)
 
-num_episodes = 50
-memory = deque(maxlen=1000)
+    # 设置训练参数
+    BATCH_SIZE = 128
+    GAMMA = 0.99
+    EPS_START = 0.99
+    EPS_END = 0.05
+    EPS_DECAY = 1000
+    TAU = 0.005
+    LR = 1e-4
 
-losses = []
-average_losses = []
+    # 获取动作空间的大小和状态观测的数量
+    n_actions = env.action_space.n
+    state, info = env.reset()
+    n_observations = len(state)
 
-for episode in range(num_episodes):
-    state = states[episode]
-    for t in range(500):
-        action = model(torch.tensor(state).float()).max(0)[1].item()
-        next_state = next_states[episode]
-        reward = rewards[episode]
-        done = dones[episode]
+    # 初始化网络
+    policy_net = DQN(n_observations, n_actions).to(device)
+    target_net = DQN(n_observations, n_actions).to(device)
+    policy_net.load_state_dict(torch.load('model/sim_env_model.pth', weights_only=True))
+    target_net.load_state_dict(policy_net.state_dict())
 
-        memory.append((state, action, reward, next_state, done))
-        state = next_state
+    # 设置优化器
+    optimizer = optim.AdamW(policy_net.parameters(), lr=LR, amsgrad=True)
+    memory = ReplayMemory(10000)
 
-        optimize_model()
+    steps_done = 0
+    episode_durations = []
 
-    # 打印训练进度
-    average_loss = sum(losses) / len(losses) * 100
-    print(f'Episode: {episode + 1}/{num_episodes}, Loss: {average_loss}')
-    average_losses.append(average_loss)
-    losses = []
+    # 设置训练次数
+    if torch.cuda.is_available() or torch.backends.mps.is_available():
+        num_episodes = 500
+    else:
+        num_episodes = 50
 
-    if episode % target_update == 0:
-        target_model.load_state_dict(model.state_dict())
+    # 开始训练
+    for i_episode in range(num_episodes):
+        # 初始化环境并获取其状态
+        state, info = env.reset()
+        state = torch.tensor(state, dtype=torch.float32, device=device).unsqueeze(0)
+        for t in count():
+            # 选择动作
+            action = select_action(state)
+            # 执行动作并获取反馈
+            observation, reward, terminated, truncated, _ = env.step(action.item())
+            reward = torch.tensor([reward], device=device)
+            done = terminated or truncated
 
-# 在训练结束后，绘制损失和准确率
-plt.figure(figsize=(12, 4))
-plt.subplot(1, 2, 1)
-plt.plot(average_losses, label='Loss')
-plt.legend()
-plt.show()
+            # 如果回合结束，下一个状态为None
+            if terminated:
+                next_state = None
+            else:
+                next_state = torch.tensor(observation, dtype=torch.float32, device=device).unsqueeze(0)
 
-# 保存模型参数
-torch.save(model.state_dict(), 'model/model.pth')
+            # 将转换存储在记忆中
+            memory.push(state, action, next_state, reward)
+
+            # 移动到下一个状态
+            state = next_state
+
+            # 执行一步优化（在策略网络上）
+            optimize_model()
+
+            # 软更新目标网络的权重
+            target_net_state_dict = target_net.state_dict()
+            policy_net_state_dict = policy_net.state_dict()
+            for key in policy_net_state_dict:
+                target_net_state_dict[key] = policy_net_state_dict[key] * TAU + target_net_state_dict[key] * (1 - TAU)
+            target_net.load_state_dict(target_net_state_dict)
+
+            # 如果回合结束，记录持续时间并更新图像
+            if done:
+                episode_durations.append(t + 1)
+                plot_durations(update_interval=10)
+                break
+
+    # torch.save(target_net.state_dict(), 'model/sim_env_model.pth')
+    print('Complete')
+    # 显示结果
+    plot_durations(show_result=True)
+    plt.ioff()
+    plt.show()

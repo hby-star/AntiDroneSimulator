@@ -12,3 +12,8 @@ OSError: [WinError 126] 找不到指定的模块。 Error loading "C:\Users\dell
 Ref to: https://github.com/pytorch/pytorch/issues/131662
 
 
+## 2. pipreqs error
+```shell
+pipreqs ./ --encoding UTF8 --force --use-local --ignore .venv
+```
+Ref to: https://www.fuxi.info/archives/257
