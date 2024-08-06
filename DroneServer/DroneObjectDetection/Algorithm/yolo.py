@@ -1,7 +1,10 @@
+import os
+
 from PIL import Image
 from ultralytics import YOLO
 
-model_path = "models/yolov8n.pt"
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+model_path = os.path.join(BASE_DIR, 'Algorithm', 'models', 'yolov8n.pt')
 image_path = "images/test.png"
 
 model = YOLO(model_path)

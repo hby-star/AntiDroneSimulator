@@ -1,6 +1,8 @@
+import os
 import random
 from collections import namedtuple, deque
 
+import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
@@ -38,3 +40,18 @@ class DQN(nn.Module):
         x = F.relu(self.layer1(x))
         x = F.relu(self.layer2(x))
         return self.layer3(x)
+
+
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+model_path = os.path.join(BASE_DIR, 'Algorithm', 'models', 'sim_reset.pth')
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+dqn_model = DQN(10, 15).to(device)
+
+dqn_model.load_state_dict(torch.load(model_path, weights_only=True))
+dqn_model.eval()
+
+
+def dqn_select_action(state):
+    state = torch.tensor(state, dtype=torch.float32, device=device).unsqueeze(0)
+    action = dqn_model(state).max(1).indices.view(1, 1)
+    return action

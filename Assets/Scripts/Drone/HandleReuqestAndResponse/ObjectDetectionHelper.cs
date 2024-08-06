@@ -137,7 +137,7 @@ public class ObjectDetectionHelper
 
         // 创建一个WWWForm并添加图像数据
         WWWForm form = new WWWForm();
-        form.AddBinaryData("image", requestImageBytes, "screenshot.jpg", "image/jpeg");
+        form.AddBinaryData("drone_image", requestImageBytes, "screenshot.jpg", "image/jpeg");
 
         // 发送POST请求
         UnityWebRequest www = UnityWebRequest.Post(DroneServerObjectDetectionUrl, form);
@@ -217,7 +217,7 @@ public class ObjectDetectionHelper
 
         // 创建一个WWWForm并添加图像数据
         WWWForm form = new WWWForm();
-        form.AddBinaryData("image", requestImageBytes, "screenshot.jpg", "image/jpeg");
+        form.AddBinaryData("drone_image", requestImageBytes, "screenshot.jpg", "image/jpeg");
 
         // 发送POST请求
         UnityWebRequest www = UnityWebRequest.Post(DroneServerObjectDetectionUrl, form);

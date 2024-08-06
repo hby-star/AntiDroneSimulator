@@ -61,6 +61,7 @@ public class DroneAlgorithmManager : MonoBehaviour
 
     public SearchAlgorithm currentSearchAlgorithm;
     public AttackAlgorithm currentAttackAlgorithm;
+    public bool getTrainingData = false;
 
     public IDroneSearchAlgorithm GetDroneSearchAlgorithm()
     {

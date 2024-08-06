@@ -23,7 +23,7 @@ public class Bomb : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Drone" || drone.getTrainningData)
+        if (other.tag == "Drone" || drone.GetTrainningData)
         {
             return;
         }

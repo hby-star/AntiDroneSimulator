@@ -122,23 +122,26 @@ if __name__ == '__main__':
                            detect_obstacle_distance=10,
                            max_steps=1000)
 
+    reset_policy = env.random_reset
+
     # 设置训练参数
     BATCH_SIZE = 128
     GAMMA = 0.99
-    EPS_START = 0.99
-    EPS_END = 0.01
-    EPS_DECAY = 500
-    TAU = 0.005
-    LR = 1e-4
+    EPS_START = 0.01
+    EPS_END = 0.001
+    EPS_DECAY = 100
+    TAU = 5e-5
+    LR = 1e-6
 
     # 获取动作空间的大小和状态观测的数量
     n_actions = env.action_space.n
-    state, info = env.reset()
+    state, info = reset_policy()
     n_observations = len(state)
 
     # 初始化网络
     policy_net = DQN(n_observations, n_actions).to(device)
     target_net = DQN(n_observations, n_actions).to(device)
+    policy_net.load_state_dict(torch.load('models/sim_reset.pth', weights_only=True))
     target_net.load_state_dict(policy_net.state_dict())
 
     # 设置优化器
@@ -157,7 +160,7 @@ if __name__ == '__main__':
     # 开始训练
     for i_episode in range(num_episodes):
         # 初始化环境并获取其状态
-        state, info = env.reset()
+        state, info = reset_policy()
         state = torch.tensor(state, dtype=torch.float32, device=device).unsqueeze(0)
         for t in count():
             # 选择动作
@@ -192,10 +195,10 @@ if __name__ == '__main__':
             # 如果回合结束，记录持续时间并更新图像
             if done:
                 episode_durations.append(t + 1)
-                plot_durations(update_interval=20)
+                plot_durations(update_interval=10)
                 break
 
-    torch.save(target_net.state_dict(), 'models/sim_reset.pth')
+    torch.save(target_net.state_dict(), 'models/sim_randon_reset.pth')
     print('Complete')
     # 显示结果
     plot_durations(show_result=True)

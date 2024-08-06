@@ -1,10 +1,15 @@
+import json
+
 import numpy as np
+from PIL import Image
 from django.http import JsonResponse
 from drf_yasg import openapi
 from drf_yasg.utils import swagger_auto_schema
+from rest_framework import status
 from rest_framework.decorators import api_view
 
-from DroneRoutePlanning.Algorithm.DQN import predict_action
+from DroneObjectDetection.Algorithm.yolo import yolo
+from DroneRoutePlanning.Algorithm.DQN import dqn_select_action
 from DroneRoutePlanning.Algorithm.DroneEnvironment import drone_move_directions
 
 
@@ -15,7 +20,17 @@ from DroneRoutePlanning.Algorithm.DroneEnvironment import drone_move_directions
     request_body=openapi.Schema(
         type=openapi.TYPE_OBJECT,
         properties={
-            'input': openapi.Schema(type=openapi.TYPE_STRING, description='Input for the route planning model')
+            'drone_image': openapi.Schema(type=openapi.TYPE_FILE, description='无人机拍摄的图像'),
+            'drone_position': openapi.Schema(
+                type=openapi.TYPE_ARRAY,
+                items=openapi.Schema(type=openapi.TYPE_NUMBER),
+                description='无人机的位置'
+            ),
+            'obstacle_positions': openapi.Schema(
+                type=openapi.TYPE_ARRAY,
+                items=openapi.Schema(type=openapi.TYPE_NUMBER),
+                description='障碍物的位置'
+            ),
         }
     ),
     responses={
@@ -36,27 +51,50 @@ from DroneRoutePlanning.Algorithm.DroneEnvironment import drone_move_directions
             properties={
                 'error': openapi.Schema(type=openapi.TYPE_STRING, description='Internal server error')
             }
-        )}
+        )
+    }
 )
 @api_view(['POST'])
 def drone_route_planning(request):
     try:
-        # 解析请求中的无人机状态
-        data = request.json()
-        drone_position = np.array(data['DronePosition'])
-        drone_velocity = np.array(data['DroneVelocity'])
-        player_position_in_camera = np.array(data['PlayerPositionInCamera'])
-        obstacle_info = np.array(data['ObstacleInfo']).flatten()
+        # Get the uploaded file
+        if ('drone_image' not in request.FILES or
+                'drone_position' not in request.data or
+                'obstacle_positions' not in request.data):
+            return JsonResponse({'error': 'Missing required parameters'}, status=status.HTTP_400_BAD_REQUEST)
 
-        # 组合成状态向量
-        state = np.concatenate([drone_position, drone_velocity, player_position_in_camera, obstacle_info])
+        uploaded_file = request.FILES['drone_image']
 
-        # 预测动作
-        action = predict_action(state)
+        # Convert the uploaded file to a PIL image
+        input_image = Image.open(uploaded_file)
 
-        # 获取对应的移动方向
-        direction = drone_move_directions[action]
+        # Run the YOLO model
+        results = yolo(input_image)
+        if results:
+            res_json = results[0].tojson()
+        else:
+            return JsonResponse({'No person detected': '[]'})
 
-        return JsonResponse({direction.tolist()})
+        # get person position in camera from yolo results
+        res_list = json.loads(res_json)
+        person_position_in_camera = []
+        for res_object in res_list:
+            if res_object['name'] == 'person':
+                person_position_in_camera = [res_object['box']['x1'], res_object['box']['y1'], res_object['box']['x2'],
+                                             res_object['box']['y2']]
+                break
+
+        if not person_position_in_camera:
+            return JsonResponse({'No person detected': '[]'})
+
+        drone_position = json.loads(request.data['drone_position'])
+        obstacle_positions = json.loads(request.data['obstacle_positions'])
+
+        state = np.concatenate(
+            [np.array(drone_position), np.array(person_position_in_camera), np.array(obstacle_positions)])
+
+        action = dqn_select_action(state)
+
+        return JsonResponse({'Direction': drone_move_directions[action].tolist()})
     except Exception as e:
-        return JsonResponse({'error': str(e)})
+        return JsonResponse({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)

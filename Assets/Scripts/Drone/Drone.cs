@@ -85,9 +85,9 @@ public class Drone : Entity
 
     public IDroneSearchAlgorithm DroneSearchAlgorithm;
     public IDroneAttackAlgorithm DroneAttackAlgorithm;
-    public bool getTrainningData = false;
+    public bool GetTrainningData { get; private set; }
 
-    [NonSerialized] public Player TargetPlayer;
+    [NonSerialized] public bool FoundPlayer = false;
     [NonSerialized] public Vector3 CurrentMoveDirection;
     private float lastSendRequestTime = 0;
     public float sendRequestInterval = 1f; // 发送请求的间隔
@@ -101,7 +101,7 @@ public class Drone : Entity
     {
         // 初始化无人机进攻状态
         hasBomb = true;
-        TargetPlayer = null;
+        FoundPlayer = false;
 
         // 初始化无人机算法
         DroneSearchAlgorithm = DroneAlgorithmManager.Instance.GetDroneSearchAlgorithm();
@@ -111,18 +111,19 @@ public class Drone : Entity
 
         // 初始化服务器通信工具
         objectDetectionHelper = new ObjectDetectionHelper(this);
-        routePlanningHelper = new RoutePlanningHelper();
+        routePlanningHelper = new RoutePlanningHelper(this);
     }
 
     // 更新攻击算法
     private void AttackPlayerUpdate()
     {
         // 攻击玩家
-        DroneAttackAlgorithm.DroneAttackAlgorithmUpdate();
+        //DroneAttackAlgorithm.DroneAttackAlgorithmUpdate();
+        CurrentMoveDirection = routePlanningHelper.responseDirection;
+        MoveToCurrentMoveDirection(moveSpeed);
 
         // 攻击距离内释放炸弹
-        if (Vector3.Distance(transform.position, TargetPlayer.transform.position) <
-            (bomb.GetComponent<Bomb>().explosionRadius / 2))
+        if (CanAttackPlayer())
         {
             Attack();
         }
@@ -130,7 +131,8 @@ public class Drone : Entity
 
     public bool CanAttackPlayer()
     {
-        Collider[] hitColliders = Physics.OverlapSphere(transform.position, bomb.GetComponent<Bomb>().explosionRadius / 2);
+        Collider[] hitColliders =
+            Physics.OverlapSphere(transform.position, bomb.GetComponent<Bomb>().explosionRadius / 2);
 
         foreach (var hitCollider in hitColliders)
         {
@@ -151,15 +153,13 @@ public class Drone : Entity
     }
 
     // 搜索玩家
-    private Player FindPlayer()
+    private void FindPlayer()
     {
         if (Time.time - lastSendRequestTime > sendRequestInterval)
         {
-            StartCoroutine(objectDetectionHelper.SendObjectDetectionRequest(Camera));
+            StartCoroutine(routePlanningHelper.SendRoutePlanningRequest(Camera));
             lastSendRequestTime = Time.time;
         }
-
-        return null;
     }
 
     // 获取距离最近的障碍物的相对位置
@@ -182,8 +182,8 @@ public class Drone : Entity
             RaycastHit hit;
             if (Physics.Raycast(transform.position, direction, out hit, detectObstacleDistance))
             {
-                // 忽略玩家
-                if (!hit.collider.CompareTag("Player"))
+                // 忽略玩家和无人机
+                if (!hit.collider.CompareTag("Player") && !hit.collider.CompareTag("Drone"))
                 {
                     if (hit.distance < obstaclePosition.magnitude)
                     {
@@ -221,6 +221,7 @@ public class Drone : Entity
         // 无人机算法
         DroneAlgorithmStart();
 
+        GetTrainningData = DroneAlgorithmManager.Instance.getTrainingData;
     }
 
     protected override void Update()
@@ -229,13 +230,11 @@ public class Drone : Entity
 
         StateMachine.CurrentState.Update();
 
-        if(getTrainningData && Time.time - lastSendRequestTime > sendRequestInterval)
+        if (GetTrainningData && Time.time - lastSendRequestTime > sendRequestInterval)
         {
             lastSendRequestTime = Time.time;
             objectDetectionHelper.GetTrainingDataSendRequest(Camera);
         }
-
-        return;
 
         // 无人机音效
         AudioUpdate();
@@ -251,9 +250,9 @@ public class Drone : Entity
         else
         {
             // 搜索玩家
-            TargetPlayer = FindPlayer();
+            FindPlayer();
 
-            if (TargetPlayer && hasBomb)
+            if (FoundPlayer && hasBomb)
             {
                 // 攻击玩家
                 AttackPlayerUpdate();

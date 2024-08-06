@@ -97,7 +97,23 @@ class DroneEnvironment(gym.Env):
         # 这里可以根据需要初始化状态
         self.drone_position = np.array([0, 0, 0])
         self.person_position_in_camera = np.array([200, 150, 240, 170])
-        self.obstacle_position = np.array(self.random_obstacle_position())
+        self.obstacle_position = np.array(self.reset_obstacle_position())
+        self.current_step = 0
+        self.screen_size = np.array([552, 326])
+        self.detect_obstacle_distance = 10
+        self.state = self._get_state()
+        return self.state, {}
+
+    def reset_obstacle_position(self):
+        x = 5 if random.random() < 0.5 else -5
+        y = 5 if random.random() < 0.5 else -5
+        z = 5 if random.random() < 0.5 else -5
+        return [x, y, z]
+
+    def random_reset(self):
+        self.drone_position = self.random_drone_position()
+        self.person_position_in_camera = self.random_person_position_in_camera()
+        self.obstacle_position = self.random_obstacle_position()
         self.current_step = 0
         self.screen_size = np.array([552, 326])
         self.detect_obstacle_distance = 10
@@ -111,10 +127,16 @@ class DroneEnvironment(gym.Env):
         y2 = random.randint(y1, int(self.screen_size[1]))
         return [x1, y1, x2, y2]
 
+    def random_drone_position(self):
+        x = random.randint(-5, 5)
+        y = random.randint(-5, 5)
+        z = random.randint(-5, 5)
+        return [x, y, z]
+
     def random_obstacle_position(self):
-        x = 5 if random.random() < 0.5 else -5
-        y = 5 if random.random() < 0.5 else -5
-        z = 5 if random.random() < 0.5 else -5
+        x = random.randint(-5, 5)
+        y = random.randint(-5, 5)
+        z = random.randint(-5, 5)
         return [x, y, z]
 
 # # 使用自定义环境

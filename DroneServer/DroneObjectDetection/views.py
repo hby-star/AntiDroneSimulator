@@ -15,14 +15,14 @@ from DroneObjectDetection.Algorithm.yolo import yolo
     request_body=openapi.Schema(
         type=openapi.TYPE_OBJECT,
         properties={
-            'image': openapi.Schema(type=openapi.TYPE_FILE, description='Image file to be processed')
+            'drone_image': openapi.Schema(type=openapi.TYPE_FILE, description='无人机拍摄的图像')
         }
     ),
     responses={
         200: openapi.Schema(
             type=openapi.TYPE_OBJECT,
             properties={
-                'output': openapi.Schema(type=openapi.TYPE_STRING, description='Output of the object detection model')
+                'output': openapi.Schema(type=openapi.TYPE_STRING, description='目标检测模型的输出')
             }
         ),
         400: openapi.Schema(
@@ -43,10 +43,10 @@ from DroneObjectDetection.Algorithm.yolo import yolo
 def drone_object_detection(request):
     try:
         # Get the uploaded file
-        if 'image' not in request.FILES:
+        if 'drone_image' not in request.FILES:
             return JsonResponse({'error': 'No image file uploaded'}, status=status.HTTP_400_BAD_REQUEST)
 
-        uploaded_file = request.FILES['image']
+        uploaded_file = request.FILES['drone_image']
 
         # Convert the uploaded file to a PIL image
         input_image = Image.open(uploaded_file)
