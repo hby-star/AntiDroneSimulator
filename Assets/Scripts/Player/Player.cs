@@ -66,7 +66,7 @@ public class Player : Entity
     public List<Gun> guns;
     public GameObject shieldPrefab;
     private bool isShiledPlaced;
-    private Equipment currentEquipment;
+    public Equipment currentEquipment { get; private set; }
     private int currentGunIndex;
 
     private void AttackStart()

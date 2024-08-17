@@ -1,12 +1,11 @@
 import torch
 import numpy as np
-from DroneRoutePlanning.Algorithm.DroneEnvironment import DroneEnvironment
-from DroneRoutePlanning.Algorithm.DQN import DQN
+from DroneRoutePlanning.DQN.DroneEnvironment import DroneEnvironment
+from DroneRoutePlanning.DQN.DQN import DQN
 
 if __name__ == '__main__':
     # Initialize the environment
-    env = DroneEnvironment(drone_position=[0, 0, 0],
-                           person_position_in_camera=[200, 140, 220, 150],
+    env = DroneEnvironment(person_position_in_camera=[200, 140, 220, 150],
                            obstacle_positions=[5, 5, 5],
                            screen_size=[552, 326],
                            detect_obstacle_distance=10,

@@ -11,10 +11,10 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - ignore
+  - PlayerCameraIgnore
   - Water
   - UI
-  - 
+  - DroneCameraIgnore
   - 
   - 
   - 

@@ -43,11 +43,11 @@ class DQN(nn.Module):
 
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-model_path = os.path.join(BASE_DIR, 'Algorithm', 'models', 'sim_reset.pth')
+model_path = os.path.join(BASE_DIR, 'DQN', 'models', 'sim_reset.pth')
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-dqn_model = DQN(10, 15).to(device)
+dqn_model = DQN(7, 15).to(device)
 
-dqn_model.load_state_dict(torch.load(model_path, weights_only=True))
+#dqn_model.load_state_dict(torch.load(model_path, weights_only=True))
 dqn_model.eval()
 
 

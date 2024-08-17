@@ -29,7 +29,7 @@ public class NetGun : Gun
 
     void OnGUI()
     {
-        if (InputManager.Instance.operateEntityNow)
+        if (InputManager.Instance.operateEntityNow && InputManager.Instance.currentEntity is Player player && player.currentEquipment == this)
         {
             int squareSize = 50;
             int cornerLength = 10;

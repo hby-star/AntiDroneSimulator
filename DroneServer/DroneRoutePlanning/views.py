@@ -1,4 +1,6 @@
+import argparse
 import json
+import os
 
 import numpy as np
 from PIL import Image
@@ -9,8 +11,11 @@ from rest_framework import status
 from rest_framework.decorators import api_view
 
 from DroneObjectDetection.Algorithm.yolo import yolo
-from DroneRoutePlanning.Algorithm.DQN import dqn_select_action
-from DroneRoutePlanning.Algorithm.DroneEnvironment import drone_move_directions
+from DroneRoutePlanning.D3QN.D3QN import D3QN, d3qn_select_action
+from DroneRoutePlanning.DQN.DQN import dqn_select_action
+from DroneRoutePlanning.DroneEnvironment.DroneEnvironment import drone_move_directions, DroneEnvironment
+
+save_count = 0
 
 
 @swagger_auto_schema(
@@ -21,11 +26,6 @@ from DroneRoutePlanning.Algorithm.DroneEnvironment import drone_move_directions
         type=openapi.TYPE_OBJECT,
         properties={
             'drone_image': openapi.Schema(type=openapi.TYPE_FILE, description='无人机拍摄的图像'),
-            'drone_position': openapi.Schema(
-                type=openapi.TYPE_ARRAY,
-                items=openapi.Schema(type=openapi.TYPE_NUMBER),
-                description='无人机的位置'
-            ),
             'obstacle_positions': openapi.Schema(
                 type=openapi.TYPE_ARRAY,
                 items=openapi.Schema(type=openapi.TYPE_NUMBER),
@@ -56,10 +56,10 @@ from DroneRoutePlanning.Algorithm.DroneEnvironment import drone_move_directions
 )
 @api_view(['POST'])
 def drone_route_planning(request):
+    global save_count
     try:
         # Get the uploaded file
         if ('drone_image' not in request.FILES or
-                'drone_position' not in request.data or
                 'obstacle_positions' not in request.data):
             return JsonResponse({'error': 'Missing required parameters'}, status=status.HTTP_400_BAD_REQUEST)
 
@@ -87,14 +87,36 @@ def drone_route_planning(request):
         if not person_position_in_camera:
             return JsonResponse({'No person detected': '[]'})
 
-        drone_position = json.loads(request.data['drone_position'])
         obstacle_positions = json.loads(request.data['obstacle_positions'])
 
         state = np.concatenate(
-            [np.array(drone_position), np.array(person_position_in_camera), np.array(obstacle_positions)])
+            [np.array(person_position_in_camera), np.array(obstacle_positions)])
 
-        action = dqn_select_action(state)
+        action = d3qn_select_action(state)
+
+        # Save the input and output to save.md
+        save_count += 1
+        save_input_output(action, obstacle_positions, input_image, save_count)
 
         return JsonResponse({'Direction': drone_move_directions[action].tolist()})
     except Exception as e:
         return JsonResponse({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+
+def save_input_output(action, obstacle_positions, input_image, save_count):
+    save_dir = './DroneRoutePlanning'
+    save_path = os.path.join(save_dir, 'save.md')
+    image_dir = os.path.join(save_dir, 'image')
+    os.makedirs(image_dir, exist_ok=True)
+
+    image_file_path = os.path.join(image_dir, f"drone_image_{save_count}.jpg")
+    input_image.save(image_file_path)
+
+    with open(save_path, 'a', encoding='utf-8') as f:
+        print(f"Saving input and output to {save_path}")
+        f.write(f"##Record {save_count}\n")
+        f.write("### 输入\n")
+        f.write(f"**无人机图像:** ![drone_image]({image_file_path})\n")
+        f.write(f"**障碍物位置:** {obstacle_positions}\n")
+        f.write("\n### 输出\n")
+        f.write(f"**方向:** {drone_move_directions[action].tolist()}\n")

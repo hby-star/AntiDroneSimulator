@@ -1,5 +1,6 @@
 import math
 import random
+import time
 from itertools import count
 
 import matplotlib
@@ -8,8 +9,8 @@ import torch
 import torch.nn as nn
 import torch.optim as optim
 
-from DroneRoutePlanning.Algorithm.DQN import DQN, ReplayMemory, Transition
-from DroneRoutePlanning.Algorithm.DroneEnvironment import DroneEnvironment
+from DroneRoutePlanning.DQN.DQN import DQN, ReplayMemory, Transition
+from DroneRoutePlanning.DroneEnvironment.DroneEnvironment import DroneEnvironment
 
 
 def select_action(_state):
@@ -27,35 +28,34 @@ def select_action(_state):
         return torch.tensor([[env.action_space.sample()]], device=device, dtype=torch.long)
 
 
-def plot_durations(show_result=False, update_interval=10):
-    # 每隔一定的间隔或者训练结束时更新图像
-    if len(episode_durations) % update_interval != 0 and not show_result:
-        return
+def plot_durations(show_result=False, update_interval=100):
+    try:
+        # 每隔一定的间隔或者训练结束时更新图像
+        if len(episode_durations) % update_interval != 0 and not show_result:
+            return
 
-    plt.figure(1)
-    durations_t = torch.tensor(episode_durations, dtype=torch.float)
-    if show_result:
-        plt.title('Result')
-    else:
-        plt.clf()
-        plt.title('Training...')
-    plt.xlabel('Episode')
-    plt.ylabel('Duration')
-    plt.plot(durations_t.numpy())
-    # 计算并绘制每100个episode的平均持续时间
-    if len(durations_t) >= 100:
-        means = durations_t.unfold(0, 100, 1).mean(1).view(-1)
-        means = torch.cat((torch.zeros(99), means))
-        plt.plot(means.numpy())
+        durations_t = torch.tensor(episode_durations, dtype=torch.float)
+        reward_t = torch.tensor(episode_reward_list, dtype=torch.float)
 
-    plt.pause(0.001)
-
-    if is_ipython:
-        if not show_result:
-            display.display(plt.gcf())
-            display.clear_output(wait=True)
+        if show_result:
+            plt.title('Result')
         else:
-            display.display(plt.gcf())
+            plt.title('Training...')
+        plt.xlabel('Episode')
+        plt.ylabel('Reward')
+        plt.plot(episode_reward_list)
+        # 计算并绘制每100个episode的平均Reward
+        if len(durations_t) >= 100:
+            means = reward_t.unfold(0, 100, 1).mean(1).view(-1)
+            means = torch.cat((torch.zeros(99), means))
+            plt.plot(means)
+
+        # Show the figure on the screen
+
+        plt.show()
+    except Exception as e:
+        time.sleep(1)
+        return
 
 
 def optimize_model():
@@ -115,20 +115,19 @@ if __name__ == '__main__':
     print(f"Using {device} device")
 
     # 初始化环境
-    env = DroneEnvironment(drone_position=[0, 0, 0],
-                           person_position_in_camera=[200, 140, 220, 150],
+    env = DroneEnvironment(person_position_in_camera=[200, 140, 220, 150],
                            obstacle_positions=[5, 5, 5],
                            screen_size=[552, 326],
                            detect_obstacle_distance=10,
-                           max_steps=1000)
+                           max_steps=2000)
 
     # 设置训练参数
-    BATCH_SIZE = 128
+    BATCH_SIZE = 256
     GAMMA = 0.99
     EPS_START = 0.99
-    EPS_END = 0.01
-    EPS_DECAY = 500
-    TAU = 0.005
+    EPS_END = 0.05
+    EPS_DECAY = 200
+    TAU = 5e-3
     LR = 1e-4
 
     # 获取动作空间的大小和状态观测的数量
@@ -143,14 +142,15 @@ if __name__ == '__main__':
 
     # 设置优化器
     optimizer = optim.AdamW(policy_net.parameters(), lr=LR, amsgrad=True)
-    memory = ReplayMemory(10000)
+    memory = ReplayMemory(1000000)
 
     steps_done = 0
     episode_durations = []
+    episode_reward_list = []
 
     # 设置训练次数
     if torch.cuda.is_available() or torch.backends.mps.is_available():
-        num_episodes = EPS_DECAY
+        num_episodes = 1000
     else:
         num_episodes = 50
 
@@ -159,12 +159,14 @@ if __name__ == '__main__':
         # 初始化环境并获取其状态
         state, info = env.reset()
         state = torch.tensor(state, dtype=torch.float32, device=device).unsqueeze(0)
+        episode_reward = 0
         for t in count():
             # 选择动作
             action = select_action(state)
             # 执行动作并获取反馈
             observation, reward, terminated, truncated, _ = env.step(action.item())
             reward = torch.tensor([reward], device=device)
+            episode_reward += reward.item()
             done = terminated or truncated
 
             # 如果回合结束，下一个状态为None
@@ -191,6 +193,7 @@ if __name__ == '__main__':
 
             # 如果回合结束，记录持续时间并更新图像
             if done:
+                episode_reward_list.append(episode_reward)
                 episode_durations.append(t + 1)
                 plot_durations(update_interval=20)
                 break

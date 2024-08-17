@@ -8,8 +8,8 @@ import torch
 import torch.nn as nn
 import torch.optim as optim
 
-from DroneRoutePlanning.Algorithm.DQN import DQN, ReplayMemory, Transition
-from DroneRoutePlanning.Algorithm.DroneEnvironment import DroneEnvironment
+from DroneRoutePlanning.DQN.DQN import DQN, ReplayMemory, Transition
+from DroneRoutePlanning.DQN.DroneEnvironment import DroneEnvironment
 
 
 def select_action(_state):

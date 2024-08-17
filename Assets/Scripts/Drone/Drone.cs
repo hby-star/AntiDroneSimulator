@@ -7,6 +7,7 @@ using UnityEngine.Networking;
 using UnityEngine.Serialization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using Unity.VisualScripting;
 
 public class Drone : Entity
 {
@@ -70,10 +71,10 @@ public class Drone : Entity
 
         // 平滑转向
         Quaternion targetRotation = Quaternion.LookRotation(horMoveDirection);
-        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * speed / 2);
+        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * speed * 3);
 
         // 再向前移动
-        Rigidbody.velocity = transform.forward * (horMoveDirection.magnitude * speed);
+        Rigidbody.velocity = transform.forward * (horMoveDirection.magnitude * speed / 2);
 
         // 再垂直移动
         Rigidbody.velocity += transform.up * (CurrentMoveDirection.normalized.y * speed);
@@ -87,6 +88,9 @@ public class Drone : Entity
     public IDroneAttackAlgorithm DroneAttackAlgorithm;
     public bool GetTrainningData { get; private set; }
 
+    public Player targetPlayer;
+    private Renderer[] targetRenderers;
+    private Rect targetRect;
     [NonSerialized] public bool FoundPlayer = false;
     [NonSerialized] public Vector3 CurrentMoveDirection;
     private float lastSendRequestTime = 0;
@@ -119,8 +123,8 @@ public class Drone : Entity
     {
         // 攻击玩家
         //DroneAttackAlgorithm.DroneAttackAlgorithmUpdate();
-        CurrentMoveDirection = routePlanningHelper.responseDirection;
-        MoveToCurrentMoveDirection(moveSpeed);
+        //CurrentMoveDirection = routePlanningHelper.responseDirection;
+        //MoveToCurrentMoveDirection(moveSpeed);
 
         // 攻击距离内释放炸弹
         if (CanAttackPlayer())
@@ -159,6 +163,51 @@ public class Drone : Entity
         {
             StartCoroutine(routePlanningHelper.SendRoutePlanningRequest(Camera));
             lastSendRequestTime = Time.time;
+        }
+    }
+
+    private void SimulateDetectPlayer()
+    {
+        if (!targetPlayer)
+        {
+            targetPlayer = FindObjectOfType<Player>();
+            targetRenderers = targetPlayer.GetComponentsInChildren<Renderer>();
+            FoundPlayer = true;
+        }
+
+        // 摄像机朝向玩家
+        Camera.transform.LookAt(targetPlayer.transform);
+
+        // 获取物体的边界
+        Bounds[] bounds = new Bounds[targetRenderers.Length];
+        for (int i = 0; i < targetRenderers.Length; i++)
+        {
+            bounds[i] = targetRenderers[i].bounds;
+        }
+
+        // 找到屏幕空间中的最小和最大坐标
+        Vector3 min = Camera.WorldToScreenPoint(bounds[0].min);
+        Vector3 max = Camera.WorldToScreenPoint(bounds[0].max);
+        for (int i = 1; i < bounds.Length; i++)
+        {
+            min = Vector3.Min(min, Camera.WorldToScreenPoint(bounds[i].min));
+            max = Vector3.Max(max, Camera.WorldToScreenPoint(bounds[i].max));
+        }
+
+        // 计算边界框的位置和大小
+        targetRect = new Rect(min.x, Screen.height - max.y, max.x - min.x, max.y - min.y);
+    }
+
+    void OnGUI()
+    {
+        // 只在无人机的摄像机上显示
+        if (InputManager.Instance.currentCamera == Camera)
+        {
+            if (FoundPlayer)
+            {
+                // 在屏幕上绘制玩家的边界框
+                GUI.Box(targetRect, "");
+            }
         }
     }
 
@@ -239,18 +288,22 @@ public class Drone : Entity
         // 无人机音效
         AudioUpdate();
 
+        // 模拟检测玩家
+        SimulateDetectPlayer();
+
+
         if (operateNow)
         {
             // 摄像机控制
             MouseLookUpdate();
 
             // 炸弹路径指示
-            BombPathUpdate();
+            //BombPathUpdate();
         }
         else
         {
             // 搜索玩家
-            FindPlayer();
+            //FindPlayer();
 
             if (FoundPlayer && hasBomb)
             {

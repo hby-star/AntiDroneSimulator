@@ -55,8 +55,9 @@ MonoBehaviour:
   bombBelowLength: 0.3
   hasBomb: 0
   isLeader: 0
-  serachRadius: 70
-  attackSerachRadius: 100
+  targetPlayer: {fileID: 0}
+  sendRequestInterval: 1
+  detectObstacleDistance: 5
   sensitivityHor: 9
   mouseLookTarget: {fileID: 2424916829615425556}
   soundSource: {fileID: 8234029062686397238}
@@ -492,7 +493,7 @@ Transform:
   m_GameObject: {fileID: 4372532307159876418}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1}
+  m_LocalPosition: {x: 0, y: -0.6, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1029,6 +1030,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RocketBomb
       objectReference: {fileID: 0}
+    - target: {fileID: 758784716004994615, guid: 649fe7fb1b0268845b2dc1ef1c5a9d0e, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1128951837008581930, guid: 649fe7fb1b0268845b2dc1ef1c5a9d0e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1067,6 +1072,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1128951837008581930, guid: 649fe7fb1b0268845b2dc1ef1c5a9d0e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7651170451560720664, guid: 649fe7fb1b0268845b2dc1ef1c5a9d0e, type: 3}
+      propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
