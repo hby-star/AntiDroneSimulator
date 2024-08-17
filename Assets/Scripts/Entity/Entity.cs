@@ -35,7 +35,7 @@ public class Entity : MonoBehaviour
     public virtual void SetOperate(bool operateNow)
     {
         this.operateNow = operateNow;
-        Camera.gameObject.SetActive(operateNow);
+        Camera.enabled = operateNow;
         transform.rotation = Quaternion.identity;
     }
 

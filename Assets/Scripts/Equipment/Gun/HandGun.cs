@@ -39,7 +39,10 @@ public class HandGun : Gun
 
     void OnGUI()
     {
-        if (InputManager.Instance.operateEntityNow && InputManager.Instance.currentEntity is Player player && player.currentEquipment == this)
+        if (InputManager.Instance.operateEntityNow &&
+            InputManager.Instance.currentEntity is Player player &&
+            player.currentEquipment == this &&
+            CameraManager.Instance.currentViewType == CameraManager.ViewType.Player)
         {
             int crosshairSize = 12;
             int lineLength = 6;

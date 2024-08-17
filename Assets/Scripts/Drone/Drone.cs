@@ -185,23 +185,50 @@ public class Drone : Entity
             bounds[i] = targetRenderers[i].bounds;
         }
 
-        // 找到屏幕空间中的最小和最大坐标
+        // 找到屏幕空间中的边界
         Vector3 min = Camera.WorldToScreenPoint(bounds[0].min);
         Vector3 max = Camera.WorldToScreenPoint(bounds[0].max);
+
         for (int i = 1; i < bounds.Length; i++)
         {
             min = Vector3.Min(min, Camera.WorldToScreenPoint(bounds[i].min));
+            min = Vector3.Min(min, Camera.WorldToScreenPoint(bounds[i].max));
+            max = Vector3.Max(max, Camera.WorldToScreenPoint(bounds[i].min));
             max = Vector3.Max(max, Camera.WorldToScreenPoint(bounds[i].max));
         }
 
+        // 检查物体是否被遮挡
+        bool isVisible = true;
+        RaycastHit hit;
+        if (Physics.Linecast(Camera.transform.position,
+                targetPlayer.transform.position + targetPlayer.standColliderHeight / 2 * Vector3.up,
+                out hit))
+        {
+            if (hit.collider.CompareTag("Player"))
+            {
+                isVisible = true;
+            }
+            else
+            {
+                isVisible = false;
+            }
+        }
+
         // 计算边界框的位置和大小
-        targetRect = new Rect(min.x, Screen.height - max.y, max.x - min.x, max.y - min.y);
+        if (isVisible)
+        {
+            targetRect = new Rect(min.x, Screen.height - max.y, max.x - min.x, max.y - min.y);
+        }
+        else
+        {
+            targetRect = new Rect(0, 0, 0, 0);
+        }
     }
 
     void OnGUI()
     {
         // 只在无人机的摄像机上显示
-        if (InputManager.Instance.currentCamera == Camera)
+        if (Camera.enabled)
         {
             if (FoundPlayer)
             {
@@ -264,7 +291,7 @@ public class Drone : Entity
         StateMachine.Initialize(IdleState);
 
         // 无人机操作
-        SetOperate((InputManager.Instance.currentEntity is Drone) && isLeader);
+        SetOperate(false);
         BombPathStart();
 
         // 无人机算法

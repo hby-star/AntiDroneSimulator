@@ -45,7 +45,10 @@ public class EMPGun : Gun
 
     void OnGUI()
     {
-        if (InputManager.Instance.operateEntityNow && InputManager.Instance.currentEntity is Player player && player.currentEquipment == this)
+        if (InputManager.Instance.operateEntityNow &&
+            InputManager.Instance.currentEntity is Player player &&
+            player.currentEquipment == this &&
+            CameraManager.Instance.currentViewType == CameraManager.ViewType.Player)
         {
             int lineLength = 6;
             int lineWidth = 2;

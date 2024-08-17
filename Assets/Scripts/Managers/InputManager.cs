@@ -62,6 +62,7 @@ public class InputManager : MonoBehaviour
     void Update()
     {
         HandleGameInput();
+        HandleViewSwitch();
 
         if (operateEntityNow)
         {
@@ -101,6 +102,23 @@ public class InputManager : MonoBehaviour
             }
 
             ChangeOperateEntity(operateEntities[operateEntityIndex]);
+        }
+    }
+
+    void HandleViewSwitch()
+    {
+        // V 切换视角
+        if (Input.GetKeyDown(KeyCode.V))
+        {
+            if(CameraManager.Instance.currentViewType == CameraManager.ViewType.Player)
+            {
+                CameraManager.Instance.SwitchView(CameraManager.ViewType.Drone);
+            }
+            else if(CameraManager.Instance.currentViewType == CameraManager.ViewType.Drone)
+            {
+                CameraManager.Instance.SwitchView(CameraManager.ViewType.Player);
+            }
+
         }
     }
 
