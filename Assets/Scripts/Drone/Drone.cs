@@ -42,46 +42,6 @@ public class Drone : Entity
 
     #endregion
 
-    #region Operate
-
-    [Header("Operate Info")] public bool isLeader = false;
-
-    public override void SetOperate(bool operate)
-    {
-        base.SetOperate(operate);
-
-        if (!operate)
-        {
-            StateMachine.ChangeState(IdleState);
-        }
-    }
-
-    // 设置当前移动方向
-    public void SetCurrentMoveDirection(Vector3 moveDirection)
-    {
-        CurrentMoveDirection = moveDirection;
-    }
-
-    // 向当前移动方向移动
-    public void MoveToCurrentMoveDirection(float speed)
-    {
-        // 先水平转向到目标方向
-        Vector3 horMoveDirection = CurrentMoveDirection;
-        horMoveDirection.y = 0;
-
-        // 平滑转向
-        Quaternion targetRotation = Quaternion.LookRotation(horMoveDirection);
-        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * speed * 3);
-
-        // 再向前移动
-        Rigidbody.velocity = transform.forward * (horMoveDirection.magnitude * speed / 2);
-
-        // 再垂直移动
-        Rigidbody.velocity += transform.up * (CurrentMoveDirection.normalized.y * speed);
-    }
-
-    #endregion
-
     #region Algorithm
 
     public IDroneSearchAlgorithm DroneSearchAlgorithm;
@@ -92,6 +52,7 @@ public class Drone : Entity
     private Renderer[] targetRenderers;
     private Rect targetRect;
     [NonSerialized] public bool FoundPlayer = false;
+    [NonSerialized] public bool LockPlayer = false;
     [NonSerialized] public Vector3 CurrentMoveDirection;
     private float lastSendRequestTime = 0;
     public float sendRequestInterval = 1f; // 发送请求的间隔
@@ -122,7 +83,7 @@ public class Drone : Entity
     private void AttackPlayerUpdate()
     {
         // 攻击玩家
-        //DroneAttackAlgorithm.DroneAttackAlgorithmUpdate();
+        DroneAttackAlgorithm.DroneAttackAlgorithmUpdate();
         //CurrentMoveDirection = routePlanningHelper.responseDirection;
         //MoveToCurrentMoveDirection(moveSpeed);
 
@@ -136,7 +97,7 @@ public class Drone : Entity
     public bool CanAttackPlayer()
     {
         Collider[] hitColliders =
-            Physics.OverlapSphere(transform.position, bomb.GetComponent<Bomb>().explosionRadius / 2);
+            Physics.OverlapSphere(transform.position, 3);
 
         foreach (var hitCollider in hitColliders)
         {
@@ -172,11 +133,20 @@ public class Drone : Entity
         {
             targetPlayer = FindObjectOfType<Player>();
             targetRenderers = targetPlayer.GetComponentsInChildren<Renderer>();
-            FoundPlayer = true;
         }
 
-        // 摄像机朝向玩家
-        Camera.transform.LookAt(targetPlayer.transform);
+        if (LockPlayer)
+        {
+            Quaternion targetRotation = Quaternion.LookRotation(targetPlayer.transform.position - Camera.transform.position);
+            Camera.transform.rotation = Quaternion.Slerp(Camera.transform.rotation, targetRotation, Time.deltaTime * 5);
+        }
+        else
+        {
+            Vector3 lookAtPosition = transform.position + transform.forward - transform.up;
+            Quaternion targetRotation = Quaternion.LookRotation(lookAtPosition - Camera.transform.position);
+            Camera.transform.rotation = Quaternion.Slerp(Camera.transform.rotation, targetRotation, Time.deltaTime * 5);
+        }
+
 
         // 获取物体的边界
         Bounds[] bounds = new Bounds[targetRenderers.Length];
@@ -197,6 +167,17 @@ public class Drone : Entity
             max = Vector3.Max(max, Camera.WorldToScreenPoint(bounds[i].max));
         }
 
+        // 将物体的屏幕坐标转换到摄像机的视口空间
+        Rect cameraRect = Camera.rect;
+        float minX = min.x / Screen.width;
+        float maxX = max.x / Screen.width;
+        float minY = min.y / Screen.height;
+        float maxY = max.y / Screen.height;
+
+        // 检查物体是否在当前摄像机的视口内
+        bool isInCameraView = (minX > cameraRect.x && maxX < cameraRect.x + cameraRect.width &&
+                               minY > cameraRect.y && maxY < cameraRect.y + cameraRect.height);
+
         // 检查物体是否被遮挡
         bool isVisible = true;
         RaycastHit hit;
@@ -204,24 +185,23 @@ public class Drone : Entity
                 targetPlayer.transform.position + targetPlayer.standColliderHeight / 2 * Vector3.up,
                 out hit))
         {
-            if (hit.collider.CompareTag("Player"))
-            {
-                isVisible = true;
-            }
-            else
+            if (!hit.collider.CompareTag("Player"))
             {
                 isVisible = false;
             }
         }
 
+
         // 计算边界框的位置和大小
-        if (isVisible)
+        if (isVisible && isInCameraView)
         {
             targetRect = new Rect(min.x, Screen.height - max.y, max.x - min.x, max.y - min.y);
+            LockPlayer = true;
         }
         else
         {
             targetRect = new Rect(0, 0, 0, 0);
+            LockPlayer = false;
         }
     }
 
@@ -230,11 +210,8 @@ public class Drone : Entity
         // 只在无人机的摄像机上显示
         if (Camera.enabled)
         {
-            if (FoundPlayer)
-            {
-                // 在屏幕上绘制玩家的边界框
-                GUI.Box(targetRect, "");
-            }
+            // 在屏幕上绘制玩家的边界框
+            GUI.Box(targetRect, "");
         }
     }
 
@@ -296,8 +273,6 @@ public class Drone : Entity
 
         // 无人机算法
         DroneAlgorithmStart();
-
-        GetTrainningData = DroneAlgorithmManager.Instance.getTrainingData;
     }
 
     protected override void Update()
@@ -306,28 +281,13 @@ public class Drone : Entity
 
         StateMachine.CurrentState.Update();
 
-        if (GetTrainningData && Time.time - lastSendRequestTime > sendRequestInterval)
-        {
-            lastSendRequestTime = Time.time;
-            objectDetectionHelper.GetTrainingDataSendRequest(Camera);
-        }
-
         // 无人机音效
         AudioUpdate();
 
         // 模拟检测玩家
         SimulateDetectPlayer();
 
-
-        if (operateNow)
-        {
-            // 摄像机控制
-            MouseLookUpdate();
-
-            // 炸弹路径指示
-            //BombPathUpdate();
-        }
-        else
+        if (!operateNow)
         {
             // 搜索玩家
             //FindPlayer();
@@ -342,6 +302,14 @@ public class Drone : Entity
                 // 搜索玩家
                 SearchPlayerUpdate();
             }
+        }
+        else
+        {
+            // 摄像机控制
+            MouseLookUpdate();
+
+            // 炸弹路径指示
+            BombPathUpdate();
         }
     }
 
@@ -522,6 +490,46 @@ public class Drone : Entity
         }
 
         return false;
+    }
+
+    #endregion
+
+    #region Operate
+
+    [Header("Operate Info")] public bool isLeader = false;
+
+    public override void SetOperate(bool operate)
+    {
+        base.SetOperate(operate);
+
+        if (!operate)
+        {
+            StateMachine.ChangeState(IdleState);
+        }
+    }
+
+    // 设置当前移动方向
+    public void SetCurrentMoveDirection(Vector3 moveDirection)
+    {
+        CurrentMoveDirection = moveDirection;
+    }
+
+    // 向当前移动方向移动
+    public void MoveToCurrentMoveDirection(float speed)
+    {
+        // 先水平转向到目标方向
+        Vector3 horMoveDirection = CurrentMoveDirection;
+        horMoveDirection.y = 0;
+
+        // 平滑转向
+        Quaternion targetRotation = Quaternion.LookRotation(horMoveDirection);
+        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * speed * 3);
+
+        // 再向前移动
+        Rigidbody.velocity = transform.forward * (horMoveDirection.magnitude * speed / 2);
+
+        // 再垂直移动
+        Rigidbody.velocity += transform.up * (CurrentMoveDirection.normalized.y * speed);
     }
 
     #endregion

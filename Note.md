@@ -100,3 +100,34 @@ flowchart LR
    * 如何获取训练数据：
      * 无人机采用随机运动的方式，基于目标检测得到的结果和引擎中获取的各种信息，获取经验回放
 5. 无人机根据得到的移动方向进行运动
+
+
+
+## 3. 无人机蜂群
+
+* 蜜源： 玩家位置
+* 侦查蜂：无杀伤力负载，速度快，负责巡逻，寻找玩家位置，即蜜源。
+* 跟随蜂：携带炸弹，速度慢，负责攻击玩家，发现玩家前在蜂箱待机，往返与蜂箱与玩家之间。
+* 蜂箱：蜜蜂基地，侦查蜂从此出发，跟随蜂在此携带炸弹。
+
+```mermaid
+sequenceDiagram
+    participant Beehive as 蜂箱
+    participant FollowerBee as 跟随蜂
+    participant ScoutBee as 侦查蜂
+    
+    actor Player as 玩家（蜜源）
+    
+    Beehive ->> +ScoutBee: 派出侦查蜂
+    ScoutBee ->> ScoutBee: 寻找玩家
+	ScoutBee ->> +Player: 找到玩家
+	Player ->> -ScoutBee: 获取玩家位置
+	ScoutBee ->> ScoutBee: 持续跟踪玩家直至死亡
+	ScoutBee ->> -Beehive: 返回玩家位置
+	Beehive ->> +FollowerBee: 派出跟随蜂
+	FollowerBee ->> -Player: 前往攻击玩家
+    
+```
+
+
+
