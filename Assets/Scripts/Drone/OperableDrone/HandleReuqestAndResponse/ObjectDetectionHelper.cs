@@ -188,7 +188,7 @@ public class ObjectDetectionHelper
         trainingData.ScreenSize = new Vector2(Screen.width, Screen.height);
         trainingData.DetectObstacleDistance = operableDrone.detectObstacleDistance;
         trainingData.DronePosition = operableDrone.transform.position;
-        trainingData.ObstalePosition = operableDrone.GetObstaclePosition();
+        trainingData.ObstalePosition = operableDrone.GetObstacleRelativePosition();
 
         // 将渲染的结果保存到RenderTexture
         RenderTexture renderTexture = new RenderTexture(Screen.width, Screen.height, 24);

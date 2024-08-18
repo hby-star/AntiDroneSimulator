@@ -19,29 +19,6 @@ public class OperableDrone : Drone
 
     # endregion
 
-    #region Attack
-
-    [Header("Attack Info")] [SerializeField]
-    GameObject bomb;
-
-    [SerializeField] private float bombBelowLength = 0.3f;
-
-    public bool hasBomb;
-
-    public void Attack()
-    {
-        if (hasBomb)
-        {
-            bomb.transform.parent = null;
-            bomb.AddComponent<Rigidbody>();
-            Rigidbody bombRigidbody = bomb.GetComponent<Rigidbody>();
-            bombRigidbody.velocity = Rigidbody.velocity;
-            hasBomb = false;
-        }
-    }
-
-    #endregion
-
     #region Algorithm
 
     public IDroneSearchAlgorithm DroneSearchAlgorithm;
@@ -84,7 +61,7 @@ public class OperableDrone : Drone
         // 攻击距离内释放炸弹
         if (CanAttackPlayer())
         {
-            Attack();
+            ThrowBomb();
         }
     }
 

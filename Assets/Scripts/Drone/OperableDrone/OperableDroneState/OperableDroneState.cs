@@ -24,7 +24,7 @@ public class OperableDroneState : EntityState
 
         if (OperableDrone.AttackInput)
         {
-            OperableDrone.Attack();
+            OperableDrone.ThrowBomb();
         }
     }
 

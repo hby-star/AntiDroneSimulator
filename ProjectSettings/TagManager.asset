@@ -7,6 +7,7 @@ TagManager:
   - Ground
   - Drone
   - Vehicle
+  - Bomb
   layers:
   - Default
   - TransparentFX

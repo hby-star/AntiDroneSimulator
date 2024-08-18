@@ -84,7 +84,7 @@ public class RoutePlanningHelper
         //--form 'drone_position="[0,0,0]"' \
         //--form 'obstacle_positions="[-5,0,0]"'
         form.AddBinaryData("drone_image", requestImageBytes, "screenshot.jpg", "image/jpeg");
-        form.AddField("obstacle_positions", Vector3ToJsonArray(operableDrone.GetObstaclePosition()));
+        form.AddField("obstacle_positions", Vector3ToJsonArray(operableDrone.GetObstacleRelativePosition()));
 
 
         // 发送POST请求
