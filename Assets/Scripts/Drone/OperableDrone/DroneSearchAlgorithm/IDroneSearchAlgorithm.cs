@@ -4,7 +4,7 @@ using UnityEngine;
 
 public interface IDroneSearchAlgorithm
 {
-    void DroneSearchAlgorithmSet(Drone drone);
+    void DroneSearchAlgorithmSet(OperableDrone operableDrone);
     void DroneSearchAlgorithmUpdate();
 
 }

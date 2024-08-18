@@ -4,6 +4,6 @@ using UnityEngine;
 
 public interface IDroneAttackAlgorithm
 {
-    void DroneAttackAlgorithmSet(Drone drone);
+    void DroneAttackAlgorithmSet(OperableDrone operableDrone);
     void DroneAttackAlgorithmUpdate();
 }

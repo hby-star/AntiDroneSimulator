@@ -22,10 +22,10 @@ public class HandGun : Gun
         if (Physics.Raycast(ray, out hit))
         {
             GameObject hitObject = hit.transform.gameObject;
-            Drone drone = hitObject.GetComponent<Drone>();
-            if (drone != null)
+            OperableDrone operableDrone = hitObject.GetComponent<OperableDrone>();
+            if (operableDrone != null)
             {
-                drone.ReactToHit(Drone.HitType.NormalBullet);
+                operableDrone.ReactToHit(OperableDrone.HitType.NormalBullet);
             }
             else
             {

@@ -33,10 +33,10 @@ public class EMPGun : Gun
 
                 if (Physics.Raycast(origin, spreadDirection, out RaycastHit hit, laserRange))
                 {
-                    Drone drone = hit.collider.GetComponent<Drone>();
-                    if (drone != null)
+                    OperableDrone operableDrone = hit.collider.GetComponent<OperableDrone>();
+                    if (operableDrone != null)
                     {
-                        drone.ReactToHit(Drone.HitType.EmpBullet);
+                        operableDrone.ReactToHit(OperableDrone.HitType.EmpBullet);
                     }
                 }
             }

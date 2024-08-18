@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class Forward : IDroneAttackAlgorithm
 {
-    private Drone currentDrone;
+    private OperableDrone currentOperableDrone;
 
-    public void DroneAttackAlgorithmSet(Drone drone)
+    public void DroneAttackAlgorithmSet(OperableDrone operableDrone)
     {
-        currentDrone = drone;
+        currentOperableDrone = operableDrone;
     }
 
     public void DroneAttackAlgorithmUpdate()

@@ -11,14 +11,14 @@ using Newtonsoft.Json.Linq;
 
 public class RoutePlanningHelper
 {
-    public RoutePlanningHelper(Drone drone)
+    public RoutePlanningHelper(OperableDrone operableDrone)
     {
-        this.drone = drone;
+        this.operableDrone = operableDrone;
     }
 
     private const string DroneServerRoutePlanningUrl = "http://localhost:8000//drone_route_planning/";
 
-    private Drone drone;
+    private OperableDrone operableDrone;
 
     public struct RoutePlanningRequest
     {
@@ -84,7 +84,7 @@ public class RoutePlanningHelper
         //--form 'drone_position="[0,0,0]"' \
         //--form 'obstacle_positions="[-5,0,0]"'
         form.AddBinaryData("drone_image", requestImageBytes, "screenshot.jpg", "image/jpeg");
-        form.AddField("obstacle_positions", Vector3ToJsonArray(drone.GetObstaclePosition()));
+        form.AddField("obstacle_positions", Vector3ToJsonArray(operableDrone.GetObstaclePosition()));
 
 
         // 发送POST请求
@@ -114,13 +114,13 @@ public class RoutePlanningHelper
         {
             Debug.Log("Found player, set direction : [" + direction[0] + " " + direction[1] + " " + direction[2] + "]");
             responseDirection = new Vector3((float)direction[0], (float)direction[1], (float)direction[2]);
-            drone.FoundPlayer = true;
+            operableDrone.FoundPlayer = true;
         }
         else if (noPerson != null)
         {
             Debug.Log("No person detected");
             responseDirection = new Vector3(0, 0, 0);
-            drone.FoundPlayer = false;
+            operableDrone.FoundPlayer = false;
         }
     }
 }

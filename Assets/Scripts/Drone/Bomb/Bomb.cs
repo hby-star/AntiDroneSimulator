@@ -8,12 +8,10 @@ public class Bomb : MonoBehaviour
 {
     public ParticleSystem explosion;
     public float explosionRadius = 10f;
-    private Drone drone;
 
     // Start is called before the first frame update
     void Start()
     {
-        drone = GetComponentInParent<Drone>();
     }
 
     // Update is called once per frame
@@ -23,12 +21,11 @@ public class Bomb : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Drone" || drone.GetTrainningData)
+        if (other.tag == "Drone")
         {
             return;
         }
 
-        drone.hasBomb = false;
         explosion = Instantiate(explosion, transform.position, transform.rotation);
         explosion.Play();
 

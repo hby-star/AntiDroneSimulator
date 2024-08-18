@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SearchStay : IDroneSearchAlgorithm
 {
-    public void DroneSearchAlgorithmSet(Drone drone)
+    public void DroneSearchAlgorithmSet(OperableDrone operableDrone)
     {
         // do nothing
     }

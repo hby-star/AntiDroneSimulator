@@ -12,7 +12,7 @@ public class NetBullet : MonoBehaviour
         {
             // Transform the net into a sphere
             Vector3 collisionPoint = collision.contacts[0].point;
-            collision.gameObject.GetComponent<Drone>().ReactToHit(Drone.HitType.NetBullet);
+            collision.gameObject.GetComponent<OperableDrone>().ReactToHit(OperableDrone.HitType.NetBullet);
             Destroy(gameObject);
 
             GameObject sphere = Instantiate(spherePrefab, collisionPoint, Quaternion.identity);

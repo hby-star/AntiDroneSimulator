@@ -12,16 +12,16 @@ public class Flocking : IDroneSearchAlgorithm
     public float maxSpeed = 15f; // 最大速度
     public float maxForce = 15f; // 最大力
 
-    public Drone currentDrone; // 当前无人机
+    public OperableDrone CurrentOperableDrone; // 当前无人机
 
-    public void DroneSearchAlgorithmSet(Drone drone)
+    public void DroneSearchAlgorithmSet(OperableDrone operableDrone)
     {
-        currentDrone = drone;
+        CurrentOperableDrone = operableDrone;
     }
 
     public void DroneSearchAlgorithmUpdate()
     {
-        if (!currentDrone.isLeader)
+        if (!CurrentOperableDrone.isLeader)
         {
             Flock();
         }
@@ -30,7 +30,7 @@ public class Flocking : IDroneSearchAlgorithm
             RandomLeaderUpdate();
         }
 
-        currentDrone.MoveToCurrentMoveDirection(currentDrone.moveSpeed);
+        //CurrentOperableDrone.MoveToCurrentMoveDirection()
     }
 
     #region RandomLeader
@@ -47,35 +47,35 @@ public class Flocking : IDroneSearchAlgorithm
     public void RandomLeaderUpdate()
     {
         // Check if the drone has reached the target position or if it's the first update
-        if (Vector3.Distance(currentDrone.transform.position, targetPosition) < 1.0f || targetPosition == Vector3.zero)
+        if (Vector3.Distance(CurrentOperableDrone.transform.position, targetPosition) < 1.0f || targetPosition == Vector3.zero)
         {
             // Generate a new target position within the specified bounds
             targetPosition = new Vector3(
-                Random.Range(currentDrone.transform.position.x - 20, currentDrone.transform.position.x + 20),
-                Random.Range(currentDrone.transform.position.y - 20, currentDrone.transform.position.y + 20),
-                Random.Range(currentDrone.transform.position.z - 20, currentDrone.transform.position.z + 20)
+                Random.Range(CurrentOperableDrone.transform.position.x - 20, CurrentOperableDrone.transform.position.x + 20),
+                Random.Range(CurrentOperableDrone.transform.position.y - 20, CurrentOperableDrone.transform.position.y + 20),
+                Random.Range(CurrentOperableDrone.transform.position.z - 20, CurrentOperableDrone.transform.position.z + 20)
             );
 
         }
 
-        Vector3 direction = (targetPosition - currentDrone.transform.position).normalized;
-        currentDrone.SetCurrentMoveDirection(direction);
+        Vector3 direction = (targetPosition - CurrentOperableDrone.transform.position).normalized;
+        //CurrentOperableDrone.SetCurrentMoveDirection(direction);
     }
 
     #endregion
 
 
 
-    public List<Drone> GetNeighbors()
+    public List<OperableDrone> GetNeighbors()
     {
-        List<Drone> neighbors = new List<Drone>();
-        Collider[] colliders = Physics.OverlapSphere(currentDrone.transform.position, cohesionDistance);
+        List<OperableDrone> neighbors = new List<OperableDrone>();
+        Collider[] colliders = Physics.OverlapSphere(CurrentOperableDrone.transform.position, cohesionDistance);
 
         foreach (Collider collider in colliders)
         {
-            if (collider.gameObject != currentDrone.gameObject)
+            if (collider.gameObject != CurrentOperableDrone.gameObject)
             {
-                Drone neighbor = collider.gameObject.GetComponent<Drone>();
+                OperableDrone neighbor = collider.gameObject.GetComponent<OperableDrone>();
                 if (neighbor != null)
                 {
                     neighbors.Add(neighbor);
@@ -86,9 +86,9 @@ public class Flocking : IDroneSearchAlgorithm
         return neighbors;
     }
 
-    public Drone GetLeader(List<Drone> neighbors)
+    public OperableDrone GetLeader(List<OperableDrone> neighbors)
     {
-        foreach (Drone neighbor in neighbors)
+        foreach (OperableDrone neighbor in neighbors)
         {
             if (neighbor.isLeader)
             {
@@ -101,8 +101,8 @@ public class Flocking : IDroneSearchAlgorithm
 
     void Flock()
     {
-        List<Drone> neighbors = GetNeighbors();
-        Drone leader = GetLeader(neighbors);
+        List<OperableDrone> neighbors = GetNeighbors();
+        OperableDrone leader = GetLeader(neighbors);
 
         Vector3 separation = Separate(neighbors);
         Vector3 alignment = AlignToLeader(neighbors);
@@ -113,28 +113,28 @@ public class Flocking : IDroneSearchAlgorithm
         totalForce.y = 0;
 
         // 尽量与leader位于同一平面
-        if(Mathf.Abs(currentDrone.transform.position.y - leader.transform.position.y) > 1.0f)
+        if(Mathf.Abs(CurrentOperableDrone.transform.position.y - leader.transform.position.y) > 1.0f)
         {
-            totalForce.y = leader.transform.position.y - currentDrone.transform.position.y;
+            totalForce.y = leader.transform.position.y - CurrentOperableDrone.transform.position.y;
         }
 
-        currentDrone.SetCurrentMoveDirection(totalForce.normalized);
+        //CurrentOperableDrone.SetCurrentMoveDirection(totalForce.normalized);
     }
 
 
 
 
-    Vector3 Separate(List<Drone> neighbors)
+    Vector3 Separate(List<OperableDrone> neighbors)
     {
         Vector3 steer = Vector3.zero;
         int count = 0;
 
-        foreach (Drone neighbor in neighbors)
+        foreach (OperableDrone neighbor in neighbors)
         {
-            float distance = Vector3.Distance(currentDrone.transform.position, neighbor.transform.position);
+            float distance = Vector3.Distance(CurrentOperableDrone.transform.position, neighbor.transform.position);
             if (distance > 0 && distance < separationDistance)
             {
-                Vector3 diff = currentDrone.transform.position - neighbor.transform.position;
+                Vector3 diff = CurrentOperableDrone.transform.position - neighbor.transform.position;
                 diff.Normalize();
                 diff /= distance; // 越近的邻居，力越大
                 steer += diff;
@@ -151,24 +151,24 @@ public class Flocking : IDroneSearchAlgorithm
         {
             steer.Normalize();
             steer *= maxSpeed;
-            steer -= currentDrone.Rigidbody.velocity;
+            steer -= CurrentOperableDrone.Rigidbody.velocity;
             steer = Vector3.ClampMagnitude(steer, maxForce);
         }
 
         return steer;
     }
 
-    Vector3 Align(List<Drone> neighbors)
+    Vector3 Align(List<OperableDrone> neighbors)
     {
         Vector3 sum = Vector3.zero;
         int count = 0;
 
-        foreach (Drone neighbor in neighbors)
+        foreach (OperableDrone neighbor in neighbors)
         {
-            float distance = Vector3.Distance(currentDrone.transform.position, neighbor.transform.position);
+            float distance = Vector3.Distance(CurrentOperableDrone.transform.position, neighbor.transform.position);
             if (distance > 0 && distance < alignmentDistance)
             {
-                sum += neighbor.gameObject.GetComponent<Drone>().Rigidbody.velocity;
+                sum += neighbor.gameObject.GetComponent<OperableDrone>().Rigidbody.velocity;
                 count++;
             }
         }
@@ -178,7 +178,7 @@ public class Flocking : IDroneSearchAlgorithm
             sum /= count;
             sum.Normalize();
             sum *= maxSpeed;
-            Vector3 steer = sum - currentDrone.Rigidbody.velocity;
+            Vector3 steer = sum - CurrentOperableDrone.Rigidbody.velocity;
             steer = Vector3.ClampMagnitude(steer, maxForce);
             return steer;
         }
@@ -186,11 +186,11 @@ public class Flocking : IDroneSearchAlgorithm
         return Vector3.zero;
     }
 
-    Vector3 AlignToLeader(List<Drone> neighbors)
+    Vector3 AlignToLeader(List<OperableDrone> neighbors)
     {
         Vector3 sum = Vector3.zero;
         
-        Drone leader = GetLeader(neighbors);
+        OperableDrone leader = GetLeader(neighbors);
 
         if (leader == null)
         {
@@ -200,19 +200,19 @@ public class Flocking : IDroneSearchAlgorithm
         sum = leader.Rigidbody.velocity;
         sum.Normalize();
         sum *= maxSpeed;
-        Vector3 steer = sum - currentDrone.Rigidbody.velocity;
+        Vector3 steer = sum - CurrentOperableDrone.Rigidbody.velocity;
         steer = Vector3.ClampMagnitude(steer, maxForce);
         return steer;
     }
 
-    Vector3 Cohere(List<Drone> neighbors)
+    Vector3 Cohere(List<OperableDrone> neighbors)
     {
         Vector3 sum = Vector3.zero;
         int count = 0;
 
-        foreach (Drone neighbor in neighbors)
+        foreach (OperableDrone neighbor in neighbors)
         {
-            float distance = Vector3.Distance(currentDrone.transform.position, neighbor.transform.position);
+            float distance = Vector3.Distance(CurrentOperableDrone.transform.position, neighbor.transform.position);
             if (distance > 0 && distance < cohesionDistance)
             {
                 sum += neighbor.transform.position;
@@ -229,11 +229,11 @@ public class Flocking : IDroneSearchAlgorithm
         return Vector3.zero;
     }
 
-    Vector3 CohereToLeader(List<Drone> neighbors)
+    Vector3 CohereToLeader(List<OperableDrone> neighbors)
     {
-        Drone leader = null;
+        OperableDrone leader = null;
 
-        foreach (Drone neighbor in neighbors)
+        foreach (OperableDrone neighbor in neighbors)
         {
             if (neighbor.isLeader)
             {
@@ -254,10 +254,10 @@ public class Flocking : IDroneSearchAlgorithm
 
     Vector3 Seek(Vector3 target)
     {
-        Vector3 desired = target - currentDrone.transform.position;
+        Vector3 desired = target - CurrentOperableDrone.transform.position;
         desired.Normalize();
         desired *= maxSpeed;
-        Vector3 steer = desired - currentDrone.Rigidbody.velocity;
+        Vector3 steer = desired - CurrentOperableDrone.Rigidbody.velocity;
         steer = Vector3.ClampMagnitude(steer, maxForce);
         return steer;
     }

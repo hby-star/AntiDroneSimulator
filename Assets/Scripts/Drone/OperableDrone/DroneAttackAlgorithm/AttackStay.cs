@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AttackStay : IDroneAttackAlgorithm
 {
-    public void DroneAttackAlgorithmSet(Drone drone)
+    public void DroneAttackAlgorithmSet(OperableDrone operableDrone)
     {
         // do nothing
     }

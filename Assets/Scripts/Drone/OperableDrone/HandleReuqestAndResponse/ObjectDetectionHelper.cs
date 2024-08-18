@@ -12,15 +12,15 @@ using Random = System.Random;
 
 public class ObjectDetectionHelper
 {
-    public ObjectDetectionHelper(Drone drone)
+    public ObjectDetectionHelper(OperableDrone operableDrone)
     {
-        this.drone = drone;
-        TrainingDataPath += this.drone.name + "_training_data.json";
+        this.operableDrone = operableDrone;
+        TrainingDataPath += this.operableDrone.name + "_training_data.json";
     }
 
     private const string DroneServerObjectDetectionUrl = "http://localhost:8000//drone_object_detection/";
     public string TrainingDataPath = "Assets/Scripts/Drone/HandleReuqestAndResponse/";
-    private Drone drone;
+    private OperableDrone operableDrone;
 
     public Vector3[] Directions = new Vector3[]
     {
@@ -186,9 +186,9 @@ public class ObjectDetectionHelper
     {
         // 获取训练数据
         trainingData.ScreenSize = new Vector2(Screen.width, Screen.height);
-        trainingData.DetectObstacleDistance = drone.detectObstacleDistance;
-        trainingData.DronePosition = drone.transform.position;
-        trainingData.ObstalePosition = drone.GetObstaclePosition();
+        trainingData.DetectObstacleDistance = operableDrone.detectObstacleDistance;
+        trainingData.DronePosition = operableDrone.transform.position;
+        trainingData.ObstalePosition = operableDrone.GetObstaclePosition();
 
         // 将渲染的结果保存到RenderTexture
         RenderTexture renderTexture = new RenderTexture(Screen.width, Screen.height, 24);
@@ -262,9 +262,9 @@ public class ObjectDetectionHelper
             Vector3 horizontalDirection = new Vector3(direction.x, 0, direction.z);
             if (horizontalDirection != Vector3.zero)
             {
-                drone.transform.forward = horizontalDirection.normalized;
+                operableDrone.transform.forward = horizontalDirection.normalized;
             }
-            drone.transform.position += direction;
+            operableDrone.transform.position += direction;
             //Debug.Log("No person detected, drone moves randomly.");
         }
 
@@ -309,9 +309,9 @@ public class ObjectDetectionHelper
             Vector3 horizontalDirection = new Vector3(trainingData.Direction.x, 0, trainingData.Direction.z);
             if (horizontalDirection != Vector3.zero)
             {
-                drone.transform.forward = horizontalDirection.normalized;
+                operableDrone.transform.forward = horizontalDirection.normalized;
             }
-            drone.transform.position = trainingData.NextDronePosition;
+            operableDrone.transform.position = trainingData.NextDronePosition;
         }
         catch (Exception ex)
         {
@@ -347,7 +347,7 @@ public class ObjectDetectionHelper
             reward += 1 / (1 + distanceToObstacle);
         }
 
-        if(drone.CanAttackPlayer())
+        if(operableDrone.CanAttackPlayer())
         {
             reward += 30;
         }
@@ -367,7 +367,7 @@ public class ObjectDetectionHelper
             return true;
         }
 
-        if(drone.CanAttackPlayer())
+        if(operableDrone.CanAttackPlayer())
         {
             return true;
         }
