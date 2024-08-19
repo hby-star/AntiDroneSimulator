@@ -443,14 +443,20 @@ public class Drone : Entity
     {
         Vector3 obstaclePosition = new Vector3(detectObstacleDistance, detectObstacleDistance, detectObstacleDistance);
 
-        // 检测前后左右上下以及8个拐角方向的障碍物
+        // 检测前后左右上下以及更多方向的障碍物
         Vector3[] directions = new Vector3[]
         {
             transform.forward, -transform.forward, transform.right, -transform.right, transform.up, -transform.up,
             transform.forward + transform.right + transform.up, transform.forward + transform.right - transform.up,
             transform.forward - transform.right + transform.up, transform.forward - transform.right - transform.up,
             -transform.forward + transform.right + transform.up, -transform.forward + transform.right - transform.up,
-            -transform.forward - transform.right + transform.up, -transform.forward - transform.right - transform.up
+            -transform.forward - transform.right + transform.up, -transform.forward - transform.right - transform.up,
+            transform.forward + transform.right, transform.forward - transform.right,
+            -transform.forward + transform.right, -transform.forward - transform.right,
+            transform.forward + transform.up, transform.forward - transform.up,
+            -transform.forward + transform.up, -transform.forward - transform.up,
+            transform.right + transform.up, transform.right - transform.up,
+            -transform.right + transform.up, -transform.right - transform.up
         };
 
         foreach (var direction in directions)
