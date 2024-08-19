@@ -193,6 +193,8 @@ public class Drone : Entity
             }
             else
             {
+                // 向蜂群广播玩家位置
+                Messenger<Vector3>.Broadcast(SwarmEvent.DETECT_DRONE_FOUND_PLAYER, targetPlayer.transform.position);
                 // 追踪并攻击玩家
                 AttackDroneHitPlayer();
 
@@ -250,7 +252,7 @@ public class Drone : Entity
         {
             ThrowBomb();
             attackDroneTargetPosition = hivePosition;
-            taskForce = Vector3.up * 3f;
+            taskForce = Vector3.up * 5f;
         }
         // 如果玩家距离侦查无人机较远，则继续追踪
         else
@@ -433,8 +435,8 @@ public class Drone : Entity
 
         if (obstaclePosition.magnitude < detectObstacleDistance - 1)
         {
-            avoidObstacleForce = -obstaclePosition.normalized * (detectObstacleDistance - obstaclePosition.magnitude) /
-                                 detectObstacleDistance;
+            avoidObstacleForce = -obstaclePosition.normalized;
+            avoidObstacleForce.y += 1f;
         }
         else
         {

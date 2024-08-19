@@ -4047,9 +4047,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hivePosition: {x: -85, y: 15, z: -50}
-  hiveRadius: 20
+  hiveRadius: 30
   honeyPositions: []
-  honeyRadius: 100
+  honeyRadius: 200
   detectDroneRate: 0.3
   detectDrones: []
   attackDrones: []
@@ -4670,7 +4670,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 831854548954620035, guid: 7b34cc7bee4936f42b0ce05398dede04, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 35.23
       objectReference: {fileID: 0}
     - target: {fileID: 831854548954620035, guid: 7b34cc7bee4936f42b0ce05398dede04, type: 3}
       propertyPath: m_LocalPosition.y
@@ -4678,7 +4678,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 831854548954620035, guid: 7b34cc7bee4936f42b0ce05398dede04, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -43.28
       objectReference: {fileID: 0}
     - target: {fileID: 831854548954620035, guid: 7b34cc7bee4936f42b0ce05398dede04, type: 3}
       propertyPath: m_LocalRotation.w

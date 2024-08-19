@@ -74,7 +74,7 @@ public class InputManager : MonoBehaviour
             if (currentEntity is Player player && GameObject.FindWithTag("Player"))
             {
                 currentCamera = player.Camera;
-                //HandlePlayerInput();
+                HandlePlayerInput();
             }
             else if (currentEntity is OperableDrone drone && GameObject.FindWithTag("Drone"))
             {
