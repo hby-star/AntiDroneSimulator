@@ -77,6 +77,9 @@ public class CameraManager : MonoBehaviour
             Display.displays[1].Activate(); // 启用Display 2
         }
 
+        // 初始化背景摄像机
+        SetupBackgroundCamera();
+
         // Display 1: Player视角
         playerCamera.targetDisplay = 0; // Display 1
         playerCamera.enabled = true;
@@ -114,6 +117,27 @@ public class CameraManager : MonoBehaviour
         }
         playerCameraCopy.rect = new Rect((divide - 1) * droneViewWidth / Screen.width,
             0, droneViewWidth / Screen.width, droneViewHeight / Screen.height);
+    }
+
+    void SetupBackgroundCamera()
+    {
+        if (backgroundCamera == null)
+        {
+            GameObject backgroundCameraObject = new GameObject("BackgroundCamera");
+            backgroundCamera = backgroundCameraObject.AddComponent<Camera>();
+            DontDestroyOnLoad(backgroundCameraObject);
+        }
+
+        // 设置背景摄像机的属性
+        backgroundCamera.clearFlags = CameraClearFlags.SolidColor;
+        backgroundCamera.backgroundColor = Color.black;  // 设置背景颜色为黑色或其他颜色
+        backgroundCamera.cullingMask = 0;  // 不渲染任何物体
+        backgroundCamera.depth = -1;  // 确保它渲染在其他摄像机之前
+
+        // 设置背景摄像机的目标显示器
+        backgroundCamera.targetDisplay = 1; // Display 2
+        backgroundCamera.enabled = true;
+        backgroundCamera.rect = new Rect(0, 0, 1, 1); // 全屏覆盖
     }
 
     void SetCanvasToDisplay(Canvas canvas, int displayIndex)
