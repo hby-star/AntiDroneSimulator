@@ -81,8 +81,6 @@ public class Drone : Entity
     {
         if (!FoundPlayer)
         {
-            moveSpeed = detectDroneSpeed;
-
             // 寻找玩家
             DetectDroneMoveToTarget();
 
@@ -94,8 +92,6 @@ public class Drone : Entity
         }
         else
         {
-            moveSpeed = detectDroneSpeed / 2;
-
             // 向蜂群广播玩家位置
             Messenger<Vector3>.Broadcast(SwarmEvent.DETECT_DRONE_FOUND_PLAYER, targetPlayer.transform.position);
             // 持续追踪玩家
@@ -117,7 +113,6 @@ public class Drone : Entity
         // 到达目标，但是没有找到玩家
         if (distanceToTarget < detectDroneSpeed / 2)
         {
-            taskForce = Vector3.zero;
             Messenger<int>.Broadcast(SwarmEvent.DETECT_DRONE_ASK_FOR_NEW_HONEY, droneID);
         }
         // 没有到达目标，继续前进
@@ -226,11 +221,11 @@ public class Drone : Entity
         float distanceToTarget = (attackDroneTargetPosition - transform.position).magnitude;
 
         // 到达目标，但是没有找到玩家
-        if (distanceToTarget < attackDroneSpeed)
+        if (distanceToTarget < detectDroneSpeed)
         {
             // 返回蜂巢
             attackDroneTargetPosition = hivePosition;
-            taskForce = Vector3.zero;
+            attackDroneHasTarget = true;
         }
         // 没有到达目标，继续前进
         else
