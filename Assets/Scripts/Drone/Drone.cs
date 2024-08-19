@@ -31,7 +31,10 @@ public class Drone : Entity
     protected override void Start()
     {
         base.Start();
+
+        CameraStart();
     }
+
 
     protected override void Update()
     {
@@ -135,7 +138,7 @@ public class Drone : Entity
         float distanceToPlayer = directionToPlayer.magnitude;
 
         // 如果玩家距离侦查无人机较近，则延缓追踪
-        if (distanceToPlayer < detectDroneSpeed * 2)
+        if (distanceToPlayer < detectDroneSpeed * 1.5f)
         {
             taskForce = Vector3.zero;
         }
@@ -247,7 +250,7 @@ public class Drone : Entity
         {
             ThrowBomb();
             attackDroneTargetPosition = hivePosition;
-            taskForce = Vector3.zero;
+            taskForce = Vector3.up * 3f;
         }
         // 如果玩家距离侦查无人机较远，则继续追踪
         else
@@ -275,15 +278,15 @@ public class Drone : Entity
 
     private void OnEnable()
     {
-        Messenger.AddListener(SwarmEvent.ATTACK_DRONE_PLAYER_DIED, OnAttackDronePlayerDied);
+        Messenger.AddListener(SwarmEvent.SWARM_BACK_TO_HIVE, OnSwarmBackToHive);
     }
 
     private void OnDisable()
     {
-        Messenger.RemoveListener(SwarmEvent.ATTACK_DRONE_PLAYER_DIED, OnAttackDronePlayerDied);
+        Messenger.RemoveListener(SwarmEvent.SWARM_BACK_TO_HIVE, OnSwarmBackToHive);
     }
 
-    private void OnAttackDronePlayerDied()
+    private void OnSwarmBackToHive()
     {
         attackDroneTargetPosition = hivePosition;
         detectDroneTargetPosition = hivePosition;
@@ -302,6 +305,12 @@ public class Drone : Entity
     public float rotateSmooth = 1;
     private bool isPlayerDetectedInCamera = false;
 
+    private void CameraStart()
+    {
+        Camera.enabled = true;
+
+        UIBoxInit();
+    }
 
     public void CameraUpdate()
     {
@@ -383,16 +392,32 @@ public class Drone : Entity
             targetRect = new Rect(0, 0, 0, 0);
             isPlayerDetectedInCamera = false;
         }
+
+        UIBoxUpdate();
     }
 
-    void OnGUI()
+    public RectTransform uiBoxPrefab;
+    private RectTransform uiBox;
+
+    void UIBoxInit()
     {
-        if (Camera.enabled)
+        uiBox = Instantiate(uiBoxPrefab, CameraManager.Instance.display2.transform);
+        uiBox.transform.SetParent(CameraManager.Instance.display2.transform);
+        uiBox.gameObject.SetActive(false);
+    }
+
+    void UIBoxUpdate()
+    {
+        if (targetRect.width > 0)
         {
-            if (targetRect.width > 0)
-            {
-                GUI.Box(targetRect, "");
-            }
+            uiBox.anchoredPosition = new Vector2(targetRect.x - Screen.width / 2 + targetRect.width / 2,
+                -targetRect.y + Screen.height / 2 - targetRect.height / 2);
+            uiBox.sizeDelta = new Vector2(targetRect.width, targetRect.height);
+            uiBox.gameObject.SetActive(true);
+        }
+        else
+        {
+            uiBox.gameObject.SetActive(false);
         }
     }
 
@@ -469,6 +494,7 @@ public class Drone : Entity
             Rigidbody.velocity = Vector3.zero;
             return;
         }
+
         moveForce *= moveSpeed;
 
         // 先水平转向到目标方向

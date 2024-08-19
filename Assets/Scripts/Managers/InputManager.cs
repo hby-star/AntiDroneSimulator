@@ -62,7 +62,7 @@ public class InputManager : MonoBehaviour
     void Update()
     {
         HandleGameInput();
-        HandleViewSwitch();
+        //HandleViewSwitch();
 
         if (operateEntityNow)
         {
@@ -74,7 +74,7 @@ public class InputManager : MonoBehaviour
             if (currentEntity is Player player && GameObject.FindWithTag("Player"))
             {
                 currentCamera = player.Camera;
-                HandlePlayerInput();
+                //HandlePlayerInput();
             }
             else if (currentEntity is OperableDrone drone && GameObject.FindWithTag("Drone"))
             {
@@ -105,22 +105,22 @@ public class InputManager : MonoBehaviour
         }
     }
 
-    void HandleViewSwitch()
-    {
-        // V 切换视角
-        if (Input.GetKeyDown(KeyCode.V))
-        {
-            if(CameraManager.Instance.currentViewType == CameraManager.ViewType.Player)
-            {
-                CameraManager.Instance.SwitchView(CameraManager.ViewType.Drone);
-            }
-            else if(CameraManager.Instance.currentViewType == CameraManager.ViewType.Drone)
-            {
-                CameraManager.Instance.SwitchView(CameraManager.ViewType.Player);
-            }
-
-        }
-    }
+    // void HandleViewSwitch()
+    // {
+    //     // V 切换视角
+    //     if (Input.GetKeyDown(KeyCode.V))
+    //     {
+    //         if(CameraManager.Instance.currentViewType == CameraManager.ViewType.Player)
+    //         {
+    //             CameraManager.Instance.SwitchView(CameraManager.ViewType.Drone);
+    //         }
+    //         else if(CameraManager.Instance.currentViewType == CameraManager.ViewType.Drone)
+    //         {
+    //             CameraManager.Instance.SwitchView(CameraManager.ViewType.Player);
+    //         }
+    //
+    //     }
+    // }
 
     public void ChangeOperateEntity(Entity newEntity)
     {

@@ -440,6 +440,7 @@ MonoBehaviour:
   minDetectScaleInCamera: 15
   cameraSmooth: 5
   rotateSmooth: 1
+  uiBoxPrefab: {fileID: 1759393386953110933, guid: 74ae50997a26c944198a7272b0ea8180, type: 3}
   detectObstacleDistance: 5
   avoidObstacleWeight: 1
   soundSource: {fileID: 1516163198716476928}

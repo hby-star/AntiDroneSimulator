@@ -42,79 +42,25 @@ public class CameraManager : MonoBehaviour
 
     #endregion
 
+    public Canvas display1;
+    public Canvas display2;
+
     public Camera playerCamera;
+    public Camera playerCameraCopy;
     public Camera[] droneCameras;
     public Camera vehicleCamera;
-    public Camera backgroundCamera;  // 新增的背景摄像机
-
-    public enum ViewType
-    {
-        Player,
-        Drone,
-    }
-
-    public ViewType currentViewType;
-
-    public void SwitchView(ViewType viewType)
-    {
-        DisableAllCameras();
-
-        // 启用背景摄像机
-        backgroundCamera.enabled = true;
-
-        switch (viewType)
-        {
-            case ViewType.Player:
-                playerCamera.enabled = true;
-                playerCamera.rect = new Rect(0, 0, 1, 1);  // 全屏覆盖
-                break;
-
-            case ViewType.Drone:
-                // 启用所有 Drone 摄像机
-                foreach (var droneCamera in droneCameras)
-                {
-                    droneCamera.enabled = true;
-                }
-                playerCamera.enabled = true;  // 将 Player 相机显示在右下角
-
-                float divide = Mathf.Ceil(Mathf.Sqrt(droneCameras.Length + 1));
-                float droneViewWidth = Screen.width / divide;
-                float droneViewHeight = Screen.height / divide;
-
-                for (int i = 0; i < droneCameras.Length; i++)
-                {
-                    int row = i / (int)divide;
-                    int col = i % (int)divide;
-                    Rect rect = new Rect(col * droneViewWidth / Screen.width,
-                        1 - (row + 1) * droneViewHeight / Screen.height,
-                        droneViewWidth / Screen.width, droneViewHeight / Screen.height);
-                    droneCameras[i].rect = rect;
-                }
-
-                // playerCamera 显示在右下角
-                playerCamera.rect = new Rect((divide - 1) * droneViewWidth / Screen.width,
-                    0, droneViewWidth / Screen.width, droneViewHeight / Screen.height);
-
-                break;
-        }
-
-        currentViewType = viewType;
-    }
-
-    private void DisableAllCameras()
-    {
-        playerCamera.enabled = false;
-        vehicleCamera.enabled = false;
-        backgroundCamera.enabled = false;  // 禁用背景摄像机
-
-        foreach (var droneCamera in droneCameras)
-        {
-            droneCamera.enabled = false;
-        }
-    }
+    public Camera backgroundCamera; // 新增的背景摄像机
 
     private void Start()
     {
+        SetupCameras();
+        SetCanvasToDisplay(display1, 0);
+        SetCanvasToDisplay(display2, 0);
+    }
+
+    void SetupCameras()
+    {
+        // 获取所有摄像机
         playerCamera = GameObject.FindWithTag("Player").GetComponentInChildren<Camera>();
         vehicleCamera = GameObject.FindWithTag("Vehicle").GetComponentInChildren<Camera>();
 
@@ -125,24 +71,71 @@ public class CameraManager : MonoBehaviour
             droneCameras[i] = droneObjects[i].GetComponentInChildren<Camera>();
         }
 
-        // 创建背景摄像机
-        CreateBackgroundCamera();
+        // 启用Display 2（假设已经有两个显示器连接）
+        if (Display.displays.Length > 1)
+        {
+            Display.displays[1].Activate(); // 启用Display 2
+        }
 
-        SwitchView(currentViewType);
+        // Display 1: Player视角
+        playerCamera.targetDisplay = 0; // Display 1
+        playerCamera.enabled = true;
+        playerCamera.rect = new Rect(0, 0, 1, 1); // 全屏覆盖
+        playerCameraCopy = Instantiate(playerCamera);
+        AudioListener audioListener = playerCameraCopy.GetComponent<AudioListener>();
+        if (audioListener != null)
+        {
+            Destroy(audioListener);
+        }
+
+        // Display 2: Swarm & Player视角
+        playerCameraCopy.targetDisplay = 1; // Display 2
+        playerCameraCopy.enabled = true;
+        playerCameraCopy.rect = new Rect(0, 0, 1, 1); // 全屏覆盖 (可根据需要调整布局)
+        for (int i = 0; i < droneCameras.Length; i++)
+        {
+            droneCameras[i].targetDisplay = 1; // Display 2
+            droneCameras[i].enabled = true;
+        }
+
+        // 配置Display 2的布局
+        float divide = Mathf.Ceil(Mathf.Sqrt(droneCameras.Length + 1));
+        float droneViewWidth = Screen.width / divide;
+        float droneViewHeight = Screen.height / divide;
+
+        for (int i = 0; i < droneCameras.Length; i++)
+        {
+            int row = i / (int)divide;
+            int col = i % (int)divide;
+            Rect rect = new Rect(col * droneViewWidth / Screen.width,
+                1 - (row + 1) * droneViewHeight / Screen.height,
+                droneViewWidth / Screen.width, droneViewHeight / Screen.height);
+            droneCameras[i].rect = rect;
+        }
+        playerCameraCopy.rect = new Rect((divide - 1) * droneViewWidth / Screen.width,
+            0, droneViewWidth / Screen.width, droneViewHeight / Screen.height);
     }
 
-    private void CreateBackgroundCamera()
+    void SetCanvasToDisplay(Canvas canvas, int displayIndex)
     {
-        GameObject backgroundCameraObj = new GameObject("BackgroundCamera");
-        backgroundCamera = backgroundCameraObj.AddComponent<Camera>();
+        if (displayIndex >= Display.displays.Length)
+        {
+            Debug.LogError("Display index out of range.");
+            return;
+        }
 
-        // 设置背景摄像机的属性
-        backgroundCamera.clearFlags = CameraClearFlags.SolidColor;
-        backgroundCamera.backgroundColor = Color.black;  // 设置背景颜色为黑色或其他颜色
-        backgroundCamera.cullingMask = 0;  // 不渲染任何物体
-        backgroundCamera.depth = -1;  // 确保它渲染在其他摄像机之前
+        // 获取目标显示器的分辨率
+        var display = Display.displays[displayIndex];
+        // float displayWidth = display.systemWidth;
+        // float displayHeight = display.systemHeight;
+        float displayWidth = Screen.width;
+        float displayHeight = Screen.height;
 
-        // 保持背景摄像机存在于场景中
-        DontDestroyOnLoad(backgroundCameraObj);
+        // 获取 Canvas 的 RectTransform 组件
+        RectTransform canvasRectTransform = canvas.GetComponent<RectTransform>();
+
+        // 设置 Canvas 尺寸以匹配目标显示器
+        canvasRectTransform.sizeDelta = new Vector2(displayWidth, displayHeight);
     }
+
 }

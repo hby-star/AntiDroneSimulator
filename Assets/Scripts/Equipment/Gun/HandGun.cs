@@ -41,8 +41,7 @@ public class HandGun : Gun
     {
         if (InputManager.Instance.operateEntityNow &&
             InputManager.Instance.currentEntity is Player player &&
-            player.currentEquipment == this &&
-            CameraManager.Instance.currentViewType == CameraManager.ViewType.Player)
+            player.currentEquipment == this)
         {
             int crosshairSize = 12;
             int lineLength = 6;
