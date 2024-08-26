@@ -3,22 +3,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public class SkillManager : MonoBehaviour
 {
     #region Singleton
-    private static GameManager _instance;
+    private static SkillManager _instance;
 
-    public static GameManager Instance
+    public static SkillManager Instance
     {
         get
         {
             if (_instance == null)
             {
-                _instance = FindObjectOfType<GameManager>();
+                _instance = FindObjectOfType<SkillManager>();
                 if (_instance == null)
                 {
                     GameObject obj = new GameObject("GameManager");
-                    _instance = obj.AddComponent<GameManager>();
+                    _instance = obj.AddComponent<SkillManager>();
                 }
             }
 
