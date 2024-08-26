@@ -53,12 +53,10 @@ public class CameraManager : MonoBehaviour
 
     private void Start()
     {
-        // 启用Display 2（假设已经有两个显示器连接）
+        // 设置显示器2
         if (Display.displays.Length > 1)
         {
-            Display.displays[1].Activate(); // 启用Display 2
             SetCanvasToDisplay(display2, 1);
-            Debug.Log("Display 2 activated.");
         }
 
         SetupCameras();
