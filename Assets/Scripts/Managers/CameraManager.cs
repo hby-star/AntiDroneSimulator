@@ -65,7 +65,8 @@ public class CameraManager : MonoBehaviour
     void SetupCameras()
     {
         // 获取所有摄像机
-        vehicleCamera = GameObject.FindWithTag("Vehicle").GetComponentInChildren<Camera>();
+        playerCamera = GameObject.FindWithTag("PlayerCamera").transform.GetChild(0).GetComponent<Camera>();
+        playerCameraCopy = GameObject.FindWithTag("PlayerCamera").transform.GetChild(1).GetComponent<Camera>();
 
         GameObject[] droneObjects = GameObject.FindGameObjectsWithTag("Drone");
         droneCameras = new Camera[droneObjects.Length];

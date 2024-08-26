@@ -76,8 +76,8 @@ public class Player : Entity
 
         isShiledPlaced = false;
 
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        // Cursor.lockState = CursorLockMode.Locked;
+        // Cursor.visible = false;
     }
 
     private void SetGun(int index)

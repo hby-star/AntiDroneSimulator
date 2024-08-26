@@ -41,7 +41,7 @@ public class Bomb : MonoBehaviour
                 if (hit.collider == nearbyObject && nearbyObject.tag == "Player")
                 {
                     Debug.Log("Player hit by bomb");
-                    Messenger.Broadcast(SwarmEvent.ATTACK_DRONE_PLAYER_DIED);
+                    Messenger.Broadcast(GameEvent.GAME_FAIL);
                     break;
                 }
                 else if (hit.collider != nearbyObject)

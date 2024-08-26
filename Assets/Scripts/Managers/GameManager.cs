@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -43,35 +44,17 @@ public class GameManager : MonoBehaviour
 
     #endregion
 
-    public enum GameState
-    {
-        MainMenu,
-        Level1,
-        Pause,
-        GameOver,
-    }
-
-    public enum MissionState
-    {
-        Null,
-        InMission,
-        Success,
-        Fail,
-    }
-
-    public GameState gameState { get; private set; }
-    public MissionState missionState { get; private set; }
-
+    public GameObject gameEndPopUp;
     private void Start()
     {
-        gameState = GameState.MainMenu;
-        missionState = MissionState.Null;
-
         if (Display.displays.Length > 1)
         {
             Display.displays[1].Activate(); // 启用Display 2
             Debug.Log("Display 2 activated.");
         }
+
+        gameEndPopUp.SetActive(false);
+        DontDestroyOnLoad(gameEndPopUp);
     }
 
 
@@ -102,12 +85,14 @@ public class GameManager : MonoBehaviour
 
     public void GameSuccess()
     {
-        missionState = MissionState.Success;
+        gameEndPopUp.SetActive(true);
+        gameEndPopUp.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "You Win!";
     }
 
     public void GameFail()
     {
-        missionState = MissionState.Fail;
+        gameEndPopUp.SetActive(true);
+        gameEndPopUp.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "You Lose!";
     }
 
     public void LoadLevel1()
@@ -130,5 +115,17 @@ public class GameManager : MonoBehaviour
         Messenger.RemoveListener(GameEvent.EXIT_GAME, QuitGame);
         Messenger.RemoveListener(GameEvent.GAME_SUCCESS, GameSuccess);
         Messenger.RemoveListener(GameEvent.GAME_FAIL, GameFail);
+    }
+
+    void Update()
+    {
+        if (gameEndPopUp.activeSelf)
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                gameEndPopUp.SetActive(false);
+                SceneManager.LoadScene("MainMenu");
+            }
+        }
     }
 }

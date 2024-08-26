@@ -36,6 +36,8 @@ public class InputManager : MonoBehaviour
             _instance = this;
             operateEntityNow = true;
             operateEntityIndex = 0;
+            operateEntities = new List<Entity>();
+            operateEntities.Add(GameObject.FindGameObjectWithTag("Player").GetComponent<Player>());
             currentEntity = operateEntities[operateEntityIndex];
             currentCamera = currentEntity.Camera;
         }

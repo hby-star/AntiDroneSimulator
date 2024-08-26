@@ -93,6 +93,7 @@ public class Swarm : MonoBehaviour
 
     void Start()
     {
+        hivePosition = transform.position;
         AssignDrones();
         RandomAssignHoney(detectDrones.Count);
         AssignHoneyToDetectDrones();
@@ -101,6 +102,32 @@ public class Swarm : MonoBehaviour
     void Update()
     {
         SupplyBomb();
+
+        if (AllDronesDestoryed())
+        {
+            Messenger.Broadcast(GameEvent.GAME_SUCCESS);
+        }
+    }
+
+    bool AllDronesDestoryed()
+    {
+        foreach (Drone drone in detectDrones)
+        {
+            if (drone != null && drone.gameObject != null)
+            {
+                return false;
+            }
+        }
+
+        foreach (Drone drone in attackDrones)
+        {
+            if (drone != null && drone.gameObject != null)
+            {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     // 为攻击无人机补充炸弹
