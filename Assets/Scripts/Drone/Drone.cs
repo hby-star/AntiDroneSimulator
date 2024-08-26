@@ -333,7 +333,6 @@ public class Drone : Entity
                 Quaternion.Slerp(Camera.transform.rotation, targetRotation, Time.deltaTime * rotateSmooth);
         }
 
-
         // 获取物体的边界
         Bounds[] bounds = new Bounds[targetRenderers.Length];
         for (int i = 0; i < targetRenderers.Length; i++)
@@ -353,12 +352,22 @@ public class Drone : Entity
             max = Vector3.Max(max, Camera.WorldToScreenPoint(bounds[i].max));
         }
 
+        // 获取display2的分辨率
+        float displayWidth = Screen.width;
+        float displayHeight = Screen.height;
+        if(Display.displays.Length > 1)
+        {
+            var display = Display.displays[1];
+            displayWidth = display.systemWidth;
+            displayHeight = display.systemHeight;
+        }
+
         // 将物体的屏幕坐标转换到摄像机的视口空间
         Rect cameraRect = Camera.rect;
-        float minX = min.x / Screen.width;
-        float maxX = max.x / Screen.width;
-        float minY = min.y / Screen.height;
-        float maxY = max.y / Screen.height;
+        float minX = min.x / displayWidth;
+        float maxX = max.x / displayWidth;
+        float minY = min.y / displayHeight;
+        float maxY = max.y / displayHeight;
 
         // 检查物体是否在当前摄像机的视口内
         bool isInCameraView = (minX > cameraRect.x && maxX < cameraRect.x + cameraRect.width &&
@@ -377,11 +386,10 @@ public class Drone : Entity
             }
         }
 
-
         // 计算边界框的位置和大小
         if (isVisible && isInCameraView && maxY - minY > cameraRect.height / minDetectScaleInCamera)
         {
-            targetRect = new Rect(min.x, Screen.height - max.y, max.x - min.x, max.y - min.y);
+            targetRect = new Rect(min.x, displayHeight - max.y, max.x - min.x, max.y - min.y);
             isPlayerDetectedInCamera = true;
         }
         else
@@ -405,10 +413,20 @@ public class Drone : Entity
 
     void UIBoxUpdate()
     {
+        // 获取display2的分辨率
+        float displayWidth = Screen.width;
+        float displayHeight = Screen.height;
+        if(Display.displays.Length > 1)
+        {
+            var display = Display.displays[1];
+            displayWidth = display.systemWidth;
+            displayHeight = display.systemHeight;
+        }
+
         if (targetRect.width > 0)
         {
-            uiBox.anchoredPosition = new Vector2(targetRect.x - Screen.width / 2 + targetRect.width / 2,
-                -targetRect.y + Screen.height / 2 - targetRect.height / 2);
+            uiBox.anchoredPosition = new Vector2(targetRect.x - displayWidth / 2 + targetRect.width / 2,
+                -targetRect.y + displayHeight / 2 - targetRect.height / 2);
             uiBox.sizeDelta = new Vector2(targetRect.width, targetRect.height);
             uiBox.gameObject.SetActive(true);
         }

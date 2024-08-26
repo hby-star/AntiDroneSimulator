@@ -53,15 +53,21 @@ public class CameraManager : MonoBehaviour
 
     private void Start()
     {
+        // 启用Display 2（假设已经有两个显示器连接）
+        if (Display.displays.Length > 1)
+        {
+            Display.displays[1].Activate(); // 启用Display 2
+            SetCanvasToDisplay(display2, 1);
+            Debug.Log("Display 2 activated.");
+        }
+
         SetupCameras();
         SetCanvasToDisplay(display1, 0);
-        SetCanvasToDisplay(display2, 0);
     }
 
     void SetupCameras()
     {
         // 获取所有摄像机
-        playerCamera = GameObject.FindWithTag("Player").GetComponentInChildren<Camera>();
         vehicleCamera = GameObject.FindWithTag("Vehicle").GetComponentInChildren<Camera>();
 
         GameObject[] droneObjects = GameObject.FindGameObjectsWithTag("Drone");
@@ -71,12 +77,6 @@ public class CameraManager : MonoBehaviour
             droneCameras[i] = droneObjects[i].GetComponentInChildren<Camera>();
         }
 
-        // 启用Display 2（假设已经有两个显示器连接）
-        if (Display.displays.Length > 1)
-        {
-            Display.displays[1].Activate(); // 启用Display 2
-        }
-
         // 初始化背景摄像机
         SetupBackgroundCamera();
 
@@ -84,17 +84,10 @@ public class CameraManager : MonoBehaviour
         playerCamera.targetDisplay = 0; // Display 1
         playerCamera.enabled = true;
         playerCamera.rect = new Rect(0, 0, 1, 1); // 全屏覆盖
-        playerCameraCopy = Instantiate(playerCamera);
-        AudioListener audioListener = playerCameraCopy.GetComponent<AudioListener>();
-        if (audioListener != null)
-        {
-            Destroy(audioListener);
-        }
 
         // Display 2: Swarm & Player视角
         playerCameraCopy.targetDisplay = 1; // Display 2
         playerCameraCopy.enabled = true;
-        playerCameraCopy.rect = new Rect(0, 0, 1, 1); // 全屏覆盖 (可根据需要调整布局)
         for (int i = 0; i < droneCameras.Length; i++)
         {
             droneCameras[i].targetDisplay = 1; // Display 2
@@ -142,18 +135,11 @@ public class CameraManager : MonoBehaviour
 
     void SetCanvasToDisplay(Canvas canvas, int displayIndex)
     {
-        if (displayIndex >= Display.displays.Length)
-        {
-            Debug.LogError("Display index out of range.");
-            return;
-        }
 
         // 获取目标显示器的分辨率
         var display = Display.displays[displayIndex];
-        // float displayWidth = display.systemWidth;
-        // float displayHeight = display.systemHeight;
-        float displayWidth = Screen.width;
-        float displayHeight = Screen.height;
+        float displayWidth = display.systemWidth;
+        float displayHeight = display.systemHeight;
 
         // 获取 Canvas 的 RectTransform 组件
         RectTransform canvasRectTransform = canvas.GetComponent<RectTransform>();

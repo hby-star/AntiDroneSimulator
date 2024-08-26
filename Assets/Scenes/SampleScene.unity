@@ -377,8 +377,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   display1: {fileID: 1857965779}
   display2: {fileID: 311085438}
-  playerCamera: {fileID: 0}
-  playerCameraCopy: {fileID: 0}
+  playerCamera: {fileID: 1178716779}
+  playerCameraCopy: {fileID: 7616324955745526383}
   droneCameras: []
   vehicleCamera: {fileID: 0}
   backgroundCamera: {fileID: 0}
@@ -2823,6 +2823,11 @@ MonoBehaviour:
   empRadius: 50
   radarRadius: 100
   electromagneticInterferenceRadius: 50
+--- !u!20 &1178716779 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 3647073539745528082, guid: 7b34cc7bee4936f42b0ce05398dede04, type: 3}
+  m_PrefabInstance: {fileID: 7616324955745526382}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1295340405
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4732,11 +4737,20 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 7770878060236723458, guid: 7b34cc7bee4936f42b0ce05398dede04, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7b34cc7bee4936f42b0ce05398dede04, type: 3}
+--- !u!20 &7616324955745526383 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 6839709207158740363, guid: 7b34cc7bee4936f42b0ce05398dede04, type: 3}
+  m_PrefabInstance: {fileID: 7616324955745526382}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &7689834781955734686
 GameObject:
   m_ObjectHideFlags: 0
