@@ -34,7 +34,6 @@ public class InputManager : MonoBehaviour
         if (_instance == null)
         {
             _instance = this;
-            DontDestroyOnLoad(gameObject);
             operateEntityNow = true;
             operateEntityIndex = 0;
             currentEntity = operateEntities[operateEntityIndex];

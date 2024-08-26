@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -81,7 +82,7 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
-        SceneManager.LoadScene("MainMenu");
+        LoadLevel1();
     }
 
     public void StopGame()
@@ -99,8 +100,35 @@ public class GameManager : MonoBehaviour
         Application.Quit();
     }
 
+    public void GameSuccess()
+    {
+        missionState = MissionState.Success;
+    }
+
+    public void GameFail()
+    {
+        missionState = MissionState.Fail;
+    }
+
     public void LoadLevel1()
     {
         SceneManager.LoadScene("Level_1");
+    }
+
+
+    private void OnEnable()
+    {
+        Messenger.AddListener(GameEvent.START_GAME, StartGame);
+        Messenger.AddListener(GameEvent.EXIT_GAME, QuitGame);
+        Messenger.AddListener(GameEvent.GAME_SUCCESS, GameSuccess);
+        Messenger.AddListener(GameEvent.GAME_FAIL, GameFail);
+    }
+
+    private void OnDisable()
+    {
+        Messenger.RemoveListener(GameEvent.START_GAME, StartGame);
+        Messenger.RemoveListener(GameEvent.EXIT_GAME, QuitGame);
+        Messenger.RemoveListener(GameEvent.GAME_SUCCESS, GameSuccess);
+        Messenger.RemoveListener(GameEvent.GAME_FAIL, GameFail);
     }
 }
