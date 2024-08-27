@@ -1559,12 +1559,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e065625840f43f3b008d2548ab635b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerCamera: {fileID: 0}
-  soundSource: {fileID: 0}
-  reloadSound: {fileID: 0}
-  fireSound: {fileID: 0}
-  currentBullets: 1
-  maxBullets: 1
+  playerCamera: {fileID: 3647073539745528082}
+  soundSource: {fileID: 4455697575825464484}
+  reloadSound: {fileID: 8300000, guid: 4d065ebd0386b9345ac4ec4d5377f76d, type: 3}
+  fireSound: {fileID: 8300000, guid: 293496b0af3029f4caae703eb9088dd8, type: 3}
+  currentBullets: 5
+  maxBullets: 5
   gunType: 1
   netPrefab: {fileID: 647565524557730373, guid: 14928b59992f90d488cea5a1d5880b6f, type: 3}
   netSpeed: 50
@@ -1799,10 +1799,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7083aa1a8f1a4b23b6b620aa8373fe6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerCamera: {fileID: 0}
-  soundSource: {fileID: 0}
-  reloadSound: {fileID: 0}
-  fireSound: {fileID: 0}
+  playerCamera: {fileID: 3647073539745528082}
+  soundSource: {fileID: 5267920261909141651}
+  reloadSound: {fileID: 8300000, guid: 4d065ebd0386b9345ac4ec4d5377f76d, type: 3}
+  fireSound: {fileID: 8300000, guid: 293496b0af3029f4caae703eb9088dd8, type: 3}
   currentBullets: 1
   maxBullets: 1
   gunType: 2
@@ -2434,7 +2434,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06d0c7a9d62f4340adb5d1d3dc982e8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerCamera: {fileID: 0}
+  playerCamera: {fileID: 3647073539745528082}
   soundSource: {fileID: 3251092804102957693}
   reloadSound: {fileID: 8300000, guid: 4d065ebd0386b9345ac4ec4d5377f76d, type: 3}
   fireSound: {fileID: 8300000, guid: 293496b0af3029f4caae703eb9088dd8, type: 3}
