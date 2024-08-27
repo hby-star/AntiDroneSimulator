@@ -44,7 +44,6 @@ public class GameManager : MonoBehaviour
 
     #endregion
 
-    public GameObject gameEndPopUp;
     private void Start()
     {
         if (Display.displays.Length > 1)
@@ -52,25 +51,31 @@ public class GameManager : MonoBehaviour
             Display.displays[1].Activate(); // 启用Display 2
             Debug.Log("Display 2 activated.");
         }
-
-        gameEndPopUp.SetActive(false);
-        DontDestroyOnLoad(gameEndPopUp);
-    }
-
-
-    public void LoadScene(string sceneName)
-    {
-        SceneManager.LoadScene(sceneName);
     }
 
     public void StartGame()
     {
-        LoadLevel1();
+        StartCoroutine(LoadLevel1());
+    }
+
+    public void ToMainMenu()
+    {
+        StartCoroutine(LoadMainMenu());
     }
 
     public void StopGame()
     {
         Time.timeScale = 0;
+    }
+
+    public void StopGameInput()
+    {
+        InputManager.Instance.gameObject.SetActive(false);
+    }
+
+    public void ContinueGameInput()
+    {
+        InputManager.Instance.gameObject.SetActive(true);
     }
 
     public void ContinueGame()
@@ -85,19 +90,41 @@ public class GameManager : MonoBehaviour
 
     public void GameSuccess()
     {
-        gameEndPopUp.SetActive(true);
-        gameEndPopUp.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "You Win!";
+        Messenger.Broadcast(UIEvent.SHOW_GAME_END_WIN);
+        StopGame();
     }
 
     public void GameFail()
     {
-        gameEndPopUp.SetActive(true);
-        gameEndPopUp.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "You Lose!";
+        Messenger.Broadcast(UIEvent.SHOW_GAME_END_LOSE);
+        StopGame();
     }
 
-    public void LoadLevel1()
+    IEnumerator LoadMainMenu()
     {
-        SceneManager.LoadScene("Level_1");
+        ContinueGame();
+
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync("MainMenu");
+
+        while (!asyncLoad.isDone)
+        {
+            yield return null;
+        }
+
+        Messenger.Broadcast(UIEvent.HIDE_ALL_POPUPS);
+    }
+
+    IEnumerator LoadLevel1()
+    {
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync("Level_1");
+
+        while (!asyncLoad.isDone)
+        {
+            yield return null;
+        }
+
+        StopGame();
+        Messenger.Broadcast(UIEvent.SHOW_GAME_START);
     }
 
 
@@ -107,6 +134,9 @@ public class GameManager : MonoBehaviour
         Messenger.AddListener(GameEvent.EXIT_GAME, QuitGame);
         Messenger.AddListener(GameEvent.GAME_SUCCESS, GameSuccess);
         Messenger.AddListener(GameEvent.GAME_FAIL, GameFail);
+        Messenger.AddListener(GameEvent.STOP_GAME, StopGame);
+        Messenger.AddListener(GameEvent.CONTINUE_GAME, ContinueGame);
+        Messenger.AddListener(GameEvent.TO_MAIN_MENU, ToMainMenu);
     }
 
     private void OnDisable()
@@ -115,17 +145,8 @@ public class GameManager : MonoBehaviour
         Messenger.RemoveListener(GameEvent.EXIT_GAME, QuitGame);
         Messenger.RemoveListener(GameEvent.GAME_SUCCESS, GameSuccess);
         Messenger.RemoveListener(GameEvent.GAME_FAIL, GameFail);
-    }
-
-    void Update()
-    {
-        if (gameEndPopUp.activeSelf)
-        {
-            if (Input.GetMouseButtonDown(0))
-            {
-                gameEndPopUp.SetActive(false);
-                SceneManager.LoadScene("MainMenu");
-            }
-        }
+        Messenger.RemoveListener(GameEvent.STOP_GAME, StopGame);
+        Messenger.RemoveListener(GameEvent.CONTINUE_GAME, ContinueGame);
+        Messenger.RemoveListener(GameEvent.TO_MAIN_MENU, ToMainMenu);
     }
 }

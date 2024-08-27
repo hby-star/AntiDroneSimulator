@@ -10,5 +10,9 @@ public static class GameEvent
 
     public const string GAME_FAIL = "GAME_FAIL";
 
-    public const string SHOW_HELP = "SHOW_HELP";
+    public const string STOP_GAME = "STOP_GAME";
+
+    public const string CONTINUE_GAME = "CONTINUE_GAME";
+
+    public const string TO_MAIN_MENU = "TO_MAIN_MENU";
 }

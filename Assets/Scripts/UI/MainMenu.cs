@@ -10,7 +10,6 @@ public class MainMenu : MonoBehaviour
     public Button startGameButton;
     public Button helpButton;
     public Button exitGameButton;
-    public GameObject helpPopUp;
 
     private void Awake()
     {
@@ -26,7 +25,7 @@ public class MainMenu : MonoBehaviour
 
     private void Help()
     {
-        helpPopUp.SetActive(true);
+        Messenger.Broadcast(UIEvent.SHOW_HELP);
     }
 
     private void ExitGame()
@@ -36,20 +35,6 @@ public class MainMenu : MonoBehaviour
 
     void Start()
     {
-        helpPopUp.SetActive(false);
-    }
-
-    void Update()
-    {
-        if (helpPopUp.activeSelf)
-        {
-            if (Input.GetMouseButtonDown(0))
-            {
-                if (!RectTransformUtility.RectangleContainsScreenPoint(helpPopUp.GetComponent<RectTransform>(), Input.mousePosition))
-                {
-                    helpPopUp.SetActive(false);
-                }
-            }
-        }
+        Messenger.Broadcast(UIEvent.HIDE_HELP);
     }
 }
