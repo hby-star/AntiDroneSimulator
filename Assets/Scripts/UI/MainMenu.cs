@@ -32,9 +32,4 @@ public class MainMenu : MonoBehaviour
     {
         Messenger.Broadcast(GameEvent.EXIT_GAME);
     }
-
-    void Start()
-    {
-        Messenger.Broadcast(UIEvent.HIDE_HELP);
-    }
 }

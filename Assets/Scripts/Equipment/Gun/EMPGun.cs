@@ -47,7 +47,8 @@ public class EMPGun : Gun
     {
         if (InputManager.Instance.operateEntityNow &&
             InputManager.Instance.currentEntity is Player player &&
-            player.currentEquipment == this)
+            player.currentEquipment == this &&
+            UIManager.Instance.IsPopUpAllHidden())
         {
             int lineLength = 6;
             int lineWidth = 2;

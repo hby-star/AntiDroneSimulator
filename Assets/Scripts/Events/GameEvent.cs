@@ -15,4 +15,6 @@ public static class GameEvent
     public const string CONTINUE_GAME = "CONTINUE_GAME";
 
     public const string TO_MAIN_MENU = "TO_MAIN_MENU";
+
+    public const string IN_GAME_MENU = "IN_GAME_MENU";
 }

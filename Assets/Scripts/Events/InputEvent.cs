@@ -30,7 +30,7 @@
     public const string VECHILE_EMP_USE_INPUT = "VECHILE_EMP_USE_INPUT";
     public const string VECHILE_ELERTIC_INTERFERENCE_INPUT = "VECHILE_ELERTIC_INTERFERENCE_INPUT";
 
-    // Game
+    // Skill
     public const string GAME_PAUSE_INPUT = "GAME_PAUSE_INPUT";
     public const string OBSERVER_MODE_INPUT = "OBSERVER_MODE_INPUT";
 }

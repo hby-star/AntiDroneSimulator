@@ -229,16 +229,21 @@ public class InputManager : MonoBehaviour
 
     void HandleGameInput()
     {
-        // Game Pause
+        // SKill Game Pause
         if (Input.GetKeyDown(KeyCode.P))
         {
             Messenger.Broadcast(InputEvent.GAME_PAUSE_INPUT);
         }
 
-        // Observer Mode
+        // SKill Observer Mode
         if (Input.GetKeyDown(KeyCode.O))
         {
             Messenger.Broadcast(InputEvent.OBSERVER_MODE_INPUT);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Messenger.Broadcast(GameEvent.IN_GAME_MENU);
         }
     }
 }

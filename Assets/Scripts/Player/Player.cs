@@ -377,6 +377,24 @@ public class Player : Entity
     public bool PlayerUseVehicleElectromagneticInterferenceInput { get; private set; }
     public bool PlayerPlacePickupShieldInput { get; private set; }
 
+    public void ZeroInput()
+    {
+        HorizontalInput = 0;
+        VerticalInput = 0;
+        JumpInput = false;
+        DashInput = false;
+        CrouchInput = false;
+        AttackInput = false;
+        ReloadInput = false;
+        ChangeGunInput = false;
+        CameraHorizontalInput = 0;
+        PlayerEnterVehicleInput = false;
+        PlayerUseVehicleEmpInput = false;
+        PlayerUseVehicleRadarInput = false;
+        PlayerUseVehicleElectromagneticInterferenceInput = false;
+        PlayerPlacePickupShieldInput = false;
+    }
+
     void OnEnable()
     {
         Messenger<float>.AddListener(InputEvent.PLAYER_HORIZONTAL_INPUT, (value) => { HorizontalInput = value; });

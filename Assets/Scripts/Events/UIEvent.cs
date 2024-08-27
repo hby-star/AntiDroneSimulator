@@ -8,6 +8,10 @@
 
     public const string HIDE_GAME_START = "HIDE_GAME_START";
 
+    public const string SHOW_GAME_PAUSE = "SHOW_GAME_PAUSE";
+
+    public const string HIDE_GAME_PAUSE = "HIDE_GAME_PAUSE";
+
     public const string SHOW_GAME_END_WIN = "SHOW_GAME_END_WIN";
 
     public const string SHOW_GAME_END_LOSE = "SHOW_GAME_END_LOSE";

@@ -65,12 +65,14 @@ public class GameManager : MonoBehaviour
 
     public void StopGame()
     {
+        StopGameInput();
         Time.timeScale = 0;
     }
 
     public void StopGameInput()
     {
         InputManager.Instance.gameObject.SetActive(false);
+        GameObject.FindWithTag("Player").GetComponent<Player>().ZeroInput();
     }
 
     public void ContinueGameInput()
@@ -80,6 +82,7 @@ public class GameManager : MonoBehaviour
 
     public void ContinueGame()
     {
+        ContinueGameInput();
         Time.timeScale = 1;
     }
 
@@ -102,7 +105,6 @@ public class GameManager : MonoBehaviour
 
     IEnumerator LoadMainMenu()
     {
-        ContinueGame();
 
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync("MainMenu");
 
@@ -127,6 +129,12 @@ public class GameManager : MonoBehaviour
         Messenger.Broadcast(UIEvent.SHOW_GAME_START);
     }
 
+    public void InGameMenu()
+    {
+        Messenger.Broadcast(UIEvent.SHOW_GAME_PAUSE);
+        StopGame();
+    }
+
 
     private void OnEnable()
     {
@@ -137,6 +145,7 @@ public class GameManager : MonoBehaviour
         Messenger.AddListener(GameEvent.STOP_GAME, StopGame);
         Messenger.AddListener(GameEvent.CONTINUE_GAME, ContinueGame);
         Messenger.AddListener(GameEvent.TO_MAIN_MENU, ToMainMenu);
+        Messenger.AddListener(GameEvent.IN_GAME_MENU, InGameMenu);
     }
 
     private void OnDisable()
@@ -148,5 +157,6 @@ public class GameManager : MonoBehaviour
         Messenger.RemoveListener(GameEvent.STOP_GAME, StopGame);
         Messenger.RemoveListener(GameEvent.CONTINUE_GAME, ContinueGame);
         Messenger.RemoveListener(GameEvent.TO_MAIN_MENU, ToMainMenu);
+        Messenger.RemoveListener(GameEvent.IN_GAME_MENU, InGameMenu);
     }
 }

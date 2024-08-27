@@ -40,7 +40,7 @@ public class Bomb : MonoBehaviour
             {
                 if (hit.collider == nearbyObject && nearbyObject.tag == "Player")
                 {
-                    Debug.Log("Player hit by bomb");
+                    //Debug.Log("Player hit by bomb");
                     Messenger.Broadcast(GameEvent.GAME_FAIL);
                     break;
                 }

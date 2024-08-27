@@ -41,7 +41,8 @@ public class HandGun : Gun
     {
         if (InputManager.Instance.operateEntityNow &&
             InputManager.Instance.currentEntity is Player player &&
-            player.currentEquipment == this)
+            player.currentEquipment == this &&
+            UIManager.Instance.IsPopUpAllHidden())
         {
             int crosshairSize = 12;
             int lineLength = 6;

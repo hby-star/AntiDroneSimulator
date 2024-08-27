@@ -31,7 +31,8 @@ public class NetGun : Gun
     {
         if (InputManager.Instance.operateEntityNow &&
             InputManager.Instance.currentEntity is Player player &&
-            player.currentEquipment == this)
+            player.currentEquipment == this &&
+            UIManager.Instance.IsPopUpAllHidden())
         {
             int squareSize = 50;
             int cornerLength = 10;
