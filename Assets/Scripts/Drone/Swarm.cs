@@ -68,8 +68,8 @@ public class Swarm : MonoBehaviour
 
     Vector3 GenerateRandomHoneyPosition()
     {
-        Vector3 randomPosition = hivePosition + Random.insideUnitSphere * hiveRadius;
-        randomPosition.y = hivePosition.y + 10f;
+        Vector3 randomPosition = hivePosition + Random.insideUnitSphere * honeyRadius;
+        randomPosition.y = hivePosition.y + 5f;
         return randomPosition;
     }
 

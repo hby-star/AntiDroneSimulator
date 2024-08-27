@@ -434,15 +434,15 @@ MonoBehaviour:
   hivePosition: {x: 0, y: 0, z: 0}
   hiveRadius: 20
   detectDroneSpeed: 10
-  attackDroneSpeed: 5
-  throwBombRadius: 6
+  attackDroneSpeed: 8
+  throwBombRadius: 8
   bombBelowLength: 0.1
   minDetectScaleInCamera: 20
   cameraSmooth: 10
   rotateSmooth: 2
   uiBoxPrefab: {fileID: 1759393386953110933, guid: 74ae50997a26c944198a7272b0ea8180, type: 3}
   detectObstacleDistance: 5
-  avoidObstacleWeight: 1
+  avoidObstacleWeight: 0.6
   soundSource: {fileID: 1516163198716476928}
   flySound: {fileID: 8300000, guid: da8cba425f89d414bbfefcafcff846bd, type: 3}
 --- !u!1 &2077614911912810416

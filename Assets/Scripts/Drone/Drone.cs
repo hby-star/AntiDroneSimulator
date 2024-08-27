@@ -217,6 +217,17 @@ public class Drone : Entity
 
     void AttackDroneMoveToTarget()
     {
+        // 无人机到玩家的距离
+        float distanceToPlayer = (targetPlayer.transform.position - transform.position).magnitude;
+
+        // 如果玩家距离侦查无人机较近，则投放炸弹，然后返回蜂巢
+        if (distanceToPlayer < throwBombRadius)
+        {
+            ThrowBomb();
+            attackDroneTargetPosition = hivePosition;
+            taskForce = Vector3.up * 5f;
+        }
+
         // 攻击无人机到当前目标的距离
         float distanceToTarget = (attackDroneTargetPosition - transform.position).magnitude;
 
