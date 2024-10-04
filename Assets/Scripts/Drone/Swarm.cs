@@ -107,13 +107,18 @@ public class Swarm : MonoBehaviour
         droneCount = (int)UIManager.Instance.settingsPopUp.GetComponent<Settings>().droneNumSlider.value;
     }
 
-    void Start()
+    private void Awake()
     {
         SettingStart();
 
         hivePosition = transform.position;
         hivePosition.y += 5f;
+
         AssignDrones();
+    }
+
+    void Start()
+    {
         RandomAssignHoney(detectDrones.Count);
         AssignHoneyToDetectDrones();
     }

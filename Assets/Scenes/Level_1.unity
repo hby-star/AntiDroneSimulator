@@ -495,6 +495,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6428153316440010268, guid: 8f3343ad66a787249a94c31a4f1a5ac4, type: 3}
+      propertyPath: hiveRadius
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 6428153316440010268, guid: 8f3343ad66a787249a94c31a4f1a5ac4, type: 3}
       propertyPath: dronePrefab
       value: 
       objectReference: {fileID: 2061971188611494707, guid: 39209ac28ffbe444e83dedddda89411a, type: 3}
@@ -623,50 +627,6 @@ MonoBehaviour:
   droneCameras: []
   vehicleCamera: {fileID: 0}
   backgroundCamera: {fileID: 0}
---- !u!1 &195666939
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 195666941}
-  - component: {fileID: 195666940}
-  m_Layer: 0
-  m_Name: GameManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &195666940
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 195666939}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 75aa0e65eb52fe847934df41f2eaa867, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &195666941
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 195666939}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 591.2047, y: 265.2689, z: 2.7268298}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &274629033
 GameObject:
   m_ObjectHideFlags: 0
@@ -12639,7 +12599,6 @@ MonoBehaviour:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 195666941}
   - {fileID: 705507995}
   - {fileID: 177480483}
   - {fileID: 1567679023}
