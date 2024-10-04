@@ -15,6 +15,10 @@ public class Drone : Entity
         Operate,
     }
 
+    [Header("Move Info")]
+    public float moveSpeed = 10f;
+
+
     [Header("Swarm Info")] public DroneType droneType;
     public int droneID;
     public Vector3 hivePosition;

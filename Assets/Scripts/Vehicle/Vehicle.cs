@@ -18,6 +18,8 @@ public class Vehicle : Entity
 
     [NonSerialized] public Player currentPlayer;
 
+    [Header("Move Info")]
+    public float moveSpeed = 10f;
     public WheelCollider wheelLf;
     public WheelCollider wheelRf;
     public WheelCollider wheelLb;

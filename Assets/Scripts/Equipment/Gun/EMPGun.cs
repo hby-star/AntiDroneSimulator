@@ -42,44 +42,4 @@ public class EMPGun : Gun
             }
         }
     }
-
-    void OnGUI()
-    {
-        if (InputManager.Instance.operateEntityNow &&
-            InputManager.Instance.currentEntity is Player player &&
-            player.currentEquipment == this &&
-            UIManager.Instance.IsPopUpAllHidden())
-        {
-            int lineLength = 6;
-            int lineWidth = 2;
-            int circleRadius = 30;
-            int circleSegments = 100;
-            float centerX = Screen.width / 2;
-            float centerY = Screen.height / 2;
-
-            // Create a 1x1 texture for lines
-            Texture2D lineTexture = new Texture2D(1, 1);
-            lineTexture.SetPixel(0, 0, Color.white);
-            lineTexture.Apply();
-
-            // Horizontal line
-            GUI.DrawTexture(new Rect(centerX - lineLength / 2, centerY - lineWidth / 2, lineLength, lineWidth),
-                lineTexture);
-            // Vertical line
-            GUI.DrawTexture(new Rect(centerX - lineWidth / 2, centerY - lineLength / 2, lineWidth, lineLength),
-                lineTexture);
-
-            // Draw circular outline
-            for (int i = 0; i < circleSegments; i++)
-            {
-                float angle = i * Mathf.PI * 2 / circleSegments;
-                float x = Mathf.Cos(angle) * circleRadius;
-                float y = Mathf.Sin(angle) * circleRadius;
-
-                GUI.DrawTexture(
-                    new Rect(centerX + x - lineWidth / 2, centerY + y - lineWidth / 2, lineWidth, lineWidth),
-                    lineTexture);
-            }
-        }
-    }
 }

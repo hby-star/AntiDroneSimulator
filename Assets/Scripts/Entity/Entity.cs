@@ -12,8 +12,6 @@ public class Entity : MonoBehaviour
 
     protected bool operateNow = false;
 
-    [Header("Move Info")] public float moveSpeed = 10f;
-
     protected virtual void Awake()
     {
     }

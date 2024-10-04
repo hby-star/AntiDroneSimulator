@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -20,8 +21,15 @@ public class Player : Entity
 
     # endregion
 
+    #region Stats
+
+    [Header("Stats Info")] public EntityStats characterStats;
+
+    #endregion
+
     #region Move
 
+    [Header("Move Info")] public float moveSpeed = 10f;
     public float jumpForce = 10f;
     public float dashSpeed = 10f;
     public float standColliderHeight = 1.75f;
@@ -62,8 +70,7 @@ public class Player : Entity
 
     #region Attack
 
-    [Header("Attack Info")]
-    public List<Gun> guns;
+    [Header("Attack Info")] public List<Gun> guns;
     public GameObject shieldPrefab;
     private bool isShiledPlaced;
     public Equipment currentEquipment { get; private set; }
@@ -130,11 +137,19 @@ public class Player : Entity
         return false;
     }
 
-    public void Reload()
+    public void ReloadStart()
     {
         if (currentEquipment is Gun gun)
         {
-            gun.Reload();
+            gun.ReloadStart();
+        }
+    }
+
+    public void ReloadEnd()
+    {
+        if (currentEquipment is Gun gun)
+        {
+            gun.ReloadEnd();
         }
     }
 
@@ -201,6 +216,7 @@ public class Player : Entity
                     {
                         Debug.Log("Radar Detection: " + position);
                     }
+
                     break;
                 }
             }
@@ -302,8 +318,10 @@ public class Player : Entity
                 transform.position.z);
             Gizmos.DrawWireSphere(point1, capsuleCollider.radius);
             Gizmos.DrawWireSphere(point2, capsuleCollider.radius);
-            Gizmos.DrawLine(point1 + Vector3.right * capsuleCollider.radius, point2 + Vector3.right * capsuleCollider.radius);
-            Gizmos.DrawLine(point1 - Vector3.right * capsuleCollider.radius, point2 - Vector3.right * capsuleCollider.radius);
+            Gizmos.DrawLine(point1 + Vector3.right * capsuleCollider.radius,
+                point2 + Vector3.right * capsuleCollider.radius);
+            Gizmos.DrawLine(point1 - Vector3.right * capsuleCollider.radius,
+                point2 - Vector3.right * capsuleCollider.radius);
         }
 
         // Draw the interaction sphere
@@ -442,10 +460,11 @@ public class Player : Entity
         // Interact with vehicle
         Messenger<bool>.RemoveListener(InputEvent.VEHICLE_ENTER_EXIT_INPUT,
             (value) => { PlayerEnterVehicleInput = value; });
-        Messenger<bool>.RemoveListener(InputEvent.VECHILE_EMP_USE_INPUT, (value) => { PlayerUseVehicleEmpInput = value; });
+        Messenger<bool>.RemoveListener(InputEvent.VECHILE_EMP_USE_INPUT,
+            (value) => { PlayerUseVehicleEmpInput = value; });
         Messenger<bool>.RemoveListener(InputEvent.VECHILE_RADAR_SWITCH_INPUT,
             (value) => { PlayerUseVehicleRadarInput = value; });
-        Messenger<bool>.RemoveListener(InputEvent.VECHILE_ELERTIC_INTERFERENCE_INPUT ,
+        Messenger<bool>.RemoveListener(InputEvent.VECHILE_ELERTIC_INTERFERENCE_INPUT,
             (value) => { PlayerUseVehicleElectromagneticInterferenceInput = value; });
 
         // Interact with shield

@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class PlayerReloadState : PlayerGroundState
 {
-    public PlayerReloadState(EntityStateMachine entityStateMachine, Entity entity, string animationName, Player player) :
+    public PlayerReloadState(EntityStateMachine entityStateMachine, Entity entity, string animationName,
+        Player player) :
         base(entityStateMachine, entity, animationName, player)
     {
     }
@@ -13,7 +14,7 @@ public class PlayerReloadState : PlayerGroundState
     {
         base.Enter();
 
-        Player.Reload();
+        Player.ReloadStart();
 
         Player.Rigidbody.velocity = Vector3.zero;
 
@@ -24,17 +25,15 @@ public class PlayerReloadState : PlayerGroundState
     {
         base.Update();
 
-
         if (IsAnimationFinished())
         {
             EntityStateMachine.ChangeState(Player.IdleState);
         }
-
     }
 
     public override void Exit()
     {
-        Player.Reload();
+        Player.ReloadEnd();
 
         base.Exit();
     }

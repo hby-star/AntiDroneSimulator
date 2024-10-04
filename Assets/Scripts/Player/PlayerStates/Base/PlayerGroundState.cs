@@ -22,61 +22,67 @@ public class PlayerGroundState : PlayerState
 
         if (Player.IsOperateNow())
         {
+            if (Player.IsBusy) return;
+
             if (Player.StateMachine.CurrentState is not PlayerCrouchState)
             {
                 _isCrouching = false;
             }
 
             // move
-            if ((Player.HorizontalInput != 0 || Player.VerticalInput != 0) && !Player.IsBusy && !_isCrouching)
+            if ((Player.HorizontalInput != 0 || Player.VerticalInput != 0) && !_isCrouching)
             {
                 EntityStateMachine.ChangeState(Player.MoveState);
             }
 
             // idle
-            if (Player.HorizontalInput == 0 && Player.VerticalInput == 0 && !Player.IsBusy && !_isCrouching)
+            if (Player.HorizontalInput == 0 && Player.VerticalInput == 0 && !_isCrouching)
             {
                 EntityStateMachine.ChangeState(Player.IdleState);
             }
 
             // jump
-            if (Player.JumpInput && Player.IsGrounded() && !Player.IsBusy && !_isCrouching)
+            if (Player.JumpInput && Player.IsGrounded() && !_isCrouching)
             {
                 EntityStateMachine.ChangeState(Player.JumpState);
             }
 
             // air
-            if (!Player.IsGrounded() && !Player.IsBusy && !_isCrouching)
+            if (!Player.IsGrounded() && !_isCrouching)
             {
                 EntityStateMachine.ChangeState(Player.AirState);
             }
 
             // attack
-            if (Player.AttackInput && !Player.IsBusy && !_isCrouching)
+            if (Player.AttackInput && !_isCrouching)
             {
-                if (Player.CanAttack() && !Player.IsBusy)
+                if (Player.CanAttack())
                 {
                     EntityStateMachine.ChangeState(Player.AttackState);
+                }
+                else if (Player.CanReload())
+                {
+                    EntityStateMachine.ChangeState(Player.ReloadState);
                 }
             }
 
             // reload
-            if (Player.ReloadInput && !Player.IsBusy && !_isCrouching)
+            if (Player.ReloadInput && !_isCrouching)
             {
-                if (Player.CanReload() && !Player.IsBusy)
+                if (Player.CanReload())
                 {
                     EntityStateMachine.ChangeState(Player.ReloadState);
                 }
             }
 
             // dash
-            if (Player.DashInput && !Player.IsBusy && !_isCrouching)
+            if (Player.DashInput && !_isCrouching)
             {
                 EntityStateMachine.ChangeState(Player.DashState);
             }
 
             // crouch
-            if (Player.CrouchInput && !Player.IsBusy)
+            if (Player.CrouchInput)
             {
                 if (!_isCrouching)
                 {
@@ -91,7 +97,7 @@ public class PlayerGroundState : PlayerState
             }
 
             // change gun
-            if (Player.ChangeGunInput && !Player.IsBusy)
+            if (Player.ChangeGunInput)
             {
                 Player.ChangeGun();
             }
