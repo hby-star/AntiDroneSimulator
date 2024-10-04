@@ -23,7 +23,19 @@ public class Player : Entity
 
     #region Stats
 
-    [Header("Stats Info")] public EntityStats characterStats;
+    [Header("Stats Info")] public EntityStats playerStats;
+
+    public void TakeDamage(float damage)
+    {
+        if (playerStats.currentHeath > damage)
+        {
+            playerStats.TakeDamage(damage);
+        }
+        else
+        {
+            Messenger.Broadcast(GameEvent.GAME_FAIL);
+        }
+    }
 
     #endregion
 

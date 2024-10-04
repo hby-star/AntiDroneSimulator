@@ -68,7 +68,7 @@ MonoBehaviour:
   hivePosition: {x: 0, y: 0, z: 0}
   hiveRadius: 30
   honeyPositions: []
-  honeyRadius: 200
+  honeyRadius: 40
   detectDroneRate: 0.3
   detectDrones: []
   attackDrones: []
