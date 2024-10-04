@@ -10,12 +10,17 @@ public class Bomb : MonoBehaviour
     public float explosionRadius = 10f;
     public float damage = 30f;
 
-    // Start is called before the first frame update
-    void Start()
+    private void SettingsStart()
     {
+        explosionRadius = UIManager.Instance.settingsPopUp.GetComponent<Settings>().bombRangeSlider.value;
+        damage = UIManager.Instance.settingsPopUp.GetComponent<Settings>().bombDamageSlider.value;
     }
 
-    // Update is called once per frame
+    void Start()
+    {
+        SettingsStart();
+    }
+
     void Update()
     {
     }
@@ -42,7 +47,7 @@ public class Bomb : MonoBehaviour
                 if (hit.collider == nearbyObject && nearbyObject.tag == "Player")
                 {
                     //Debug.Log("Player hit by bomb");
-                    Player player= nearbyObject.GetComponent<Player>();
+                    Player player = nearbyObject.GetComponent<Player>();
                     player.TakeDamage(damage);
                     break;
                 }

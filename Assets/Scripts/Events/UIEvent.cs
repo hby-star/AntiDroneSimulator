@@ -4,6 +4,10 @@
 
     public const string HIDE_HELP = "HIDE_HELP";
 
+    public const string SHOW_SETTINGS = "SHOW_SETTINGS";
+
+    public const string HIDE_SETTINGS = "HIDE_SETTINGS";
+
     public const string SHOW_GAME_START = "SHOW_GAME_START";
 
     public const string HIDE_GAME_START = "HIDE_GAME_START";

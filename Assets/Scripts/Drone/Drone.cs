@@ -306,11 +306,10 @@ public class Drone : Entity
 
     # endregion
 
-
     # region 摄像机检测和跟随玩家
 
     [Header("Camera Info")] private Player targetPlayer;
-    public float minDetectScaleInCamera = 20f;
+    public float minDetectScaleInCamera = 30f;
     private Renderer[] targetRenderers;
     private Rect targetRect;
     public float cameraSmooth = 1;

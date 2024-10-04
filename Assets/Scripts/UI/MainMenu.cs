@@ -10,12 +10,14 @@ public class MainMenu : MonoBehaviour
     public Button startGameButton;
     public Button helpButton;
     public Button exitGameButton;
+    public Button settingsButton;
 
     private void Awake()
     {
         startGameButton.onClick.AddListener(StartGame);
         helpButton.onClick.AddListener(Help);
         exitGameButton.onClick.AddListener(ExitGame);
+        settingsButton.onClick.AddListener(Settings);
     }
 
     private void StartGame()
@@ -31,5 +33,10 @@ public class MainMenu : MonoBehaviour
     private void ExitGame()
     {
         Messenger.Broadcast(GameEvent.EXIT_GAME);
+    }
+
+    private void Settings()
+    {
+        Messenger.Broadcast(UIEvent.SHOW_SETTINGS);
     }
 }

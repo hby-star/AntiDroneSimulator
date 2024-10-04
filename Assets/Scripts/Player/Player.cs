@@ -291,6 +291,15 @@ public class Player : Entity
         CrouchState = new PlayerCrouchState(StateMachine, this, "Crouch", this);
     }
 
+    private void SettingsStart()
+    {
+        sensitivityHor = sensitivityVert =
+            UIManager.Instance.settingsPopUp.GetComponent<Settings>().sensitivitySlider.value;
+        soundSource.volume = UIManager.Instance.settingsPopUp.GetComponent<Settings>().volumeSlider.value;
+        playerStats.maxHeath = UIManager.Instance.settingsPopUp.GetComponent<Settings>().playerHeathSlider.value;
+        playerStats.currentHeath = playerStats.maxHeath;
+    }
+
     protected override void Start()
     {
         base.Start();
@@ -300,6 +309,8 @@ public class Player : Entity
         AttackStart();
 
         SetOperate(InputManager.Instance.currentEntity is Player);
+
+        SettingsStart();
     }
 
     protected override void Update()

@@ -15,6 +15,8 @@ public class Swarm : MonoBehaviour
     public float honeyRadius = 100f;
 
     // 无人机蜂群
+    public GameObject dronePrefab;
+    public int droneCount = 20;
     public float detectDroneRate = 0.3f;
     public List<Drone> detectDrones;
     public List<Drone> attackDrones;
@@ -25,29 +27,40 @@ public class Swarm : MonoBehaviour
     // 根据比例分配无人机
     void AssignDrones()
     {
-        Drone[] drones = GetComponentsInChildren<Drone>();
-        int detectDroneCount = Mathf.RoundToInt(drones.Length * detectDroneRate);
         detectDrones = new List<Drone>();
         attackDrones = new List<Drone>();
 
-        for (int i = 0; i < drones.Length; i++)
+        for (int i = 0; i < droneCount; i++)
         {
-            if (i < detectDroneCount)
+            // 使用预制体实例化无人机
+            GameObject droneObj = Instantiate(dronePrefab);
+
+            // 在蜂巢位置附近随机生成位置
+            float randomAngle = UnityEngine.Random.Range(0f, 360f);
+            Vector3 randomOffset = new Vector3(Mathf.Sin(randomAngle), 0f, Mathf.Cos(randomAngle)) *
+                                   UnityEngine.Random.Range(0f, hiveRadius);
+            Vector3 spawnPosition = hivePosition + randomOffset;
+            spawnPosition.y = hivePosition.y; // 确保在同一水平线上
+
+            droneObj.transform.position = spawnPosition;
+
+            Drone drone = droneObj.GetComponent<Drone>();
+            if (i < Mathf.RoundToInt(droneCount * detectDroneRate))
             {
-                detectDrones.Add(drones[i]);
-                drones[i].droneType = Drone.DroneType.Detect;
-                drones[i].droneID = i;
-                drones[i].DetectDroneInit();
+                detectDrones.Add(drone);
+                drone.droneType = Drone.DroneType.Detect;
+                drone.droneID = i;
+                drone.DetectDroneInit();
             }
             else
             {
-                attackDrones.Add(drones[i]);
-                drones[i].droneType = Drone.DroneType.Attack;
-                drones[i].droneID = i;
-                drones[i].AttackDroneInit();
+                attackDrones.Add(drone);
+                drone.droneType = Drone.DroneType.Attack;
+                drone.droneID = i;
+                drone.AttackDroneInit();
             }
 
-            drones[i].hivePosition = hivePosition;
+            drone.hivePosition = hivePosition;
         }
     }
 
@@ -89,11 +102,17 @@ public class Swarm : MonoBehaviour
         }
     }
 
-
+    private void SettingStart()
+    {
+        droneCount = (int)UIManager.Instance.settingsPopUp.GetComponent<Settings>().droneNumSlider.value;
+    }
 
     void Start()
     {
+        SettingStart();
+
         hivePosition = transform.position;
+        hivePosition.y += 5f;
         AssignDrones();
         RandomAssignHoney(detectDrones.Count);
         AssignHoneyToDetectDrones();
