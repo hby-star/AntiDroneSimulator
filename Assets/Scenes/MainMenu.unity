@@ -764,17 +764,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac2421ed5e7525b48b51722ca721ae9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sensitivity: 10
   sensitivitySlider: {fileID: 1977484393}
-  volume: 0.5
   volumeSlider: {fileID: 1847974625}
-  playerHeath: 100
   playerHeathSlider: {fileID: 495759191}
-  bombRange: 10
   bombRangeSlider: {fileID: 1089192517}
-  bombDamage: 30
   bombDamageSlider: {fileID: 259340119}
-  droneNum: 20
   droneNumSlider: {fileID: 2112488397}
 --- !u!1 &170348614
 GameObject:

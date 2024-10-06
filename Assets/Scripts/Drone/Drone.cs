@@ -7,31 +7,7 @@ using UnityEngine.Serialization;
 
 public class Drone : Entity
 {
-    public enum DroneType
-    {
-        None,
-        Detect,
-        Attack,
-        Operate,
-    }
-
-    [Header("Move Info")]
-    public float moveSpeed = 10f;
-
-
-    [Header("Swarm Info")] public DroneType droneType;
-    public Swarm swarm;
-    public int droneID;
-    public Vector3 hivePosition;
-    public float hiveRadius = 20f;
-
-
-    protected override void Awake()
-    {
-        base.Awake();
-
-        droneType = DroneType.None;
-    }
+    [Header("Move Info")] public float moveSpeed = 10f;
 
     protected override void Start()
     {
@@ -46,258 +22,22 @@ public class Drone : Entity
         base.Update();
         CameraUpdate();
         AudioUpdate();
-
-        AvoidObstacleUpdate();
-
-        switch (droneType)
-        {
-            case DroneType.Detect:
-                DetectDroneUpdate();
-                break;
-            case DroneType.Attack:
-                AttackDroneUpdate();
-                break;
-            default:
-                // do nothing
-                return;
-        }
-
-
-        Move();
     }
 
-    #region Detect Drone Update
-
-    [Header("Detect Drone Info")] public float detectDroneSpeed = 10;
-    [NonSerialized] public Vector3 detectDroneTargetPosition;
-    [NonSerialized] public bool FoundPlayer = false;
-    [NonSerialized] public bool LockPlayer = false;
-
-    public void DetectDroneInit()
-    {
-        moveSpeed = detectDroneSpeed;
-
-        hasBomb = false;
-        bomb = null;
-    }
-
-
-    void DetectDroneUpdate()
-    {
-        if (!FoundPlayer)
-        {
-            // 寻找玩家
-            DetectDroneMoveToTarget();
-
-            if (isPlayerDetectedInCamera)
-            {
-                FoundPlayer = true;
-                LockPlayer = true;
-            }
-        }
-        else
-        {
-            // 向蜂群广播玩家位置
-            swarm.OnDetectDroneFoundPlayer(targetPlayer.transform.position);
-            // 持续追踪玩家
-            DetectDroneTrackPlayer();
-
-            if (!isPlayerDetectedInCamera)
-            {
-                FoundPlayer = false;
-                LockPlayer = false;
-            }
-        }
-    }
-
-    void DetectDroneMoveToTarget()
-    {
-        // 侦查无人机到当前目标的距离
-        float distanceToTarget = (detectDroneTargetPosition - transform.position).magnitude;
-
-        // 到达目标，但是没有找到玩家
-        if (distanceToTarget < detectDroneSpeed / 2)
-        {
-            swarm.OnDetectDroneAskForNewHoney(droneID);
-        }
-        // 没有到达目标，继续前进
-        else
-        {
-            taskForce = (detectDroneTargetPosition - transform.position).normalized;
-        }
-    }
-
-    void DetectDroneTrackPlayer()
-    {
-        // 更新目标位置
-        detectDroneTargetPosition = targetPlayer.transform.position;
-
-        // 侦查无人机到玩家的距离
-        Vector3 directionToPlayer = targetPlayer.transform.position - transform.position;
-        directionToPlayer.y = 0;
-        float distanceToPlayer = directionToPlayer.magnitude;
-
-        // 如果玩家距离侦查无人机较近，则延缓追踪
-        if (distanceToPlayer < detectDroneSpeed * 1.5f)
-        {
-            taskForce = Vector3.zero;
-        }
-        // 如果玩家距离侦查无人机较远，则追踪
-        else
-        {
-            Vector3 trackForce = targetPlayer.transform.position - transform.position;
-            taskForce = trackForce.normalized;
-        }
-    }
-
-    #endregion
-
-    #region Attack Drone Update
-
-    [Header("Attack Drone Info")] public float attackDroneSpeed = 5;
-    public float throwBombRadius = 5;
-    [NonSerialized] public Vector3 attackDroneTargetPosition;
-    [NonSerialized] public bool attackDroneHasTarget = false;
-    [NonSerialized] public bool hasBomb = false;
-    [NonSerialized] public GameObject bomb;
-    public float bombBelowLength = 0.1f;
-
-    public void AttackDroneInit()
-    {
-        moveSpeed = attackDroneSpeed;
-
-        hasBomb = false;
-        bomb = null;
-    }
-
-    void AttackDroneUpdate()
-    {
-        if (hasBomb)
-        {
-            if (!attackDroneHasTarget)
-            {
-                taskForce = Vector3.zero;
-                return;
-            }
-
-            if (!FoundPlayer)
-            {
-                // 朝指定目标前进
-                AttackDroneMoveToTarget();
-
-                if (isPlayerDetectedInCamera)
-                {
-                    FoundPlayer = true;
-                    LockPlayer = true;
-                }
-            }
-            else
-            {
-                // 向蜂群广播玩家位置
-                swarm.OnDetectDroneFoundPlayer(targetPlayer.transform.position);
-                // 追踪并攻击玩家
-                AttackDroneHitPlayer();
-
-                if (!isPlayerDetectedInCamera)
-                {
-                    FoundPlayer = false;
-                    LockPlayer = false;
-                }
-            }
-        }
-        else
-        {
-            // 返回蜂巢
-            Vector3 directionToHive = hivePosition - transform.position;
-            if (directionToHive.magnitude > hiveRadius)
-            {
-                taskForce = (hivePosition - transform.position).normalized;
-            }
-            else
-            {
-                taskForce = Vector3.zero;
-            }
-        }
-    }
-
-    void AttackDroneMoveToTarget()
-    {
-        // 无人机到玩家的距离
-        float distanceToPlayer = (targetPlayer.transform.position - transform.position).magnitude;
-
-        // 如果玩家距离侦查无人机较近，则投放炸弹，然后返回蜂巢
-        if (distanceToPlayer < throwBombRadius)
-        {
-            ThrowBomb();
-            attackDroneTargetPosition = hivePosition;
-            taskForce = Vector3.up * 5f;
-        }
-
-        // 攻击无人机到当前目标的距离
-        float distanceToTarget = (attackDroneTargetPosition - transform.position).magnitude;
-
-        // 到达目标，但是没有找到玩家
-        if (distanceToTarget < detectDroneSpeed)
-        {
-            // 返回蜂巢
-            attackDroneTargetPosition = hivePosition;
-            attackDroneHasTarget = true;
-        }
-        // 没有到达目标，继续前进
-        else
-        {
-            taskForce = (attackDroneTargetPosition - transform.position).normalized;
-        }
-    }
-
-    void AttackDroneHitPlayer()
-    {
-        // 更新目标位置
-        attackDroneTargetPosition = targetPlayer.transform.position;
-
-        // 侦查无人机到玩家的距离
-        float distanceToPlayer = (targetPlayer.transform.position - transform.position).magnitude;
-
-        // 如果玩家距离侦查无人机较近，则投放炸弹，然后返回蜂巢
-        if (distanceToPlayer < throwBombRadius)
-        {
-            ThrowBomb();
-            attackDroneTargetPosition = hivePosition;
-            taskForce = Vector3.up * 5f;
-        }
-        // 如果玩家距离侦查无人机较远，则继续追踪
-        else
-        {
-            Vector3 trackForce = targetPlayer.transform.position - transform.position;
-            taskForce = trackForce.normalized;
-        }
-    }
-
-    public void ThrowBomb()
-    {
-        if (hasBomb)
-        {
-            bomb.transform.parent = null;
-            bomb.AddComponent<Rigidbody>();
-            Rigidbody bombRigidbody = bomb.GetComponent<Rigidbody>();
-            bombRigidbody.velocity = Rigidbody.velocity;
-            hasBomb = false;
-        }
-    }
-
-    #endregion
 
     # region 摄像机检测和跟随玩家
 
-    [Header("Camera Info")] private Player targetPlayer;
+    [Header("Camera Info")] protected Player targetPlayer;
+    protected bool LockPlayer = false;
+    protected bool FoundPlayer = false;
     public float minDetectScaleInCamera = 30f;
-    private Renderer[] targetRenderers;
-    private Rect targetRect;
+    protected Renderer[] targetRenderers;
+    protected Rect targetRect;
     public float cameraSmooth = 1;
     public float rotateSmooth = 1;
-    private bool isPlayerDetectedInCamera = false;
+    protected bool isPlayerDetectedInCamera = false;
 
-    private void CameraStart()
+    protected void CameraStart()
     {
         Camera.enabled = true;
 
@@ -350,7 +90,7 @@ public class Drone : Entity
         // 获取display2的分辨率
         float displayWidth = Screen.width;
         float displayHeight = Screen.height;
-        if(Display.displays.Length > 1)
+        if (Display.displays.Length > 1)
         {
             var display = Display.displays[1];
             displayWidth = display.systemWidth;
@@ -411,7 +151,7 @@ public class Drone : Entity
         // 获取display2的分辨率
         float displayWidth = Screen.width;
         float displayHeight = Screen.height;
-        if(Display.displays.Length > 1)
+        if (Display.displays.Length > 1)
         {
             var display = Display.displays[1];
             displayWidth = display.systemWidth;
@@ -435,9 +175,10 @@ public class Drone : Entity
 
     # region 避障
 
-    [Header("Avoid Obstacle Info")] public float detectObstacleDistance = 5; // 避障距离
+    [Header("Avoid Obstacle Info")]
+    public float detectObstacleDistance = 5; // 避障距离
 
-    void AvoidObstacleUpdate()
+    protected void AvoidObstacleUpdate()
     {
         Vector3 obstaclePosition = GetObstacleRelativePosition();
 
@@ -501,7 +242,7 @@ public class Drone : Entity
     public float avoidObstacleWeight = 5f;
 
     // 根据MoveForce移动
-    public void Move()
+    protected void Move()
     {
         Vector3 moveForce = avoidObstacleForce * avoidObstacleWeight + taskForce;
 

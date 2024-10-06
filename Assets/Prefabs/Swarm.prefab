@@ -48,7 +48,8 @@ MonoBehaviour:
   hiveRadius: 20
   honeyPositions: []
   honeyRadius: 40
-  dronePrefab: {fileID: 2061971188611494707, guid: 39209ac28ffbe444e83dedddda89411a, type: 3}
+  detectDronePrefab: {fileID: 2061971188611494707, guid: 1ccf85acfb9ab964eb90b71530764496, type: 3}
+  attackDronePrefab: {fileID: 2061971188611494707, guid: 89de92c85f1f2aa4596bf598c53e4795, type: 3}
   droneCount: 20
   detectDroneRate: 0.3
   detectDrones: []

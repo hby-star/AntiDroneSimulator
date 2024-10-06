@@ -17,17 +17,15 @@ public class Bomb : MonoBehaviour
     }
 
     void Start()
+
     {
         SettingsStart();
     }
 
-    void Update()
-    {
-    }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Drone")
+        if (other.CompareTag("Drone"))
         {
             return;
         }
@@ -39,22 +37,16 @@ public class Bomb : MonoBehaviour
 
         foreach (Collider nearbyObject in colliders)
         {
-            Vector3 directionToTarget = nearbyObject.transform.position - transform.position;
-            RaycastHit[] hits = Physics.RaycastAll(transform.position, directionToTarget, explosionRadius);
-
-            foreach (RaycastHit hit in hits)
+            if (nearbyObject.CompareTag("Player"))
             {
-                if (hit.collider == nearbyObject && nearbyObject.tag == "Player")
+                // 检测Player与炸弹间是否有障碍物
+                RaycastHit hit;
+                if (Physics.Linecast(transform.position, nearbyObject.transform.position, out hit))
                 {
-                    //Debug.Log("Player hit by bomb");
-                    Player player = nearbyObject.GetComponent<Player>();
-                    player.TakeDamage(damage);
-                    break;
-                }
-                else if (hit.collider != nearbyObject)
-                {
-                    // If there's an obstruction, break out of the loop
-                    break;
+                    if (hit.collider.CompareTag("Player"))
+                    {
+                        nearbyObject.GetComponent<Player>().TakeDamage(damage);
+                    }
                 }
             }
         }
