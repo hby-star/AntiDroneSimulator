@@ -22,21 +22,21 @@ public class MainMenu : MonoBehaviour
 
     private void StartGame()
     {
-        Messenger.Broadcast(GameEvent.START_GAME);
+        GameManager.Instance.StartGame();
     }
 
     private void Help()
     {
-        Messenger.Broadcast(UIEvent.SHOW_HELP);
+        UIManager.Instance.ShowHelpPopUp();
     }
 
     private void ExitGame()
     {
-        Messenger.Broadcast(GameEvent.EXIT_GAME);
+        GameManager.Instance.QuitGame();
     }
 
     private void Settings()
     {
-        Messenger.Broadcast(UIEvent.SHOW_SETTINGS);
+        UIManager.Instance.ShowSettings();
     }
 }

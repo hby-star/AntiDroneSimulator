@@ -140,7 +140,7 @@ public class UIManager : MonoBehaviour
             if (Input.GetMouseButtonDown(0))
             {
                 HideGameStartPopUp();
-                Messenger.Broadcast(GameEvent.CONTINUE_GAME);
+                GameManager.Instance.ContinueGame();
             }
         }
 
@@ -149,7 +149,7 @@ public class UIManager : MonoBehaviour
             if (Input.GetMouseButtonDown(0))
             {
                 HideGameEndPopUp();
-                Messenger.Broadcast(GameEvent.TO_MAIN_MENU);
+                GameManager.Instance.ToMainMenu();
             }
         }
 
@@ -176,37 +176,5 @@ public class UIManager : MonoBehaviour
                 }
             }
         }
-    }
-
-    private void OnEnable()
-    {
-        Messenger.AddListener(UIEvent.SHOW_HELP, ShowHelpPopUp);
-        Messenger.AddListener(UIEvent.HIDE_HELP, HideHelpPopUp);
-        Messenger.AddListener(UIEvent.SHOW_SETTINGS, ShowSettings);
-        Messenger.AddListener(UIEvent.HIDE_SETTINGS, HideSettings);
-        Messenger.AddListener(UIEvent.SHOW_GAME_START, ShowGameStartPopUp);
-        Messenger.AddListener(UIEvent.HIDE_GAME_START, HideGameStartPopUp);
-        Messenger.AddListener(UIEvent.SHOW_GAME_PAUSE, ShowGamePausePopUp);
-        Messenger.AddListener(UIEvent.HIDE_GAME_PAUSE, HideGamePausePopUp);
-        Messenger.AddListener(UIEvent.SHOW_GAME_END_WIN, ShowGameEndWinPopUp);
-        Messenger.AddListener(UIEvent.SHOW_GAME_END_LOSE, ShowGameEndLosePopUp);
-        Messenger.AddListener(UIEvent.HIDE_GAME_END, HideGameEndPopUp);
-        Messenger.AddListener(UIEvent.HIDE_ALL_POPUPS, HideAllPopUps);
-    }
-
-    private void OnDisable()
-    {
-        Messenger.RemoveListener(UIEvent.SHOW_HELP, ShowHelpPopUp);
-        Messenger.RemoveListener(UIEvent.HIDE_HELP, HideHelpPopUp);
-        Messenger.RemoveListener(UIEvent.SHOW_SETTINGS, ShowSettings);
-        Messenger.RemoveListener(UIEvent.HIDE_SETTINGS, HideSettings);
-        Messenger.RemoveListener(UIEvent.SHOW_GAME_START, ShowGameStartPopUp);
-        Messenger.RemoveListener(UIEvent.HIDE_GAME_START, HideGameStartPopUp);
-        Messenger.RemoveListener(UIEvent.SHOW_GAME_PAUSE, ShowGamePausePopUp);
-        Messenger.RemoveListener(UIEvent.HIDE_GAME_PAUSE, HideGamePausePopUp);
-        Messenger.RemoveListener(UIEvent.SHOW_GAME_END_WIN, ShowGameEndWinPopUp);
-        Messenger.RemoveListener(UIEvent.SHOW_GAME_END_LOSE, ShowGameEndLosePopUp);
-        Messenger.RemoveListener(UIEvent.HIDE_GAME_END, HideGameEndPopUp);
-        Messenger.RemoveListener(UIEvent.HIDE_ALL_POPUPS, HideAllPopUps);
     }
 }

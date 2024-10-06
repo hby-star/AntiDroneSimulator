@@ -19,17 +19,17 @@ public class InGameMenu : MonoBehaviour
 
     void Continue()
     {
-        Messenger.Broadcast(UIEvent.HIDE_ALL_POPUPS);
-        Messenger.Broadcast(GameEvent.CONTINUE_GAME);
+        UIManager.Instance.HideAllPopUps();
+        GameManager.Instance.ContinueGame();
     }
 
     void Help()
     {
-        Messenger.Broadcast(UIEvent.SHOW_HELP);
+        UIManager.Instance.ShowHelpPopUp();
     }
 
     void Return()
     {
-        Messenger.Broadcast(GameEvent.TO_MAIN_MENU);
+        GameManager.Instance.ToMainMenu();
     }
 }

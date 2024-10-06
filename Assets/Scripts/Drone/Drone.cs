@@ -20,6 +20,7 @@ public class Drone : Entity
 
 
     [Header("Swarm Info")] public DroneType droneType;
+    public Swarm swarm;
     public int droneID;
     public Vector3 hivePosition;
     public float hiveRadius = 20f;
@@ -97,7 +98,7 @@ public class Drone : Entity
         else
         {
             // 向蜂群广播玩家位置
-            Messenger<Vector3>.Broadcast(SwarmEvent.DETECT_DRONE_FOUND_PLAYER, targetPlayer.transform.position);
+            swarm.OnDetectDroneFoundPlayer(targetPlayer.transform.position);
             // 持续追踪玩家
             DetectDroneTrackPlayer();
 
@@ -117,7 +118,7 @@ public class Drone : Entity
         // 到达目标，但是没有找到玩家
         if (distanceToTarget < detectDroneSpeed / 2)
         {
-            Messenger<int>.Broadcast(SwarmEvent.DETECT_DRONE_ASK_FOR_NEW_HONEY, droneID);
+            swarm.OnDetectDroneAskForNewHoney(droneID);
         }
         // 没有到达目标，继续前进
         else
@@ -193,7 +194,7 @@ public class Drone : Entity
             else
             {
                 // 向蜂群广播玩家位置
-                Messenger<Vector3>.Broadcast(SwarmEvent.DETECT_DRONE_FOUND_PLAYER, targetPlayer.transform.position);
+                swarm.OnDetectDroneFoundPlayer(targetPlayer.transform.position);
                 // 追踪并攻击玩家
                 AttackDroneHitPlayer();
 
@@ -285,26 +286,6 @@ public class Drone : Entity
     }
 
     #endregion
-
-    # region Handle Swarm Message
-
-    private void OnEnable()
-    {
-        Messenger.AddListener(SwarmEvent.SWARM_BACK_TO_HIVE, OnSwarmBackToHive);
-    }
-
-    private void OnDisable()
-    {
-        Messenger.RemoveListener(SwarmEvent.SWARM_BACK_TO_HIVE, OnSwarmBackToHive);
-    }
-
-    private void OnSwarmBackToHive()
-    {
-        attackDroneTargetPosition = hivePosition;
-        detectDroneTargetPosition = hivePosition;
-    }
-
-    # endregion
 
     # region 摄像机检测和跟随玩家
 

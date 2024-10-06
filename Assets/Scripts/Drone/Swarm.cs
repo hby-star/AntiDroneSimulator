@@ -61,6 +61,7 @@ public class Swarm : MonoBehaviour
             }
 
             drone.hivePosition = hivePosition;
+            drone.swarm = this;
         }
     }
 
@@ -129,7 +130,7 @@ public class Swarm : MonoBehaviour
 
         if (AllDronesDestoryed())
         {
-            Messenger.Broadcast(GameEvent.GAME_SUCCESS);
+            GameManager.Instance.GameSuccess();
         }
     }
 
@@ -175,23 +176,7 @@ public class Swarm : MonoBehaviour
 
     # region Handle Message
 
-    void OnEnable()
-    {
-        Messenger<Vector3>.AddListener(SwarmEvent.DETECT_DRONE_FOUND_PLAYER, OnDetectDroneFoundPlayer);
-        Messenger<int>.AddListener(SwarmEvent.DETECT_DRONE_ASK_FOR_NEW_HONEY, OnDetectDroneAskForNewHoney);
-
-        Messenger.AddListener(SwarmEvent.ATTACK_DRONE_PLAYER_DIED, OnAttackDronePlayerDied);
-    }
-
-    void OnDisable()
-    {
-        Messenger<Vector3>.RemoveListener(SwarmEvent.DETECT_DRONE_FOUND_PLAYER, OnDetectDroneFoundPlayer);
-        Messenger<int>.RemoveListener(SwarmEvent.DETECT_DRONE_ASK_FOR_NEW_HONEY, OnDetectDroneAskForNewHoney);
-
-        Messenger.RemoveListener(SwarmEvent.ATTACK_DRONE_PLAYER_DIED, OnAttackDronePlayerDied);
-    }
-
-    void OnDetectDroneFoundPlayer(Vector3 playerPosition)
+    public void OnDetectDroneFoundPlayer(Vector3 playerPosition)
     {
         // 通知所有无人机，侦查无人机追踪玩家，攻击无人机攻击玩家
         for (int i = 0; i < detectDrones.Count; i++)
@@ -209,16 +194,24 @@ public class Swarm : MonoBehaviour
         honeyPositions.Add(playerPosition);
     }
 
-    void OnDetectDroneAskForNewHoney(int droneID)
+    public void OnDetectDroneAskForNewHoney(int droneID)
     {
         // 通知发送请求的无人机新的蜜源位置
         detectDrones[droneID].detectDroneTargetPosition = GenerateRandomHoneyPosition();
     }
 
-    void OnAttackDronePlayerDied()
+    public void OnAttackDronePlayerDied()
     {
         // 通知所有无人机返回蜂巢
-        Messenger.Broadcast(SwarmEvent.SWARM_BACK_TO_HIVE);
+        for (int i = 0; i < detectDrones.Count; i++)
+        {
+            detectDrones[i].detectDroneTargetPosition = hivePosition;
+        }
+        for (int i = 0; i < attackDrones.Count; i++)
+        {
+            attackDrones[i].attackDroneTargetPosition = hivePosition;
+            attackDrones[i].attackDroneHasTarget = false;
+        }
     }
 
     # endregion
@@ -226,10 +219,10 @@ public class Swarm : MonoBehaviour
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(hivePosition, hiveRadius);
+        Gizmos.DrawWireSphere(transform.position, hiveRadius);
 
         Gizmos.color = Color.green;
 
-        Gizmos.DrawWireSphere(hivePosition, honeyRadius);
+        Gizmos.DrawWireSphere(transform.position, honeyRadius);
     }
 }

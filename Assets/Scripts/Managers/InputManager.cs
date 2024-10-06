@@ -243,7 +243,7 @@ public class InputManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            Messenger.Broadcast(GameEvent.IN_GAME_MENU);
+            GameManager.Instance.InGameMenu();
         }
     }
 }

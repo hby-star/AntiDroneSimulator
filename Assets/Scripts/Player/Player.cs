@@ -33,7 +33,7 @@ public class Player : Entity
         }
         else
         {
-            Messenger.Broadcast(GameEvent.GAME_FAIL);
+            GameManager.Instance.GameFail();
         }
     }
 

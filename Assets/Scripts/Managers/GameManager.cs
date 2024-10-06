@@ -93,13 +93,13 @@ public class GameManager : MonoBehaviour
 
     public void GameSuccess()
     {
-        Messenger.Broadcast(UIEvent.SHOW_GAME_END_WIN);
+        UIManager.Instance.ShowGameEndWinPopUp();
         StopGame();
     }
 
     public void GameFail()
     {
-        Messenger.Broadcast(UIEvent.SHOW_GAME_END_LOSE);
+        UIManager.Instance.ShowGameEndLosePopUp();
         StopGame();
     }
 
@@ -113,7 +113,7 @@ public class GameManager : MonoBehaviour
             yield return null;
         }
 
-        Messenger.Broadcast(UIEvent.HIDE_ALL_POPUPS);
+        UIManager.Instance.HideAllPopUps();
     }
 
     IEnumerator LoadLevel1()
@@ -126,37 +126,12 @@ public class GameManager : MonoBehaviour
         }
 
         StopGame();
-        Messenger.Broadcast(UIEvent.SHOW_GAME_START);
+        UIManager.Instance.ShowGameStartPopUp();
     }
 
     public void InGameMenu()
     {
-        Messenger.Broadcast(UIEvent.SHOW_GAME_PAUSE);
+        UIManager.Instance.ShowGamePausePopUp();
         StopGame();
-    }
-
-
-    private void OnEnable()
-    {
-        Messenger.AddListener(GameEvent.START_GAME, StartGame);
-        Messenger.AddListener(GameEvent.EXIT_GAME, QuitGame);
-        Messenger.AddListener(GameEvent.GAME_SUCCESS, GameSuccess);
-        Messenger.AddListener(GameEvent.GAME_FAIL, GameFail);
-        Messenger.AddListener(GameEvent.STOP_GAME, StopGame);
-        Messenger.AddListener(GameEvent.CONTINUE_GAME, ContinueGame);
-        Messenger.AddListener(GameEvent.TO_MAIN_MENU, ToMainMenu);
-        Messenger.AddListener(GameEvent.IN_GAME_MENU, InGameMenu);
-    }
-
-    private void OnDisable()
-    {
-        Messenger.RemoveListener(GameEvent.START_GAME, StartGame);
-        Messenger.RemoveListener(GameEvent.EXIT_GAME, QuitGame);
-        Messenger.RemoveListener(GameEvent.GAME_SUCCESS, GameSuccess);
-        Messenger.RemoveListener(GameEvent.GAME_FAIL, GameFail);
-        Messenger.RemoveListener(GameEvent.STOP_GAME, StopGame);
-        Messenger.RemoveListener(GameEvent.CONTINUE_GAME, ContinueGame);
-        Messenger.RemoveListener(GameEvent.TO_MAIN_MENU, ToMainMenu);
-        Messenger.RemoveListener(GameEvent.IN_GAME_MENU, InGameMenu);
     }
 }
