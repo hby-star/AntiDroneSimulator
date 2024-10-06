@@ -47,14 +47,14 @@ public class Vehicle : Entity
     // 电磁干扰
     public float electromagneticInterferenceRadius = 50;
 
-    private List<OperableDrone> DetectDrones(float radius)
+    private List<Drone> DetectDrones(float radius)
     {
         Collider[] hitColliders = Physics.OverlapSphere(transform.position, radius);
-        List<OperableDrone> detectedDrones = new List<OperableDrone>();
+        List<Drone> detectedDrones = new List<Drone>();
 
         foreach (var hitCollider in hitColliders)
         {
-            OperableDrone operableDrone = hitCollider.GetComponent<OperableDrone>();
+            Drone operableDrone = hitCollider.GetComponent<Drone>();
             if (operableDrone != null)
             {
                 detectedDrones.Add(operableDrone);
@@ -69,10 +69,10 @@ public class Vehicle : Entity
     {
         if (empCurCount > 0)
         {
-            List<OperableDrone> drones = DetectDrones(empRadius);
+            List<Drone> drones = DetectDrones(empRadius);
             foreach (var drone in drones)
             {
-                drone.ReactToHit(OperableDrone.HitType.EmpBullet);
+                drone.ReactToHit(Drone.HitType.EmpBullet);
             }
 
             empCurCount--;
@@ -82,7 +82,7 @@ public class Vehicle : Entity
     // Radar Detection
     public List<Vector3> RadarDetection()
     {
-        List<OperableDrone> drones = DetectDrones(radarRadius);
+        List<Drone> drones = DetectDrones(radarRadius);
         List<Vector3> dronePositions = new List<Vector3>();
 
         foreach (var drone in drones)
@@ -96,10 +96,10 @@ public class Vehicle : Entity
     // Electromagnetic Interference Attack
     public void ElectromagneticInterferenceAttack()
     {
-        List<OperableDrone> drones = DetectDrones(electromagneticInterferenceRadius);
+        List<Drone> drones = DetectDrones(electromagneticInterferenceRadius);
         foreach (var drone in drones)
         {
-            drone.ReactToHit(OperableDrone.HitType.ElectricInterference);
+            drone.ReactToHit(Drone.HitType.ElectricInterference);
         }
     }
 
