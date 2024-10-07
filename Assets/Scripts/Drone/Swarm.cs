@@ -122,7 +122,7 @@ public class Swarm : MonoBehaviour
         SupplyBomb();
         CountDrones();
 
-        if (AllDronesDestoryed())
+        if (droneCount == 0)
         {
             GameManager.Instance.GameSuccess();
         }
@@ -138,6 +138,7 @@ public class Swarm : MonoBehaviour
                 newDroneCount++;
             }
         }
+
         for (int i = 0; i < attackDrones.Count; i++)
         {
             if (attackDrones[i] != null && attackDrones[i].gameObject != null)
@@ -151,27 +152,6 @@ public class Swarm : MonoBehaviour
             droneCount = newDroneCount;
             OnDroneCountChanged?.Invoke();
         }
-    }
-
-    bool AllDronesDestoryed()
-    {
-        foreach (Drone drone in detectDrones)
-        {
-            if (drone != null && drone.gameObject != null)
-            {
-                return false;
-            }
-        }
-
-        foreach (Drone drone in attackDrones)
-        {
-            if (drone != null && drone.gameObject != null)
-            {
-                return false;
-            }
-        }
-
-        return true;
     }
 
     // 为攻击无人机补充炸弹

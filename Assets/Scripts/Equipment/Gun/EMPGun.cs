@@ -36,7 +36,7 @@ public class EMPGun : Gun
                     Drone drone = hit.collider.GetComponent<Drone>();
                     if (drone != null)
                     {
-                        drone.ReactToHit(Drone.HitType.EmpBullet);
+                        drone.ReactToHit(Drone.HitType.ElectricInterference);
                     }
                 }
             }

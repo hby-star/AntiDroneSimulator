@@ -6,6 +6,11 @@ public class DetectDrone : Drone
 {
     protected override void Update()
     {
+        if (IsBusy)
+        {
+            return;
+        }
+
         base.Update();
 
         AvoidObstacleUpdate();

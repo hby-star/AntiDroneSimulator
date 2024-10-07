@@ -13,6 +13,7 @@ public class Drone : Entity
     {
         soundSource.volume = UIManager.Instance.settingsPopUp.GetComponent<Settings>().volumeSlider.value;
     }
+
     protected override void Start()
     {
         base.Start();
@@ -24,6 +25,11 @@ public class Drone : Entity
 
     protected override void Update()
     {
+        if (IsBusy)
+        {
+            return;
+        }
+
         base.Update();
         CameraUpdate();
         AudioUpdate();
@@ -304,7 +310,8 @@ public class Drone : Entity
     {
         if (hitType == HitType.ElectricInterference)
         {
-            StartCoroutine(BusyFor(5));
+            ZeroVelocity();
+            StartCoroutine(BusyFor(5f));
         }
         else
         {
@@ -314,7 +321,7 @@ public class Drone : Entity
 
     private IEnumerator Die()
     {
-        this.transform.Rotate(-75, 0, 0);
+        this.transform.Rotate(-90, 0, 0);
 
         yield return new WaitForSeconds(0.5f);
 
