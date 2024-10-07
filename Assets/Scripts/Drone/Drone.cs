@@ -9,10 +9,15 @@ public class Drone : Entity
 {
     [Header("Move Info")] public float moveSpeed = 10f;
 
+    void SettingsStart()
+    {
+        soundSource.volume = UIManager.Instance.settingsPopUp.GetComponent<Settings>().volumeSlider.value;
+    }
     protected override void Start()
     {
         base.Start();
 
+        SettingsStart();
         CameraStart();
     }
 

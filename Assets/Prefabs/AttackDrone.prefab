@@ -438,7 +438,7 @@ MonoBehaviour:
   soundSource: {fileID: 1516163198716476928}
   flySound: {fileID: 8300000, guid: da8cba425f89d414bbfefcafcff846bd, type: 3}
   swarm: {fileID: 0}
-  throwBombRadius: 5
+  throwBombRadius: 6
   bombBelowLength: 0.1
 --- !u!1 &2077614911912810416
 GameObject:

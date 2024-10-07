@@ -32,9 +32,16 @@ public class Gun : Equipment
     public GunType gunType;
     public bool isReloading;
 
+    void SettingsStart()
+    {
+        soundSource.volume = UIManager.Instance.settingsPopUp.GetComponent<Settings>().volumeSlider.value;
+    }
+
     protected virtual void Start()
     {
         Type = EquipmentType.Gun;
+
+        SettingsStart();
     }
 
     public virtual void Fire()

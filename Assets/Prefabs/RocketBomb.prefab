@@ -49,6 +49,7 @@ MonoBehaviour:
   explosion: {fileID: 7595452753382118068, guid: ac20db2d8d21d5a4aa062a7f82328da4, type: 3}
   explosionRadius: 10
   damage: 30
+  canExplode: 0
 --- !u!65 &3796299342600338362
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -68,8 +69,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.59106195, y: 0.59150004, z: 2.8447146}
-  m_Center: {x: -0.00021539629, y: -0.00329189, z: 0.22019127}
+  m_Size: {x: 0.30434594, y: 0.2531025, z: 2.8041759}
+  m_Center: {x: -0.0049156696, y: -0.003258859, z: 0.19992132}
 --- !u!1 &7651170451560720664
 GameObject:
   m_ObjectHideFlags: 0
