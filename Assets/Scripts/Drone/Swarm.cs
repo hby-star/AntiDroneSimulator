@@ -18,6 +18,7 @@ public class Swarm : MonoBehaviour
     public GameObject detectDronePrefab;
     public GameObject attackDronePrefab;
     public int droneCount = 20;
+    public Action OnDroneCountChanged;
     public float detectDroneRate = 0.3f;
     public List<DetectDrone> detectDrones;
     public List<AttackDrone> attackDrones;
@@ -119,10 +120,36 @@ public class Swarm : MonoBehaviour
     void Update()
     {
         SupplyBomb();
+        CountDrones();
 
         if (AllDronesDestoryed())
         {
             GameManager.Instance.GameSuccess();
+        }
+    }
+
+    void CountDrones()
+    {
+        int newDroneCount = 0;
+        for (int i = 0; i < detectDrones.Count; i++)
+        {
+            if (detectDrones[i] != null && detectDrones[i].gameObject != null)
+            {
+                newDroneCount++;
+            }
+        }
+        for (int i = 0; i < attackDrones.Count; i++)
+        {
+            if (attackDrones[i] != null && attackDrones[i].gameObject != null)
+            {
+                newDroneCount++;
+            }
+        }
+
+        if (newDroneCount != droneCount)
+        {
+            droneCount = newDroneCount;
+            OnDroneCountChanged?.Invoke();
         }
     }
 

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,7 +9,7 @@ public class EntityStats : MonoBehaviour
 
     public float currentHeath;
 
-    public System.Action OnHealthChanged;
+    public Action OnHealthChanged;
 
     void Start()
     {
