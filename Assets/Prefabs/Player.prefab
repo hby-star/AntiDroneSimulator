@@ -835,7 +835,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8701954228219194499}
   - component: {fileID: 1420132469797107162}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: FX_GunFire
   m_TagString: Untagged
   m_Icon: {fileID: 0}
