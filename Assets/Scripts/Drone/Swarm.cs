@@ -76,7 +76,7 @@ public class Swarm : MonoBehaviour
     public Vector3 GenerateRandomHoneyPosition()
     {
         Vector3 randomPosition = hivePosition + Random.insideUnitSphere * honeyRadius;
-        randomPosition.y = hivePosition.y + 5f;
+        randomPosition.y = hivePosition.y;
         return randomPosition;
     }
 
@@ -106,7 +106,7 @@ public class Swarm : MonoBehaviour
         SettingStart();
 
         hivePosition = transform.position;
-        hivePosition.y += 5f;
+        hivePosition.y += 2f;
 
         AssignDrones();
     }
@@ -181,12 +181,14 @@ public class Swarm : MonoBehaviour
         for (int i = 0; i < detectDrones.Count; i++)
         {
             detectDrones[i].detectDroneTargetPosition = playerPosition;
+            detectDrones[i].FoundPlayer = true;
         }
 
         for (int i = 0; i < attackDrones.Count; i++)
         {
             attackDrones[i].attackDroneTargetPosition = playerPosition;
             attackDrones[i].attackDroneHasTarget = true;
+            attackDrones[i].FoundPlayer = true;
         }
 
         honeyPositions = new List<Vector3>();

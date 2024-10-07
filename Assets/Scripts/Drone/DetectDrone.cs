@@ -76,16 +76,23 @@ public class DetectDrone : Drone
 
         // 侦查无人机到玩家的距离
         Vector3 directionToPlayer = targetPlayer.transform.position - transform.position;
-        float distanceToPlayer = directionToPlayer.magnitude;
         directionToPlayer.y = 0;
+        float distanceToPlayer = directionToPlayer.magnitude;
 
         // 如果玩家距离侦查无人机较近，则随机移动
-        float random_size = 0.3f;
+        float random_size = 0.1f;
         if (distanceToPlayer < moveSpeed * 2f)
         {
-            // 随机移动
-            taskForce = new Vector3(Random.Range(-random_size, random_size), Random.Range(0, random_size),
-                Random.Range(-random_size, random_size));
+            if (distanceToPlayer < moveSpeed * 1.5f)
+            {
+                taskForce = -directionToPlayer.normalized;
+            }
+            else
+            {
+                // 随机移动
+                taskForce = new Vector3(Random.Range(-random_size, random_size), 0,
+                    Random.Range(-random_size, random_size));
+            }
         }
         // 如果玩家距离侦查无人机较远，则追踪
         else

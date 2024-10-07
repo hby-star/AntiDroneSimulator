@@ -39,8 +39,8 @@ public class Drone : Entity
     # region 摄像机检测和跟随玩家
 
     [Header("Camera Info")] protected Player targetPlayer;
-    protected bool LockPlayer = false;
-    protected bool FoundPlayer = false;
+    [NonSerialized]public bool LockPlayer = false;
+    [NonSerialized]public bool FoundPlayer = false;
     public float minDetectSizeInCamera = 0.0005f;
     protected Rect targetRect;
     public float cameraSmooth = 1;
@@ -74,7 +74,7 @@ public class Drone : Entity
             lookAtPosition.y -= transform.forward.magnitude * 0.2f;
             Quaternion targetRotation = Quaternion.LookRotation(lookAtPosition - Camera.transform.position);
             Camera.transform.rotation =
-                Quaternion.Slerp(Camera.transform.rotation, targetRotation, Time.deltaTime * rotateSmooth);
+                Quaternion.Slerp(Camera.transform.rotation, targetRotation, Time.deltaTime * cameraSmooth);
         }
 
         // 获取物体的边界
@@ -145,7 +145,7 @@ public class Drone : Entity
         }
 
         // 计算边界框的位置和大小
-        if (isVisible && isInCameraView && (maxY - minY > minDetectSizeInCamera))
+        if (isVisible && isInCameraView && (maxY - minY > minDetectSizeInCamera || FoundPlayer))
         {
             targetRect = new Rect(min.x, displayHeight - max.y, max.x - min.x, max.y - min.y);
             isPlayerDetectedInCamera = true;
