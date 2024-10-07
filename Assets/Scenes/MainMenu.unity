@@ -290,8 +290,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.000061035156, y: -62}
-  m_SizeDelta: {x: 779.318, y: 1945.162}
+  m_AnchoredPosition: {x: 16.602478, y: -96.00964}
+  m_SizeDelta: {x: 1011.7527, y: 1116.8192}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &70133557
 MonoBehaviour:
@@ -313,13 +313,14 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "> \u79FB\u52A8\r\n    [W] [A] [S] [D]\r\n> \u8DF3\u8DC3\r\n    [\u7A7A\u683C]\r\n>
-    \u5F00\u706B\r\n    [\u9F20\u6807\u5DE6\u952E]\r\n> \u88C5\u5F39\r\n    [\u9F20\u6807\u4E2D\u952E]\r\n>
-    \u7FFB\u6EDA\r\n    [\u9F20\u6807\u53F3\u952E]\r\n> \u8E72\u4E0B\u3001\u8D77\u7ACB\r\n   
-    [\u5DE6Ctrl\u952E]\r\n> \u6362\u67AA\r\n    [\u5DE6Shift\u952E]\r\n> \u4E0A\u4E0B\u8F66\r\n   
-    [E]\r\n\r> \u653E\u7F6E\u3001\u6361\u8D77\u76FE\u724C\r\n\r    [Q]\r\n> \u6682\u505C\u6E38\u620F\n   
-    [P]\n> \u89C2\u5BDF\u8005\u6A21\u5F0F\n    [O]\n> \u5524\u8D77\u83DC\u5355\n   
-    [Esc]"
+  m_text: "1. \u79FB\u52A8\r                 [W] [A] [S] [D]\r\n2. \u8DF3\u8DC3\r                
+    [\u7A7A\u683C]\r\n3. \u5F00\u706B\r                 [\u9F20\u6807\u5DE6\u952E]\r\n4.
+    \u88C5\u5F39\r                 [\u9F20\u6807\u4E2D\u952E]\r\n5. \u7FFB\u6EDA\r                
+    [\u9F20\u6807\u53F3\u952E]\r\n6. \u8E72\u4E0B\u3001\u8D77\u7ACB\r                
+    [\u5DE6Ctrl\u952E]\r\n7. \u6362\u67AA\r                 [\u5DE6Shift\u952E]\r\n8.
+    \u4E0A\u4E0B\u8F66\r                 [E]\r\n\r9. \u4F7F\u7528\u76FE\u724C\r                
+    [Q]\r\n10. \u6682\u505C\u6E38\u620F    [P]\n11. \u89C2\u5BDF\u8005\u6A21\u5F0F
+    [O]\n12. \u5524\u8D77\u83DC\u5355    [Esc]"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 74159781eeda1e34fba6224523bdac80, type: 2}
   m_sharedMaterial: {fileID: 5330067171682054267, guid: 74159781eeda1e34fba6224523bdac80, type: 2}
@@ -358,7 +359,7 @@ MonoBehaviour:
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
-  m_lineSpacing: 0
+  m_lineSpacing: 20
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
@@ -2990,7 +2991,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -43, y: 1067}
+  m_AnchoredPosition: {x: -43, y: 590}
   m_SizeDelta: {x: 611.233, y: 169.382}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &557719257
@@ -4963,7 +4964,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: -0.00051531073, y: 0.00030518}
-  m_SizeDelta: {x: 0, y: 2402.672}
+  m_SizeDelta: {x: 0, y: 1471.9}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &1201219331
 GameObject:
