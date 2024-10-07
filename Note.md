@@ -6,30 +6,23 @@
 flowchart LR
 	Start(开始)
 	Start --> Player
-	Start --> Drone
-	Start --> Vehicle
-	Start --> Terrain
+	Start --> Swarm
 	
 	Player(玩家)
 	Player --> Equipment
 	Player --> Action
 	
-	Drone(无人机)
+	Swarm(无人机蜂群)
+	Swarm --> SwarmBase(基地)
+	Swarm --> Drone(无人机)
 	Drone --> Serach
 	Drone --> Attack
 	
-	Vehicle(载具)
-	Vehicle --> Function
-
-	Terrain(地形)
-	Terrain --> City
-	Terrain --> Flat
-
 	Equipment(装备)
 	GeneralGun(手枪)
-	EMPGun(电磁枪)
-	SkyWallGun(专用网枪)
-	Shield(折叠盾牌)	
+	EMPGun(电磁干扰枪)
+	SkyWallGun(网枪)
+	Shield(盾牌)	
 	Equipment --> GeneralGun
 	Equipment --> EMPGun
 	Equipment --> SkyWallGun
@@ -43,46 +36,23 @@ flowchart LR
 	Action --> PlayerEvade
 	Action --> PlayerHide
 	
-	Serach(搜索敌人)
-	Serach --> SerachAlg(搜索算法)
-	SerachAlg --> Stay(待机)
-	SerachAlg --> RandomMove(随机移动)
-	SerachAlg --> Flocking(Flocking)
-	SerachAlg --> More1(更多...)
+	SwarmBase --> Command(指挥无人机集群)
+	SwarmBase --> Supply(为攻击无人机补充弹药)
 	
-	Attack(攻击敌人)
-	Attack --> AttackAlg(攻击算法)
-	Attack --> AttackMethod(攻击方式)
-	AttackAlg --> stay(待机)
-	AttackAlg --> forward(直接靠近)
-	AttackAlg --> downAndForward(先下降再水平靠近)
-	AttackAlg --> upAndForward(先上升水平再靠近)
-	AttackAlg --> More(更多...)
-	AttackMethod --> hit(直接靠近到一定距离然后投放炸弹)
-	AttackMethod --> bomb(检测炸弹路径然后投放炸弹)
+	Serach(侦查无人机)
+	Serach --> SerachAlg1(无目标时，在基地周围巡逻)
+	Serach --> SerachAlg2(有目标时，锁定并追踪目标)
 	
-	Function(功能)
-	ForMove(快速移动)
-	ForHide(用作掩体)
-	ForSerach(探测无人机)
-	ForDisturb(干扰无人机)
-	ForAttack(攻击无人机)
-	Function --> ForMove
-	Function --> ForHide
-	Function --> ForSerach
-	Function --> ForDisturb
-	Function --> ForAttack
-	ForHide --> InCar(在车内)
-	ForHide --> BehindCar(在车底)
-	
-	City(城市)
-	Flat(平坦地区)
+	Attack(攻击无人机)
+	Attack --> AttackAlg1(无目标时，在基地待命)
+	Attack --> AttackAlg2(有目标时，追踪并攻击目标)
+
 		
 ```
 
 
 
-## 2. 无人机控制
+## 2. 无人机控制（deprecated）
 
 ### 2.1 追踪算法
 
@@ -101,19 +71,31 @@ flowchart LR
      * 无人机采用随机运动的方式，基于目标检测得到的结果和引擎中获取的各种信息，获取经验回放
 5. 无人机根据得到的移动方向进行运动
 
+> 注：此为一种基于AI的解决方案。首先进行利用深度学习进行目标检测，然后利用强化学习获取无人机下一步的动作。由于效果较差故使用其他的方案进行替代。
+
 
 
 ## 3. 无人机蜂群
 
-* 蜜源： 玩家位置
-* 侦查蜂：无杀伤力负载，速度快，负责巡逻，寻找玩家位置，即蜜源。
-* 跟随蜂：携带炸弹，速度慢，负责攻击玩家，发现玩家前在蜂箱待机，往返与蜂箱与玩家之间。
-* 蜂箱：蜜蜂基地，侦查蜂从此出发，跟随蜂在此携带炸弹。
+* 蜜源： 玩家位置。
+* 侦查蜂：速度较快，不携带炸弹。
+  * 无目标时，在蜂箱附近巡逻。
+  * 有目标时，锁定并追踪目标。
+
+* 攻击蜂：速度较慢，携带炸弹。
+  * 无目标时，在基地待机。
+  * 有目标时，从基地携带炸弹并攻击玩家。
+
+* 蜂箱：蜜蜂基地
+  * 指挥蜂群。
+  * 侦查蜂在附近巡逻。
+  * 攻击蜂在此携带炸弹。
+
 
 ```mermaid
 sequenceDiagram
     participant Beehive as 蜂箱
-    participant FollowerBee as 跟随蜂
+    participant FollowerBee as 攻击蜂
     participant ScoutBee as 侦查蜂
     
     actor Player as 玩家（蜜源）
@@ -124,7 +106,7 @@ sequenceDiagram
 	Player ->> -ScoutBee: 获取玩家位置
 	ScoutBee ->> ScoutBee: 持续跟踪玩家直至死亡
 	ScoutBee ->> -Beehive: 返回玩家位置
-	Beehive ->> +FollowerBee: 派出跟随蜂
+	Beehive ->> +FollowerBee: 派出攻击蜂
 	FollowerBee ->> -Player: 前往攻击玩家
     
 ```
