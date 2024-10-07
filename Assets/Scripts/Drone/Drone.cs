@@ -30,8 +30,7 @@ public class Drone : Entity
     [Header("Camera Info")] protected Player targetPlayer;
     protected bool LockPlayer = false;
     protected bool FoundPlayer = false;
-    public float minDetectScaleInCamera = 30f;
-    protected Renderer[] targetRenderers;
+    public float minDetectSizeInCamera = 0.0005f;
     protected Rect targetRect;
     public float cameraSmooth = 1;
     public float rotateSmooth = 1;
@@ -49,10 +48,9 @@ public class Drone : Entity
         if (!targetPlayer)
         {
             targetPlayer = FindObjectOfType<Player>();
-            targetRenderers = targetPlayer.GetComponentsInChildren<Renderer>();
         }
 
-        if (LockPlayer)
+        if (LockPlayer || FoundPlayer)
         {
             Quaternion targetRotation =
                 Quaternion.LookRotation(targetPlayer.transform.position - Camera.transform.position);
@@ -69,23 +67,35 @@ public class Drone : Entity
         }
 
         // 获取物体的边界
-        Bounds[] bounds = new Bounds[targetRenderers.Length];
-        for (int i = 0; i < targetRenderers.Length; i++)
-        {
-            bounds[i] = targetRenderers[i].bounds;
-        }
+        Vector3 center = targetPlayer.Collider.bounds.center;
+        Vector3 extents = targetPlayer.Collider.bounds.extents;
+        Vector3 upLeftFront = center + new Vector3(-extents.x, extents.y, -extents.z);
+        Vector3 upRightFront = center + new Vector3(extents.x, extents.y, -extents.z);
+        Vector3 upLeftBack = center + new Vector3(-extents.x, extents.y, extents.z);
+        Vector3 upRightBack = center + new Vector3(extents.x, extents.y, extents.z);
+        Vector3 downLeftFront = center + new Vector3(-extents.x, -extents.y, -extents.z);
+        Vector3 downRightFront = center + new Vector3(extents.x, -extents.y, -extents.z);
+        Vector3 downLeftBack = center + new Vector3(-extents.x, -extents.y, extents.z);
+        Vector3 downRightBack = center + new Vector3(extents.x, -extents.y, extents.z);
 
-        // 找到屏幕空间中的边界
-        Vector3 min = Camera.WorldToScreenPoint(bounds[0].min);
-        Vector3 max = Camera.WorldToScreenPoint(bounds[0].max);
+        upLeftFront = Camera.WorldToScreenPoint(upLeftFront);
+        upRightFront = Camera.WorldToScreenPoint(upRightFront);
+        upLeftBack = Camera.WorldToScreenPoint(upLeftBack);
+        upRightBack = Camera.WorldToScreenPoint(upRightBack);
+        downLeftFront = Camera.WorldToScreenPoint(downLeftFront);
+        downRightFront = Camera.WorldToScreenPoint(downRightFront);
+        downLeftBack = Camera.WorldToScreenPoint(downLeftBack);
+        downRightBack = Camera.WorldToScreenPoint(downRightBack);
 
-        for (int i = 1; i < bounds.Length; i++)
-        {
-            min = Vector3.Min(min, Camera.WorldToScreenPoint(bounds[i].min));
-            min = Vector3.Min(min, Camera.WorldToScreenPoint(bounds[i].max));
-            max = Vector3.Max(max, Camera.WorldToScreenPoint(bounds[i].min));
-            max = Vector3.Max(max, Camera.WorldToScreenPoint(bounds[i].max));
-        }
+        Vector3 min = new Vector3(Mathf.Min(upLeftFront.x, upRightFront.x, upLeftBack.x, upRightBack.x,
+                downLeftFront.x, downRightFront.x, downLeftBack.x, downRightBack.x),
+            Mathf.Min(upLeftFront.y, upRightFront.y, upLeftBack.y, upRightBack.y,
+                downLeftFront.y, downRightFront.y, downLeftBack.y, downRightBack.y), 0);
+        Vector3 max = new Vector3(Mathf.Max(upLeftFront.x, upRightFront.x, upLeftBack.x, upRightBack.x,
+                downLeftFront.x, downRightFront.x, downLeftBack.x, downRightBack.x),
+            Mathf.Max(upLeftFront.y, upRightFront.y, upLeftBack.y, upRightBack.y,
+                downLeftFront.y, downRightFront.y, downLeftBack.y, downRightBack.y), 0);
+
 
         // 获取display2的分辨率
         float displayWidth = Screen.width;
@@ -103,10 +113,12 @@ public class Drone : Entity
         float maxX = max.x / displayWidth;
         float minY = min.y / displayHeight;
         float maxY = max.y / displayHeight;
+        float centerX = (minX + maxX) / 2;
+        float centerY = (minY + maxY) / 2;
 
         // 检查物体是否在当前摄像机的视口内
-        bool isInCameraView = (minX > cameraRect.x && maxX < cameraRect.x + cameraRect.width &&
-                               minY > cameraRect.y && maxY < cameraRect.y + cameraRect.height);
+        bool isInCameraView = (centerX > cameraRect.x && centerX < cameraRect.x + cameraRect.width &&
+                               centerY > cameraRect.y && centerY < cameraRect.y + cameraRect.height);
 
         // 检查物体是否被遮挡
         bool isVisible = true;
@@ -122,7 +134,7 @@ public class Drone : Entity
         }
 
         // 计算边界框的位置和大小
-        if (isVisible && isInCameraView && maxY - minY > cameraRect.height / minDetectScaleInCamera)
+        if (isVisible && isInCameraView && (maxY - minY > minDetectSizeInCamera))
         {
             targetRect = new Rect(min.x, displayHeight - max.y, max.x - min.x, max.y - min.y);
             isPlayerDetectedInCamera = true;
@@ -175,8 +187,7 @@ public class Drone : Entity
 
     # region 避障
 
-    [Header("Avoid Obstacle Info")]
-    public float detectObstacleDistance = 5; // 避障距离
+    [Header("Avoid Obstacle Info")] public float detectObstacleDistance = 5; // 避障距离
 
     protected void AvoidObstacleUpdate()
     {

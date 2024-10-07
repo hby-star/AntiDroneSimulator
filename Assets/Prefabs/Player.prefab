@@ -1525,7 +1525,7 @@ GameObject:
   - component: {fileID: 6434752753561253390}
   - component: {fileID: 7366741942086577155}
   - component: {fileID: 4455697575825464484}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: NetGun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1773,7 +1773,7 @@ GameObject:
   - component: {fileID: 8575698020818897850}
   - component: {fileID: 6127138315105089279}
   - component: {fileID: 5267920261909141651}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: EMPGun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2416,7 +2416,7 @@ GameObject:
   - component: {fileID: 412608272589475221}
   - component: {fileID: 1558696455108376546}
   - component: {fileID: 3251092804102957693}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: HandGun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3980,7 +3980,7 @@ MonoBehaviour:
   minimumVert: -45
   maximumVert: 45
   targetX: {fileID: 831854548954620035}
-  targetY: {fileID: 9177673737516699966}
+  targetY: {fileID: 6661491494581967779}
   soundSource: {fileID: 4159442440905966685}
   dashSound: {fileID: 8300000, guid: e7b8be42c3a5e97418b0417f3b4e94cd, type: 3}
 --- !u!54 &3097940046248122986

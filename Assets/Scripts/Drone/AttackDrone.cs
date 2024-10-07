@@ -135,6 +135,8 @@ public class AttackDrone : Drone
             bomb.AddComponent<Rigidbody>();
             Rigidbody bombRigidbody = bomb.GetComponent<Rigidbody>();
             bombRigidbody.velocity = Rigidbody.velocity;
+            Bomb bombScript = bomb.GetComponent<Bomb>();
+            bombScript.canExplode = true;
             hasBomb = false;
         }
     }

@@ -9,6 +9,7 @@ public class Bomb : MonoBehaviour
     public ParticleSystem explosion;
     public float explosionRadius = 10f;
     public float damage = 30f;
+    public bool canExplode = false;
 
     private void SettingsStart()
     {
@@ -25,7 +26,7 @@ public class Bomb : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Drone"))
+        if (!canExplode)
         {
             return;
         }

@@ -53,7 +53,7 @@ public class DetectDrone : Drone
         float distanceToTarget = (detectDroneTargetPosition - transform.position).magnitude;
 
         // 到达目标，但是没有找到玩家
-        if (distanceToTarget < moveSpeed / 2)
+        if (distanceToTarget < moveSpeed)
         {
             detectDroneTargetPosition = swarm.GenerateRandomHoneyPosition();
         }
@@ -71,19 +71,21 @@ public class DetectDrone : Drone
 
         // 侦查无人机到玩家的距离
         Vector3 directionToPlayer = targetPlayer.transform.position - transform.position;
-        directionToPlayer.y = 0;
         float distanceToPlayer = directionToPlayer.magnitude;
+        directionToPlayer.y = 0;
 
-        // 如果玩家距离侦查无人机较近，则延缓追踪
-        if (distanceToPlayer < moveSpeed * 1.5f)
+        // 如果玩家距离侦查无人机较近，则随机移动
+        float random_size = 0.3f;
+        if (distanceToPlayer < moveSpeed * 2f)
         {
-            taskForce = Vector3.zero;
+            // 随机移动
+            taskForce = new Vector3(Random.Range(-random_size, random_size), Random.Range(0, random_size),
+                Random.Range(-random_size, random_size));
         }
         // 如果玩家距离侦查无人机较远，则追踪
         else
         {
-            Vector3 trackForce = targetPlayer.transform.position - transform.position;
-            taskForce = trackForce.normalized;
+            taskForce = directionToPlayer.normalized;
         }
     }
 

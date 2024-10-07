@@ -429,17 +429,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 8
-  minDetectScaleInCamera: 25
+  minDetectSizeInCamera: 0.01
   cameraSmooth: 1
-  rotateSmooth: 1
+  rotateSmooth: 0.5
   uiBoxPrefab: {fileID: 1759393386953110933, guid: 74ae50997a26c944198a7272b0ea8180, type: 3}
   detectObstacleDistance: 3
-  avoidObstacleWeight: 1
+  avoidObstacleWeight: 5
   soundSource: {fileID: 1516163198716476928}
   flySound: {fileID: 8300000, guid: da8cba425f89d414bbfefcafcff846bd, type: 3}
   swarm: {fileID: 0}
   throwBombRadius: 5
-  bombBelowLength: 0.2
+  bombBelowLength: 0.1
 --- !u!1 &2077614911912810416
 GameObject:
   m_ObjectHideFlags: 0
