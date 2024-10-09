@@ -29,6 +29,8 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public bool IsGamePaused { get; private set; }
+
     void Awake()
     {
         if (_instance == null)
@@ -67,6 +69,7 @@ public class GameManager : MonoBehaviour
     {
         StopGameInput();
         Time.timeScale = 0;
+        IsGamePaused = true;
     }
 
     public void StopGameInput()
@@ -84,6 +87,7 @@ public class GameManager : MonoBehaviour
     {
         ContinueGameInput();
         Time.timeScale = 1;
+        IsGamePaused = false;
     }
 
     public void QuitGame()

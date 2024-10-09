@@ -367,7 +367,7 @@ public class Player : Entity
 
     void MouseLookUpdate()
     {
-        if (operateNow)
+        if (operateNow && !GameManager.Instance.IsGamePaused)
         {
             MouseXLookUpdate();
             MouseYLookUpdate();
