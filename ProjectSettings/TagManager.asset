@@ -9,6 +9,7 @@ TagManager:
   - Vehicle
   - Bomb
   - PlayerCamera
+  - Bullet
   layers:
   - Default
   - TransparentFX

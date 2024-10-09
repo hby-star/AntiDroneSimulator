@@ -228,7 +228,7 @@ public class Drone : Entity
         Vector3 obstaclePosition = new Vector3(detectObstacleDistance, detectObstacleDistance, detectObstacleDistance);
 
         // 检测前后左右上下以及更多方向的障碍物
-        Vector3[] directions = new Vector3[]
+        Vector3[] directions =
         {
             transform.forward, -transform.forward, transform.right, -transform.right, transform.up, -transform.up,
             transform.forward + transform.right + transform.up, transform.forward + transform.right - transform.up,
@@ -250,7 +250,8 @@ public class Drone : Entity
             {
                 // 忽略玩家和自身和炸弹
                 if (!hit.collider.CompareTag("Player") &&
-                    !hit.collider.gameObject.CompareTag("Bomb"))
+                    !hit.collider.CompareTag("Bomb") &&
+                    !hit.collider.CompareTag("Bullet"))
                 {
                     if (hit.distance < obstaclePosition.magnitude)
                     {
