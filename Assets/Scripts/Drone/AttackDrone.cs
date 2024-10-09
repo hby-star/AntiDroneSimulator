@@ -7,7 +7,7 @@ public class AttackDrone : Drone
 {
     protected override void Update()
     {
-        if(IsBusy)
+        if (IsBusy)
         {
             return;
         }
@@ -37,6 +37,14 @@ public class AttackDrone : Drone
             {
                 taskForce = Vector3.zero;
                 return;
+            }
+
+            // 调整炸弹朝向
+            Vector3 bombDirection = attackDroneTargetPosition - transform.position;
+            bombDirection.y = 0;
+            if (bombDirection != Vector3.zero)
+            {
+                bomb.transform.rotation = Quaternion.LookRotation(bombDirection);
             }
 
             if (!FoundPlayer)
