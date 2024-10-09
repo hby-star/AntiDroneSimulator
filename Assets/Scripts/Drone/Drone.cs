@@ -39,12 +39,12 @@ public class Drone : Entity
     # region 摄像机检测和跟随玩家
 
     [Header("Camera Info")] protected Player targetPlayer;
-    [NonSerialized]public bool LockPlayer = false;
-    [NonSerialized]public bool FoundPlayer = false;
+    [NonSerialized] public bool FoundPlayer = false;
     public float minDetectSizeInCamera = 0.0005f;
     protected Rect targetRect;
     public float cameraSmooth = 1;
     public float rotateSmooth = 1;
+    public float rotateThreshold = 10;
     protected bool isPlayerDetectedInCamera = false;
 
     protected void CameraStart()
@@ -61,20 +61,28 @@ public class Drone : Entity
             targetPlayer = FindObjectOfType<Player>();
         }
 
-        if (LockPlayer || FoundPlayer)
+        if (FoundPlayer)
         {
             Quaternion targetRotation =
                 Quaternion.LookRotation(targetPlayer.transform.position - Camera.transform.position);
-            Camera.transform.rotation =
-                Quaternion.Slerp(Camera.transform.rotation, targetRotation, Time.deltaTime * cameraSmooth);
+            // 为避免镜头晃动，若角度差大于rotateThreshold再旋转
+            if (Quaternion.Angle(Camera.transform.rotation, targetRotation) > rotateThreshold)
+            {
+                Camera.transform.rotation =
+                    Quaternion.Slerp(Camera.transform.rotation, targetRotation, Time.deltaTime * cameraSmooth);
+            }
         }
         else
         {
-            Vector3 lookAtPosition = transform.position + transform.forward;
-            lookAtPosition.y -= transform.forward.magnitude * 0.2f;
-            Quaternion targetRotation = Quaternion.LookRotation(lookAtPosition - Camera.transform.position);
-            Camera.transform.rotation =
-                Quaternion.Slerp(Camera.transform.rotation, targetRotation, Time.deltaTime * cameraSmooth);
+            Vector3 moveDirection = Rigidbody.velocity;
+            moveDirection.y -= transform.forward.magnitude * 0.2f;
+            Quaternion targetRotation = Quaternion.LookRotation(moveDirection - Camera.transform.position);
+            // 为避免镜头晃动，若角度差大于rotateThreshold再旋转
+            if (Quaternion.Angle(Camera.transform.rotation, targetRotation) > rotateThreshold)
+            {
+                Camera.transform.rotation =
+                    Quaternion.Slerp(Camera.transform.rotation, targetRotation, Time.deltaTime * cameraSmooth);
+            }
         }
 
         // 获取物体的边界
@@ -276,22 +284,25 @@ public class Drone : Entity
 
         moveForce *= moveSpeed;
 
-        // 先水平转向到目标方向
-        Vector3 horMoveDirection = moveForce;
-        horMoveDirection.y = 0;
+        // 直接移动
+        Rigidbody.velocity = moveForce;
 
-        if (horMoveDirection != Vector3.zero)
-        {
-            // 平滑转向
-            Quaternion targetRotation = Quaternion.LookRotation(horMoveDirection);
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotateSmooth);
-
-            // 再向前移动
-            Rigidbody.velocity = transform.forward * horMoveDirection.magnitude;
-        }
-
-        // 再垂直移动
-        Rigidbody.velocity += transform.up * moveForce.y;
+        // // 先水平转向到目标方向
+        // Vector3 horMoveDirection = moveForce;
+        // horMoveDirection.y = 0;
+        //
+        // if (horMoveDirection != Vector3.zero)
+        // {
+        //     // 平滑转向
+        //     Quaternion targetRotation = Quaternion.LookRotation(horMoveDirection);
+        //     transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotateSmooth);
+        //
+        //     // 再向前移动
+        //     Rigidbody.velocity = transform.forward * horMoveDirection.magnitude;
+        // }
+        //
+        // // 再垂直移动
+        // Rigidbody.velocity += transform.up * moveForce.y;
     }
 
     # endregion

@@ -11,11 +11,11 @@ public class DetectDrone : Drone
             return;
         }
 
-        base.Update();
-
         AvoidObstacleUpdate();
         DetectDroneUpdate();
         Move();
+
+        base.Update();
     }
 
     #region Detect Drone Update
@@ -34,7 +34,6 @@ public class DetectDrone : Drone
             if (isPlayerDetectedInCamera)
             {
                 FoundPlayer = true;
-                LockPlayer = true;
             }
         }
         else
@@ -47,7 +46,6 @@ public class DetectDrone : Drone
             if (!isPlayerDetectedInCamera)
             {
                 FoundPlayer = false;
-                LockPlayer = false;
             }
         }
     }
@@ -80,7 +78,7 @@ public class DetectDrone : Drone
         float distanceToPlayer = directionToPlayer.magnitude;
 
         // 如果玩家距离侦查无人机较近，则随机移动
-        float random_size = 0.1f;
+        float random_size = 1f;
         if (distanceToPlayer < moveSpeed * 2f)
         {
             if (distanceToPlayer < moveSpeed * 1.5f)
@@ -90,8 +88,12 @@ public class DetectDrone : Drone
             else
             {
                 // 随机移动
-                taskForce = new Vector3(Random.Range(-random_size, random_size), 0,
-                    Random.Range(-random_size, random_size));
+                if (!isRandomMove)
+                {
+                    taskForce = new Vector3(Random.Range(-random_size, random_size), 0,
+                        Random.Range(-random_size, random_size));
+                    StartCoroutine(IsRandomMoveFor(0.5f));
+                }
             }
         }
         // 如果玩家距离侦查无人机较远，则追踪
@@ -99,6 +101,15 @@ public class DetectDrone : Drone
         {
             taskForce = directionToPlayer.normalized;
         }
+    }
+
+    public bool isRandomMove = false;
+
+    public IEnumerator IsRandomMoveFor(float seconds)
+    {
+        isRandomMove = true;
+        yield return new WaitForSeconds(seconds);
+        isRandomMove = false;
     }
 
     #endregion

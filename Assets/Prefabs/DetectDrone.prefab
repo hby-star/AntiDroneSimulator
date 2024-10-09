@@ -430,8 +430,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 12
   minDetectSizeInCamera: 0.01
-  cameraSmooth: 0.5
+  cameraSmooth: 1
   rotateSmooth: 1
+  rotateThreshold: 5
   uiBoxPrefab: {fileID: 1759393386953110933, guid: 74ae50997a26c944198a7272b0ea8180, type: 3}
   detectObstacleDistance: 5
   avoidObstacleWeight: 1
@@ -439,6 +440,7 @@ MonoBehaviour:
   flySound: {fileID: 8300000, guid: da8cba425f89d414bbfefcafcff846bd, type: 3}
   swarm: {fileID: 0}
   detectDroneTargetPosition: {x: 0, y: 0, z: 0}
+  isRandomMove: 0
 --- !u!1 &2077614911912810416
 GameObject:
   m_ObjectHideFlags: 0

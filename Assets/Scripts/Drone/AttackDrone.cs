@@ -12,11 +12,11 @@ public class AttackDrone : Drone
             return;
         }
 
-        base.Update();
-
         AvoidObstacleUpdate();
         AttackDroneUpdate();
         Move();
+
+        base.Update();
     }
 
     #region Attack Drone Update
@@ -47,7 +47,6 @@ public class AttackDrone : Drone
                 if (isPlayerDetectedInCamera)
                 {
                     FoundPlayer = true;
-                    LockPlayer = true;
                 }
             }
             else
@@ -60,7 +59,6 @@ public class AttackDrone : Drone
                 if (!isPlayerDetectedInCamera)
                 {
                     FoundPlayer = false;
-                    LockPlayer = false;
                 }
             }
         }
