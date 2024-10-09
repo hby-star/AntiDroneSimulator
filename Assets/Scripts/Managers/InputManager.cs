@@ -56,10 +56,6 @@ public class InputManager : MonoBehaviour
     public Camera currentCamera { get; private set; }
 
 
-    void Start()
-    {
-    }
-
     void Update()
     {
         HandleGameInput();

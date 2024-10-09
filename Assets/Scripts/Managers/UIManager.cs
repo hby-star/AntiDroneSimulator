@@ -99,28 +99,33 @@ public class UIManager : MonoBehaviour
     public void HideGameStartPopUp()
     {
         gameStartPopUp.SetActive(false);
+        Cursor.visible = false;
     }
 
     public void ShowGamePausePopUp()
     {
         gamePausePopUp.SetActive(true);
+        Cursor.visible = true;
     }
 
     public void HideGamePausePopUp()
     {
         gamePausePopUp.SetActive(false);
+        Cursor.visible = false;
     }
 
     public void ShowGameEndWinPopUp()
     {
         gameEndPopUp.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "You Win!";
         gameEndPopUp.SetActive(true);
+        Cursor.visible = true;
     }
 
     public void ShowGameEndLosePopUp()
     {
         gameEndPopUp.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "You Lose!";
         gameEndPopUp.SetActive(true);
+        Cursor.visible = true;
     }
 
     public void HideGameEndPopUp()

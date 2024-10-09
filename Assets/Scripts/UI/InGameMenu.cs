@@ -19,7 +19,7 @@ public class InGameMenu : MonoBehaviour
 
     void Continue()
     {
-        UIManager.Instance.HideAllPopUps();
+        UIManager.Instance.HideGamePausePopUp();
         GameManager.Instance.ContinueGame();
     }
 
