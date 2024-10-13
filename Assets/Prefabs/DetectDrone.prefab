@@ -429,7 +429,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 12
-  minDetectSizeInCamera: 0.01
+  minDetectSizeInCamera: 0.008
   cameraSmooth: 1
   rotateSmooth: 1
   rotateThreshold: 5

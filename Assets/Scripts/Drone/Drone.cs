@@ -85,35 +85,37 @@ public class Drone : Entity
             }
         }
 
-        // 获取物体的边界
-        Vector3 center = targetPlayer.Collider.bounds.center;
-        Vector3 extents = targetPlayer.Collider.bounds.extents;
-        Vector3 upLeftFront = center + new Vector3(-extents.x, extents.y, -extents.z);
-        Vector3 upRightFront = center + new Vector3(extents.x, extents.y, -extents.z);
-        Vector3 upLeftBack = center + new Vector3(-extents.x, extents.y, extents.z);
-        Vector3 upRightBack = center + new Vector3(extents.x, extents.y, extents.z);
-        Vector3 downLeftFront = center + new Vector3(-extents.x, -extents.y, -extents.z);
-        Vector3 downRightFront = center + new Vector3(extents.x, -extents.y, -extents.z);
-        Vector3 downLeftBack = center + new Vector3(-extents.x, -extents.y, extents.z);
-        Vector3 downRightBack = center + new Vector3(extents.x, -extents.y, extents.z);
+        List<Renderer> targetRenderers = targetPlayer.playerRenderers;
 
-        upLeftFront = Camera.WorldToScreenPoint(upLeftFront);
-        upRightFront = Camera.WorldToScreenPoint(upRightFront);
-        upLeftBack = Camera.WorldToScreenPoint(upLeftBack);
-        upRightBack = Camera.WorldToScreenPoint(upRightBack);
-        downLeftFront = Camera.WorldToScreenPoint(downLeftFront);
-        downRightFront = Camera.WorldToScreenPoint(downRightFront);
-        downLeftBack = Camera.WorldToScreenPoint(downLeftBack);
-        downRightBack = Camera.WorldToScreenPoint(downRightBack);
+// 初始化 min 和 max 为极大值和极小值
+        Vector3 min = new Vector3(float.MaxValue, float.MaxValue, 0);
+        Vector3 max = new Vector3(float.MinValue, float.MinValue, 0);
 
-        Vector3 min = new Vector3(Mathf.Min(upLeftFront.x, upRightFront.x, upLeftBack.x, upRightBack.x,
-                downLeftFront.x, downRightFront.x, downLeftBack.x, downRightBack.x),
-            Mathf.Min(upLeftFront.y, upRightFront.y, upLeftBack.y, upRightBack.y,
-                downLeftFront.y, downRightFront.y, downLeftBack.y, downRightBack.y), 0);
-        Vector3 max = new Vector3(Mathf.Max(upLeftFront.x, upRightFront.x, upLeftBack.x, upRightBack.x,
-                downLeftFront.x, downRightFront.x, downLeftBack.x, downRightBack.x),
-            Mathf.Max(upLeftFront.y, upRightFront.y, upLeftBack.y, upRightBack.y,
-                downLeftFront.y, downRightFront.y, downLeftBack.y, downRightBack.y), 0);
+        foreach (Renderer renderer in targetRenderers)
+        {
+            if (renderer.isVisible)
+            {
+                Bounds bounds = renderer.bounds;
+                Vector3[] corners = new Vector3[8];
+                corners[0] = bounds.center + new Vector3(-bounds.extents.x, bounds.extents.y, -bounds.extents.z);
+                corners[1] = bounds.center + new Vector3(bounds.extents.x, bounds.extents.y, -bounds.extents.z);
+                corners[2] = bounds.center + new Vector3(-bounds.extents.x, bounds.extents.y, bounds.extents.z);
+                corners[3] = bounds.center + new Vector3(bounds.extents.x, bounds.extents.y, bounds.extents.z);
+                corners[4] = bounds.center + new Vector3(-bounds.extents.x, -bounds.extents.y, -bounds.extents.z);
+                corners[5] = bounds.center + new Vector3(bounds.extents.x, -bounds.extents.y, -bounds.extents.z);
+                corners[6] = bounds.center + new Vector3(-bounds.extents.x, -bounds.extents.y, bounds.extents.z);
+                corners[7] = bounds.center + new Vector3(bounds.extents.x, -bounds.extents.y, bounds.extents.z);
+
+                for (int i = 0; i < corners.Length; i++)
+                {
+                    Vector3 screenPoint = Camera.WorldToScreenPoint(corners[i]);
+                    min.x = Mathf.Min(min.x, screenPoint.x);
+                    min.y = Mathf.Min(min.y, screenPoint.y);
+                    max.x = Mathf.Max(max.x, screenPoint.x);
+                    max.y = Mathf.Max(max.y, screenPoint.y);
+                }
+            }
+        }
 
 
         // 获取display2的分辨率

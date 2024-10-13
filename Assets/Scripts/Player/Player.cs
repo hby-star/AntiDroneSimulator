@@ -24,6 +24,7 @@ public class Player : Entity
     #region Stats
 
     [Header("Stats Info")] public EntityStats playerStats;
+    public List<Renderer> playerRenderers;
 
     public void TakeDamage(float damage)
     {
@@ -335,15 +336,16 @@ public class Player : Entity
         if (capsuleCollider)
         {
             Gizmos.color = Color.red;
-            Vector3 point1 = new Vector3(transform.position.x, transform.position.y + capsuleCollider.height / 2,
+            Vector3 point1 = new Vector3(transform.position.x, transform.position.y + capsuleCollider.radius,
                 transform.position.z);
-            Vector3 point2 = new Vector3(transform.position.x, transform.position.y - capsuleCollider.height / 2,
+            Vector3 point2 = new Vector3(transform.position.x,
+                transform.position.y +  capsuleCollider.height - capsuleCollider.radius,
                 transform.position.z);
             Gizmos.DrawWireSphere(point1, capsuleCollider.radius);
             Gizmos.DrawWireSphere(point2, capsuleCollider.radius);
             Gizmos.DrawLine(point1 + Vector3.right * capsuleCollider.radius,
                 point2 + Vector3.right * capsuleCollider.radius);
-            Gizmos.DrawLine(point1 - Vector3.right * capsuleCollider.radius,
+            Gizmos.DrawLine(point2 - Vector3.right * capsuleCollider.radius,
                 point2 - Vector3.right * capsuleCollider.radius);
         }
 

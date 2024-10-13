@@ -3,8 +3,6 @@ using UnityEngine;
 
 public class EMPGun : Gun
 {
-    public float bulletSize = 50f;
-
     protected override void Start()
     {
         base.Start();

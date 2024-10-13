@@ -129,6 +129,7 @@ public class AttackDrone : Drone
             ThrowBomb();
             attackDroneTargetPosition = swarm.hivePosition;
             Rigidbody.velocity = Vector3.up * 10f;
+            StartCoroutine(BusyFor(0.2f));
         }
         // 如果玩家距离侦查无人机较远，则继续追踪
         else

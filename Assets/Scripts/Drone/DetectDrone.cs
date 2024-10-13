@@ -74,7 +74,6 @@ public class DetectDrone : Drone
 
         // 侦查无人机到玩家的距离
         Vector3 directionToPlayer = targetPlayer.transform.position - transform.position;
-        directionToPlayer.y = 0;
         float distanceToPlayer = directionToPlayer.magnitude;
 
         // 如果玩家距离侦查无人机较近，则随机移动
