@@ -462,8 +462,8 @@ SkinnedMeshRenderer:
   m_BlendShapeWeights: []
   m_RootBone: {fileID: 6921701327414048797}
   m_AABB:
-    m_Center: {x: -0.0061831474, y: 0.0153360665, z: -0.00000029802322}
-    m_Extent: {x: 1.2868366, y: 0.28608152, z: 1.0226064}
+    m_Center: {x: -0.03508252, y: 0.0153360665, z: 0.05366832}
+    m_Extent: {x: 1.2355316, y: 0.28608152, z: 0.51716125}
   m_DirtyAABB: 0
 --- !u!1 &1853528486964623994
 GameObject:
@@ -1243,8 +1243,8 @@ MonoBehaviour:
   bulletFontSize: 20
   playerCamera: {fileID: 196276258538565603}
   soundSource: {fileID: 4300808480643386846}
-  reloadSound: {fileID: 0}
-  fireSound: {fileID: 0}
+  reloadSound: {fileID: 8300000, guid: 4d065ebd0386b9345ac4ec4d5377f76d, type: 3}
+  fireSound: {fileID: 8300000, guid: 293496b0af3029f4caae703eb9088dd8, type: 3}
   currentBullets: 1
   maxBullets: 1
   gunType: 2
@@ -1547,8 +1547,8 @@ MonoBehaviour:
   bulletFontSize: 20
   playerCamera: {fileID: 196276258538565603}
   soundSource: {fileID: 1819065757884859496}
-  reloadSound: {fileID: 0}
-  fireSound: {fileID: 0}
+  reloadSound: {fileID: 8300000, guid: 4d065ebd0386b9345ac4ec4d5377f76d, type: 3}
+  fireSound: {fileID: 8300000, guid: 293496b0af3029f4caae703eb9088dd8, type: 3}
   currentBullets: 5
   maxBullets: 5
   gunType: 1
@@ -1806,7 +1806,7 @@ MonoBehaviour:
   jumpForce: 5
   dashSpeed: 15
   standColliderHeight: 1.75
-  crouchColliderHeight: 0.7
+  crouchColliderHeight: 1.18
   guns:
   - {fileID: 302926611522747862}
   - {fileID: 3578140073217359004}
@@ -1868,9 +1868,9 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.3
-  m_Height: 1.75
+  m_Height: 1.6200415
   m_Direction: 1
-  m_Center: {x: 0, y: 0.85, z: 0}
+  m_Center: {x: 0.022198737, y: 0.78502077, z: 0.01432845}
 --- !u!114 &8030514294475232828
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2124,8 +2124,8 @@ MonoBehaviour:
   bulletFontSize: 20
   playerCamera: {fileID: 196276258538565603}
   soundSource: {fileID: 1921935920577249218}
-  reloadSound: {fileID: 0}
-  fireSound: {fileID: 0}
+  reloadSound: {fileID: 8300000, guid: 4d065ebd0386b9345ac4ec4d5377f76d, type: 3}
+  fireSound: {fileID: 8300000, guid: 293496b0af3029f4caae703eb9088dd8, type: 3}
   currentBullets: 10
   maxBullets: 10
   gunType: 0
