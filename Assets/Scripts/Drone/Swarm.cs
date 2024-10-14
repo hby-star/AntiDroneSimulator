@@ -36,17 +36,18 @@ public class Swarm : MonoBehaviour
         {
             // 在蜂巢位置附近随机生成位置
             float randomAngle = Random.Range(0f, 360f);
-            Vector3 randomOffset = new Vector3(Mathf.Sin(randomAngle), 0f, Mathf.Cos(randomAngle)) *
-                                   Random.Range(0f, hiveRadius);
+            Vector3 randomOffset = new Vector3(Mathf.Sin(randomAngle), 0, Mathf.Cos(randomAngle)) *
+                                   Random.Range(0, hiveRadius);
+            randomOffset.y = Random.Range(-hiveRadius / 2, hiveRadius / 2);
             Vector3 spawnPosition = hivePosition + randomOffset;
-            spawnPosition.y = hivePosition.y;
 
             // 若生成的无人机附近有障碍物，则重新生成
             Vector3 droneSize = detectDronePrefab.GetComponent<BoxCollider>().size;
-            Collider[] colliders = Physics.OverlapBox(spawnPosition, droneSize / 2f);
+            Collider[] colliders = Physics.OverlapBox(spawnPosition, droneSize);
             if (colliders.Length > 0)
             {
                 i--;
+                Debug.Log("Spawn drone failed");
                 continue;
             }
 
@@ -107,7 +108,8 @@ public class Swarm : MonoBehaviour
 
     private void SettingStart()
     {
-        droneCount = (int)UIManager.Instance.settingsPopUp.GetComponent<Settings>().droneNumSlider.value;
+        if (UIManager.Instance)
+            droneCount = (int)UIManager.Instance.settingsPopUp.GetComponent<Settings>().droneNumSlider.value;
     }
 
     private void Awake()

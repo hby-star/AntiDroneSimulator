@@ -294,11 +294,14 @@ public class Player : Entity
 
     private void SettingsStart()
     {
-        sensitivityHor = sensitivityVert =
-            UIManager.Instance.settingsPopUp.GetComponent<Settings>().sensitivitySlider.value;
-        soundSource.volume = UIManager.Instance.settingsPopUp.GetComponent<Settings>().volumeSlider.value;
-        playerStats.maxHeath = UIManager.Instance.settingsPopUp.GetComponent<Settings>().playerHeathSlider.value;
-        playerStats.currentHeath = playerStats.maxHeath;
+        if (UIManager.Instance)
+        {
+            sensitivityHor = sensitivityVert =
+                UIManager.Instance.settingsPopUp.GetComponent<Settings>().sensitivitySlider.value;
+            soundSource.volume = UIManager.Instance.settingsPopUp.GetComponent<Settings>().volumeSlider.value;
+            playerStats.maxHeath = UIManager.Instance.settingsPopUp.GetComponent<Settings>().playerHeathSlider.value;
+            playerStats.currentHeath = playerStats.maxHeath;
+        }
     }
 
     protected override void Start()
@@ -339,7 +342,7 @@ public class Player : Entity
             Vector3 point1 = new Vector3(transform.position.x, transform.position.y + capsuleCollider.radius,
                 transform.position.z);
             Vector3 point2 = new Vector3(transform.position.x,
-                transform.position.y +  capsuleCollider.height - capsuleCollider.radius,
+                transform.position.y + capsuleCollider.height - capsuleCollider.radius,
                 transform.position.z);
             Gizmos.DrawWireSphere(point1, capsuleCollider.radius);
             Gizmos.DrawWireSphere(point2, capsuleCollider.radius);

@@ -47,7 +47,7 @@ MonoBehaviour:
   hivePosition: {x: 0, y: 0, z: 0}
   hiveRadius: 20
   honeyPositions: []
-  honeyRadius: 40
+  honeyRadius: 50
   detectDronePrefab: {fileID: 2061971188611494707, guid: 1ccf85acfb9ab964eb90b71530764496, type: 3}
   attackDronePrefab: {fileID: 2061971188611494707, guid: 89de92c85f1f2aa4596bf598c53e4795, type: 3}
   droneCount: 20

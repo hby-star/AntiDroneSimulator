@@ -34,7 +34,8 @@ public class Gun : Equipment
 
     void SettingsStart()
     {
-        soundSource.volume = UIManager.Instance.settingsPopUp.GetComponent<Settings>().volumeSlider.value;
+        if (UIManager.Instance)
+            soundSource.volume = UIManager.Instance.settingsPopUp.GetComponent<Settings>().volumeSlider.value;
     }
 
     protected virtual void Start()

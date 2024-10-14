@@ -11,7 +11,8 @@ public class Drone : Entity
 
     void SettingsStart()
     {
-        soundSource.volume = UIManager.Instance.settingsPopUp.GetComponent<Settings>().volumeSlider.value;
+        if (UIManager.Instance)
+            soundSource.volume = UIManager.Instance.settingsPopUp.GetComponent<Settings>().volumeSlider.value;
     }
 
     protected override void Start()
@@ -73,19 +74,21 @@ public class Drone : Entity
             Camera.transform.rotation =
                 Quaternion.Slerp(Camera.transform.rotation, targetRotation, Time.deltaTime * 5);
             // }
-
         }
         else
         {
             Vector3 moveDirection = Rigidbody.velocity;
             moveDirection.y = -moveDirection.magnitude * 0.2f;
-            Quaternion targetRotation = Quaternion.LookRotation(moveDirection);
-            // 为避免镜头晃动，若角度差大于rotateThreshold再旋转
-            // if (Quaternion.Angle(Camera.transform.rotation, targetRotation) > rotateThreshold)
-            // {
-            Camera.transform.rotation =
-                Quaternion.Slerp(Camera.transform.rotation, targetRotation, Time.deltaTime * 5);
-            // }
+            if(moveDirection != Vector3.zero)
+            {
+                Quaternion targetRotation = Quaternion.LookRotation(moveDirection);
+                // 为避免镜头晃动，若角度差大于rotateThreshold再旋转
+                // if (Quaternion.Angle(Camera.transform.rotation, targetRotation) > rotateThreshold)
+                // {
+                Camera.transform.rotation =
+                    Quaternion.Slerp(Camera.transform.rotation, targetRotation, Time.deltaTime * 5);
+                // }
+            }
         }
 
         List<Renderer> targetRenderers = targetPlayer.playerRenderers;
