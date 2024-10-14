@@ -13,8 +13,11 @@ public class Bomb : MonoBehaviour
 
     private void SettingsStart()
     {
-        explosionRadius = UIManager.Instance.settingsPopUp.GetComponent<Settings>().bombRangeSlider.value;
-        damage = UIManager.Instance.settingsPopUp.GetComponent<Settings>().bombDamageSlider.value;
+        if (UIManager.Instance)
+        {
+            explosionRadius = UIManager.Instance.settingsPopUp.GetComponent<Settings>().bombRangeSlider.value;
+            damage = UIManager.Instance.settingsPopUp.GetComponent<Settings>().bombDamageSlider.value;
+        }
     }
 
     void Start()
@@ -40,15 +43,7 @@ public class Bomb : MonoBehaviour
         {
             if (nearbyObject.CompareTag("Player"))
             {
-                // 检测Player与炸弹间是否有障碍物
-                RaycastHit hit;
-                if (Physics.Linecast(transform.position, nearbyObject.transform.position, out hit))
-                {
-                    if (hit.collider.CompareTag("Player"))
-                    {
-                        nearbyObject.GetComponent<Player>().TakeDamage(damage);
-                    }
-                }
+                nearbyObject.GetComponent<Player>().TakeDamage(damage);
             }
         }
 
