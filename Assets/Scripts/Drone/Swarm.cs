@@ -47,7 +47,6 @@ public class Swarm : MonoBehaviour
             if (colliders.Length > 0)
             {
                 i--;
-                Debug.Log("Spawn drone failed");
                 continue;
             }
 
