@@ -78,8 +78,8 @@ public class Drone : Entity
         else
         {
             Vector3 moveDirection = Rigidbody.velocity;
-            moveDirection.y -= transform.forward.magnitude * 0.2f;
-            Quaternion targetRotation = Quaternion.LookRotation(moveDirection - Camera.transform.position);
+            moveDirection.y = -moveDirection.magnitude * 0.2f;
+            Quaternion targetRotation = Quaternion.LookRotation(moveDirection);
             // 为避免镜头晃动，若角度差大于rotateThreshold再旋转
             // if (Quaternion.Angle(Camera.transform.rotation, targetRotation) > rotateThreshold)
             // {
