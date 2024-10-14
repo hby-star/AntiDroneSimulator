@@ -34,6 +34,20 @@ public class Drone : Entity
         base.Update();
         CameraUpdate();
         AudioUpdate();
+
+        HandleStuck();
+    }
+
+    void HandleStuck()
+    {
+        if (FoundPlayer && Rigidbody.velocity.magnitude < 0.01f)
+        {
+            // 无法移动时，尝试随机水平移动
+            Vector3 randomDirection = new Vector3(UnityEngine.Random.Range(-1f, 1f), 0,
+                UnityEngine.Random.Range(-1f, 1f));
+            Rigidbody.velocity = randomDirection.normalized * moveSpeed;
+            StartCoroutine(BusyFor(1f));
+        }
     }
 
 
@@ -79,7 +93,7 @@ public class Drone : Entity
         {
             Vector3 moveDirection = Rigidbody.velocity;
             moveDirection.y = -moveDirection.magnitude * 0.2f;
-            if(moveDirection != Vector3.zero)
+            if (moveDirection != Vector3.zero)
             {
                 Quaternion targetRotation = Quaternion.LookRotation(moveDirection);
                 // 为避免镜头晃动，若角度差大于rotateThreshold再旋转
@@ -241,13 +255,24 @@ public class Drone : Entity
     {
         Vector3 obstaclePosition = GetObstacleRelativePosition();
 
-        if (obstaclePosition.magnitude < detectObstacleDistance - 1)
+        if (obstaclePosition.magnitude < detectObstacleDistance)
         {
             avoidObstacleForce = -obstaclePosition.normalized;
             avoidObstacleForce.y += 1f;
         }
         else
         {
+            Collider[] colliders = Physics.OverlapBox(transform.position,
+                Collider.bounds.extents + new Vector3(0.1f, 0.1f, 0.1f));
+            foreach (var collider in colliders)
+            {
+                if (Collider.CompareTag("Ground"))
+                {
+                    avoidObstacleForce = (transform.position - collider.transform.position).normalized;
+                    avoidObstacleForce.y += 1f;
+                    return;
+                }
+            }
             avoidObstacleForce = Vector3.zero;
         }
     }

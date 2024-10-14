@@ -436,7 +436,7 @@ MonoBehaviour:
   initialCameraFov: 0
   uiBoxPrefab: {fileID: 1759393386953110933, guid: 74ae50997a26c944198a7272b0ea8180, type: 3}
   detectObstacleDistance: 5
-  avoidObstacleWeight: 1
+  avoidObstacleWeight: 2
   soundSource: {fileID: 1516163198716476928}
   flySound: {fileID: 8300000, guid: da8cba425f89d414bbfefcafcff846bd, type: 3}
   swarm: {fileID: 0}
