@@ -41,6 +41,15 @@ public class Swarm : MonoBehaviour
             Vector3 spawnPosition = hivePosition + randomOffset;
             spawnPosition.y = hivePosition.y;
 
+            // 若生成的无人机附近有障碍物，则重新生成
+            Vector3 droneSize = detectDronePrefab.GetComponent<BoxCollider>().size;
+            Collider[] colliders = Physics.OverlapBox(spawnPosition, droneSize / 2f);
+            if (colliders.Length > 0)
+            {
+                i--;
+                continue;
+            }
+
             if (i < Mathf.RoundToInt(droneCount * detectDroneRate))
             {
                 GameObject droneObj = Instantiate(detectDronePrefab, spawnPosition, Quaternion.identity);
