@@ -74,6 +74,9 @@ crashlytics-build.properties
 /[Aa]ssets/[Ss]treamingAssets/aa/*
 
 /Assets/FreeAssets/
+/Assets/FreeAssets.meta
+/Assets/DAVFX/
+/Assets/DAVFX.meta
 Assets/Resources/Fonts/FangZhengFangSongJianTi-1 SDF.asset
 Assets/Resources/Fonts/FangZhengFangSongJianTi-1 SDF.asset.meta
 

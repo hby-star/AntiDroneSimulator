@@ -11,6 +11,7 @@ public class HealthBarUI : MonoBehaviour
 
    private void Start()
    {
+      stats = FindObjectOfType<Player>().GetComponent<EntityStats>();
       stats.OnHealthChanged += UpdateHealthUI;
    }
 

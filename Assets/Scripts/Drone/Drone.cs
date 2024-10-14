@@ -46,10 +46,12 @@ public class Drone : Entity
     public float rotateSmooth = 1;
     public float rotateThreshold = 10;
     protected bool isPlayerDetectedInCamera = false;
+    public float initialCameraFov;
 
     protected void CameraStart()
     {
         Camera.enabled = true;
+        initialCameraFov = Camera.fieldOfView;
 
         UIBoxInit();
     }
@@ -66,11 +68,12 @@ public class Drone : Entity
             Quaternion targetRotation =
                 Quaternion.LookRotation(targetPlayer.transform.position - Camera.transform.position);
             // 为避免镜头晃动，若角度差大于rotateThreshold再旋转
-            if (Quaternion.Angle(Camera.transform.rotation, targetRotation) > rotateThreshold)
-            {
-                Camera.transform.rotation =
-                    Quaternion.Slerp(Camera.transform.rotation, targetRotation, Time.deltaTime * cameraSmooth);
-            }
+            // if (Quaternion.Angle(Camera.transform.rotation, targetRotation) > rotateThreshold)
+            // {
+            Camera.transform.rotation =
+                Quaternion.Slerp(Camera.transform.rotation, targetRotation, Time.deltaTime * 5);
+            // }
+
         }
         else
         {
@@ -78,16 +81,16 @@ public class Drone : Entity
             moveDirection.y -= transform.forward.magnitude * 0.2f;
             Quaternion targetRotation = Quaternion.LookRotation(moveDirection - Camera.transform.position);
             // 为避免镜头晃动，若角度差大于rotateThreshold再旋转
-            if (Quaternion.Angle(Camera.transform.rotation, targetRotation) > rotateThreshold)
-            {
-                Camera.transform.rotation =
-                    Quaternion.Slerp(Camera.transform.rotation, targetRotation, Time.deltaTime * cameraSmooth);
-            }
+            // if (Quaternion.Angle(Camera.transform.rotation, targetRotation) > rotateThreshold)
+            // {
+            Camera.transform.rotation =
+                Quaternion.Slerp(Camera.transform.rotation, targetRotation, Time.deltaTime * 5);
+            // }
         }
 
         List<Renderer> targetRenderers = targetPlayer.playerRenderers;
 
-// 初始化 min 和 max 为极大值和极小值
+        // 初始化 min 和 max 为极大值和极小值
         Vector3 min = new Vector3(float.MaxValue, float.MaxValue, 0);
         Vector3 max = new Vector3(float.MinValue, float.MinValue, 0);
 
@@ -159,11 +162,32 @@ public class Drone : Entity
         {
             targetRect = new Rect(min.x, displayHeight - max.y, max.x - min.x, max.y - min.y);
             isPlayerDetectedInCamera = true;
+
+            // 调整Camera的fov
+            float targetHeightScale = (max.y - min.y) / CameraManager.Instance.droneViewHeight;
+            if (targetHeightScale < 0.4f)
+            {
+                // 平滑减小Camera的fov
+                Camera.fieldOfView =
+                    Mathf.Lerp(Camera.fieldOfView, initialCameraFov - 200 * Mathf.Abs(targetHeightScale - 0.4f),
+                        Time.deltaTime);
+            }
+
+            if (targetHeightScale > 0.5f)
+            {
+                // 平滑增大Camera的fov
+                Camera.fieldOfView = Mathf.Lerp(Camera.fieldOfView,
+                    initialCameraFov + 200 * Mathf.Abs(targetHeightScale - 0.4f),
+                    Time.deltaTime);
+            }
         }
         else
         {
             targetRect = new Rect(0, 0, 0, 0);
             isPlayerDetectedInCamera = false;
+
+            // 平滑恢复Camera的fov
+            Camera.fieldOfView = Mathf.Lerp(Camera.fieldOfView, initialCameraFov, Time.deltaTime);
         }
 
         UIBoxUpdate();

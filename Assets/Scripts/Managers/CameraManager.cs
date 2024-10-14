@@ -50,6 +50,9 @@ public class CameraManager : MonoBehaviour
     public Camera vehicleCamera;
     public Camera backgroundCamera; // 新增的背景摄像机
 
+    public float droneViewWidth;
+    public float droneViewHeight;
+
     private void Start()
     {
         // 设置显示器2
@@ -94,8 +97,8 @@ public class CameraManager : MonoBehaviour
 
         // 配置Display 2的布局
         float divide = Mathf.Ceil(Mathf.Sqrt(droneCameras.Length + 1));
-        float droneViewWidth = Screen.width / divide;
-        float droneViewHeight = Screen.height / divide;
+        droneViewWidth = Screen.width / divide;
+        droneViewHeight = Screen.height / divide;
 
         for (int i = 0; i < droneCameras.Length; i++)
         {

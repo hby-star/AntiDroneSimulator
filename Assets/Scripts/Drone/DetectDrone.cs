@@ -78,9 +78,9 @@ public class DetectDrone : Drone
 
         // 如果玩家距离侦查无人机较近，则随机移动
         float random_size = 1f;
-        if (distanceToPlayer < moveSpeed * 2f)
+        if (distanceToPlayer < moveSpeed * 3f)
         {
-            if (distanceToPlayer < moveSpeed * 1.5f)
+            if (distanceToPlayer < moveSpeed * 2.5f)
             {
                 taskForce = -directionToPlayer.normalized;
             }
