@@ -3,6 +3,9 @@ using UnityEngine;
 
 public class EMPGun : Gun
 {
+    public GameObject empBulletPrefab;
+    public float empBulletSpeed = 10f;
+
     protected override void Start()
     {
         base.Start();
@@ -14,30 +17,14 @@ public class EMPGun : Gun
     {
         base.Fire();
 
-        float laserRange = 100f;
-        float laserAngle = 20f;
-        int numberOfRays = 20;
+        // Instantiate the bullet at the center of the screen
+        Vector3 origin = playerCamera.transform.position + playerCamera.transform.forward * 2;
+        GameObject bullet = Instantiate(empBulletPrefab, origin, Quaternion.identity);
 
-        Vector3 origin = playerCamera.transform.position;
-        Vector3 direction = playerCamera.transform.forward;
-
-        for (int i = 0; i < numberOfRays; i++)
-        {
-            for (int j = 0; j < numberOfRays; j++)
-            {
-                float horizontalAngle = Mathf.Lerp(-laserAngle / 2, laserAngle / 2, (float)i / (numberOfRays - 1));
-                float verticalAngle = Mathf.Lerp(-laserAngle / 2, laserAngle / 2, (float)j / (numberOfRays - 1));
-                Vector3 spreadDirection = Quaternion.Euler(verticalAngle, horizontalAngle, 0) * direction;
-
-                if (Physics.Raycast(origin, spreadDirection, out RaycastHit hit, laserRange))
-                {
-                    Drone drone = hit.collider.GetComponent<Drone>();
-                    if (drone != null)
-                    {
-                        drone.ReactToHit(Drone.HitType.ElectricInterference);
-                    }
-                }
-            }
-        }
+        // Apply an initial forward force to the bullet
+        Rigidbody rb = bullet.GetComponent<Rigidbody>();
+        bullet.transform.forward = playerCamera.transform.forward;
+        rb.velocity = playerCamera.transform.forward * empBulletSpeed;
+        rb.useGravity = false;
     }
 }

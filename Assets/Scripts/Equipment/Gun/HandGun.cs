@@ -1,20 +1,29 @@
 ﻿using System.Collections;
+using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 
 public class HandGun : Gun
 {
     public GameObject bulletImpact;
+    public Transform fireEffectPosition;
+    public ParticleSystem fireEffectPrefab;
 
     protected override void Start()
     {
         base.Start();
 
         gunType = GunType.HandGun;
+
     }
 
     public override void Fire()
     {
         base.Fire();
+
+        // Play the fire effect
+        ParticleSystem fireEffect = Instantiate(fireEffectPrefab, fireEffectPosition.position, fireEffectPosition.rotation);
+        fireEffect.transform.parent = fireEffectPosition;
+        fireEffect.Play();
 
         Vector3 point = new Vector3(Screen.width / 2, Screen.height / 2, 0);
         Ray ray = playerCamera.ScreenPointToRay(point);

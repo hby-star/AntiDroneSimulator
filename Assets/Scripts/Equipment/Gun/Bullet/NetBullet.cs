@@ -19,8 +19,12 @@ public class NetBullet : MonoBehaviour
             Rigidbody rb = sphere.GetComponent<Rigidbody>();
             rb.velocity = Vector3.zero; // Stop the sphere's movement
 
-            // Destroy the sphere after 2 seconds
-            Destroy(sphere, 2f);
+            // Destroy the sphere after 1 seconds
+            Destroy(sphere, 1f);
+        }
+        else
+        {
+            Destroy(gameObject, 1f);
         }
     }
 }

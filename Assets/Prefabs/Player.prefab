@@ -1282,6 +1282,8 @@ MonoBehaviour:
   maxBullets: 1
   gunType: 2
   isReloading: 0
+  empBulletPrefab: {fileID: 1595252117517162, guid: 54bc7ba98bc403543880d0b7dfb5f98f, type: 3}
+  empBulletSpeed: 10
 --- !u!82 &4300808480643386846
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1587,7 +1589,7 @@ MonoBehaviour:
   gunType: 1
   isReloading: 0
   netPrefab: {fileID: 647565524557730373, guid: 14928b59992f90d488cea5a1d5880b6f, type: 3}
-  netSpeed: 10
+  netSpeed: 30
 --- !u!82 &1819065757884859496
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1841,9 +1843,9 @@ MonoBehaviour:
   standColliderHeight: 1.75
   crouchColliderHeight: 1.18
   guns:
+  - {fileID: 2683639816618920090}
   - {fileID: 302926611522747862}
   - {fileID: 3578140073217359004}
-  - {fileID: 2683639816618920090}
   shieldPrefab: {fileID: 609340164047278902, guid: 40098e15728d83b4d8b2c8b7b70ff70f, type: 3}
   interactRange: 2
   sensitivityHor: 9
@@ -2082,7 +2084,8 @@ Transform:
   m_LocalPosition: {x: -0.20061105, y: 0.037880342, z: 0.056696758}
   m_LocalScale: {x: 1.048937, y: 1.0489368, z: 1.0489371}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 645612963902378422}
   m_Father: {fileID: 1217262526061638580}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &1411318091770927940
@@ -2163,6 +2166,8 @@ MonoBehaviour:
   gunType: 0
   isReloading: 0
   bulletImpact: {fileID: 8913486584783115997, guid: 7b3f6d217c2df924faf6b18c6bb7b698, type: 3}
+  fireEffectPosition: {fileID: 645612963902378422}
+  fireEffectPrefab: {fileID: 7577923054869090771, guid: 72b2fc59a0518314d8cee67ca11270f0, type: 3}
 --- !u!82 &1921935920577249218
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2428,6 +2433,37 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
+--- !u!1 &8701229526705600481
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 645612963902378422}
+  m_Layer: 0
+  m_Name: gun_fire_effect_position
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &645612963902378422
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8701229526705600481}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
+  m_LocalPosition: {x: -0, y: -0.797, z: 0.077}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8050997118523296050}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
 --- !u!1 &8991044170679927507
 GameObject:
   m_ObjectHideFlags: 0
