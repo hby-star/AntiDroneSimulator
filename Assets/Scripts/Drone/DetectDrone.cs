@@ -4,6 +4,21 @@ using UnityEngine;
 
 public class DetectDrone : Drone
 {
+    void SettingsStart()
+    {
+        if (UIManager.Instance)
+        {
+            moveSpeed = UIManager.Instance.settingsPopUp.GetComponent<Settings>().detectDroneSpeedSlider.value;
+        }
+    }
+
+    protected override void Start()
+    {
+        base.Start();
+
+        SettingsStart();
+    }
+
     protected override void Update()
     {
         if (IsBusy)

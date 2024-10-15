@@ -6,9 +6,19 @@ public class NetGun : Gun
     public GameObject netPrefab; // Prefab for the net
     public float netSpeed = 10f;
 
+    void SettingsStart()
+    {
+        if (UIManager.Instance)
+        {
+            maxBullets = (int)UIManager.Instance.settingsPopUp.GetComponent<Settings>().netBulletNumSlider.value;
+            currentBullets = maxBullets;
+        }
+    }
     protected override void Start()
     {
         base.Start();
+
+        SettingsStart();
 
         gunType = GunType.NetGun;
     }

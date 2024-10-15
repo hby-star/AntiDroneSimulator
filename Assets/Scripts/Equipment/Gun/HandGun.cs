@@ -8,9 +8,20 @@ public class HandGun : Gun
     public Transform fireEffectPosition;
     public ParticleSystem fireEffectPrefab;
 
+    void SettingsStart()
+    {
+        if (UIManager.Instance)
+        {
+            maxBullets = (int)UIManager.Instance.settingsPopUp.GetComponent<Settings>().normalBulletNumSlider.value;
+            currentBullets = maxBullets;
+        }
+    }
+
     protected override void Start()
     {
         base.Start();
+
+        SettingsStart();
 
         gunType = GunType.HandGun;
 

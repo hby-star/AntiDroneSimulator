@@ -5,6 +5,20 @@ using UnityEngine;
 
 public class AttackDrone : Drone
 {
+    void SettingsStart()
+    {
+        if (UIManager.Instance)
+        {
+            moveSpeed = UIManager.Instance.settingsPopUp.GetComponent<Settings>().attackDroneSpeedSlider.value;
+        }
+    }
+
+    protected override void Start()
+    {
+        base.Start();
+
+        SettingsStart();
+    }
     protected override void Update()
     {
         if (IsBusy)

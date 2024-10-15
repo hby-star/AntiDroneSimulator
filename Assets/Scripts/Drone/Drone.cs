@@ -12,7 +12,10 @@ public class Drone : Entity
     void SettingsStart()
     {
         if (UIManager.Instance)
+        {
             soundSource.volume = UIManager.Instance.settingsPopUp.GetComponent<Settings>().volumeSlider.value;
+            electricInterferenceTime = UIManager.Instance.settingsPopUp.GetComponent<Settings>().empBulletDurationSlider.value;
+        }
     }
 
     protected override void Start()
@@ -364,6 +367,8 @@ public class Drone : Entity
 
     #region 受击
 
+    public float electricInterferenceTime = 5f;
+
     public enum HitType
     {
         NormalBullet,
@@ -377,7 +382,7 @@ public class Drone : Entity
         if (hitType == HitType.ElectricInterference)
         {
             ZeroVelocity();
-            StartCoroutine(BusyFor(5f));
+            StartCoroutine(BusyFor(electricInterferenceTime));
         }
         else
         {

@@ -6,9 +6,19 @@ public class EMPGun : Gun
     public GameObject empBulletPrefab;
     public float empBulletSpeed = 10f;
 
+    void SettingsStart()
+    {
+        if (UIManager.Instance)
+        {
+            maxBullets = (int)UIManager.Instance.settingsPopUp.GetComponent<Settings>().empBulletNumSlider.value;
+            currentBullets = maxBullets;
+        }
+    }
     protected override void Start()
     {
         base.Start();
+
+        SettingsStart();
 
         gunType = GunType.EMPGun;
     }

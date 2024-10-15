@@ -301,6 +301,7 @@ public class Player : Entity
             soundSource.volume = UIManager.Instance.settingsPopUp.GetComponent<Settings>().volumeSlider.value;
             playerStats.maxHeath = UIManager.Instance.settingsPopUp.GetComponent<Settings>().playerHeathSlider.value;
             playerStats.currentHeath = playerStats.maxHeath;
+            moveSpeed = UIManager.Instance.settingsPopUp.GetComponent<Settings>().playerMoveSpeedSlider.value;
         }
     }
 
