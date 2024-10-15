@@ -387,11 +387,8 @@ public class Drone : Entity
 
     private IEnumerator Die()
     {
-        this.transform.Rotate(-90, 0, 0);
-
         yield return new WaitForSeconds(0.5f);
-
-        Destroy(this.gameObject);
+        Destroy(gameObject);
     }
 
     #endregion
