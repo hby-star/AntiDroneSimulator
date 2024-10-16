@@ -22,9 +22,6 @@ public class HandGun : Gun
         base.Start();
 
         SettingsStart();
-
-        gunType = GunType.HandGun;
-
     }
 
     public override void Fire()

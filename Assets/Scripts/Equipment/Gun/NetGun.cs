@@ -19,8 +19,6 @@ public class NetGun : Gun
         base.Start();
 
         SettingsStart();
-
-        gunType = GunType.NetGun;
     }
 
     public override void Fire()

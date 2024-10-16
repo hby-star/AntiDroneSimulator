@@ -11,7 +11,7 @@ public class Bomb : MonoBehaviour
     public float damage = 30f;
     public bool canExplode = false;
 
-    private void SettingsStart()
+    private void SettingsAwake()
     {
         if (UIManager.Instance)
         {
@@ -20,10 +20,9 @@ public class Bomb : MonoBehaviour
         }
     }
 
-    void Start()
-
+    void Awake()
     {
-        SettingsStart();
+        SettingsAwake();
     }
 
 

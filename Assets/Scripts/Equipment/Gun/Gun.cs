@@ -3,13 +3,9 @@ using UnityEngine;
 
 public class Gun : Equipment
 {
-    [Header("UI Info")] public Texture2D gunImage;
-    public float imageWidth = 200f;
-    public float imageHeight = 200f;
-    public float imageEdge = 50f;
-    public float bulletCountWidth = 210f;
-    public float bulletCountHeight = 60f;
-    public int bulletFontSize = 20;
+    public Action onBulletCountChanged;
+
+    [Header("UI Info")] public Sprite gunImage;
 
     public Camera playerCamera;
 
@@ -19,17 +15,8 @@ public class Gun : Equipment
     [SerializeField] public AudioClip reloadSound;
     [SerializeField] public AudioClip fireSound;
 
-
-    public enum GunType
-    {
-        HandGun,
-        NetGun,
-        EMPGun,
-    }
-
     public int currentBullets;
     public int maxBullets;
-    public GunType gunType;
     public bool isReloading;
 
     void SettingsStart()
@@ -49,26 +36,32 @@ public class Gun : Equipment
     {
         currentBullets--;
         soundSource.PlayOneShot(fireSound);
+
+        onBulletCountChanged?.Invoke();
     }
 
-    public virtual bool CanFire()
+    public bool CanFire()
     {
         return currentBullets > 0;
     }
 
-    public virtual void ReloadStart()
+    public void ReloadStart()
     {
         soundSource.PlayOneShot(reloadSound);
         isReloading = true;
+
+        onBulletCountChanged?.Invoke();
     }
 
-    public virtual void ReloadEnd()
+    public void ReloadEnd()
     {
         currentBullets = maxBullets;
         isReloading = false;
+
+        onBulletCountChanged?.Invoke();
     }
 
-    public virtual bool CanReload()
+    public bool CanReload()
     {
         return currentBullets < maxBullets;
     }
@@ -79,8 +72,6 @@ public class Gun : Equipment
             InputManager.Instance.currentEntity is Player player &&
             UIManager.Instance.IsPopUpAllHidden())
         {
-            Texture2D uiImage = null;
-
             // Draw crosshair
             if (player.currentEquipment is HandGun handGun)
             {
@@ -129,8 +120,6 @@ public class Gun : Equipment
                         lineLength), lineTexture);
 
                 #endregion
-
-                uiImage = handGun.gunImage;
             }
             else if (player.currentEquipment is EMPGun empGun)
             {
@@ -168,8 +157,6 @@ public class Gun : Equipment
                 }
 
                 #endregion
-
-                uiImage = empGun.gunImage;
             }
             else if (player.currentEquipment is NetGun netGun)
             {
@@ -232,33 +219,6 @@ public class Gun : Equipment
                     lineTexture);
 
                 #endregion
-
-                uiImage = netGun.gunImage;
-            }
-
-            // Draw gun image
-            if (uiImage)
-            {
-                GUI.DrawTexture(
-                    new Rect(Screen.width - imageWidth - imageEdge, Screen.height - imageHeight - imageEdge / 2,
-                        imageWidth, imageHeight), uiImage);
-            }
-
-            // Draw bullet count below gun image
-            GUIStyle labelStyle = new GUIStyle();
-            labelStyle.fontSize = bulletFontSize;
-            if (isReloading)
-            {
-                GUI.Label(
-                    new Rect(Screen.width - bulletCountWidth,
-                        Screen.height - bulletCountHeight, bulletCountWidth,
-                        bulletCountHeight), "Reloading...", labelStyle);
-            }
-            else
-            {
-                GUI.Label(new Rect(Screen.width - bulletCountWidth,
-                    Screen.height - bulletCountHeight, bulletCountWidth,
-                    bulletCountHeight), "Bullet: " + currentBullets + " / " + maxBullets, labelStyle);
             }
         }
     }

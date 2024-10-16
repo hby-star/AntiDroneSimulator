@@ -1267,7 +1267,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7083aa1a8f1a4b23b6b620aa8373fe6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gunImage: {fileID: 2800000, guid: 58f67b9a25567b3499e823eb4da7ac49, type: 3}
+  gunImage: {fileID: 2800000, guid: 876147855ff18254f9ce145cba44f306, type: 3}
   imageWidth: 200
   imageHeight: 200
   imageEdge: 50
@@ -1573,10 +1573,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e065625840f43f3b008d2548ab635b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gunImage: {fileID: 2800000, guid: 9ca91627596ba5145b04afe84497d4c8, type: 3}
+  gunImage: {fileID: 2800000, guid: bac16fd53878cc44da32029fe3f8e3f2, type: 3}
   imageWidth: 200
   imageHeight: 200
-  imageEdge: 50
+  imageEdge: 100
   bulletCountWidth: 210
   bulletCountHeight: 60
   bulletFontSize: 20
@@ -2150,10 +2150,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06d0c7a9d62f4340adb5d1d3dc982e8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gunImage: {fileID: 2800000, guid: 802d52fd061182443a8c0a474de7db12, type: 3}
+  gunImage: {fileID: 2800000, guid: b75264e90b849fd4cac8f110c5f4c7bd, type: 3}
   imageWidth: 200
   imageHeight: 200
-  imageEdge: 50
+  imageEdge: 100
   bulletCountWidth: 210
   bulletCountHeight: 60
   bulletFontSize: 20

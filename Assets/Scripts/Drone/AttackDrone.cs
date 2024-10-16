@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class AttackDrone : Drone
 {
-    void SettingsStart()
+    void SettingsAwake()
     {
         if (UIManager.Instance)
         {
@@ -13,12 +13,13 @@ public class AttackDrone : Drone
         }
     }
 
-    protected override void Start()
+    protected override void Awake()
     {
-        base.Start();
+        base.Awake();
 
-        SettingsStart();
+        SettingsAwake();
     }
+
     protected override void Update()
     {
         if (IsBusy)

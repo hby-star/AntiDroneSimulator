@@ -19,8 +19,6 @@ public class EMPGun : Gun
         base.Start();
 
         SettingsStart();
-
-        gunType = GunType.EMPGun;
     }
 
     public override void Fire()

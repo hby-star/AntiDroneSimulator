@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DetectDrone : Drone
 {
-    void SettingsStart()
+    void SettingsAwake()
     {
         if (UIManager.Instance)
         {
@@ -12,11 +12,11 @@ public class DetectDrone : Drone
         }
     }
 
-    protected override void Start()
+    protected override void Awake()
     {
         base.Start();
 
-        SettingsStart();
+        SettingsAwake();
     }
 
     protected override void Update()

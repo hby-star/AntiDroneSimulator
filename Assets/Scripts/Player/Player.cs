@@ -84,6 +84,7 @@ public class Player : Entity
     #region Attack
 
     [Header("Attack Info")] public List<Gun> guns;
+    public Action onGunChanged;
     public GameObject shieldPrefab;
     private bool isShiledPlaced;
     public Equipment currentEquipment { get; private set; }
@@ -120,6 +121,7 @@ public class Player : Entity
         }
 
         SetGun(currentGunIndex);
+        onGunChanged?.Invoke();
     }
 
     public bool CanAttack()
