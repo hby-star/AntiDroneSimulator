@@ -6,7 +6,7 @@ public class EMPGun : Gun
     public GameObject empBulletPrefab;
     public float empBulletSpeed = 10f;
 
-    void SettingsStart()
+    void SettingsAwake()
     {
         if (UIManager.Instance)
         {
@@ -14,12 +14,14 @@ public class EMPGun : Gun
             currentBullets = maxBullets;
         }
     }
-    protected override void Start()
-    {
-        base.Start();
 
-        SettingsStart();
+    protected override void Awake()
+    {
+        base.Awake();
+
+        SettingsAwake();
     }
+
 
     public override void Fire()
     {

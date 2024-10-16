@@ -8,7 +8,7 @@ public class HandGun : Gun
     public Transform fireEffectPosition;
     public ParticleSystem fireEffectPrefab;
 
-    void SettingsStart()
+    void SettingsAwake()
     {
         if (UIManager.Instance)
         {
@@ -17,11 +17,11 @@ public class HandGun : Gun
         }
     }
 
-    protected override void Start()
+    protected override void Awake()
     {
-        base.Start();
+        base.Awake();
 
-        SettingsStart();
+        SettingsAwake();
     }
 
     public override void Fire()

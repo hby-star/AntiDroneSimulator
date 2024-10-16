@@ -9,20 +9,27 @@ public class Drone : Entity
 {
     [Header("Move Info")] public float moveSpeed = 10f;
 
-    void SettingsStart()
+    void SettingsAwake()
     {
         if (UIManager.Instance)
         {
             soundSource.volume = UIManager.Instance.settingsPopUp.GetComponent<Settings>().volumeSlider.value;
-            electricInterferenceTime = UIManager.Instance.settingsPopUp.GetComponent<Settings>().empBulletDurationSlider.value;
+            electricInterferenceTime =
+                UIManager.Instance.settingsPopUp.GetComponent<Settings>().empBulletDurationSlider.value;
         }
+    }
+
+    protected override void Awake()
+    {
+        base.Awake();
+
+        SettingsAwake();
     }
 
     protected override void Start()
     {
         base.Start();
 
-        SettingsStart();
         CameraStart();
     }
 
@@ -276,6 +283,7 @@ public class Drone : Entity
                     return;
                 }
             }
+
             avoidObstacleForce = Vector3.zero;
         }
     }

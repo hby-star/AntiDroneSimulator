@@ -105,7 +105,7 @@ public class Swarm : MonoBehaviour
         }
     }
 
-    private void SettingStart()
+    private void SettingAwake()
     {
         if (UIManager.Instance)
             droneCount = (int)UIManager.Instance.settingsPopUp.GetComponent<Settings>().droneNumSlider.value;
@@ -113,7 +113,7 @@ public class Swarm : MonoBehaviour
 
     private void Awake()
     {
-        SettingStart();
+        SettingAwake();
 
         hivePosition = transform.position;
         hivePosition.y += 2f;

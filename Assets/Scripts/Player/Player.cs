@@ -282,6 +282,8 @@ public class Player : Entity
     {
         base.Awake();
 
+        SettingsAwake();
+
         StateMachine = new EntityStateMachine();
 
         MoveState = new PlayerMoveState(StateMachine, this, "Move", this);
@@ -294,7 +296,7 @@ public class Player : Entity
         CrouchState = new PlayerCrouchState(StateMachine, this, "Crouch", this);
     }
 
-    private void SettingsStart()
+    private void SettingsAwake()
     {
         if (UIManager.Instance)
         {
@@ -316,8 +318,6 @@ public class Player : Entity
         AttackStart();
 
         SetOperate(InputManager.Instance.currentEntity is Player);
-
-        SettingsStart();
     }
 
     protected override void Update()

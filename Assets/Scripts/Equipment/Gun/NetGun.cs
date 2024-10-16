@@ -6,7 +6,7 @@ public class NetGun : Gun
     public GameObject netPrefab; // Prefab for the net
     public float netSpeed = 10f;
 
-    void SettingsStart()
+    void SettingsAwake()
     {
         if (UIManager.Instance)
         {
@@ -14,11 +14,11 @@ public class NetGun : Gun
             currentBullets = maxBullets;
         }
     }
-    protected override void Start()
+    protected override void Awake()
     {
-        base.Start();
+        base.Awake();
 
-        SettingsStart();
+        SettingsAwake();
     }
 
     public override void Fire()

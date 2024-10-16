@@ -19,17 +19,20 @@ public class Gun : Equipment
     public int maxBullets;
     public bool isReloading;
 
-    void SettingsStart()
+    void SettingsAwake()
     {
         if (UIManager.Instance)
             soundSource.volume = UIManager.Instance.settingsPopUp.GetComponent<Settings>().volumeSlider.value;
     }
 
+    protected virtual void Awake()
+    {
+        SettingsAwake();
+    }
+
     protected virtual void Start()
     {
         Type = EquipmentType.Gun;
-
-        SettingsStart();
     }
 
     public virtual void Fire()
