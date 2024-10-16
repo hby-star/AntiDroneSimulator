@@ -58,7 +58,7 @@ public class Entity : MonoBehaviour
 
     #region isBusy
 
-    public bool IsBusy { get; private set; }
+    [NonSerialized] public bool IsBusy;
 
     public IEnumerator BusyFor(float seconds)
     {
@@ -70,5 +70,4 @@ public class Entity : MonoBehaviour
     }
 
     #endregion
-
 }

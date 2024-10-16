@@ -40,13 +40,13 @@ public class HandGun : Gun
         {
             GameObject hitObject = hit.transform.gameObject;
             Drone drone = hitObject.GetComponent<Drone>();
-            if (drone != null)
+            if (drone)
             {
                 drone.ReactToHit(Drone.HitType.NormalBullet);
             }
             else
             {
-                if (hitObject.tag == "Ground")
+                if (hitObject.CompareTag("Ground"))
                 {
                     StartCoroutine(AttackBulletImpact(hit.point, hit.normal));
                 }

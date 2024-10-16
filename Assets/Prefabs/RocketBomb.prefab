@@ -46,8 +46,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bf5e7e384f6f8349af2aea390d57f20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explosion: {fileID: 5612247196798606368, guid: bdd1c9c4cc0b76f4c9c8cd1accfdbdf5, type: 3}
-  explosionRadius: 5
+  explosion: {fileID: 5612247196798606368, guid: f0ce4ae01cfe6984886c94c99e1d3955, type: 3}
+  explosionRadius: 5.26
   damage: 30
   canExplode: 0
 --- !u!65 &3796299342600338362

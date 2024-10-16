@@ -33,8 +33,8 @@ public class Bomb : MonoBehaviour
             return;
         }
 
-        explosion = Instantiate(explosion, transform.position, transform.rotation);
-        explosion.Play();
+        ParticleSystem explosionEffect = Instantiate(explosion, transform.position, transform.rotation);
+        explosionEffect.Play();
 
         Collider[] colliders = Physics.OverlapSphere(transform.position, explosionRadius);
 
@@ -45,7 +45,6 @@ public class Bomb : MonoBehaviour
                 nearbyObject.GetComponent<Player>().TakeDamage(damage);
             }
         }
-
         Destroy(gameObject);
     }
 

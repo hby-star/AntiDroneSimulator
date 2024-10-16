@@ -375,6 +375,9 @@ public class Drone : Entity
 
     #region 受击
 
+    [Header("Hit Info")] public ParticleSystem normalBulletEffectPrefab;
+    public ParticleSystem electricInterferenceEffectPrefab;
+
     public float electricInterferenceTime = 5f;
 
     public enum HitType
@@ -390,12 +393,29 @@ public class Drone : Entity
         if (hitType == HitType.ElectricInterference)
         {
             ZeroVelocity();
-            StartCoroutine(BusyFor(electricInterferenceTime));
+            StartCoroutine(BusyForElectricInterference(electricInterferenceTime));
         }
         else
         {
+            if (hitType == HitType.NormalBullet)
+            {
+                ParticleSystem normalBulletEffect = Instantiate(normalBulletEffectPrefab, transform.position,
+                    transform.rotation);
+                normalBulletEffect.Play();
+            }
+
             Die();
         }
+    }
+
+    private IEnumerator BusyForElectricInterference(float seconds)
+    {
+        IsBusy = true;
+        ParticleSystem electricInterferenceEffect = Instantiate(electricInterferenceEffectPrefab, transform.position,
+            transform.rotation);
+        electricInterferenceEffect.Play();
+        yield return new WaitForSeconds(seconds);
+        IsBusy = false;
     }
 
     private void Die()
