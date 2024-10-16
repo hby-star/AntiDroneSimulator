@@ -302,7 +302,7 @@ public class Player : Entity
         {
             sensitivityHor = sensitivityVert =
                 UIManager.Instance.settingsPopUp.GetComponent<Settings>().sensitivitySlider.value;
-            soundSource.volume = UIManager.Instance.settingsPopUp.GetComponent<Settings>().volumeSlider.value;
+            soundSource.volume *= UIManager.Instance.settingsPopUp.GetComponent<Settings>().volumeSlider.value;
             playerStats.maxHeath = UIManager.Instance.settingsPopUp.GetComponent<Settings>().playerHeathSlider.value;
             playerStats.currentHeath = playerStats.maxHeath;
             moveSpeed = UIManager.Instance.settingsPopUp.GetComponent<Settings>().playerMoveSpeedSlider.value;

@@ -8,6 +8,7 @@ public class Bomb : MonoBehaviour
 {
     public ParticleSystem explosion;
     public float explosionRadius = 10f;
+    public AudioClip explosionSound;
     public float damage = 30f;
     public bool canExplode = false;
 
@@ -34,6 +35,7 @@ public class Bomb : MonoBehaviour
 
         ParticleSystem explosionEffect = Instantiate(explosion, transform.position, transform.rotation);
         explosionEffect.Play();
+        AudioSource.PlayClipAtPoint(explosionSound, transform.position);
 
         Collider[] colliders = Physics.OverlapSphere(transform.position, explosionRadius);
 

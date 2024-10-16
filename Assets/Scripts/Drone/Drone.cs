@@ -13,7 +13,7 @@ public class Drone : Entity
     {
         if (UIManager.Instance)
         {
-            soundSource.volume = UIManager.Instance.settingsPopUp.GetComponent<Settings>().volumeSlider.value;
+            flySoundSource.volume *= UIManager.Instance.settingsPopUp.GetComponent<Settings>().volumeSlider.value;
             electricInterferenceTime =
                 UIManager.Instance.settingsPopUp.GetComponent<Settings>().empBulletDurationSlider.value;
         }
@@ -377,6 +377,7 @@ public class Drone : Entity
 
     [Header("Hit Info")] public ParticleSystem normalBulletEffectPrefab;
     public ParticleSystem electricInterferenceEffectPrefab;
+    public AudioClip explosionSound;
 
     public float electricInterferenceTime = 5f;
 
@@ -402,6 +403,7 @@ public class Drone : Entity
                 ParticleSystem normalBulletEffect = Instantiate(normalBulletEffectPrefab, transform.position,
                     transform.rotation);
                 normalBulletEffect.Play();
+                AudioSource.PlayClipAtPoint(explosionSound, transform.position);
             }
 
             Die();
@@ -421,8 +423,7 @@ public class Drone : Entity
     private void Die()
     {
         uiBox.gameObject.SetActive(false);
-        soundSource.Stop();
-        gameObject.SetActive(false);
+        flySoundSource.Stop();
         Destroy(gameObject);
     }
 
@@ -430,16 +431,16 @@ public class Drone : Entity
 
     #region 音效
 
-    [Header("Audio Info")] public AudioSource soundSource;
+    [Header("Audio Info")] public AudioSource flySoundSource;
     public AudioClip flySound;
 
     void AudioUpdate()
     {
-        if (!soundSource.isPlaying)
+        if (!flySoundSource.isPlaying)
         {
-            soundSource.clip = flySound;
-            soundSource.loop = true;
-            soundSource.Play();
+            flySoundSource.clip = flySound;
+            flySoundSource.loop = true;
+            flySoundSource.Play();
         }
     }
 
