@@ -1589,7 +1589,7 @@ MonoBehaviour:
   gunType: 1
   isReloading: 0
   netPrefab: {fileID: 647565524557730373, guid: 14928b59992f90d488cea5a1d5880b6f, type: 3}
-  netSpeed: 30
+  netSpeed: 80
 --- !u!82 &1819065757884859496
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1843,9 +1843,9 @@ MonoBehaviour:
   standColliderHeight: 1.75
   crouchColliderHeight: 1.18
   guns:
+  - {fileID: 3578140073217359004}
   - {fileID: 2683639816618920090}
   - {fileID: 302926611522747862}
-  - {fileID: 3578140073217359004}
   shieldPrefab: {fileID: 609340164047278902, guid: 40098e15728d83b4d8b2c8b7b70ff70f, type: 3}
   interactRange: 2
   sensitivityHor: 9

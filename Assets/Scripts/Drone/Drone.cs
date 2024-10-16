@@ -386,13 +386,15 @@ public class Drone : Entity
         }
         else
         {
-            StartCoroutine(Die());
+            Die();
         }
     }
 
-    private IEnumerator Die()
+    private void Die()
     {
-        yield return new WaitForSeconds(0.5f);
+        uiBox.gameObject.SetActive(false);
+        soundSource.Stop();
+        gameObject.SetActive(false);
         Destroy(gameObject);
     }
 

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class CameraManager : MonoBehaviour
@@ -71,11 +72,19 @@ public class CameraManager : MonoBehaviour
         playerCamera = GameObject.FindWithTag("PlayerCamera").transform.GetChild(0).GetComponent<Camera>();
         playerCameraCopy = GameObject.FindWithTag("PlayerCamera").transform.GetChild(1).GetComponent<Camera>();
 
-        GameObject[] droneObjects = GameObject.FindGameObjectsWithTag("Drone");
-        droneCameras = new Camera[droneObjects.Length];
-        for (int i = 0; i < droneObjects.Length; i++)
+        GameObject swarmObject = GameObject.FindWithTag("Swarm");
+        Swarm swarm = swarmObject.GetComponent<Swarm>();
+        droneCameras = new Camera[swarm.droneCount];
+        for (int i = 0; i < swarm.droneCount; i++)
         {
-            droneCameras[i] = droneObjects[i].GetComponentInChildren<Camera>();
+            if(i < swarm.detectDrones.Count)
+            {
+                droneCameras[i] = swarm.detectDrones[i].GetComponentInChildren<Camera>();
+            }
+            else
+            {
+                droneCameras[i] = swarm.attackDrones[i - swarm.detectDrones.Count].GetComponentInChildren<Camera>();
+            }
         }
 
         // 初始化背景摄像机
