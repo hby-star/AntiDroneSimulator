@@ -6,6 +6,18 @@ public class NetBullet : MonoBehaviour
 {
     public GameObject spherePrefab; // Prefab for the sphere
 
+    private float lifeTime = 10f;
+    private float timer = 0f;
+
+    private void Update()
+    {
+        timer += Time.deltaTime;
+        if (timer >= lifeTime)
+        {
+            Destroy(gameObject);
+        }
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Drone"))
