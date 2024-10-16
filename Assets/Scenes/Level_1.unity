@@ -5472,7 +5472,7 @@ GameObject:
   - component: {fileID: 2088262878711018844}
   - component: {fileID: 1098553580717109835}
   - component: {fileID: 218210988013881920}
-  - component: {fileID: 4430827076810118747}
+  - component: {fileID: 2088262878711018845}
   m_Layer: 0
   m_Name: Road_set_v1_b_floor (17)
   m_TagString: Ground
@@ -13602,6 +13602,27 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1641319194953244209}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &2088262878711018845
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 348401851439954088}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0.000000029802322, y: 0, z: 0.000000029802322}
 --- !u!1 &2089944736209611700
 GameObject:
   m_ObjectHideFlags: 0
@@ -22019,28 +22040,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 8294642275988807880}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!64 &4430827076810118747
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 348401851439954088}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!64 &4444911932638755580
 MeshCollider:
   m_ObjectHideFlags: 0
