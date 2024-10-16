@@ -4,8 +4,17 @@ using UnityEngine;
 
 public class EmpBullet : MonoBehaviour
 {
+    public AudioSource audioSource;
+
     private float lifeTime = 10f;
     private float timer = 0f;
+
+    private void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+        audioSource.volume = UIManager.Instance.settingsPopUp.GetComponent<Settings>().volumeSlider.value / 2f;
+        audioSource.Play();
+    }
 
     private void Update()
     {

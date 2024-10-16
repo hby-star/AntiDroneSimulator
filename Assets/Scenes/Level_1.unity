@@ -549,10 +549,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 302926611522747862, guid: 7b34cc7bee4936f42b0ce05398dede04, type: 3}
-      propertyPath: gunImage
-      value: 
-      objectReference: {fileID: 21300000, guid: b75264e90b849fd4cac8f110c5f4c7bd, type: 3}
     - target: {fileID: 831854548954620035, guid: 7b34cc7bee4936f42b0ce05398dede04, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -593,14 +589,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2683639816618920090, guid: 7b34cc7bee4936f42b0ce05398dede04, type: 3}
-      propertyPath: gunImage
-      value: 
-      objectReference: {fileID: 21300000, guid: 876147855ff18254f9ce145cba44f306, type: 3}
-    - target: {fileID: 3578140073217359004, guid: 7b34cc7bee4936f42b0ce05398dede04, type: 3}
-      propertyPath: gunImage
-      value: 
-      objectReference: {fileID: 21300000, guid: bac16fd53878cc44da32029fe3f8e3f2, type: 3}
     - target: {fileID: 7368328799168828863, guid: 7b34cc7bee4936f42b0ce05398dede04, type: 3}
       propertyPath: m_Name
       value: Player

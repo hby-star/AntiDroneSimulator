@@ -1267,20 +1267,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7083aa1a8f1a4b23b6b620aa8373fe6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gunImage: {fileID: 2800000, guid: 876147855ff18254f9ce145cba44f306, type: 3}
-  imageWidth: 200
-  imageHeight: 200
-  imageEdge: 50
-  bulletCountWidth: 210
-  bulletCountHeight: 60
-  bulletFontSize: 20
+  gunImage: {fileID: 21300000, guid: 876147855ff18254f9ce145cba44f306, type: 3}
   playerCamera: {fileID: 196276258538565603}
   soundSource: {fileID: 4300808480643386846}
   reloadSound: {fileID: 8300000, guid: 4d065ebd0386b9345ac4ec4d5377f76d, type: 3}
-  fireSound: {fileID: 8300000, guid: 293496b0af3029f4caae703eb9088dd8, type: 3}
+  fireSound: {fileID: 8300000, guid: 1343059b161def6499dcbad904f7f2c1, type: 3}
   currentBullets: 1
   maxBullets: 1
-  gunType: 2
   isReloading: 0
   empBulletPrefab: {fileID: 1595252117517162, guid: 54bc7ba98bc403543880d0b7dfb5f98f, type: 3}
   empBulletSpeed: 10
@@ -1297,7 +1290,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
-  m_Pitch: 1
+  m_Pitch: 1.5
   Loop: 0
   Mute: 0
   Spatialize: 0
@@ -1573,20 +1566,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e065625840f43f3b008d2548ab635b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gunImage: {fileID: 2800000, guid: bac16fd53878cc44da32029fe3f8e3f2, type: 3}
-  imageWidth: 200
-  imageHeight: 200
-  imageEdge: 100
-  bulletCountWidth: 210
-  bulletCountHeight: 60
-  bulletFontSize: 20
+  gunImage: {fileID: 21300000, guid: bac16fd53878cc44da32029fe3f8e3f2, type: 3}
   playerCamera: {fileID: 196276258538565603}
   soundSource: {fileID: 1819065757884859496}
   reloadSound: {fileID: 8300000, guid: 4d065ebd0386b9345ac4ec4d5377f76d, type: 3}
-  fireSound: {fileID: 8300000, guid: 293496b0af3029f4caae703eb9088dd8, type: 3}
+  fireSound: {fileID: 8300000, guid: c38f401c04613df4eb2208602e58adcb, type: 3}
   currentBullets: 5
   maxBullets: 5
-  gunType: 1
   isReloading: 0
   netPrefab: {fileID: 647565524557730373, guid: 14928b59992f90d488cea5a1d5880b6f, type: 3}
   netSpeed: 80
@@ -1603,7 +1589,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
-  m_Pitch: 1
+  m_Pitch: 1.5
   Loop: 0
   Mute: 0
   Spatialize: 0
@@ -2150,20 +2136,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06d0c7a9d62f4340adb5d1d3dc982e8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gunImage: {fileID: 2800000, guid: b75264e90b849fd4cac8f110c5f4c7bd, type: 3}
-  imageWidth: 200
-  imageHeight: 200
-  imageEdge: 100
-  bulletCountWidth: 210
-  bulletCountHeight: 60
-  bulletFontSize: 20
+  gunImage: {fileID: 21300000, guid: b75264e90b849fd4cac8f110c5f4c7bd, type: 3}
   playerCamera: {fileID: 196276258538565603}
   soundSource: {fileID: 1921935920577249218}
   reloadSound: {fileID: 8300000, guid: 4d065ebd0386b9345ac4ec4d5377f76d, type: 3}
   fireSound: {fileID: 8300000, guid: 293496b0af3029f4caae703eb9088dd8, type: 3}
   currentBullets: 10
   maxBullets: 10
-  gunType: 0
   isReloading: 0
   bulletImpact: {fileID: 8913486584783115997, guid: 7b3f6d217c2df924faf6b18c6bb7b698, type: 3}
   fireEffectPosition: {fileID: 645612963902378422}
@@ -2181,7 +2160,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
-  m_Pitch: 1
+  m_Pitch: 1.5
   Loop: 0
   Mute: 0
   Spatialize: 0
