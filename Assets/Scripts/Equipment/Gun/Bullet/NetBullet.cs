@@ -30,7 +30,7 @@ public class NetBullet : MonoBehaviour
             GameObject sphere = Instantiate(spherePrefab, collisionPoint, Quaternion.identity);
             sphere.transform.forward = transform.forward;
             Rigidbody rb = sphere.GetComponent<Rigidbody>();
-            rb.velocity = Vector3.zero; // Stop the sphere's movement
+            rb.velocity = gameObject.GetComponent<Rigidbody>().velocity / 2f;
 
             // Destroy the sphere after 1 seconds
             Destroy(sphere, 1f);
