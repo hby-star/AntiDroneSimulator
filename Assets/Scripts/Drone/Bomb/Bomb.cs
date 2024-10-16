@@ -25,7 +25,6 @@ public class Bomb : MonoBehaviour
         SettingsAwake();
     }
 
-
     private void OnTriggerEnter(Collider other)
     {
         if (!canExplode)
