@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 8121063487564338719}
   m_Layer: 0
   m_Name: NetBulletHitEffect
-  m_TagString: Untagged
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -200,11 +200,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9172a5d4d74f5dd4b87712df79929e36, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9172a5d4d74f5dd4b87712df79929e36, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9172a5d4d74f5dd4b87712df79929e36, type: 3}
       propertyPath: m_LocalRotation.y
@@ -216,7 +216,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9172a5d4d74f5dd4b87712df79929e36, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9172a5d4d74f5dd4b87712df79929e36, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
@@ -233,6 +233,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 9172a5d4d74f5dd4b87712df79929e36, type: 3}
       propertyPath: m_Name
       value: net_bullet_effect
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 9172a5d4d74f5dd4b87712df79929e36, type: 3}
+      propertyPath: m_TagString
+      value: Bullet
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
