@@ -106,7 +106,7 @@ public class DetectDrone : Drone
                 {
                     taskForce = new Vector3(Random.Range(-random_size, random_size), 0,
                         Random.Range(-random_size, random_size));
-                    StartCoroutine(IsRandomMoveFor(0.5f));
+                    StartCoroutine(IsRandomMoveFor(1f));
                 }
             }
         }

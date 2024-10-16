@@ -102,7 +102,7 @@ public class Drone : Entity
         else
         {
             Vector3 moveDirection = Rigidbody.velocity;
-            moveDirection.y = -moveDirection.magnitude * 0.2f;
+            moveDirection.y = -moveDirection.magnitude * 0.4f;
             if (moveDirection != Vector3.zero)
             {
                 Quaternion targetRotation = Quaternion.LookRotation(moveDirection);
@@ -110,7 +110,7 @@ public class Drone : Entity
                 // if (Quaternion.Angle(Camera.transform.rotation, targetRotation) > rotateThreshold)
                 // {
                 Camera.transform.rotation =
-                    Quaternion.Slerp(Camera.transform.rotation, targetRotation, Time.deltaTime * 5);
+                    Quaternion.Slerp(Camera.transform.rotation, targetRotation, Time.deltaTime);
                 // }
             }
         }
@@ -214,7 +214,7 @@ public class Drone : Entity
             isPlayerDetectedInCamera = false;
 
             // 平滑恢复Camera的fov
-            Camera.fieldOfView = Mathf.Lerp(Camera.fieldOfView, initialCameraFov, Time.deltaTime);
+            Camera.fieldOfView = Mathf.Lerp(Camera.fieldOfView, initialCameraFov, Time.deltaTime / 4f);
         }
 
         UIBoxUpdate();
