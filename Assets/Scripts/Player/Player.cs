@@ -255,7 +255,7 @@ public class Player : Entity
             if (!isShiledPlaced)
             {
                 Vector3 shieldPosition = transform.position + transform.forward * 2;
-                shieldPosition.y = transform.position.y + 0.75f;
+                shieldPosition.y = transform.position.y;
                 GameObject newShield = Instantiate(shieldPrefab, shieldPosition, Quaternion.identity);
                 newShield.transform.forward = transform.forward;
                 isShiledPlaced = true;
@@ -264,7 +264,7 @@ public class Player : Entity
             {
                 foreach (var collider in colliders)
                 {
-                    Shield shield = collider.GetComponent<Shield>();
+                    Shield shield = collider.GetComponentInParent<Shield>();
                     if (shield)
                     {
                         Destroy(shield.gameObject);
