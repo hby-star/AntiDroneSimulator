@@ -22,7 +22,7 @@ public class PlayerDashState : PlayerGroundState
 
         Player.soundSource.PlayOneShot(Player.dashSound);
 
-        Player.StartCoroutine("BusyFor", 0.5f);
+        Player.StartCoroutine(Player.BusyFor(0.5f));
     }
 
     public override void Update()

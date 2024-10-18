@@ -55,6 +55,7 @@ public class Swarm : MonoBehaviour
                 GameObject droneObj = Instantiate(detectDronePrefab, spawnPosition, Quaternion.identity);
                 DetectDrone drone = droneObj.GetComponent<DetectDrone>();
                 drone.swarm = this;
+                drone.DroneID = i;
                 detectDrones.Add(drone);
             }
             else
@@ -62,6 +63,7 @@ public class Swarm : MonoBehaviour
                 GameObject droneObj = Instantiate(attackDronePrefab, spawnPosition, Quaternion.identity);
                 AttackDrone drone = droneObj.GetComponent<AttackDrone>();
                 drone.swarm = this;
+                drone.DroneID = i;
                 attackDrones.Add(drone);
             }
         }

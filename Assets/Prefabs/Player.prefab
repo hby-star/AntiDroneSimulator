@@ -1824,8 +1824,8 @@ MonoBehaviour:
   - {fileID: 4767687811218607038}
   - {fileID: 5338648304330087419}
   moveSpeed: 10
-  jumpForce: 5
-  dashSpeed: 15
+  jumpForce: 6
+  dashSpeed: 12
   standColliderHeight: 1.75
   crouchColliderHeight: 1.18
   guns:

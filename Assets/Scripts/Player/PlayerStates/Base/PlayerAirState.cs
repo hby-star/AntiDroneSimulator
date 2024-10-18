@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class PlayerAirState : PlayerState
 {
-    public PlayerAirState(EntityStateMachine entityStateMachine, Entity entity, string animationName, Player player) : base(entityStateMachine, entity, animationName, player)
+    public PlayerAirState(EntityStateMachine entityStateMachine, Entity entity, string animationName, Player player) :
+        base(entityStateMachine, entity, animationName, player)
     {
     }
 
@@ -17,14 +18,24 @@ public class PlayerAirState : PlayerState
     {
         base.Update();
 
-        if(Player.IsGrounded())
+        Move(Player.moveSpeed);
+
+        if (Player.IsGrounded())
         {
             EntityStateMachine.ChangeState(Player.IdleState);
         }
     }
 
-    public override void Exit()
+    public void Move(float moveSpeed)
     {
-        base.Exit();
+        if (Player.IsOperateNow())
+        {
+            // Calculate movement based on vertical input & horizontal input
+            Vector3 moveDirectionX = Player.transform.forward * (Player.VerticalInput * moveSpeed);
+            Vector3 moveDirectionZ = Player.transform.right * (Player.HorizontalInput * moveSpeed);
+            Vector3 moveDirection = moveDirectionX + moveDirectionZ;
+            moveDirection = Vector3.ClampMagnitude(moveDirection, moveSpeed);
+            Player.Rigidbody.velocity = new Vector3(moveDirection.x, Player.Rigidbody.velocity.y, moveDirection.z);
+        }
     }
 }

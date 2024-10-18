@@ -5,6 +5,17 @@ using UnityEngine;
 
 public class AttackDrone : Drone
 {
+    public enum AttackDroneState
+    {
+        Idle,
+        Patrol,
+        TrackPlayer,
+        ReturnToHive
+    }
+
+    public AttackDroneState attackDroneState = AttackDroneState.Idle;
+    public Action<int, AttackDroneState> OnAttackDroneStateChange;
+
     void SettingsAwake()
     {
         if (UIManager.Instance)
@@ -50,6 +61,13 @@ public class AttackDrone : Drone
         {
             if (!attackDroneHasTarget)
             {
+                // Idle状态
+                if (attackDroneState != AttackDroneState.Idle)
+                {
+                    attackDroneState = AttackDroneState.Idle;
+                    OnAttackDroneStateChange?.Invoke(DroneID, attackDroneState);
+                }
+
                 taskForce = Vector3.zero;
                 return;
             }
@@ -70,16 +88,35 @@ public class AttackDrone : Drone
                 if (isPlayerDetectedInCamera)
                 {
                     FoundPlayer = true;
+                    // 向蜂群广播玩家位置
+                    swarm.OnDetectDroneFoundPlayer(targetPlayer.transform.position);
                 }
             }
             else
             {
-                // 向蜂群广播玩家位置
-                swarm.OnDetectDroneFoundPlayer(targetPlayer.transform.position);
+                // Patrol 状态
+                if (!isPlayerDetectedInCamera && attackDroneState != AttackDroneState.Patrol)
+                {
+                    attackDroneState = AttackDroneState.Patrol;
+                    OnAttackDroneStateChange?.Invoke(DroneID, attackDroneState);
+                }
+
+                // TrackPlayer 状态
+                if (isPlayerDetectedInCamera && attackDroneState != AttackDroneState.TrackPlayer)
+                {
+                    attackDroneState = AttackDroneState.TrackPlayer;
+                    OnAttackDroneStateChange?.Invoke(DroneID, attackDroneState);
+                }
+
                 // 追踪并攻击玩家
                 AttackDroneHitPlayer();
 
-                if (!isPlayerDetectedInCamera)
+                if (isPlayerDetectedInCamera)
+                {
+                    // 向蜂群广播玩家位置
+                    swarm.OnDetectDroneFoundPlayer(targetPlayer.transform.position);
+                }
+                else
                 {
                     FoundPlayer = false;
                 }
@@ -87,6 +124,13 @@ public class AttackDrone : Drone
         }
         else
         {
+            // ReturnToHive 状态
+            if (attackDroneState != AttackDroneState.ReturnToHive)
+            {
+                attackDroneState = AttackDroneState.ReturnToHive;
+                OnAttackDroneStateChange?.Invoke(DroneID, attackDroneState);
+            }
+
             // 返回蜂巢
             Vector3 directionToHive = swarm.hivePosition - transform.position;
             if (directionToHive.magnitude > swarm.hiveRadius)

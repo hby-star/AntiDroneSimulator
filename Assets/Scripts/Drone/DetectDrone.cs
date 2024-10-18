@@ -1,9 +1,21 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class DetectDrone : Drone
 {
+    public enum DetectDroneState
+    {
+        Patrol,
+        TrackPlayer
+    }
+
+    public DetectDroneState detectDroneState = DetectDroneState.Patrol;
+    public Action<int, DetectDroneState> OnDetectDroneStateChange;
+
     void SettingsAwake()
     {
         if (UIManager.Instance)
@@ -43,22 +55,41 @@ public class DetectDrone : Drone
     {
         if (!FoundPlayer)
         {
+            // Patrol 状态
+            if (detectDroneState != DetectDroneState.Patrol)
+            {
+                detectDroneState = DetectDroneState.Patrol;
+                OnDetectDroneStateChange?.Invoke(DroneID, detectDroneState);
+            }
+
             // 寻找玩家
             DetectDroneMoveToTarget();
 
             if (isPlayerDetectedInCamera)
             {
                 FoundPlayer = true;
+                // 向蜂群广播玩家位置
+                swarm.OnDetectDroneFoundPlayer(targetPlayer.transform.position);
             }
         }
         else
         {
-            // 向蜂群广播玩家位置
-            swarm.OnDetectDroneFoundPlayer(targetPlayer.transform.position);
             // 持续追踪玩家
             DetectDroneTrackPlayer();
 
-            if (!isPlayerDetectedInCamera)
+            // TrackPlayer 状态
+            if (isPlayerDetectedInCamera && detectDroneState != DetectDroneState.TrackPlayer)
+            {
+                detectDroneState = DetectDroneState.TrackPlayer;
+                OnDetectDroneStateChange?.Invoke(DroneID, detectDroneState);
+            }
+
+            if (isPlayerDetectedInCamera)
+            {
+                // 向蜂群广播玩家位置
+                swarm.OnDetectDroneFoundPlayer(targetPlayer.transform.position);
+            }
+            else
             {
                 FoundPlayer = false;
             }

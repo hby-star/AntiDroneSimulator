@@ -7,7 +7,8 @@ public class DroneInfo : MonoBehaviour
 {
     public GameObject droneStatePrefab;
     public Swarm swarm;
-    public List<GameObject> droneInfoObjects;
+    public List<GameObject> detectDroneInfoObjects;
+    public List<GameObject> attackDroneInfoObjects;
 
     void Start()
     {
@@ -33,9 +34,42 @@ public class DroneInfo : MonoBehaviour
                     new Vector2(rect.width, rect.height);
                 droneInfoObject.transform.SetParent(transform);
                 TextMeshProUGUI droneInfoText = droneInfoObject.GetComponentInChildren<TextMeshProUGUI>();
-                droneInfoText.text = i + 1 + "-" + (i < swarm.detectDrones.Count ? "侦查" : "攻击") + "无人机";
-                droneInfoObjects.Add(droneInfoObject);
+                if (i < swarm.detectDrones.Count)
+                {
+                    droneInfoText.text = i + 1 + "-侦查无人机-搜索";
+                    swarm.detectDrones[i].OnDetectDroneStateChange +=
+                        UpdateDetectDroneState;
+                    detectDroneInfoObjects.Add(droneInfoObject);
+                }
+                else
+                {
+                    droneInfoText.text = i + 1 + "-攻击无人机-待机";
+                    swarm.attackDrones[i - swarm.detectDrones.Count].OnAttackDroneStateChange +=
+                        UpdateAttackDroneState;
+                    attackDroneInfoObjects.Add(droneInfoObject);
+                }
             }
         }
+    }
+
+    private void UpdateDetectDroneState(int droneID, DetectDrone.DetectDroneState detectDroneState)
+    {
+        TextMeshProUGUI droneInfoText = detectDroneInfoObjects[droneID].GetComponentInChildren<TextMeshProUGUI>();
+        droneInfoText.text = droneID + 1 + "-侦查无人机-" +
+                             (detectDroneState == DetectDrone.DetectDroneState.Patrol ? "搜索敌人" : "锁定敌人");
+    }
+
+    private void UpdateAttackDroneState(int droneID, AttackDrone.AttackDroneState attackDroneState)
+    {
+        TextMeshProUGUI droneInfoText = attackDroneInfoObjects[droneID - detectDroneInfoObjects.Count]
+            .GetComponentInChildren<TextMeshProUGUI>();
+        droneInfoText.text = droneID + 1 + "-攻击无人机-" +
+                             (attackDroneState == AttackDrone.AttackDroneState.Idle
+                                 ? "待机"
+                                 : attackDroneState == AttackDrone.AttackDroneState.TrackPlayer
+                                     ? "锁定敌人"
+                                     : attackDroneState == AttackDrone.AttackDroneState.Patrol
+                                         ? "搜索敌人"
+                                         : "返回基地");
     }
 }

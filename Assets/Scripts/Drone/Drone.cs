@@ -7,6 +7,8 @@ using UnityEngine.Serialization;
 
 public class Drone : Entity
 {
+    [NonSerialized] public int DroneID;
+
     [Header("Move Info")] public float moveSpeed = 10f;
 
     void SettingsAwake()
