@@ -164,9 +164,17 @@ public class AttackDrone : Drone
         // 到达目标，但是没有找到玩家
         if (distanceToTarget < moveSpeed)
         {
-            // 返回蜂巢
-            attackDroneTargetPosition = swarm.hivePosition;
-            attackDroneHasTarget = true;
+            if (InHive())
+            {
+                // Idle状态
+                attackDroneHasTarget = false;
+            }
+            else
+            {
+                // 返回蜂巢
+                attackDroneTargetPosition = swarm.hivePosition;
+                attackDroneHasTarget = true;
+            }
         }
         // 没有到达目标，继续前进
         else
@@ -213,4 +221,9 @@ public class AttackDrone : Drone
     }
 
     #endregion
+
+    bool InHive()
+    {
+        return (transform.position - swarm.hivePosition).magnitude < swarm.hiveRadius;
+    }
 }
