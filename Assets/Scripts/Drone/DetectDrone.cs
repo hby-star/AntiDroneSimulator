@@ -84,6 +84,12 @@ public class DetectDrone : Drone
                 OnDetectDroneStateChange?.Invoke(DroneID, detectDroneState);
             }
 
+            if (!isPlayerDetectedInCamera && detectDroneState != DetectDroneState.Patrol)
+            {
+                detectDroneState = DetectDroneState.Patrol;
+                OnDetectDroneStateChange?.Invoke(DroneID, detectDroneState);
+            }
+
             if (isPlayerDetectedInCamera)
             {
                 // 向蜂群广播玩家位置
@@ -120,15 +126,17 @@ public class DetectDrone : Drone
 
         // 侦查无人机到玩家的距离
         Vector3 directionToPlayer = targetPlayer.transform.position - transform.position;
-        float distanceToPlayer = directionToPlayer.magnitude;
+        float horDistanceToPlayer = new Vector3(directionToPlayer.x, 0, directionToPlayer.z).magnitude;
+        float verDistanceToPlayer = directionToPlayer.y;
 
         // 如果玩家距离侦查无人机较近，则随机移动
         float random_size = 1f;
-        if (distanceToPlayer < moveSpeed * 3f)
+        if (horDistanceToPlayer < moveSpeed * 2.5f)
         {
-            if (distanceToPlayer < moveSpeed * 2.5f)
+            if (horDistanceToPlayer < moveSpeed * 2f)
             {
                 taskForce = -directionToPlayer.normalized;
+                taskForce.y = 0;
             }
             else
             {
@@ -139,6 +147,11 @@ public class DetectDrone : Drone
                         Random.Range(-random_size, random_size));
                     StartCoroutine(IsRandomMoveFor(1f));
                 }
+            }
+
+            if (verDistanceToPlayer > 8f)
+            {
+                taskForce.y -= 2f;
             }
         }
         // 如果玩家距离侦查无人机较远，则追踪

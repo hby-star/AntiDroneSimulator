@@ -44,10 +44,9 @@ public class Drone : Entity
         }
 
         base.Update();
+
         CameraUpdate();
         AudioUpdate();
-
-        HandleStuck();
     }
 
     void HandleStuck()
@@ -94,26 +93,18 @@ public class Drone : Entity
         {
             Quaternion targetRotation =
                 Quaternion.LookRotation(targetPlayer.transform.position - Camera.transform.position);
-            // 为避免镜头晃动，若角度差大于rotateThreshold再旋转
-            // if (Quaternion.Angle(Camera.transform.rotation, targetRotation) > rotateThreshold)
-            // {
             Camera.transform.rotation =
                 Quaternion.Slerp(Camera.transform.rotation, targetRotation, Time.deltaTime * 5);
-            // }
         }
         else
         {
             Vector3 moveDirection = Rigidbody.velocity;
-            moveDirection.y = -moveDirection.magnitude * 0.4f;
+            moveDirection.y = -moveDirection.magnitude * 0.5f;
             if (moveDirection != Vector3.zero)
             {
                 Quaternion targetRotation = Quaternion.LookRotation(moveDirection);
-                // 为避免镜头晃动，若角度差大于rotateThreshold再旋转
-                // if (Quaternion.Angle(Camera.transform.rotation, targetRotation) > rotateThreshold)
-                // {
                 Camera.transform.rotation =
                     Quaternion.Slerp(Camera.transform.rotation, targetRotation, Time.deltaTime);
-                // }
             }
         }
 
@@ -264,6 +255,7 @@ public class Drone : Entity
     # region 避障
 
     [Header("Avoid Obstacle Info")] public float detectObstacleDistance = 5; // 避障距离
+    private float frontObstacleRate = 0.8f;
 
     protected void AvoidObstacleUpdate()
     {
@@ -272,7 +264,11 @@ public class Drone : Entity
         if (obstaclePosition.magnitude < detectObstacleDistance)
         {
             avoidObstacleForce = -obstaclePosition.normalized;
-            avoidObstacleForce.y += 1f;
+
+            if (Vector3.Dot(taskForce.normalized, obstaclePosition.normalized) > frontObstacleRate)
+            {
+                avoidObstacleForce.y += 1f;
+            }
         }
         else
         {
@@ -283,7 +279,10 @@ public class Drone : Entity
                 if (Collider.CompareTag("Ground"))
                 {
                     avoidObstacleForce = (transform.position - collider.transform.position).normalized;
-                    avoidObstacleForce.y += 1f;
+                    if (Vector3.Dot(taskForce.normalized, obstaclePosition.normalized) > frontObstacleRate)
+                    {
+                        avoidObstacleForce.y += 1f;
+                    }
                     return;
                 }
             }
