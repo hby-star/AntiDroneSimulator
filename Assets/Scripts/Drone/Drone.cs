@@ -57,8 +57,8 @@ public class Drone : Entity
             // 无法移动时，尝试随机水平移动
             Vector3 randomDirection = new Vector3(UnityEngine.Random.Range(-1f, 1f), 0,
                 UnityEngine.Random.Range(-1f, 1f));
-            Rigidbody.velocity = randomDirection.normalized * moveSpeed;
-            StartCoroutine(BusyFor(1f));
+            Rigidbody.velocity = Vector3.Lerp(Rigidbody.velocity, randomDirection, Time.deltaTime);
+            StartCoroutine(BusyFor(0.5f));
         }
     }
 
@@ -346,15 +346,17 @@ public class Drone : Entity
 
         if (moveForce == Vector3.zero)
         {
-            Rigidbody.velocity = Vector3.zero;
+            Rigidbody.velocity = Vector3.Lerp(Rigidbody.velocity, Vector3.zero, Time.deltaTime);
             return;
         }
 
         moveForce *= moveSpeed;
 
-        // 直接移动
-        Rigidbody.velocity = moveForce;
+        // 平滑移动
+        Rigidbody.velocity = Vector3.Lerp(Rigidbody.velocity, moveForce, Time.deltaTime);
 
+        // 直接移动
+        //Rigidbody.velocity = moveForce;
         // // 先水平转向到目标方向
         // Vector3 horMoveDirection = moveForce;
         // horMoveDirection.y = 0;
