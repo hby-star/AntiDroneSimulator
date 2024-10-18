@@ -42,9 +42,6 @@ public class Drone : Entity
         {
             return;
         }
-
-        base.Update();
-
         CameraUpdate();
         AudioUpdate();
     }
