@@ -36,7 +36,7 @@ public class DroneInfo : MonoBehaviour
                 TextMeshProUGUI droneInfoText = droneInfoObject.GetComponentInChildren<TextMeshProUGUI>();
                 if (i < swarm.detectDrones.Count)
                 {
-                    droneInfoText.text = i + 1 + "-侦查无人机-搜索";
+                    droneInfoText.text = i + 1 + "-侦查无人机-搜索敌人";
                     swarm.detectDrones[i].OnDetectDroneStateChange +=
                         UpdateDetectDroneState;
                     detectDroneInfoObjects.Add(droneInfoObject);

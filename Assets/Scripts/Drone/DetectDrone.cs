@@ -38,8 +38,8 @@ public class DetectDrone : Drone
             return;
         }
 
-        AvoidObstacleUpdate();
         DetectDroneUpdate();
+        AvoidObstacleUpdate();
         Move();
 
         base.Update();

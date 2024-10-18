@@ -837,7 +837,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   droneStatePrefab: {fileID: 1437577509042126267, guid: 920ba3f7dfa043547adb9ac5eb801369, type: 3}
   swarm: {fileID: 6428153316477632498}
-  droneInfoObjects: []
+  detectDroneInfoObjects: []
+  attackDroneInfoObjects: []
 --- !u!1 &432574754 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7631266924420557148, guid: da3a2b6508c1cf84cae4d76e0bb2c244, type: 3}
@@ -3429,7 +3430,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   droneStatePrefab: {fileID: 1437577509042126267, guid: 920ba3f7dfa043547adb9ac5eb801369, type: 3}
   swarm: {fileID: 6428153316477632498}
-  droneInfoObjects: []
+  detectDroneInfoObjects: []
+  attackDroneInfoObjects: []
 --- !u!1 &1592608195
 GameObject:
   m_ObjectHideFlags: 0
@@ -5118,8 +5120,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 7.0226517, y: 4.9781227, z: 6.931019}
-  m_Center: {x: -0.029621124, y: 1.808239, z: -0.018083572}
+  m_Size: {x: 10.514313, y: 24.796772, z: 10.517063}
+  m_Center: {x: 0.06475067, y: -7.912346, z: -0.018087387}
 --- !u!1 &2142653316
 GameObject:
   m_ObjectHideFlags: 0

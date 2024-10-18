@@ -430,13 +430,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 8
-  minDetectSizeInCamera: 0.008
+  minDetectSizeInCamera: 0.05
   cameraSmooth: 3
   rotateSmooth: 1
   rotateThreshold: 5
   initialCameraFov: 0
   uiBoxPrefab: {fileID: 1759393386953110933, guid: 74ae50997a26c944198a7272b0ea8180, type: 3}
-  detectObstacleDistance: 3
+  detectObstacleDistance: 5
   avoidObstacleWeight: 2
   normalBulletEffectPrefab: {fileID: 4570384153189341703, guid: 50715d5bdb357fe4ca8fd22cf4ba6281, type: 3}
   electricInterferenceEffectPrefab: {fileID: 1987295054902432282, guid: 4edc5b3b2fe7b3c49b42e4f6dbb93f07, type: 3}
@@ -446,7 +446,7 @@ MonoBehaviour:
   flySound: {fileID: 8300000, guid: da8cba425f89d414bbfefcafcff846bd, type: 3}
   attackDroneState: 0
   swarm: {fileID: 0}
-  throwBombRadius: 5
+  throwBombRadius: 8
   bombBelowLength: 0.1
 --- !u!82 &7473070086189362181
 AudioSource:

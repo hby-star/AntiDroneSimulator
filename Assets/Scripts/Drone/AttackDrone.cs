@@ -38,8 +38,9 @@ public class AttackDrone : Drone
             return;
         }
 
-        AvoidObstacleUpdate();
         AttackDroneUpdate();
+        AvoidObstacleUpdate();
+
         Move();
 
         base.Update();

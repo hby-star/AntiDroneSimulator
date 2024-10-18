@@ -47,9 +47,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explosion: {fileID: 5612247196798606368, guid: f0ce4ae01cfe6984886c94c99e1d3955, type: 3}
-  explosionRadius: 5.26
+  explosionRadius: 8
   explosionSound: {fileID: 8300000, guid: 3687869688c2b5c4fbe6103c9893f9c2, type: 3}
-  audioSource: {fileID: 0}
   damage: 30
   canExplode: 0
 --- !u!65 &3796299342600338362

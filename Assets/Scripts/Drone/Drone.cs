@@ -160,6 +160,8 @@ public class Drone : Entity
             displayHeight = display.systemHeight;
         }
 
+        float cameraRate = CameraManager.Instance.droneViewHeight / displayHeight;
+
         // 将物体的屏幕坐标转换到摄像机的视口空间
         Rect cameraRect = Camera.rect;
         float minX = min.x / displayWidth;
@@ -187,7 +189,7 @@ public class Drone : Entity
         }
 
         // 计算边界框的位置和大小
-        if (isVisible && isInCameraView && (maxY - minY > minDetectSizeInCamera || FoundPlayer))
+        if (isVisible && isInCameraView && (maxY - minY > minDetectSizeInCamera * cameraRate || FoundPlayer))
         {
             targetRect = new Rect(min.x, displayHeight - max.y, max.x - min.x, max.y - min.y);
             isPlayerDetectedInCamera = true;
@@ -275,7 +277,7 @@ public class Drone : Entity
         else
         {
             Collider[] colliders = Physics.OverlapBox(transform.position,
-                Collider.bounds.extents + new Vector3(0.1f, 0.1f, 0.1f));
+                Collider.bounds.size);
             foreach (var collider in colliders)
             {
                 if (Collider.CompareTag("Ground"))
