@@ -136,7 +136,6 @@ public class DetectDrone : Drone
             if (horDistanceToPlayer < moveSpeed * 2f)
             {
                 taskForce = -directionToPlayer.normalized;
-                taskForce.y = 0;
             }
             else
             {
