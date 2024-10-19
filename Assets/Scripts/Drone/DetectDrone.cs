@@ -50,9 +50,18 @@ public class DetectDrone : Drone
     [Header("Detect Drone Info")] public Swarm swarm;
     public Vector3 detectDroneTargetPosition;
 
-
+    float lastUpdateTime = 0;
+    float updateInterval = 1f;
     void DetectDroneUpdate()
     {
+        if (Time.time - lastUpdateTime < updateInterval)
+        {
+            return;
+        }
+        updateInterval = Random.Range(0.7f, 1.3f);
+        lastUpdateTime = Time.time;
+
+
         if (!FoundPlayer)
         {
             // Patrol 状态

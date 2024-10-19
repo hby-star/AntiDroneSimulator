@@ -42,7 +42,7 @@ public class Swarm : MonoBehaviour
             Vector3 spawnPosition = hivePosition + randomOffset;
 
             // 若生成的无人机附近有障碍物，则重新生成
-            Vector3 droneSize = detectDronePrefab.GetComponent<BoxCollider>().size;
+            Vector3 droneSize = detectDronePrefab.GetComponent<BoxCollider>().size / 2;
             Collider[] colliders = Physics.OverlapBox(spawnPosition, droneSize);
             if (colliders.Length > 0)
             {
@@ -167,8 +167,18 @@ public class Swarm : MonoBehaviour
     }
 
     // 为攻击无人机补充炸弹
+    float lastSupplyTime = 0;
+    float supplyInterval = 2f;
+
     public void SupplyBomb()
     {
+        if (Time.time - lastSupplyTime < supplyInterval)
+        {
+            return;
+        }
+
+        lastSupplyTime = Time.time;
+
         Collider[] colliders = Physics.OverlapSphere(hivePosition, hiveRadius);
 
         foreach (Collider collider in colliders)
@@ -187,8 +197,17 @@ public class Swarm : MonoBehaviour
 
     # region Handle Message
 
+    float lastMessageTime = 0;
+    float messageInterval = 2f;
+
     public void OnDetectDroneFoundPlayer(Vector3 playerPosition)
     {
+        if (Time.time - lastMessageTime < messageInterval)
+        {
+            return;
+        }
+
+        lastMessageTime = Time.time;
         // 通知所有无人机，侦查无人机追踪玩家，攻击无人机攻击玩家
         for (int i = 0; i < detectDrones.Count; i++)
         {
@@ -206,21 +225,20 @@ public class Swarm : MonoBehaviour
         honeyPositions = new List<Vector3>();
         honeyPositions.Add(playerPosition);
     }
-
-    public void OnAttackDronePlayerDied()
-    {
-        // 通知所有无人机返回蜂巢
-        for (int i = 0; i < detectDrones.Count; i++)
-        {
-            detectDrones[i].detectDroneTargetPosition = hivePosition;
-        }
-
-        for (int i = 0; i < attackDrones.Count; i++)
-        {
-            attackDrones[i].attackDroneTargetPosition = hivePosition;
-            attackDrones[i].attackDroneHasTarget = false;
-        }
-    }
+    // public void OnAttackDronePlayerDied()
+    // {
+    //     // 通知所有无人机返回蜂巢
+    //     for (int i = 0; i < detectDrones.Count; i++)
+    //     {
+    //         detectDrones[i].detectDroneTargetPosition = hivePosition;
+    //     }
+    //
+    //     for (int i = 0; i < attackDrones.Count; i++)
+    //     {
+    //         attackDrones[i].attackDroneTargetPosition = hivePosition;
+    //         attackDrones[i].attackDroneHasTarget = false;
+    //     }
+    // }
 
     # endregion
 

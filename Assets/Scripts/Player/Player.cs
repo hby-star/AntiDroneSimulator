@@ -7,6 +7,10 @@ using UnityEngine.Serialization;
 
 public class Player : Entity
 {
+    // To Optimize
+    public List<Vector3[]> playerRenderersBounds = new List<Vector3[]>();
+    // Optimize End
+
     # region States
 
     public EntityStateMachine StateMachine;
@@ -24,7 +28,7 @@ public class Player : Entity
     #region Stats
 
     [Header("Stats Info")] public EntityStats playerStats;
-    public List<Renderer> playerRenderers;
+    public List<Collider> playerRenderers;
 
     public void TakeDamage(float damage)
     {
@@ -294,6 +298,23 @@ public class Player : Entity
         ReloadState = new PlayerReloadState(StateMachine, this, "Reload", this);
         DashState = new PlayerDashState(StateMachine, this, "Dash", this);
         CrouchState = new PlayerCrouchState(StateMachine, this, "Crouch", this);
+
+        // To Optimize
+        foreach (var renderer in playerRenderers)
+        {
+            Vector3[] corners = new Vector3[8];
+            Bounds bounds = renderer.bounds;
+            corners[0] = new Vector3(-bounds.extents.x, bounds.extents.y, -bounds.extents.z);
+            corners[1] = new Vector3(bounds.extents.x, bounds.extents.y, -bounds.extents.z);
+            corners[2] = new Vector3(-bounds.extents.x, bounds.extents.y, bounds.extents.z);
+            corners[3] = new Vector3(bounds.extents.x, bounds.extents.y, bounds.extents.z);
+            corners[4] = new Vector3(-bounds.extents.x, -bounds.extents.y, -bounds.extents.z);
+            corners[5] = new Vector3(bounds.extents.x, -bounds.extents.y, -bounds.extents.z);
+            corners[6] = new Vector3(-bounds.extents.x, -bounds.extents.y, bounds.extents.z);
+            corners[7] = new Vector3(bounds.extents.x, -bounds.extents.y, bounds.extents.z);
+            playerRenderersBounds.Add(corners);
+        }
+        // Optimize End
     }
 
     private void SettingsAwake()

@@ -42,6 +42,7 @@ public class Drone : Entity
         {
             return;
         }
+
         CameraUpdate();
         AudioUpdate();
     }
@@ -65,11 +66,20 @@ public class Drone : Entity
     [NonSerialized] public bool FoundPlayer = false;
     public float minDetectSizeInCamera = 0.0005f;
     protected Rect targetRect;
-    public float cameraSmooth = 1;
-    public float rotateSmooth = 1;
-    public float rotateThreshold = 10;
     protected bool isPlayerDetectedInCamera = false;
     public float initialCameraFov;
+
+    // To Optimize
+    float displayWidth;
+    float displayHeight;
+    float halfDisplayWidth;
+    float halfDisplayHeight;
+    float cameraRate;
+    float minSizeTimesCameraRate;
+    List<Vector3[]> playerRenderersBounds = new List<Vector3[]>();
+    List<Collider> playerRenderers = new List<Collider>();
+    Rect cameraRect;
+    // Optimize End
 
     protected void CameraStart()
     {
@@ -77,70 +87,16 @@ public class Drone : Entity
         initialCameraFov = Camera.fieldOfView;
 
         UIBoxInit();
-    }
 
-    public void CameraUpdate()
-    {
+
+        // To optimize
         if (!targetPlayer)
         {
             targetPlayer = FindObjectOfType<Player>();
         }
 
-        if (FoundPlayer)
-        {
-            Quaternion targetRotation =
-                Quaternion.LookRotation(targetPlayer.transform.position - Camera.transform.position);
-            Camera.transform.rotation =
-                Quaternion.Slerp(Camera.transform.rotation, targetRotation, Time.deltaTime * 5);
-        }
-        else
-        {
-            Vector3 moveDirection = Rigidbody.velocity;
-            moveDirection.y = -moveDirection.magnitude * 0.5f;
-            if (moveDirection != Vector3.zero)
-            {
-                Quaternion targetRotation = Quaternion.LookRotation(moveDirection);
-                Camera.transform.rotation =
-                    Quaternion.Slerp(Camera.transform.rotation, targetRotation, Time.deltaTime);
-            }
-        }
-
-        List<Renderer> targetRenderers = targetPlayer.playerRenderers;
-
-        // 初始化 min 和 max 为极大值和极小值
-        Vector3 min = new Vector3(float.MaxValue, float.MaxValue, 0);
-        Vector3 max = new Vector3(float.MinValue, float.MinValue, 0);
-
-        foreach (Renderer renderer in targetRenderers)
-        {
-            if (renderer.isVisible)
-            {
-                Bounds bounds = renderer.bounds;
-                Vector3[] corners = new Vector3[8];
-                corners[0] = bounds.center + new Vector3(-bounds.extents.x, bounds.extents.y, -bounds.extents.z);
-                corners[1] = bounds.center + new Vector3(bounds.extents.x, bounds.extents.y, -bounds.extents.z);
-                corners[2] = bounds.center + new Vector3(-bounds.extents.x, bounds.extents.y, bounds.extents.z);
-                corners[3] = bounds.center + new Vector3(bounds.extents.x, bounds.extents.y, bounds.extents.z);
-                corners[4] = bounds.center + new Vector3(-bounds.extents.x, -bounds.extents.y, -bounds.extents.z);
-                corners[5] = bounds.center + new Vector3(bounds.extents.x, -bounds.extents.y, -bounds.extents.z);
-                corners[6] = bounds.center + new Vector3(-bounds.extents.x, -bounds.extents.y, bounds.extents.z);
-                corners[7] = bounds.center + new Vector3(bounds.extents.x, -bounds.extents.y, bounds.extents.z);
-
-                for (int i = 0; i < corners.Length; i++)
-                {
-                    Vector3 screenPoint = Camera.WorldToScreenPoint(corners[i]);
-                    min.x = Mathf.Min(min.x, screenPoint.x);
-                    min.y = Mathf.Min(min.y, screenPoint.y);
-                    max.x = Mathf.Max(max.x, screenPoint.x);
-                    max.y = Mathf.Max(max.y, screenPoint.y);
-                }
-            }
-        }
-
-
-        // 获取display2的分辨率
-        float displayWidth = Screen.width;
-        float displayHeight = Screen.height;
+        displayWidth = Screen.width;
+        displayHeight = Screen.height;
         if (Display.displays.Length > 1)
         {
             var display = Display.displays[1];
@@ -148,10 +104,76 @@ public class Drone : Entity
             displayHeight = display.systemHeight;
         }
 
-        float cameraRate = CameraManager.Instance.droneViewHeight / displayHeight;
+        halfDisplayWidth = displayWidth / 2;
+        halfDisplayHeight = displayHeight / 2;
+
+        float divide =
+            Mathf.Ceil(Mathf.Sqrt(UIManager.Instance.settingsPopUp.GetComponent<Settings>().droneNumSlider.value + 1));
+        float droneViewHeight = Screen.height / divide;
+        cameraRate = droneViewHeight / displayHeight;
+        minSizeTimesCameraRate = minDetectSizeInCamera * cameraRate;
+        cameraRect = Camera.rect;
+        // optimize end
+    }
+
+    float lastCameraUpdateTime = 0;
+    float cameraUpdateInterval = 0.05f;
+
+    public void CameraUpdate()
+    {
+        if (playerRenderers.Count == 0)
+        {
+            playerRenderers = targetPlayer.playerRenderers;
+            playerRenderersBounds = targetPlayer.playerRenderersBounds;
+        }
+
+        Vector3 targetPosition = targetPlayer.transform.position;
+        float targetPlayerHeight = targetPlayer.standColliderHeight;
+
+        if (FoundPlayer)
+        {
+            var targetRotation =
+                Quaternion.LookRotation(targetPosition - Camera.transform.position);
+            Camera.transform.rotation =
+                Quaternion.Slerp(Camera.transform.rotation, targetRotation, Time.deltaTime * 5);
+        }
+        else
+        {
+            var moveDirection = Rigidbody.velocity;
+            moveDirection.y = -moveDirection.magnitude * 0.5f;
+            if (moveDirection != Vector3.zero)
+            {
+                var targetRotation = Quaternion.LookRotation(moveDirection);
+                Camera.transform.rotation =
+                    Quaternion.Slerp(Camera.transform.rotation, targetRotation, Time.deltaTime);
+            }
+        }
+
+        if (Time.time - lastCameraUpdateTime < cameraUpdateInterval)
+        {
+            return;
+        }
+
+        lastCameraUpdateTime = Time.time;
+        cameraUpdateInterval = UnityEngine.Random.Range(0.02f, 0.06f);
+
+        // 初始化 min 和 max 为极大值和极小值
+        Vector3 min = new Vector3(float.MaxValue, float.MaxValue, 0);
+        Vector3 max = new Vector3(float.MinValue, float.MinValue, 0);
+
+        for (int i = 0; i < playerRenderers.Count; i++)
+        {
+            for (int j = 0; j < 8; j++)
+            {
+                Vector3 screenPoint = Camera.WorldToScreenPoint(playerRenderersBounds[i][j] + playerRenderers[i].bounds.center);
+                min.x = Mathf.Min(min.x, screenPoint.x);
+                min.y = Mathf.Min(min.y, screenPoint.y);
+                max.x = Mathf.Max(max.x, screenPoint.x);
+                max.y = Mathf.Max(max.y, screenPoint.y);
+            }
+        }
 
         // 将物体的屏幕坐标转换到摄像机的视口空间
-        Rect cameraRect = Camera.rect;
         float minX = min.x / displayWidth;
         float maxX = max.x / displayWidth;
         float minY = min.y / displayHeight;
@@ -162,13 +184,12 @@ public class Drone : Entity
         // 检查物体是否在当前摄像机的视口内
         bool isInCameraView = (centerX > cameraRect.x && centerX < cameraRect.x + cameraRect.width &&
                                centerY > cameraRect.y && centerY < cameraRect.y + cameraRect.height);
-
         // 检查物体是否被遮挡
         bool isVisible = true;
-        RaycastHit hit;
         if (Physics.Linecast(Camera.transform.position,
-                targetPlayer.transform.position + targetPlayer.standColliderHeight / 2 * Vector3.up,
-                out hit))
+                targetPosition +
+                targetPlayerHeight / 2 * Vector3.up,
+                out RaycastHit hit))
         {
             if (!hit.collider.CompareTag("Player"))
             {
@@ -177,27 +198,25 @@ public class Drone : Entity
         }
 
         // 计算边界框的位置和大小
-        if (isVisible && isInCameraView && (maxY - minY > minDetectSizeInCamera * cameraRate || FoundPlayer))
+        if (isVisible && isInCameraView && (maxY - minY > minSizeTimesCameraRate || FoundPlayer))
         {
             targetRect = new Rect(min.x, displayHeight - max.y, max.x - min.x, max.y - min.y);
             isPlayerDetectedInCamera = true;
 
             // 调整Camera的fov
             float targetHeightScale = (max.y - min.y) / CameraManager.Instance.droneViewHeight;
+            float fovLimit = 200 * Mathf.Abs(targetHeightScale - 0.4f);
             if (targetHeightScale < 0.4f)
             {
                 // 平滑减小Camera的fov
                 Camera.fieldOfView =
-                    Mathf.Lerp(Camera.fieldOfView, initialCameraFov - 200 * Mathf.Abs(targetHeightScale - 0.4f),
-                        Time.deltaTime);
+                    Mathf.Lerp(Camera.fieldOfView, initialCameraFov - fovLimit, Time.deltaTime);
             }
 
             if (targetHeightScale > 0.5f)
             {
                 // 平滑增大Camera的fov
-                Camera.fieldOfView = Mathf.Lerp(Camera.fieldOfView,
-                    initialCameraFov + 200 * Mathf.Abs(targetHeightScale - 0.4f),
-                    Time.deltaTime);
+                Camera.fieldOfView = Mathf.Lerp(Camera.fieldOfView, initialCameraFov + fovLimit, Time.deltaTime);
             }
         }
         else
@@ -224,20 +243,10 @@ public class Drone : Entity
 
     void UIBoxUpdate()
     {
-        // 获取display2的分辨率
-        float displayWidth = Screen.width;
-        float displayHeight = Screen.height;
-        if (Display.displays.Length > 1)
-        {
-            var display = Display.displays[1];
-            displayWidth = display.systemWidth;
-            displayHeight = display.systemHeight;
-        }
-
         if (targetRect.width > 0)
         {
-            uiBox.anchoredPosition = new Vector2(targetRect.x - displayWidth / 2 + targetRect.width / 2,
-                -targetRect.y + displayHeight / 2 - targetRect.height / 2);
+            uiBox.anchoredPosition = new Vector2(targetRect.x - halfDisplayWidth + targetRect.width / 2,
+                -targetRect.y + halfDisplayHeight - targetRect.height / 2);
             uiBox.sizeDelta = new Vector2(targetRect.width, targetRect.height);
             uiBox.gameObject.SetActive(true);
         }
@@ -252,89 +261,94 @@ public class Drone : Entity
     # region 避障
 
     [Header("Avoid Obstacle Info")] public float detectObstacleDistance = 5; // 避障距离
-    private float frontObstacleRate = 0.8f;
+
+    // To Optimize
+    private Vector3 obstaclePosition;
+    private float obstacleDistance;
+
+    Vector3[] directions =
+    {
+        Vector3.forward, -Vector3.forward, Vector3.right, -Vector3.right, Vector3.up, -Vector3.up,
+        Vector3.forward + Vector3.right + Vector3.up, Vector3.forward + Vector3.right - Vector3.up,
+        Vector3.forward - Vector3.right + Vector3.up, Vector3.forward - Vector3.right - Vector3.up,
+        -Vector3.forward + Vector3.right + Vector3.up, -Vector3.forward + Vector3.right - Vector3.up,
+        -Vector3.forward - Vector3.right + Vector3.up, -Vector3.forward - Vector3.right - Vector3.up,
+        Vector3.forward + Vector3.right, Vector3.forward - Vector3.right,
+        -Vector3.forward + Vector3.right, -Vector3.forward - Vector3.right,
+        Vector3.forward + Vector3.up, Vector3.forward - Vector3.up,
+        -Vector3.forward + Vector3.up, -Vector3.forward - Vector3.up,
+        Vector3.right + Vector3.up, Vector3.right - Vector3.up,
+        -Vector3.right + Vector3.up, -Vector3.right - Vector3.up
+    };
+    // Optimize End
+
+    float lastAvoidObstacleUpdateTime = 0;
+    float avoidObstacleUpdateInterval = 0.5f;
 
     protected void AvoidObstacleUpdate()
     {
-        Vector3 obstaclePosition = GetObstacleRelativePosition();
+        if (Time.time - lastAvoidObstacleUpdateTime < avoidObstacleUpdateInterval)
+        {
+            return;
+        }
 
-        if (obstaclePosition.magnitude < detectObstacleDistance)
+        lastAvoidObstacleUpdateTime = Time.time;
+        avoidObstacleUpdateInterval = UnityEngine.Random.Range(0.2f, 0.8f);
+
+
+        GetObstacleRelativePosition();
+        if (obstacleDistance < detectObstacleDistance)
         {
             avoidObstacleForce = -obstaclePosition.normalized;
-
-            if (Vector3.Dot(taskForce.normalized, obstaclePosition.normalized) > frontObstacleRate)
-            {
-                avoidObstacleForce.y += 1f;
-            }
+            avoidObstacleForce.y += UnityEngine.Random.Range(0.2f, 0.5f);
         }
         else
         {
-            Collider[] colliders = Physics.OverlapBox(transform.position,
-                Collider.bounds.size);
-            foreach (var collider in colliders)
-            {
-                if (Collider.CompareTag("Ground"))
-                {
-                    avoidObstacleForce = (transform.position - collider.transform.position).normalized;
-                    if (Vector3.Dot(taskForce.normalized, obstaclePosition.normalized) > frontObstacleRate)
-                    {
-                        avoidObstacleForce.y += 1f;
-                    }
-                    return;
-                }
-            }
+            // Collider[] colliders = Physics.OverlapBox(transform.position,
+            //     Collider.bounds.size);
+            // foreach (var collider in colliders)
+            // {
+            //     if (Collider.CompareTag("Ground"))
+            //     {
+            //         avoidObstacleForce = (transform.position - collider.transform.position).normalized;
+            //         avoidObstacleForce.y += 1f;
+            //         return;
+            //     }
+            // }
 
             avoidObstacleForce = Vector3.zero;
         }
     }
 
-    public Vector3 GetObstacleRelativePosition()
+    public void GetObstacleRelativePosition()
     {
-        Vector3 obstaclePosition = new Vector3(detectObstacleDistance, detectObstacleDistance, detectObstacleDistance);
+        obstacleDistance = detectObstacleDistance + 1f;
 
         // 检测前后左右上下以及更多方向的障碍物
-        Vector3[] directions =
-        {
-            transform.forward, -transform.forward, transform.right, -transform.right, transform.up, -transform.up,
-            transform.forward + transform.right + transform.up, transform.forward + transform.right - transform.up,
-            transform.forward - transform.right + transform.up, transform.forward - transform.right - transform.up,
-            -transform.forward + transform.right + transform.up, -transform.forward + transform.right - transform.up,
-            -transform.forward - transform.right + transform.up, -transform.forward - transform.right - transform.up,
-            transform.forward + transform.right, transform.forward - transform.right,
-            -transform.forward + transform.right, -transform.forward - transform.right,
-            transform.forward + transform.up, transform.forward - transform.up,
-            -transform.forward + transform.up, -transform.forward - transform.up,
-            transform.right + transform.up, transform.right - transform.up,
-            -transform.right + transform.up, -transform.right - transform.up
-        };
-
         foreach (var direction in directions)
         {
             RaycastHit hit;
             if (Physics.Raycast(transform.position, direction, out hit, detectObstacleDistance))
             {
                 // 忽略玩家和自身和炸弹
-                if (!hit.collider.CompareTag("Player") &&
-                    !hit.collider.CompareTag("Bomb") &&
-                    !hit.collider.CompareTag("Bullet"))
+                if (hit.collider.CompareTag("Drone") || hit.collider.CompareTag("Ground"))
                 {
-                    if (hit.distance < obstaclePosition.magnitude)
+                    if (hit.distance < obstacleDistance)
                     {
+                        obstacleDistance = hit.distance;
                         obstaclePosition = hit.point - transform.position;
                     }
                 }
             }
         }
-
-        return obstaclePosition;
     }
 
     # endregion
 
     # region 移动
 
-    [NonSerialized] public Vector3 avoidObstacleForce;
-    [NonSerialized] public Vector3 taskForce;
+    private Vector3 avoidObstacleForce;
+    protected Vector3 taskForce;
     public float avoidObstacleWeight = 5f;
 
     // 根据MoveForce移动

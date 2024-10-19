@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class AttackDrone : Drone
 {
@@ -56,8 +57,18 @@ public class AttackDrone : Drone
     [NonSerialized] public GameObject bomb = null;
     public float bombBelowLength = 0.1f;
 
+    float lastUpdateTime = 0;
+    float updateInterval = 1f;
     void AttackDroneUpdate()
     {
+        if (Time.time - lastUpdateTime < updateInterval)
+        {
+            return;
+        }
+        updateInterval = Random.Range(0.7f, 1.3f);
+        lastUpdateTime = Time.time;
+
+
         if (hasBomb)
         {
             if (!attackDroneHasTarget)
