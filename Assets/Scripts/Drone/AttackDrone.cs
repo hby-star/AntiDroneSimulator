@@ -58,14 +58,14 @@ public class AttackDrone : Drone
     public float bombBelowLength = 0.1f;
 
     float lastUpdateTime = 0;
-    float updateInterval = 1f;
+    float updateInterval = 0.5f;
     void AttackDroneUpdate()
     {
         if (Time.time - lastUpdateTime < updateInterval)
         {
             return;
         }
-        updateInterval = Random.Range(0.7f, 1.3f);
+        updateInterval = Random.Range(0.3f, 0.7f);
         lastUpdateTime = Time.time;
 
 

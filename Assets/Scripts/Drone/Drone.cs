@@ -76,7 +76,7 @@ public class Drone : Entity
     float halfDisplayHeight;
     float cameraRate;
     float minSizeTimesCameraRate;
-    List<Vector3[]> playerRenderersBounds = new List<Vector3[]>();
+    // List<Vector3[]> playerRenderersBounds = new List<Vector3[]>();
     List<Collider> playerRenderers = new List<Collider>();
     Rect cameraRect;
     // Optimize End
@@ -115,16 +115,14 @@ public class Drone : Entity
         cameraRect = Camera.rect;
         // optimize end
     }
-
-    float lastCameraUpdateTime = 0;
-    float cameraUpdateInterval = 0.05f;
+    // float lastCameraUpdateTime = 0;
+    // float cameraUpdateInterval = 0.1f;
 
     public void CameraUpdate()
     {
         if (playerRenderers.Count == 0)
         {
             playerRenderers = targetPlayer.playerRenderers;
-            playerRenderersBounds = targetPlayer.playerRenderersBounds;
         }
 
         Vector3 targetPosition = targetPlayer.transform.position;
@@ -149,13 +147,13 @@ public class Drone : Entity
             }
         }
 
-        if (Time.time - lastCameraUpdateTime < cameraUpdateInterval)
-        {
-            return;
-        }
-
-        lastCameraUpdateTime = Time.time;
-        cameraUpdateInterval = UnityEngine.Random.Range(0.02f, 0.06f);
+        // if (Time.time - lastCameraUpdateTime < cameraUpdateInterval)
+        // {
+        //     return;
+        // }
+        //
+        // lastCameraUpdateTime = Time.time;
+        // cameraUpdateInterval = UnityEngine.Random.Range(0.08f, 0.12f);
 
         // 初始化 min 和 max 为极大值和极小值
         Vector3 min = new Vector3(float.MaxValue, float.MaxValue, 0);
@@ -163,9 +161,29 @@ public class Drone : Entity
 
         for (int i = 0; i < playerRenderers.Count; i++)
         {
+            Bounds playerBounds = playerRenderers[i].bounds;
+            Vector3[] corners = new Vector3[8];
+            corners[0] = playerBounds.center +
+                         new Vector3(-playerBounds.extents.x, playerBounds.extents.y, -playerBounds.extents.z);
+            corners[1] = playerBounds.center +
+                         new Vector3(playerBounds.extents.x, playerBounds.extents.y, -playerBounds.extents.z);
+            corners[2] = playerBounds.center +
+                         new Vector3(-playerBounds.extents.x, playerBounds.extents.y, playerBounds.extents.z);
+            corners[3] = playerBounds.center +
+                         new Vector3(playerBounds.extents.x, playerBounds.extents.y, playerBounds.extents.z);
+            corners[4] = playerBounds.center +
+                         new Vector3(-playerBounds.extents.x, -playerBounds.extents.y, -playerBounds.extents.z);
+            corners[5] = playerBounds.center +
+                         new Vector3(playerBounds.extents.x, -playerBounds.extents.y, -playerBounds.extents.z);
+            corners[6] = playerBounds.center +
+                         new Vector3(-playerBounds.extents.x, -playerBounds.extents.y, playerBounds.extents.z);
+            corners[7] = playerBounds.center +
+                         new Vector3(playerBounds.extents.x, -playerBounds.extents.y, playerBounds.extents.z);
+
+
             for (int j = 0; j < 8; j++)
             {
-                Vector3 screenPoint = Camera.WorldToScreenPoint(playerRenderersBounds[i][j] + playerRenderers[i].bounds.center);
+                Vector3 screenPoint = Camera.WorldToScreenPoint(corners[j]);
                 min.x = Mathf.Min(min.x, screenPoint.x);
                 min.y = Mathf.Min(min.y, screenPoint.y);
                 max.x = Mathf.Max(max.x, screenPoint.x);

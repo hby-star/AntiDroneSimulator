@@ -463,8 +463,8 @@ SkinnedMeshRenderer:
   m_BlendShapeWeights: []
   m_RootBone: {fileID: 6921701327414048797}
   m_AABB:
-    m_Center: {x: -0.03508252, y: 0.0153360665, z: 0.05366832}
-    m_Extent: {x: 1.2355316, y: 0.28608152, z: 0.51716125}
+    m_Center: {x: -0.03508258, y: 0.08604586, z: 0.21989773}
+    m_Extent: {x: 1.2355316, y: 0.35679126, z: 0.68339074}
   m_DirtyAABB: 0
 --- !u!1 &1853528486964623994
 GameObject:
@@ -1183,6 +1183,8 @@ GameObject:
   - component: {fileID: 5338648304330087419}
   - component: {fileID: 2683639816618920090}
   - component: {fileID: 4300808480643386846}
+  - component: {fileID: 6511502043361050051}
+  - component: {fileID: 7369389437360649411}
   m_Layer: 0
   m_Name: Smaw
   m_TagString: Untagged
@@ -1373,6 +1375,48 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!65 &6511502043361050051
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6741032462660769140}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.37792897, y: 2.3986394, z: 0.67974603}
+  m_Center: {x: 0.050184675, y: 0.30739644, z: 0.12504672}
+--- !u!65 &7369389437360649411
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6741032462660769140}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.37792897, y: 2.3986394, z: 0.67974603}
+  m_Center: {x: 0.050177045, y: 0.3073937, z: 0.12504576}
 --- !u!1 &6969603194808821112
 GameObject:
   m_ObjectHideFlags: 0
@@ -1482,6 +1526,8 @@ GameObject:
   - component: {fileID: 4767687811218607038}
   - component: {fileID: 3578140073217359004}
   - component: {fileID: 1819065757884859496}
+  - component: {fileID: 9132968142260486370}
+  - component: {fileID: 4819238125478474743}
   m_Layer: 0
   m_Name: benelliM4
   m_TagString: Untagged
@@ -1672,6 +1718,48 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!65 &9132968142260486370
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7104562159948738317}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.069693096, y: 1.2962394, z: 0.2551723}
+  m_Center: {x: 0.0000000809001, y: -0.21653259, z: -0.0021079155}
+--- !u!65 &4819238125478474743
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7104562159948738317}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.069693096, y: 1.2962394, z: 0.2551723}
+  m_Center: {x: 0.0000000809001, y: -0.2165339, z: -0.0021079155}
 --- !u!1 &7263211296424711686
 GameObject:
   m_ObjectHideFlags: 0
@@ -1818,10 +1906,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerStats: {fileID: 8030514294475232828}
   playerRenderers:
-  - {fileID: 5386570992869602417}
-  - {fileID: 940414443091251902}
-  - {fileID: 4767687811218607038}
-  - {fileID: 5338648304330087419}
+  - {fileID: 1938310136011159205}
+  - {fileID: 812932588465804046}
+  - {fileID: 4819238125478474743}
+  - {fileID: 7369389437360649411}
   moveSpeed: 10
   jumpForce: 6
   dashSpeed: 12
@@ -1887,10 +1975,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.3
-  m_Height: 1.6200415
+  m_Radius: 0.35138667
+  m_Height: 1.626171
   m_Direction: 1
-  m_Center: {x: 0.022198737, y: 0.78502077, z: 0.01432845}
+  m_Center: {x: 0.050093144, y: 0.7953287, z: 0.049009442}
 --- !u!114 &8030514294475232828
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2050,6 +2138,8 @@ GameObject:
   - component: {fileID: 940414443091251902}
   - component: {fileID: 302926611522747862}
   - component: {fileID: 1921935920577249218}
+  - component: {fileID: 9009123570749799207}
+  - component: {fileID: 812932588465804046}
   m_Layer: 0
   m_Name: m4
   m_TagString: Untagged
@@ -2242,6 +2332,48 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!65 &9009123570749799207
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8073067839244496200}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.08553529, y: 1.2860794, z: 0.40534967}
+  m_Center: {x: 0.000000020938243, y: -0.15854023, z: 0.0005458045}
+--- !u!65 &812932588465804046
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8073067839244496200}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.08553529, y: 1.2860794, z: 0.40534967}
+  m_Center: {x: 0.000000020938243, y: -0.15854155, z: 0.0005458045}
 --- !u!1 &8083308227935288565
 GameObject:
   m_ObjectHideFlags: 0

@@ -51,14 +51,14 @@ public class DetectDrone : Drone
     public Vector3 detectDroneTargetPosition;
 
     float lastUpdateTime = 0;
-    float updateInterval = 1f;
+    float updateInterval = 0.5f;
     void DetectDroneUpdate()
     {
         if (Time.time - lastUpdateTime < updateInterval)
         {
             return;
         }
-        updateInterval = Random.Range(0.7f, 1.3f);
+        updateInterval = Random.Range(0.3f, 0.7f);
         lastUpdateTime = Time.time;
 
 
