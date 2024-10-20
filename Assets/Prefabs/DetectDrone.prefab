@@ -342,9 +342,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4451430834842279582}
   - component: {fileID: 301139405953874348}
-  - component: {fileID: 4596089646764717095}
   - component: {fileID: 6803565990257939681}
   - component: {fileID: 5789402564355647377}
+  - component: {fileID: 5467417826075244357}
   m_Layer: 0
   m_Name: DetectDrone
   m_TagString: Drone
@@ -396,27 +396,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 0
---- !u!65 &4596089646764717095
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2061971188611494707}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 2.2, y: 0.5, z: 2.2}
-  m_Center: {x: 0, y: 0.2, z: -0.04}
 --- !u!114 &6803565990257939681
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -541,6 +520,27 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!65 &5467417826075244357
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2061971188611494707}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 4.1803503, y: 1.0007782, z: 4.106372}
+  m_Center: {x: 0.00000009934107, y: 0.17723729, z: -0.025773842}
 --- !u!1 &2077614911912810416
 GameObject:
   m_ObjectHideFlags: 0

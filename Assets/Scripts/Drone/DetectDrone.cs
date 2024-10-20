@@ -51,14 +51,14 @@ public class DetectDrone : Drone
     public Vector3 detectDroneTargetPosition;
 
     float lastUpdateTime = 0;
-    float updateInterval = 0.5f;
+    float updateInterval = 0.2f;
     void DetectDroneUpdate()
     {
         if (Time.time - lastUpdateTime < updateInterval)
         {
             return;
         }
-        updateInterval = Random.Range(0.3f, 0.7f);
+        updateInterval = Random.Range(0.1f, 0.3f);
         lastUpdateTime = Time.time;
 
 
@@ -117,7 +117,7 @@ public class DetectDrone : Drone
         float distanceToTarget = (detectDroneTargetPosition - transform.position).magnitude;
 
         // 到达目标，但是没有找到玩家
-        if (distanceToTarget < moveSpeed)
+        if (distanceToTarget < 5f && !isPlayerDetectedInCamera)
         {
             detectDroneTargetPosition = swarm.GenerateRandomHoneyPosition();
         }
@@ -140,9 +140,9 @@ public class DetectDrone : Drone
 
         // 如果玩家距离侦查无人机较近，则随机移动
         float random_size = 1f;
-        if (horDistanceToPlayer < moveSpeed * 2.5f)
+        if (horDistanceToPlayer < 30f)
         {
-            if (horDistanceToPlayer < moveSpeed * 2f)
+            if (horDistanceToPlayer < 20f)
             {
                 taskForce = -directionToPlayer.normalized;
             }
@@ -157,9 +157,9 @@ public class DetectDrone : Drone
                 }
             }
 
-            if (verDistanceToPlayer > 8f)
+            if (transform.position.y < 2f)
             {
-                taskForce.y -= 2f;
+                taskForce.y += 1f;
             }
         }
         // 如果玩家距离侦查无人机较远，则追踪

@@ -173,7 +173,7 @@ public class AttackDrone : Drone
         float distanceToTarget = (attackDroneTargetPosition - transform.position).magnitude;
 
         // 到达目标，但是没有找到玩家
-        if (distanceToTarget < moveSpeed)
+        if (distanceToTarget < 5f)
         {
             if (InHive())
             {
@@ -214,6 +214,11 @@ public class AttackDrone : Drone
         {
             Vector3 trackForce = targetPlayer.transform.position - transform.position;
             taskForce = trackForce.normalized;
+        }
+
+        if (transform.position.y < 2f)
+        {
+            taskForce.y += 1f;
         }
     }
 

@@ -28,7 +28,7 @@ public class Bomb : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!canExplode)
+        if (!canExplode || other.CompareTag("Drone"))
         {
             return;
         }

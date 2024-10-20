@@ -88,6 +88,12 @@ public class Swarm : MonoBehaviour
     {
         Vector3 randomPosition = hivePosition + Random.insideUnitSphere * honeyRadius;
         randomPosition.y = hivePosition.y;
+
+        if (Physics.OverlapSphere(randomPosition, 1f).Length > 0)
+        {
+            return GenerateRandomHoneyPosition();
+        }
+
         return randomPosition;
     }
 
