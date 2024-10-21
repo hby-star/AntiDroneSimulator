@@ -408,12 +408,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9358a16ab856f244193a531ef75c6ac7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Collider: {fileID: 5467417826075244357}
   moveSpeed: 12
   minDetectSizeInCamera: 0.03
   initialCameraFov: 0
   uiBoxPrefab: {fileID: 1759393386953110933, guid: 74ae50997a26c944198a7272b0ea8180, type: 3}
-  detectObstacleDistance: 3
-  avoidObstacleWeight: 5
+  avoid_1_distance: 1.5
+  avoid_2_distance: 2
+  avoidObstacleWeight: 4
   normalBulletEffectPrefab: {fileID: 4570384153189341703, guid: 50715d5bdb357fe4ca8fd22cf4ba6281, type: 3}
   electricInterferenceEffectPrefab: {fileID: 1987295054902432282, guid: 4edc5b3b2fe7b3c49b42e4f6dbb93f07, type: 3}
   explosionSound: {fileID: 8300000, guid: 3687869688c2b5c4fbe6103c9893f9c2, type: 3}

@@ -280,11 +280,97 @@ public class Drone : Entity
 
     # region 避障
 
-    [Header("Avoid Obstacle Info")] public float detectObstacleDistance = 5; // 避障距离
-
-    // To Optimize
+    [Header("Avoid Obstacle Info")]
     private Vector3 obstaclePosition;
     private float obstacleDistance;
+    public float avoid_1_distance = 1.5f;
+    public float avoid_2_distance = 2f;
+
+    private void OnDrawGizmos()
+    {
+        // 避障检测-1
+        Gizmos.color = Color.red;
+        foreach (var direction in directions)
+        {
+            Gizmos.DrawRay(transform.position, direction * avoid_1_distance);
+        }
+
+        // 避障检测-2
+        Collider collider = GetComponent<Collider>();
+        Gizmos.color = Color.green;
+        Vector3[] rayPositions =
+        {
+            collider.bounds.center+new Vector3(collider.bounds.size.x/2, collider.bounds.size.y/2, collider.bounds.size.z/2),
+            collider.bounds.center+new Vector3(-collider.bounds.size.x/2, collider.bounds.size.y/2, collider.bounds.size.z/2),
+            collider.bounds.center+new Vector3(collider.bounds.size.x/2, collider.bounds.size.y/2, -collider.bounds.size.z/2),
+            collider.bounds.center+new Vector3(-collider.bounds.size.x/2, collider.bounds.size.y/2, -collider.bounds.size.z/2),
+            collider.bounds.center+new Vector3(collider.bounds.size.x/2, -collider.bounds.size.y/2, collider.bounds.size.z/2),
+            collider.bounds.center+new Vector3(-collider.bounds.size.x/2, -collider.bounds.size.y/2, collider.bounds.size.z/2),
+            collider.bounds.center+new Vector3(collider.bounds.size.x/2, -collider.bounds.size.y/2, -collider.bounds.size.z/2),
+            collider.bounds.center+new Vector3(-collider.bounds.size.x/2, -collider.bounds.size.y/2, -collider.bounds.size.z/2),
+        };
+        Vector3 frontDirection = taskForce.normalized;
+        Vector3[] rayDirections =
+        {
+            // 正前方
+            frontDirection,
+            // 左前方-1
+            Quaternion.Euler(0, -30, 0) * frontDirection,
+            // 右前方-1
+            Quaternion.Euler(0, 30, 0) * frontDirection,
+            // 上前方-1
+            Quaternion.Euler(-30, 0, 0) * frontDirection,
+            // 下前方-1
+            Quaternion.Euler(30, 0, 0) * frontDirection,
+            // 左上前方-1
+            Quaternion.Euler(-30, -30, 0) * frontDirection,
+            // 右上前方-1
+            Quaternion.Euler(-30, 30, 0) * frontDirection,
+            // 左下前方-1
+            Quaternion.Euler(30, -30, 0) * frontDirection,
+            // 右下前方-1
+            Quaternion.Euler(30, 30, 0) * frontDirection,
+            // 左前方-2
+            Quaternion.Euler(0, -60, 0) * frontDirection,
+            // 右前方-2
+            Quaternion.Euler(0, 60, 0) * frontDirection,
+            // 上前方-2
+            Quaternion.Euler(-60, 0, 0) * frontDirection,
+            // 下前方-2
+            Quaternion.Euler(60, 0, 0) * frontDirection,
+            // 左上前方-2
+            Quaternion.Euler(-60, -60, 0) * frontDirection,
+            // 右上前方-2
+            Quaternion.Euler(-60, 60, 0) * frontDirection,
+            // 左下前方-2
+            Quaternion.Euler(60, -60, 0) * frontDirection,
+            // 左方
+            Quaternion.Euler(0, -90, 0) * frontDirection,
+            // 右方
+            Quaternion.Euler(0, 90, 0) * frontDirection,
+            // 上方
+            Quaternion.Euler(-90, 0, 0) * frontDirection,
+            // 下方
+            Quaternion.Euler(90, 0, 0) * frontDirection,
+            // 左后方
+            Quaternion.Euler(0, -135, 0) * frontDirection,
+            // 右后方
+            Quaternion.Euler(0, 135, 0) * frontDirection,
+            // 上后方
+            Quaternion.Euler(-135, 0, 0) * frontDirection,
+            // 下后方
+            Quaternion.Euler(135, 0, 0) * frontDirection,
+        };
+
+        foreach (var direction in rayDirections)
+        {
+            foreach(var rayPosition in rayPositions)
+            {
+                Gizmos.DrawRay(rayPosition, direction * avoid_2_distance);
+            }
+        }
+    }
+
 
     Vector3[] directions =
     {
@@ -304,11 +390,12 @@ public class Drone : Entity
 
     protected void AvoidObstacleUpdate()
     {
+        // 避障检测-1
         avoidObstacleForce = Vector3.zero;
         foreach (var direction in directions)
         {
             RaycastHit hit;
-            if (Physics.Raycast(transform.position, direction, out hit, 1.5f))
+            if (Physics.Raycast(transform.position, direction, out hit, avoid_1_distance))
             {
                 if (hit.collider.gameObject == gameObject || hit.collider.CompareTag("Bomb"))
                 {
@@ -322,11 +409,11 @@ public class Drone : Entity
             }
         }
 
+        // 避障检测-2
         if (taskForce == Vector3.zero)
         {
             return;
         }
-
         Vector3[] rayPositions =
         {
             Collider.bounds.center+new Vector3(Collider.bounds.size.x/2, Collider.bounds.size.y/2, Collider.bounds.size.z/2),
@@ -338,7 +425,6 @@ public class Drone : Entity
             Collider.bounds.center+new Vector3(Collider.bounds.size.x/2, -Collider.bounds.size.y/2, -Collider.bounds.size.z/2),
             Collider.bounds.center+new Vector3(-Collider.bounds.size.x/2, -Collider.bounds.size.y/2, -Collider.bounds.size.z/2),
         };
-
         Vector3 frontDirection = taskForce.normalized;
         Vector3[] rayDirections =
         {
@@ -352,6 +438,14 @@ public class Drone : Entity
             Quaternion.Euler(-30, 0, 0) * frontDirection,
             // 下前方-1
             Quaternion.Euler(30, 0, 0) * frontDirection,
+            // 左上前方-1
+            Quaternion.Euler(-30, -30, 0) * frontDirection,
+            // 右上前方-1
+            Quaternion.Euler(-30, 30, 0) * frontDirection,
+            // 左下前方-1
+            Quaternion.Euler(30, -30, 0) * frontDirection,
+            // 右下前方-1
+            Quaternion.Euler(30, 30, 0) * frontDirection,
             // 左前方-2
             Quaternion.Euler(0, -60, 0) * frontDirection,
             // 右前方-2
@@ -360,6 +454,12 @@ public class Drone : Entity
             Quaternion.Euler(-60, 0, 0) * frontDirection,
             // 下前方-2
             Quaternion.Euler(60, 0, 0) * frontDirection,
+            // 左上前方-2
+            Quaternion.Euler(-60, -60, 0) * frontDirection,
+            // 右上前方-2
+            Quaternion.Euler(-60, 60, 0) * frontDirection,
+            // 左下前方-2
+            Quaternion.Euler(60, -60, 0) * frontDirection,
             // 左方
             Quaternion.Euler(0, -90, 0) * frontDirection,
             // 右方
@@ -384,7 +484,7 @@ public class Drone : Entity
             foreach(var rayPosition in rayPositions)
             {
                 RaycastHit hit;
-                if (Physics.Raycast(rayPosition, direction, out hit, 2f))
+                if (Physics.Raycast(rayPosition, direction, out hit, avoid_2_distance))
                 {
                     if (hit.collider.CompareTag("Ground"))
                     {

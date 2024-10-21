@@ -72,16 +72,24 @@ public class Swarm : MonoBehaviour
     // 随机分配蜜源
     void RandomAssignHoney(int honeyCount)
     {
+        // honeyPositions = new List<Vector3>();
+        //
+        // for (int i = 0; i < honeyCount - 1; i++)
+        // {
+        //     honeyPositions.Add(GenerateRandomHoneyPosition());
+        // }
+        //
+        // // 最后一个蜜源位置为玩家位置
+        // Vector3 playerPosition = GameObject.FindGameObjectWithTag("Player").transform.position + Vector3.up*2;
+        // honeyPositions.Add(playerPosition);
+
         honeyPositions = new List<Vector3>();
+        Vector3 playerPosition = GameObject.FindGameObjectWithTag("Player").transform.position + Vector3.up*2;
 
-        for (int i = 0; i < honeyCount - 1; i++)
+        for (int i = 0; i < honeyCount; i++)
         {
-            honeyPositions.Add(GenerateRandomHoneyPosition());
+            honeyPositions.Add(playerPosition);
         }
-
-        // 最后一个蜜源位置为玩家位置
-        Vector3 playerPosition = GameObject.FindGameObjectWithTag("Player").transform.position + Vector3.up;
-        honeyPositions.Add(playerPosition);
     }
 
     public Vector3 GenerateRandomHoneyPosition()

@@ -57,18 +57,18 @@ public class AttackDrone : Drone
     [NonSerialized] public GameObject bomb = null;
     public float bombBelowLength = 0.1f;
 
-    float lastUpdateTime = 0;
-    float updateInterval = 0.5f;
+    // float lastUpdateTime = 0;
+    // float updateInterval = 0.5f;
 
     void AttackDroneUpdate()
     {
-        if (Time.time - lastUpdateTime < updateInterval)
-        {
-            return;
-        }
-
-        updateInterval = Random.Range(0.3f, 0.7f);
-        lastUpdateTime = Time.time;
+        // if (Time.time - lastUpdateTime < updateInterval)
+        // {
+        //     return;
+        // }
+        //
+        // updateInterval = Random.Range(0.3f, 0.7f);
+        // lastUpdateTime = Time.time;
 
 
         if (hasBomb)
@@ -103,7 +103,7 @@ public class AttackDrone : Drone
                 {
                     FoundPlayer = true;
                     // 向蜂群广播玩家位置
-                    swarm.OnDetectDroneFoundPlayer(targetPlayer.transform.position + Vector3.up);
+                    swarm.OnDetectDroneFoundPlayer(targetPlayer.transform.position + Vector3.up * 2);
                 }
             }
             else
@@ -128,7 +128,7 @@ public class AttackDrone : Drone
                 if (isPlayerDetectedInCamera)
                 {
                     // 向蜂群广播玩家位置
-                    swarm.OnDetectDroneFoundPlayer(targetPlayer.transform.position + Vector3.up);
+                    swarm.OnDetectDroneFoundPlayer(targetPlayer.transform.position + Vector3.up * 2);
                 }
                 else
                 {
@@ -161,7 +161,7 @@ public class AttackDrone : Drone
     void AttackDroneMoveToTarget()
     {
         // 无人机到玩家的距离
-        float distanceToPlayer = (targetPlayer.transform.position + Vector3.up - transform.position).magnitude;
+        float distanceToPlayer = (targetPlayer.transform.position + Vector3.up * 2 - transform.position).magnitude;
 
         // 如果玩家距离侦查无人机较近，则投放炸弹，然后返回蜂巢
         if (distanceToPlayer < throwBombRadius)
@@ -199,10 +199,10 @@ public class AttackDrone : Drone
     void AttackDroneHitPlayer()
     {
         // 更新目标位置
-        attackDroneTargetPosition = targetPlayer.transform.position + Vector3.up;
+        attackDroneTargetPosition = targetPlayer.transform.position + Vector3.up * 2;
 
         // 侦查无人机到玩家的距离
-        float distanceToPlayer = (targetPlayer.transform.position + Vector3.up - transform.position).magnitude;
+        float distanceToPlayer = (targetPlayer.transform.position + Vector3.up * 2 - transform.position).magnitude;
 
         // 如果玩家距离侦查无人机较近，则投放炸弹，然后返回蜂巢
         if (distanceToPlayer < throwBombRadius)
@@ -214,7 +214,7 @@ public class AttackDrone : Drone
         // 如果玩家距离侦查无人机较远，则继续追踪
         else
         {
-            Vector3 trackForce = targetPlayer.transform.position + Vector3.up - transform.position;
+            Vector3 trackForce = targetPlayer.transform.position + Vector3.up * 2 - transform.position;
             taskForce = trackForce.normalized;
         }
     }

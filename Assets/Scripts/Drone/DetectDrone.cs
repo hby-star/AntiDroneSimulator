@@ -50,18 +50,18 @@ public class DetectDrone : Drone
     [Header("Detect Drone Info")] public Swarm swarm;
     public Vector3 detectDroneTargetPosition;
 
-    float lastUpdateTime = 0;
-    float updateInterval = 0.2f;
+    // float lastUpdateTime = 0;
+    // float updateInterval = 0.2f;
 
     void DetectDroneUpdate()
     {
-        if (Time.time - lastUpdateTime < updateInterval)
-        {
-            return;
-        }
-
-        updateInterval = Random.Range(0.1f, 0.3f);
-        lastUpdateTime = Time.time;
+        // if (Time.time - lastUpdateTime < updateInterval)
+        // {
+        //     return;
+        // }
+        //
+        // updateInterval = Random.Range(0.1f, 0.3f);
+        // lastUpdateTime = Time.time;
 
 
         if (!FoundPlayer)
@@ -80,7 +80,7 @@ public class DetectDrone : Drone
             {
                 FoundPlayer = true;
                 // 向蜂群广播玩家位置
-                swarm.OnDetectDroneFoundPlayer(targetPlayer.transform.position + Vector3.up);
+                swarm.OnDetectDroneFoundPlayer(targetPlayer.transform.position + Vector3.up * 2);
             }
         }
         else
@@ -104,7 +104,7 @@ public class DetectDrone : Drone
             if (isPlayerDetectedInCamera)
             {
                 // 向蜂群广播玩家位置
-                swarm.OnDetectDroneFoundPlayer(targetPlayer.transform.position + Vector3.up);
+                swarm.OnDetectDroneFoundPlayer(targetPlayer.transform.position + Vector3.up * 2);
             }
             else
             {
@@ -133,18 +133,18 @@ public class DetectDrone : Drone
     void DetectDroneTrackPlayer()
     {
         // 更新目标位置
-        detectDroneTargetPosition = targetPlayer.transform.position + Vector3.up;
+        detectDroneTargetPosition = targetPlayer.transform.position + Vector3.up * 2;
 
         // 侦查无人机到玩家的距离
-        Vector3 directionToPlayer = targetPlayer.transform.position + Vector3.up - transform.position;
+        Vector3 directionToPlayer = targetPlayer.transform.position + Vector3.up * 2 - transform.position;
         float horDistanceToPlayer = new Vector3(directionToPlayer.x, 0, directionToPlayer.z).magnitude;
         float verDistanceToPlayer = directionToPlayer.y;
 
         // 如果玩家距离侦查无人机较近，则随机移动
         float random_size = 1f;
-        if (horDistanceToPlayer < 30f)
+        if (horDistanceToPlayer < 10f)
         {
-            if (horDistanceToPlayer < 20f)
+            if (horDistanceToPlayer < 5f)
             {
                 taskForce = -directionToPlayer.normalized;
             }
