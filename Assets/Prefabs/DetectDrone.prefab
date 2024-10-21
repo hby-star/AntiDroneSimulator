@@ -408,13 +408,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9358a16ab856f244193a531ef75c6ac7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Collider: {fileID: 5467417826075244357}
   moveSpeed: 12
   minDetectSizeInCamera: 0.03
   initialCameraFov: 0
   uiBoxPrefab: {fileID: 1759393386953110933, guid: 74ae50997a26c944198a7272b0ea8180, type: 3}
   avoid_1_distance: 1.5
+  avoid_1_ground_distance: 0.5
   avoid_2_distance: 2
+  droneColliderHeight: 1
+  droneColliderSize: 3
   avoidObstacleWeight: 4
   normalBulletEffectPrefab: {fileID: 4570384153189341703, guid: 50715d5bdb357fe4ca8fd22cf4ba6281, type: 3}
   electricInterferenceEffectPrefab: {fileID: 1987295054902432282, guid: 4edc5b3b2fe7b3c49b42e4f6dbb93f07, type: 3}
@@ -541,8 +543,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 3.1828609, y: 0.93861943, z: 3.0687697}
-  m_Center: {x: -0.007445216, y: 0.18168421, z: -0.008284648}
+  m_Size: {x: 3, y: 1, z: 3}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2077614911912810416
 GameObject:
   m_ObjectHideFlags: 0
@@ -694,7 +696,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.55
+  near clip plane: 0.35
   far clip plane: 1000
   field of view: 60
   orthographic: 0
