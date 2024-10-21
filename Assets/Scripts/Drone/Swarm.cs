@@ -80,7 +80,7 @@ public class Swarm : MonoBehaviour
         }
 
         // 最后一个蜜源位置为玩家位置
-        Vector3 playerPosition = GameObject.FindGameObjectWithTag("Player").transform.position;
+        Vector3 playerPosition = GameObject.FindGameObjectWithTag("Player").transform.position + Vector3.up;
         honeyPositions.Add(playerPosition);
     }
 

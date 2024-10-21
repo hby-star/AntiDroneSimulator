@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5076268483000900838}
   m_Layer: 0
   m_Name: Rotor4
-  m_TagString: Untagged
+  m_TagString: Drone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 7191378195230768839}
   m_Layer: 0
   m_Name: Rotor2
-  m_TagString: Untagged
+  m_TagString: Drone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -179,7 +179,7 @@ GameObject:
   - component: {fileID: 2123852238431250299}
   m_Layer: 0
   m_Name: Body
-  m_TagString: Untagged
+  m_TagString: Drone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -262,7 +262,7 @@ GameObject:
   - component: {fileID: 7524329109986416302}
   m_Layer: 0
   m_Name: Rotor1
-  m_TagString: Untagged
+  m_TagString: Drone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -412,8 +412,8 @@ MonoBehaviour:
   minDetectSizeInCamera: 0.03
   initialCameraFov: 0
   uiBoxPrefab: {fileID: 1759393386953110933, guid: 74ae50997a26c944198a7272b0ea8180, type: 3}
-  detectObstacleDistance: 5
-  avoidObstacleWeight: 2
+  detectObstacleDistance: 3
+  avoidObstacleWeight: 5
   normalBulletEffectPrefab: {fileID: 4570384153189341703, guid: 50715d5bdb357fe4ca8fd22cf4ba6281, type: 3}
   electricInterferenceEffectPrefab: {fileID: 1987295054902432282, guid: 4edc5b3b2fe7b3c49b42e4f6dbb93f07, type: 3}
   explosionSound: {fileID: 8300000, guid: 3687869688c2b5c4fbe6103c9893f9c2, type: 3}
@@ -539,8 +539,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 4.1803503, y: 1.0007782, z: 4.106372}
-  m_Center: {x: 0.00000009934107, y: 0.17723729, z: -0.025773842}
+  m_Size: {x: 3.1828609, y: 0.93861943, z: 3.0687697}
+  m_Center: {x: -0.007445216, y: 0.18168421, z: -0.008284648}
 --- !u!1 &2077614911912810416
 GameObject:
   m_ObjectHideFlags: 0
@@ -552,7 +552,7 @@ GameObject:
   - component: {fileID: 7084627472504537766}
   m_Layer: 0
   m_Name: CameraPosition
-  m_TagString: Untagged
+  m_TagString: Drone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -566,7 +566,7 @@ Transform:
   m_GameObject: {fileID: 2077614911912810416}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.6, z: 0}
+  m_LocalPosition: {x: 0, y: -0.2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -585,7 +585,7 @@ GameObject:
   - component: {fileID: 1292195059317171181}
   m_Layer: 0
   m_Name: AnimatedGO
-  m_TagString: Untagged
+  m_TagString: Drone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -641,7 +641,7 @@ GameObject:
   - component: {fileID: 9085467670464041449}
   m_Layer: 0
   m_Name: Camera
-  m_TagString: Untagged
+  m_TagString: Drone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -655,7 +655,7 @@ Transform:
   m_GameObject: {fileID: 5559101479194876116}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.117, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -692,7 +692,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
+  near clip plane: 0.55
   far clip plane: 1000
   field of view: 60
   orthographic: 0
@@ -767,7 +767,7 @@ GameObject:
   - component: {fileID: 8376251824022485648}
   m_Layer: 0
   m_Name: FixRotation
-  m_TagString: Untagged
+  m_TagString: Drone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -801,7 +801,7 @@ GameObject:
   - component: {fileID: 6050463785930693526}
   m_Layer: 0
   m_Name: Rotor3
-  m_TagString: Untagged
+  m_TagString: Drone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -883,7 +883,7 @@ GameObject:
   - component: {fileID: 1516163198716476928}
   m_Layer: 0
   m_Name: Propelers
-  m_TagString: Untagged
+  m_TagString: Drone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

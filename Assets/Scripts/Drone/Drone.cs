@@ -286,34 +286,80 @@ public class Drone : Entity
     private Vector3 obstaclePosition;
     private float obstacleDistance;
 
-    // Vector3[] directions =
-    // {
-    //     Vector3.forward, -Vector3.forward, Vector3.right, -Vector3.right, Vector3.up, -Vector3.up,
-    //     Vector3.forward + Vector3.right + Vector3.up, Vector3.forward + Vector3.right - Vector3.up,
-    //     Vector3.forward - Vector3.right + Vector3.up, Vector3.forward - Vector3.right - Vector3.up,
-    //     -Vector3.forward + Vector3.right + Vector3.up, -Vector3.forward + Vector3.right - Vector3.up,
-    //     -Vector3.forward - Vector3.right + Vector3.up, -Vector3.forward - Vector3.right - Vector3.up,
-    //     Vector3.forward + Vector3.right, Vector3.forward - Vector3.right,
-    //     -Vector3.forward + Vector3.right, -Vector3.forward - Vector3.right,
-    //     Vector3.forward + Vector3.up, Vector3.forward - Vector3.up,
-    //     -Vector3.forward + Vector3.up, -Vector3.forward - Vector3.up,
-    //     Vector3.right + Vector3.up, Vector3.right - Vector3.up,
-    //     -Vector3.right + Vector3.up, -Vector3.right - Vector3.up
-    // };
+    Vector3[] directions =
+    {
+        Vector3.forward, -Vector3.forward, Vector3.right, -Vector3.right, Vector3.up, -Vector3.up,
+        Vector3.forward + Vector3.right + Vector3.up, Vector3.forward + Vector3.right - Vector3.up,
+        Vector3.forward - Vector3.right + Vector3.up, Vector3.forward - Vector3.right - Vector3.up,
+        -Vector3.forward + Vector3.right + Vector3.up, -Vector3.forward + Vector3.right - Vector3.up,
+        -Vector3.forward - Vector3.right + Vector3.up, -Vector3.forward - Vector3.right - Vector3.up,
+        Vector3.forward + Vector3.right, Vector3.forward - Vector3.right,
+        -Vector3.forward + Vector3.right, -Vector3.forward - Vector3.right,
+        Vector3.forward + Vector3.up, Vector3.forward - Vector3.up,
+        -Vector3.forward + Vector3.up, -Vector3.forward - Vector3.up,
+        Vector3.right + Vector3.up, Vector3.right - Vector3.up,
+        -Vector3.right + Vector3.up, -Vector3.right - Vector3.up
+    };
     // Optimize End
 
     protected void AvoidObstacleUpdate()
     {
+        avoidObstacleForce = Vector3.zero;
+        foreach (var direction in directions)
+        {
+            RaycastHit hit;
+            if (Physics.Raycast(transform.position, direction, out hit, 1.5f))
+            {
+                if (hit.collider.gameObject == gameObject || hit.collider.CompareTag("Bomb"))
+                {
+                    continue;
+                }
+
+                if (hit.collider.CompareTag("Ground") || hit.collider.CompareTag("Drone"))
+                {
+                    avoidObstacleForce += (transform.position - hit.point).normalized;
+                }
+            }
+        }
+
         if (taskForce == Vector3.zero)
         {
             return;
         }
+
+        Vector3[] rayPositions =
+        {
+            Collider.bounds.center+new Vector3(Collider.bounds.size.x/2, Collider.bounds.size.y/2, Collider.bounds.size.z/2),
+            Collider.bounds.center+new Vector3(-Collider.bounds.size.x/2, Collider.bounds.size.y/2, Collider.bounds.size.z/2),
+            Collider.bounds.center+new Vector3(Collider.bounds.size.x/2, Collider.bounds.size.y/2, -Collider.bounds.size.z/2),
+            Collider.bounds.center+new Vector3(-Collider.bounds.size.x/2, Collider.bounds.size.y/2, -Collider.bounds.size.z/2),
+            Collider.bounds.center+new Vector3(Collider.bounds.size.x/2, -Collider.bounds.size.y/2, Collider.bounds.size.z/2),
+            Collider.bounds.center+new Vector3(-Collider.bounds.size.x/2, -Collider.bounds.size.y/2, Collider.bounds.size.z/2),
+            Collider.bounds.center+new Vector3(Collider.bounds.size.x/2, -Collider.bounds.size.y/2, -Collider.bounds.size.z/2),
+            Collider.bounds.center+new Vector3(-Collider.bounds.size.x/2, -Collider.bounds.size.y/2, -Collider.bounds.size.z/2),
+        };
 
         Vector3 frontDirection = taskForce.normalized;
         Vector3[] rayDirections =
         {
             // 正前方
             frontDirection,
+            // 左前方-1
+            Quaternion.Euler(0, -30, 0) * frontDirection,
+            // 右前方-1
+            Quaternion.Euler(0, 30, 0) * frontDirection,
+            // 上前方-1
+            Quaternion.Euler(-30, 0, 0) * frontDirection,
+            // 下前方-1
+            Quaternion.Euler(30, 0, 0) * frontDirection,
+            // 左前方-2
+            Quaternion.Euler(0, -60, 0) * frontDirection,
+            // 右前方-2
+            Quaternion.Euler(0, 60, 0) * frontDirection,
+            // 上前方-2
+            Quaternion.Euler(-60, 0, 0) * frontDirection,
+            // 下前方-2
+            Quaternion.Euler(60, 0, 0) * frontDirection,
             // 左方
             Quaternion.Euler(0, -90, 0) * frontDirection,
             // 右方
@@ -334,19 +380,16 @@ public class Drone : Entity
 
         foreach (var direction in rayDirections)
         {
-            Collider[] colliders = Physics.OverlapBox(transform.position + direction * Collider.bounds.size.x / 2,
-                Collider.bounds.size / 2);
             bool canMove = true;
-            foreach (var collider in colliders)
+            foreach(var rayPosition in rayPositions)
             {
-                if (collider.gameObject == gameObject || collider.CompareTag("Bomb"))
+                RaycastHit hit;
+                if (Physics.Raycast(rayPosition, direction, out hit, 2f))
                 {
-                    continue;
-                }
-
-                if (collider.CompareTag("Ground") || collider.CompareTag("Drone"))
-                {
-                    canMove = false;
+                    if (hit.collider.CompareTag("Ground"))
+                    {
+                        canMove = false;
+                    }
                 }
             }
 
@@ -355,69 +398,10 @@ public class Drone : Entity
                 taskForce = direction;
                 return;
             }
-            // RaycastHit hit;
-            //
-            // if (Physics.Raycast(transform.position, direction, out hit, detectObstacleDistance))
-            // {
-            //     if (hit.collider.CompareTag("Drone") || hit.collider.CompareTag("Ground"))
-            //     {
-            //         continue;
-            //     }
-            //     else
-            //     {
-            //         taskForce = direction.normalized;
-            //         return;
-            //     }
-            // }
         }
 
-
-        // GetObstacleRelativePosition();
-        // if (obstacleDistance < detectObstacleDistance)
-        // {
-        //     avoidObstacleForce = -obstaclePosition.normalized;
-        //     avoidObstacleForce.y += UnityEngine.Random.Range(0.2f, 0.5f);
-        // }
-        // else
-        // {
-        //     // Collider[] colliders = Physics.OverlapBox(transform.position,
-        //     //     Collider.bounds.size);
-        //     // foreach (var collider in colliders)
-        //     // {
-        //     //     if (Collider.CompareTag("Ground"))
-        //     //     {
-        //     //         avoidObstacleForce = (transform.position - collider.transform.position).normalized;
-        //     //         avoidObstacleForce.y += 1f;
-        //     //         return;
-        //     //     }
-        //     // }
-        //
-        //     avoidObstacleForce = Vector3.zero;
-        // }
+        taskForce = Quaternion.Euler(0, 180, 0) * taskForce;
     }
-
-    // public void GetObstacleRelativePosition()
-    // {
-    //     obstacleDistance = detectObstacleDistance + 1f;
-    //
-    //     // 检测前后左右上下以及更多方向的障碍物
-    //     foreach (var direction in directions)
-    //     {
-    //         RaycastHit hit;
-    //         if (Physics.Raycast(transform.position, direction, out hit, detectObstacleDistance))
-    //         {
-    //             // 忽略玩家和自身和炸弹
-    //             if (hit.collider.CompareTag("Drone") || hit.collider.CompareTag("Ground"))
-    //             {
-    //                 if (hit.distance < obstacleDistance)
-    //                 {
-    //                     obstacleDistance = hit.distance;
-    //                     obstaclePosition = hit.point - transform.position;
-    //                 }
-    //             }
-    //         }
-    //     }
-    // }
 
     # endregion
 
@@ -430,8 +414,7 @@ public class Drone : Entity
     // 根据MoveForce移动
     protected void Move()
     {
-        //Vector3 moveForce = avoidObstacleForce * avoidObstacleWeight + taskForce;
-        Vector3 moveForce = taskForce;
+        Vector3 moveForce = avoidObstacleForce * avoidObstacleWeight + taskForce;
 
         if (moveForce == Vector3.zero)
         {
