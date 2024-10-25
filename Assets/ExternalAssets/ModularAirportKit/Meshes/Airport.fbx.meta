@@ -1,0 +1,179 @@
+fileFormatVersion: 2
+guid: 02b2722006b84c04e97f88bb2b9a0981
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: Airport
+    100004: AirportCloserDual
+    100006: AirportCloserSingle
+    100008: Bench
+    100010: BigMonitor
+    100012: CloseWall
+    100014: Doo_02
+    100016: Door
+    100018: Door1
+    100020: Door2
+    100022: Door_01
+    100024: Flowerpot
+    100026: Door_02
+    100028: FlowerPot
+    100030: Door3
+    400000: //RootNode
+    400002: Airport
+    400004: AirportCloserDual
+    400006: AirportCloserSingle
+    400008: Bench
+    400010: BigMonitor
+    400012: CloseWall
+    400014: Doo_02
+    400016: Door
+    400018: Door1
+    400020: Door2
+    400022: Door_01
+    400024: Flowerpot
+    400026: Door_02
+    400028: FlowerPot
+    400030: Door3
+    2300000: //RootNode
+    2300002: Airport
+    2300004: AirportCloserDual
+    2300006: AirportCloserSingle
+    2300008: Bench
+    2300010: BigMonitor
+    2300012: CloseWall
+    2300014: Doo_02
+    2300016: Door
+    2300018: Door1
+    2300020: Door2
+    2300022: Door_01
+    2300024: Flowerpot
+    2300026: Door_02
+    2300028: FlowerPot
+    2300030: Door3
+    3300000: //RootNode
+    3300002: Airport
+    3300004: AirportCloserDual
+    3300006: AirportCloserSingle
+    3300008: Bench
+    3300010: BigMonitor
+    3300012: CloseWall
+    3300014: Doo_02
+    3300016: Door
+    3300018: Door1
+    3300020: Door2
+    3300022: Door_01
+    3300024: Flowerpot
+    3300026: Door_02
+    3300028: FlowerPot
+    3300030: Door3
+    4300000: pCube20
+    4300002: polySurface4
+    4300004: polySurface81
+    4300006: polySurface338
+    4300008: polySurface451
+    4300010: polySurface475
+    4300012: polySurface775
+    4300014: CloseWall
+    4300016: AirportCloserDual
+    4300018: Flowerpot
+    4300020: Door_01
+    4300022: Door
+    4300024: AirportCloserSingle
+    4300026: BigMonitor
+    4300028: Bench
+    4300030: Door1
+    4300032: Door2
+    4300034: Doo_02
+    4300036: Airport
+    4300038: Door_02
+    4300040: FlowerPot
+    4300042: Door3
+    9500000: //RootNode
+    2186277476908879412: ImportLogs
+  externalObjects: {}
+  materials:
+    importMaterials: 0
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 100
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
+  tangentSpace:
+    normalSmoothAngle: 50
+    normalImportMode: 1
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 1
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 0
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
