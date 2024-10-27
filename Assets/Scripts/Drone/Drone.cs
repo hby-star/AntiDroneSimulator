@@ -345,6 +345,7 @@ public class Drone : Entity
     }
 
     public RectTransform uiBoxPrefab;
+    public RectTransform agentUiBoxPrefab;
     private RectTransform uiBox;
     private List<RectTransform> otherUiBoxes = new List<RectTransform>();
 
@@ -355,7 +356,7 @@ public class Drone : Entity
         uiBox.gameObject.SetActive(false);
         for (int i = 0; i < otherPlayers.Count; i++)
         {
-            RectTransform otherUiBox = Instantiate(uiBoxPrefab, CameraManager.Instance.display2.transform);
+            RectTransform otherUiBox = Instantiate(agentUiBoxPrefab, CameraManager.Instance.display2.transform);
             otherUiBox.transform.SetParent(CameraManager.Instance.display2.transform);
             otherUiBox.gameObject.SetActive(false);
             otherUiBoxes.Add(otherUiBox);
