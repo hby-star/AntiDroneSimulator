@@ -70,7 +70,7 @@ public class Swarm : MonoBehaviour
     }
 
     // 随机分配蜜源
-    void RandomAssignHoney(int honeyCount)
+    void AssignHoney(int honeyCount)
     {
         // honeyPositions = new List<Vector3>();
         //
@@ -84,11 +84,19 @@ public class Swarm : MonoBehaviour
         // honeyPositions.Add(playerPosition);
 
         honeyPositions = new List<Vector3>();
-        Vector3 playerPosition = GameObject.FindGameObjectWithTag("Player").transform.position + Vector3.up*2;
+        List<Vector3> playerPositions = new List<Vector3>();
 
+        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+        foreach (var player in players)
+        {
+            Vector3 playerPosition = player.transform.position + Vector3.up*2;
+            playerPositions.Add(playerPosition);
+        }
+
+        int playerCount = playerPositions.Count;
         for (int i = 0; i < honeyCount; i++)
         {
-            honeyPositions.Add(playerPosition);
+            honeyPositions.Add(playerPositions[i % playerCount]);
         }
     }
 
@@ -139,7 +147,7 @@ public class Swarm : MonoBehaviour
 
     void Start()
     {
-        RandomAssignHoney(detectDrones.Count);
+        AssignHoney(detectDrones.Count);
         AssignHoneyToDetectDrones();
     }
 

@@ -64,9 +64,11 @@ public class Drone : Entity
     # region 摄像机检测和跟随玩家
 
     [Header("Camera Info")] protected Player targetPlayer;
+    protected List<Player> otherPlayers = new List<Player>();
     [NonSerialized] public bool FoundPlayer = false;
     public float minDetectSizeInCamera = 0.0005f;
     protected Rect targetRect;
+    protected List<Rect> otherTargetRects = new List<Rect>();
     protected bool isPlayerDetectedInCamera = false;
     public float initialCameraFov;
 
@@ -81,6 +83,7 @@ public class Drone : Entity
 
     // List<Vector3[]> playerRenderersBounds = new List<Vector3[]>();
     List<Collider> playerRenderers = new List<Collider>();
+    List<List<Collider>> otherPlayerRenderers = new List<List<Collider>>();
     Rect cameraRect;
     // Optimize End
 
@@ -89,13 +92,22 @@ public class Drone : Entity
         Camera.enabled = true;
         initialCameraFov = Camera.fieldOfView;
 
-        UIBoxInit();
-
-
         // To optimize
         if (!targetPlayer)
         {
-            targetPlayer = FindObjectOfType<Player>();
+
+            Player[] players = GameObject.FindObjectsOfType<Player>();
+            foreach (var player in players)
+            {
+                if (player.isLeader)
+                {
+                    targetPlayer = player;
+                }
+                else
+                {
+                    otherPlayers.Add(player);
+                }
+            }
         }
 
         displayWidth = Screen.width;
@@ -117,6 +129,8 @@ public class Drone : Entity
         minSizeTimesCameraRate = minDetectSizeInCamera * cameraRate;
         cameraRect = Camera.rect;
         // optimize end
+
+        UIBoxInit();
     }
     // float lastCameraUpdateTime = 0;
     // float cameraUpdateInterval = 0.1f;
@@ -126,6 +140,11 @@ public class Drone : Entity
         if (playerRenderers.Count == 0)
         {
             playerRenderers = targetPlayer.playerRenderers;
+            for (int i = 0; i < otherPlayers.Count; i++)
+            {
+                otherPlayerRenderers.Add(otherPlayers[i].playerRenderers);
+                otherTargetRects.Add(new Rect(0, 0, 0, 0));
+            }
         }
 
         Vector3 targetPosition = targetPlayer.transform.position;
@@ -249,17 +268,98 @@ public class Drone : Entity
             Camera.fieldOfView = Mathf.Lerp(Camera.fieldOfView, initialCameraFov, Time.deltaTime / 4f);
         }
 
+        // 计算其他玩家的边界框
+        for (int i = 0; i < otherPlayers.Count; i++)
+        {
+            // 初始化 min 和 max 为极大值和极小值
+            min = new Vector3(float.MaxValue, float.MaxValue, 0);
+            max = new Vector3(float.MinValue, float.MinValue, 0);
+
+            for (int j = 0; j < otherPlayerRenderers[i].Count; j++)
+            {
+                Bounds playerBounds = otherPlayerRenderers[i][j].bounds;
+                Vector3[] corners = new Vector3[8];
+                corners[0] = playerBounds.center +
+                             new Vector3(-playerBounds.extents.x, playerBounds.extents.y, -playerBounds.extents.z);
+                corners[1] = playerBounds.center +
+                             new Vector3(playerBounds.extents.x, playerBounds.extents.y, -playerBounds.extents.z);
+                corners[2] = playerBounds.center +
+                             new Vector3(-playerBounds.extents.x, playerBounds.extents.y, playerBounds.extents.z);
+                corners[3] = playerBounds.center +
+                             new Vector3(playerBounds.extents.x, playerBounds.extents.y, playerBounds.extents.z);
+                corners[4] = playerBounds.center +
+                             new Vector3(-playerBounds.extents.x, -playerBounds.extents.y, -playerBounds.extents.z);
+                corners[5] = playerBounds.center +
+                             new Vector3(playerBounds.extents.x, -playerBounds.extents.y, -playerBounds.extents.z);
+                corners[6] = playerBounds.center +
+                             new Vector3(-playerBounds.extents.x, -playerBounds.extents.y, playerBounds.extents.z);
+                corners[7] = playerBounds.center +
+                             new Vector3(playerBounds.extents.x, -playerBounds.extents.y, playerBounds.extents.z);
+
+                for (int k = 0; k < 8; k++)
+                {
+                    Vector3 screenPoint = Camera.WorldToScreenPoint(corners[k]);
+                    min.x = Mathf.Min(min.x, screenPoint.x);
+                    min.y = Mathf.Min(min.y, screenPoint.y);
+                    max.x = Mathf.Max(max.x, screenPoint.x);
+                    max.y = Mathf.Max(max.y, screenPoint.y);
+                }
+            }
+
+            // 将物体的屏幕坐标转换到摄像机的视口空间
+            minX = min.x / displayWidth;
+            maxX = max.x / displayWidth;
+            minY = min.y / displayHeight;
+            maxY = max.y / displayHeight;
+            centerX = (minX + maxX) / 2;
+            centerY = (minY + maxY) / 2;
+
+            // 检查物体是否在当前摄像机的视口内
+            isInCameraView = (centerX > cameraRect.x && centerX < cameraRect.x + cameraRect.width &&
+                              centerY > cameraRect.y && centerY < cameraRect.y + cameraRect.height);
+            // 检查物体是否被遮挡
+            isVisible = true;
+            if (Physics.Linecast(Camera.transform.position,
+                otherPlayers[i].transform.position +
+                otherPlayers[i].standColliderHeight / 2 * Vector3.up,
+                out RaycastHit _hit))
+            {
+                if (!_hit.collider.CompareTag("Player"))
+                {
+                    isVisible = false;
+                }
+            }
+
+            if (isVisible && isInCameraView && (maxY - minY > minSizeTimesCameraRate || FoundPlayer))
+            {
+                otherTargetRects[i] = new Rect(min.x, displayHeight - max.y, max.x - min.x, max.y - min.y);
+            }
+            else
+            {
+                otherTargetRects[i] = new Rect(0, 0, 0, 0);
+            }
+
+        }
+
         UIBoxUpdate();
     }
 
     public RectTransform uiBoxPrefab;
     private RectTransform uiBox;
+    private List<RectTransform> otherUiBoxes = new List<RectTransform>();
 
     void UIBoxInit()
     {
         uiBox = Instantiate(uiBoxPrefab, CameraManager.Instance.display2.transform);
         uiBox.transform.SetParent(CameraManager.Instance.display2.transform);
         uiBox.gameObject.SetActive(false);
+        for (int i = 0; i < otherPlayers.Count; i++)
+        {
+            RectTransform otherUiBox = Instantiate(uiBoxPrefab, CameraManager.Instance.display2.transform);
+            otherUiBox.transform.SetParent(CameraManager.Instance.display2.transform);
+            otherUiBox.gameObject.SetActive(false);
+            otherUiBoxes.Add(otherUiBox);
+        }
     }
 
     void UIBoxUpdate()
@@ -274,6 +374,21 @@ public class Drone : Entity
         else
         {
             uiBox.gameObject.SetActive(false);
+        }
+
+        for (int i = 0; i < otherTargetRects.Count; i++)
+        {
+            if (otherTargetRects[i].width > 0)
+            {
+                otherUiBoxes[i].anchoredPosition = new Vector2(otherTargetRects[i].x - halfDisplayWidth + otherTargetRects[i].width / 2,
+                    -otherTargetRects[i].y + halfDisplayHeight - otherTargetRects[i].height / 2);
+                otherUiBoxes[i].sizeDelta = new Vector2(otherTargetRects[i].width, otherTargetRects[i].height);
+                otherUiBoxes[i].gameObject.SetActive(true);
+            }
+            else
+            {
+                otherUiBoxes[i].gameObject.SetActive(false);
+            }
         }
     }
 
@@ -343,7 +458,6 @@ public class Drone : Entity
         //     }
         // }
     }
-
 
     Vector3[] directions =
     {
