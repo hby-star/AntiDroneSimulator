@@ -271,6 +271,11 @@ public class Drone : Entity
         // 计算其他玩家的边界框
         for (int i = 0; i < otherPlayers.Count; i++)
         {
+            if (!otherPlayers[i])
+            {
+                continue;
+            }
+
             // 初始化 min 和 max 为极大值和极小值
             min = new Vector3(float.MaxValue, float.MaxValue, 0);
             max = new Vector3(float.MinValue, float.MinValue, 0);
@@ -776,6 +781,11 @@ public class Drone : Entity
     private void Die()
     {
         uiBox.gameObject.SetActive(false);
+        for (int i = 0; i < otherUiBoxes.Count; i++)
+        {
+            otherUiBoxes[i].gameObject.SetActive(false);
+        }
+
         flySoundSource.Stop();
         Destroy(gameObject);
     }

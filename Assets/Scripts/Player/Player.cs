@@ -38,7 +38,14 @@ public class Player : Entity
         }
         else
         {
-            GameManager.Instance.GameFail();
+            if (isLeader)
+            {
+                GameManager.Instance.GameFail();
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
         }
     }
 
