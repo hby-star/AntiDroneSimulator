@@ -338,7 +338,7 @@ public class Player : Entity
 
         AttackStart();
 
-        SetOperate(InputManager.Instance.currentEntity is Player);
+        SetOperate(InputManager.Instance.currentEntity is Player && isLeader);
     }
 
     protected override void Update()
@@ -429,23 +429,25 @@ public class Player : Entity
 
     #region Handle Input
 
-    public float HorizontalInput { get; private set; }
-    public float VerticalInput { get; private set; }
-    public bool JumpInput { get; private set; }
-    public bool DashInput { get; private set; }
-    public bool CrouchInput { get; private set; }
-    public bool AttackInput { get; private set; }
-    public bool ReloadInput { get; private set; }
-    public bool ChangeGunInput { get; private set; }
-    public float CameraHorizontalInput { get; private set; }
-    public float CameraVerticalInput { get; private set; }
+    [Header("Input Info")] public bool isLeader;
+
+    [NonSerialized] public float HorizontalInput;
+    [NonSerialized] public float VerticalInput;
+    [NonSerialized] public bool JumpInput;
+    [NonSerialized] public bool DashInput;
+    [NonSerialized] public bool CrouchInput;
+    [NonSerialized] public bool AttackInput;
+    [NonSerialized] public bool ReloadInput;
+    [NonSerialized] public bool ChangeGunInput;
+    [NonSerialized] public float CameraHorizontalInput;
+    [NonSerialized] public float CameraVerticalInput;
 
     // Interact with vehicle
-    public bool PlayerEnterVehicleInput { get; private set; }
-    public bool PlayerUseVehicleEmpInput { get; private set; }
-    public bool PlayerUseVehicleRadarInput { get; private set; }
-    public bool PlayerUseVehicleElectromagneticInterferenceInput { get; private set; }
-    public bool PlayerPlacePickupShieldInput { get; private set; }
+    [NonSerialized] public bool PlayerEnterVehicleInput;
+    [NonSerialized] public bool PlayerUseVehicleEmpInput;
+    [NonSerialized] public bool PlayerUseVehicleRadarInput;
+    [NonSerialized] public bool PlayerUseVehicleElectromagneticInterferenceInput;
+    [NonSerialized] public bool PlayerPlacePickupShieldInput;
 
     public void ZeroInput()
     {
@@ -467,6 +469,11 @@ public class Player : Entity
 
     void OnEnable()
     {
+        if (!isLeader)
+        {
+            return;
+        }
+
         Messenger<float>.AddListener(InputEvent.PLAYER_HORIZONTAL_INPUT, (value) => { HorizontalInput = value; });
         Messenger<float>.AddListener(InputEvent.PLAYER_VERTICAL_INPUT, (value) => { VerticalInput = value; });
         Messenger<bool>.AddListener(InputEvent.PLAYER_JUMP_INPUT, (value) => { JumpInput = value; });
@@ -496,6 +503,11 @@ public class Player : Entity
 
     void OnDisable()
     {
+        if (!isLeader)
+        {
+            return;
+        }
+
         Messenger<float>.RemoveListener(InputEvent.PLAYER_HORIZONTAL_INPUT, (value) => { HorizontalInput = value; });
         Messenger<float>.RemoveListener(InputEvent.PLAYER_VERTICAL_INPUT, (value) => { VerticalInput = value; });
         Messenger<bool>.RemoveListener(InputEvent.PLAYER_JUMP_INPUT, (value) => { JumpInput = value; });

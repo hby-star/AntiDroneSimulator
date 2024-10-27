@@ -50,11 +50,16 @@ public class InputManager : MonoBehaviour
     #endregion
 
     public List<Entity> operateEntities;
+    public Player player;
     [NonSerialized] public bool operateEntityNow;
     public int operateEntityIndex { get; private set; }
     public Entity currentEntity { get; private set; }
     public Camera currentCamera { get; private set; }
 
+    void Start()
+    {
+        currentEntity = player;
+    }
 
     void Update()
     {
@@ -68,7 +73,7 @@ public class InputManager : MonoBehaviour
                 HandleOperateSwitch();
             }
 
-            if (currentEntity is Player player && GameObject.FindWithTag("Player"))
+            if (currentEntity is Player)
             {
                 currentCamera = player.Camera;
                 HandlePlayerInput();

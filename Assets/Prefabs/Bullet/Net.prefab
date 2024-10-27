@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5258330412835828707}
   - component: {fileID: 6040733969134068529}
   - component: {fileID: 8966221207296451908}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Net
   m_TagString: Bullet
   m_Icon: {fileID: 0}
@@ -160,9 +160,49 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -6218584348152223881, guid: af8c398f75f59904fb1f9f6b205cce42, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -4857994316958608967, guid: af8c398f75f59904fb1f9f6b205cce42, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -4314542904869918674, guid: af8c398f75f59904fb1f9f6b205cce42, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -2624250311596438181, guid: af8c398f75f59904fb1f9f6b205cce42, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: af8c398f75f59904fb1f9f6b205cce42, type: 3}
       propertyPath: m_Name
       value: net_bullet
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: af8c398f75f59904fb1f9f6b205cce42, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1873015676646082291, guid: af8c398f75f59904fb1f9f6b205cce42, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2774240881332294242, guid: af8c398f75f59904fb1f9f6b205cce42, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2803357626419868296, guid: af8c398f75f59904fb1f9f6b205cce42, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7824638177861515733, guid: af8c398f75f59904fb1f9f6b205cce42, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7968237259721436466, guid: af8c398f75f59904fb1f9f6b205cce42, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
