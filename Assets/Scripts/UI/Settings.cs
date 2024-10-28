@@ -22,6 +22,8 @@ public class Settings : MonoBehaviour
     public TextMeshProUGUI empBulletNumText;
     public Slider empBulletDurationSlider;
     public TextMeshProUGUI empBulletDurationText;
+    public Slider agentNumSlider;
+    public TextMeshProUGUI agentNumText;
 
     void UpdatePlayerHeathText()
     {
@@ -57,6 +59,12 @@ public class Settings : MonoBehaviour
     {
         int empBulletDuration = (int)empBulletDurationSlider.value;
         empBulletDurationText.text = empBulletDuration.ToString();
+    }
+
+    void UpdateAgentNumText()
+    {
+        int agentNum = (int)agentNumSlider.value;
+        agentNumText.text = agentNum.ToString();
     }
 
     #endregion
@@ -141,6 +149,7 @@ public class Settings : MonoBehaviour
         public float netBulletNum;
         public float empBulletNum;
         public float empBulletDuration;
+        public float agentNum;
 
         // 无人机集群
         public float droneNum;
@@ -165,6 +174,7 @@ public class Settings : MonoBehaviour
         netBulletNumSlider.onValueChanged.AddListener(delegate { UpdateNetBulletNumText(); });
         empBulletNumSlider.onValueChanged.AddListener(delegate { UpdateEmpBulletNumText(); });
         empBulletDurationSlider.onValueChanged.AddListener(delegate { UpdateEmpBulletDurationText(); });
+        agentNumSlider.onValueChanged.AddListener(delegate { UpdateAgentNumText(); });
 
         // 无人机集群
         droneNumSlider.onValueChanged.AddListener(delegate { UpdateDroneNumText(); });
@@ -189,6 +199,7 @@ public class Settings : MonoBehaviour
         UpdateNetBulletNumText();
         UpdateEmpBulletNumText();
         UpdateEmpBulletDurationText();
+        UpdateAgentNumText();
 
         // 无人机集群
         UpdateDroneNumText();
@@ -221,6 +232,7 @@ public class Settings : MonoBehaviour
             netBulletNumSlider.value = settingsData.netBulletNum;
             empBulletNumSlider.value = settingsData.empBulletNum;
             empBulletDurationSlider.value = settingsData.empBulletDuration;
+            agentNumSlider.value = settingsData.agentNum;
 
             // 无人机集群
             droneNumSlider.value = settingsData.droneNum;
@@ -244,6 +256,7 @@ public class Settings : MonoBehaviour
                 netBulletNum = netBulletNumSlider.value,
                 empBulletNum = empBulletNumSlider.value,
                 empBulletDuration = empBulletDurationSlider.value,
+                agentNum = agentNumSlider.value,
 
                 // 无人机集群
                 droneNum = droneNumSlider.value,
@@ -268,6 +281,7 @@ public class Settings : MonoBehaviour
         settingsData.netBulletNum = netBulletNumSlider.value;
         settingsData.empBulletNum = empBulletNumSlider.value;
         settingsData.empBulletDuration = empBulletDurationSlider.value;
+        settingsData.agentNum = agentNumSlider.value;
 
         // 无人机集群
         settingsData.droneNum = droneNumSlider.value;

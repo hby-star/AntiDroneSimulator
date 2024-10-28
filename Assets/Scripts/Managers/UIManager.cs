@@ -116,14 +116,14 @@ public class UIManager : MonoBehaviour
 
     public void ShowGameEndWinPopUp()
     {
-        gameEndPopUp.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "You Win!";
+        gameEndPopUp.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "任务成功!";
         gameEndPopUp.SetActive(true);
         Cursor.visible = true;
     }
 
     public void ShowGameEndLosePopUp()
     {
-        gameEndPopUp.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "You Lose!";
+        gameEndPopUp.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "任务失败!";
         gameEndPopUp.SetActive(true);
         Cursor.visible = true;
     }
