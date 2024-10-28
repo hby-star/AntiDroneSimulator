@@ -33,17 +33,26 @@ public class PlayerAgent : MonoBehaviour
     }
 
     float lastAttackTime = 0;
-    float attackInterval = 2f;
+    float attackInterval = 5f;
     Vector3 targetPosition = Vector3.zero;
 
     void AttackUpdate()
     {
         if (targetPosition != Vector3.zero)
         {
+            // 转向
             Vector3 lookDirection = targetPosition - transform.position;
             lookDirection.y = 0;
             Quaternion lookRotation = Quaternion.LookRotation(lookDirection);
             transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 3);
+
+            // 后退
+            self.HorizontalInput = 0;
+            self.VerticalInput = -1;
+            if (self.StateMachine.CurrentState is not PlayerMoveState)
+            {
+                self.StateMachine.ChangeState(self.MoveState);
+            }
         }
 
         if (Time.time - lastAttackTime < attackInterval)
@@ -51,7 +60,7 @@ public class PlayerAgent : MonoBehaviour
             return;
         }
         lastAttackTime = Time.time;
-        attackInterval = UnityEngine.Random.Range(1.5f, 2.5f);
+        attackInterval = UnityEngine.Random.Range(3f, 7f);
 
         Collider[] colliders = Physics.OverlapSphere(transform.position, attackDistance);
         foreach (var collider in colliders)

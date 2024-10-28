@@ -1,0 +1,547 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfTypeDate xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <TypeDate>
+    <guid>8e311b4144040124a95acdce7b2130a0</guid>
+    <fileName>Assets/Plugins/UnitySweeper/Editor/AssetCollector.cs</fileName>
+    <timeStamp>2024-10-25T18:55:42.9559918+08:00</timeStamp>
+    <typeFullName>
+      <string>UnitySweeper.AssetCollector</string>
+    </typeFullName>
+    <assembly>Assembly-CSharp-Editor-firstpass, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</assembly>
+  </TypeDate>
+  <TypeDate>
+    <guid>fba9898c1f79c5946a66469f555e7645</guid>
+    <fileName>Assets/Plugins/UnitySweeper/Editor/AssetReferenceCollection.cs</fileName>
+    <timeStamp>2024-10-25T18:55:42.957001+08:00</timeStamp>
+    <typeFullName>
+      <string>UnitySweeper.AssetReferenceCollection</string>
+    </typeFullName>
+    <assembly>Assembly-CSharp-Editor-firstpass, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</assembly>
+  </TypeDate>
+  <TypeDate>
+    <guid>5ed156f8cea39754497ace2fd159b15e</guid>
+    <fileName>Assets/Plugins/UnitySweeper/Editor/ClassReferenceCollection.cs</fileName>
+    <timeStamp>2024-10-25T18:55:42.9579965+08:00</timeStamp>
+    <typeFullName>
+      <string>UnitySweeper.ClassReferenceCollection</string>
+    </typeFullName>
+    <assembly>Assembly-CSharp-Editor-firstpass, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</assembly>
+  </TypeDate>
+  <TypeDate>
+    <guid>aebfe27747678444687bd2d2394bf1e8</guid>
+    <fileName>Assets/Plugins/UnitySweeper/Editor/CollectionData.cs</fileName>
+    <timeStamp>2024-10-25T18:55:42.9599941+08:00</timeStamp>
+    <typeFullName>
+      <string>UnitySweeper.CollectionData</string>
+      <string>UnitySweeper.TypeDate</string>
+      <string>UnitySweeper.IReferenceCollection</string>
+    </typeFullName>
+    <assembly>Assembly-CSharp-Editor-firstpass, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</assembly>
+  </TypeDate>
+  <TypeDate>
+    <guid>fd0ce4e580aff77448dada909bc8f871</guid>
+    <fileName>Assets/Plugins/UnitySweeper/Editor/FindUnusedAssetsWindow.cs</fileName>
+    <timeStamp>2024-10-25T18:55:42.9609936+08:00</timeStamp>
+    <typeFullName>
+      <string>UnitySweeper.FindUnusedAssetsWindow</string>
+    </typeFullName>
+    <assembly>Assembly-CSharp-Editor-firstpass, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</assembly>
+  </TypeDate>
+  <TypeDate>
+    <guid>7fccea81ca76683459b5eb1b63351404</guid>
+    <fileName>Assets/Plugins/UnitySweeper/Editor/ShaderReferenceCollection.cs</fileName>
+    <timeStamp>2024-10-25T18:55:42.9619922+08:00</timeStamp>
+    <typeFullName>
+      <string>UnitySweeper.ShaderReferenceCollection</string>
+    </typeFullName>
+    <assembly>Assembly-CSharp-Editor-firstpass, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</assembly>
+  </TypeDate>
+  <TypeDate>
+    <guid>19ec951dbfc0f45d1b8de4b131658d54</guid>
+    <fileName>Assets/ExternalAssets/AtomicBomb/RotateCam.cs</fileName>
+    <timeStamp>2024-10-25T18:55:39.555759+08:00</timeStamp>
+    <typeFullName>
+      <string>RotateCam</string>
+    </typeFullName>
+    <assembly>Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</assembly>
+  </TypeDate>
+  <TypeDate>
+    <guid>6e6c89658f0ceca439829470f0d36b99</guid>
+    <fileName>Assets/Scripts/Drone/AttackDrone.cs</fileName>
+    <timeStamp>2024-10-21T15:49:20.5930422+08:00</timeStamp>
+    <typeFullName>
+      <string>AttackDrone</string>
+      <string>AttackDrone+AttackDroneState</string>
+    </typeFullName>
+    <assembly>Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</assembly>
+  </TypeDate>
+  <TypeDate>
+    <guid>9358a16ab856f244193a531ef75c6ac7</guid>
+    <fileName>Assets/Scripts/Drone/DetectDrone.cs</fileName>
+    <timeStamp>2024-10-21T17:41:43.8235728+08:00</timeStamp>
+    <typeFullName>
+      <string>DetectDrone</string>
+      <string>DetectDrone+DetectDroneState</string>
+    </typeFullName>
+    <assembly>Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</assembly>
+  </TypeDate>
+  <TypeDate>
+    <guid>6b069ea10f811384580c2057167a4768</guid>
+    <fileName>Assets/Scripts/Drone/Drone.cs</fileName>
+    <timeStamp>2024-10-27T20:39:42.6515364+08:00</timeStamp>
+    <typeFullName>
+      <string>Drone</string>
+      <string>Drone+HitType</string>
+    </typeFullName>
+    <assembly>Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</assembly>
+  </TypeDate>
+  <TypeDate>
+    <guid>bc6fa35e24b8379469127f24fabb5901</guid>
+    <fileName>Assets/Scripts/Drone/Swarm.cs</fileName>
+    <timeStamp>2024-10-27T19:21:41.5916811+08:00</timeStamp>
+    <typeFullName>
+      <string>Swarm</string>
+    </typeFullName>
+    <assembly>Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</assembly>
+  </TypeDate>
+  <TypeDate>
+    <guid>efe1583a36263ed4ab5133905b8f0a6b</guid>
+    <fileName>Assets/Scripts/Entity/Entity.cs</fileName>
+    <timeStamp>2024-10-21T16:50:28.6321717+08:00</timeStamp>
+    <typeFullName>
+      <string>Entity</string>
+    </typeFullName>
+    <assembly>Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</assembly>
+  </TypeDate>
+  <TypeDate>
+    <guid>2899d4a4b86e5934388e3648cf973879</guid>
+    <fileName>Assets/Scripts/Entity/EntityStats.cs</fileName>
+    <timeStamp>2024-10-07T17:50:11.668018+08:00</timeStamp>
+    <typeFullName>
+      <string>EntityStats</string>
+    </typeFullName>
+    <assembly>Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</assembly>
+  </TypeDate>
+  <TypeDate>
+    <guid>0b044f1f941be4b4f8eca9a248c9c96b</guid>
+    <fileName>Assets/Scripts/Equipment/Equipment.cs</fileName>
+    <timeStamp>2024-07-26T17:49:45.6413693+08:00</timeStamp>
+    <typeFullName>
+      <string>Equipment</string>
+      <string>Equipment+EquipmentType</string>
+    </typeFullName>
+    <assembly>Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</assembly>
+  </TypeDate>
+  <TypeDate>
+    <guid>9ad5977751d548b3984608b8396699c5</guid>
+    <fileName>Assets/Scripts/Events/InputEvent.cs</fileName>
+    <timeStamp>2024-08-27T23:04:42.8925436+08:00</timeStamp>
+    <typeFullName>
+      <string>InputEvent</string>
+    </typeFullName>
+    <assembly>Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</assembly>
+  </TypeDate>
+  <TypeDate>
+    <guid>aa2769f3284ad2f4f8bf7d183c98c110</guid>
+    <fileName>Assets/Scripts/Events/Messenger.cs</fileName>
+    <timeStamp>2024-07-22T15:09:40.7137177+08:00</timeStamp>
+    <typeFullName>
+      <string>MessengerMode</string>
+      <string>MessengerInternal</string>
+      <string>MessengerInternal+BroadcastException</string>
+      <string>MessengerInternal+ListenerException</string>
+      <string>Messenger</string>
+      <string>Messenger`1</string>
+      <string>Messenger`2</string>
+      <string>Messenger`3</string>
+    </typeFullName>
+    <assembly>Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</assembly>
+  </TypeDate>
+  <TypeDate>
+    <guid>203889e00016b2b40927ba9bf83f9d67</guid>
+    <fileName>Assets/Scripts/Managers/CameraManager.cs</fileName>
+    <timeStamp>2024-10-16T13:33:15.747007+08:00</timeStamp>
+    <typeFullName>
+      <string>CameraManager</string>
+    </typeFullName>
+    <assembly>Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</assembly>
+  </TypeDate>
+  <TypeDate>
+    <guid>75aa0e65eb52fe847934df41f2eaa867</guid>
+    <fileName>Assets/Scripts/Managers/GameManager.cs</fileName>
+    <timeStamp>2024-10-16T19:14:08.9212906+08:00</timeStamp>
+    <typeFullName>
+      <string>GameManager</string>
+    </typeFullName>
+    <assembly>Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</assembly>
+  </TypeDate>
+  <TypeDate>
+    <guid>c222e77d4988e9142a1449e5b9436a68</guid>
+    <fileName>Assets/Scripts/Managers/InputManager.cs</fileName>
+    <timeStamp>2024-10-27T17:07:40.6147673+08:00</timeStamp>
+    <typeFullName>
+      <string>InputManager</string>
+    </typeFullName>
+    <assembly>Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</assembly>
+  </TypeDate>
+  <TypeDate>
+    <guid>600fecb3faffe4f4aa76f199a82bf517</guid>
+    <fileName>Assets/Scripts/Managers/SkillManager.cs</fileName>
+    <timeStamp>2024-08-26T21:03:35.7298762+08:00</timeStamp>
+    <typeFullName>
+      <string>SkillManager</string>
+    </typeFullName>
+    <assembly>Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</assembly>
+  </TypeDate>
+  <TypeDate>
+    <guid>0f4034e938ceca64aa8fc4aaeec41ebe</guid>
+    <fileName>Assets/Scripts/Managers/UIManager.cs</fileName>
+    <timeStamp>2024-10-14T20:17:56.9564408+08:00</timeStamp>
+    <typeFullName>
+      <string>UIManager</string>
+    </typeFullName>
+    <assembly>Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</assembly>
+  </TypeDate>
+  <TypeDate>
+    <guid>5cee6ff71c471e84489ee294171ac9c5</guid>
+    <fileName>Assets/Scripts/Player/Player.cs</fileName>
+    <timeStamp>2024-10-27T20:35:16.8359103+08:00</timeStamp>
+    <typeFullName>
+      <string>Player</string>
+    </typeFullName>
+    <assembly>Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</assembly>
+  </TypeDate>
+  <TypeDate>
+    <guid>4a07489178e9bce47bbfb121c3ec6f8d</guid>
+    <fileName>Assets/Scripts/Player/PlayerAgent.cs</fileName>
+    <timeStamp>2024-10-28T16:22:24.5932063+08:00</timeStamp>
+    <typeFullName>
+      <string>PlayerAgent</string>
+    </typeFullName>
+    <assembly>Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</assembly>
+  </TypeDate>
+  <TypeDate>
+    <guid>8be6aede54f24ac488f2b09c5d30a9ec</guid>
+    <fileName>Assets/Scripts/Player/PlayerAnimator.cs</fileName>
+    <timeStamp>2024-07-18T23:54:25.6099515+08:00</timeStamp>
+    <typeFullName>
+      <string>PlayerAnimator</string>
+    </typeFullName>
+    <assembly>Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</assembly>
+  </TypeDate>
+  <TypeDate>
+    <guid>3b2b8ba219b10bc41a18535f6d2cdd16</guid>
+    <fileName>Assets/Scripts/UI/DroneInfo.cs</fileName>
+    <timeStamp>2024-10-19T19:18:44.1162083+08:00</timeStamp>
+    <typeFullName>
+      <string>DroneInfo</string>
+    </typeFullName>
+    <assembly>Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</assembly>
+  </TypeDate>
+  <TypeDate>
+    <guid>f8adaf2047f875b42ac55296105d0531</guid>
+    <fileName>Assets/Scripts/UI/GunState.cs</fileName>
+    <timeStamp>2024-10-16T15:22:14.6144227+08:00</timeStamp>
+    <typeFullName>
+      <string>GunState</string>
+    </typeFullName>
+    <assembly>Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</assembly>
+  </TypeDate>
+  <TypeDate>
+    <guid>2eb4a088d7714dc469f3a754463f1acc</guid>
+    <fileName>Assets/Scripts/UI/HealthBarUI.cs</fileName>
+    <timeStamp>2024-10-27T16:35:12.3089594+08:00</timeStamp>
+    <typeFullName>
+      <string>HealthBarUI</string>
+    </typeFullName>
+    <assembly>Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</assembly>
+  </TypeDate>
+  <TypeDate>
+    <guid>dbf775b8db495a347bde2a971fd342d3</guid>
+    <fileName>Assets/Scripts/UI/InGameMenu.cs</fileName>
+    <timeStamp>2024-10-09T21:16:58.28508+08:00</timeStamp>
+    <typeFullName>
+      <string>InGameMenu</string>
+    </typeFullName>
+    <assembly>Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</assembly>
+  </TypeDate>
+  <TypeDate>
+    <guid>1fb3089db83d44146abde244f4cec389</guid>
+    <fileName>Assets/Scripts/UI/MainMenu.cs</fileName>
+    <timeStamp>2024-10-06T15:56:46.6469401+08:00</timeStamp>
+    <typeFullName>
+      <string>MainMenu</string>
+    </typeFullName>
+    <assembly>Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</assembly>
+  </TypeDate>
+  <TypeDate>
+    <guid>ac2421ed5e7525b48b51722ca721ae9a</guid>
+    <fileName>Assets/Scripts/UI/Settings.cs</fileName>
+    <timeStamp>2024-10-15T17:38:08.67975+08:00</timeStamp>
+    <typeFullName>
+      <string>Settings</string>
+    </typeFullName>
+    <assembly>Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</assembly>
+  </TypeDate>
+  <TypeDate>
+    <guid>b614b9600aa67fe4fac7066160c5c151</guid>
+    <fileName>Assets/Scripts/UI/SwarmInfo.cs</fileName>
+    <timeStamp>2024-10-07T17:52:39.7503911+08:00</timeStamp>
+    <typeFullName>
+      <string>SwarmInfo</string>
+    </typeFullName>
+    <assembly>Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</assembly>
+  </TypeDate>
+  <TypeDate>
+    <guid>c3c734e9a5a25ea41a84d5ae67d1e221</guid>
+    <fileName>Assets/Scripts/Vehicle/Vehicle.cs</fileName>
+    <timeStamp>2024-10-06T16:23:06.5988454+08:00</timeStamp>
+    <typeFullName>
+      <string>Vehicle</string>
+    </typeFullName>
+    <assembly>Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</assembly>
+  </TypeDate>
+  <TypeDate>
+    <guid>c8a286d6045394ccb8d979c50ce306d5</guid>
+    <fileName>Assets/ExternalAssets/ModularAirportKit/Scripts/DoorAnimation.cs</fileName>
+    <timeStamp>2024-10-25T18:55:40.0813445+08:00</timeStamp>
+    <typeFullName>
+      <string>DoorAnimation</string>
+    </typeFullName>
+    <assembly>Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</assembly>
+  </TypeDate>
+  <TypeDate>
+    <guid>12bd19d0ee517484daa5b9431d285708</guid>
+    <fileName>Assets/ExternalAssets/ModularAirportKit/Scripts/Tiled_Texture_Animation.cs</fileName>
+    <timeStamp>2024-10-25T18:55:40.0823414+08:00</timeStamp>
+    <typeFullName>
+      <string>Tiled_Texture_Animation</string>
+    </typeFullName>
+    <assembly>Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</assembly>
+  </TypeDate>
+  <TypeDate>
+    <guid>4bf5e7e384f6f8349af2aea390d57f20</guid>
+    <fileName>Assets/Scripts/Drone/Bomb/Bomb.cs</fileName>
+    <timeStamp>2024-10-20T20:17:44.1791527+08:00</timeStamp>
+    <typeFullName>
+      <string>Bomb</string>
+    </typeFullName>
+    <assembly>Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</assembly>
+  </TypeDate>
+  <TypeDate>
+    <guid>7083aa1a8f1a4b23b6b620aa8373fe6e</guid>
+    <fileName>Assets/Scripts/Equipment/Gun/EMPGun.cs</fileName>
+    <timeStamp>2024-10-16T15:33:16.3432771+08:00</timeStamp>
+    <typeFullName>
+      <string>EMPGun</string>
+    </typeFullName>
+    <assembly>Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</assembly>
+  </TypeDate>
+  <TypeDate>
+    <guid>a2d444ba32a44edaa14b8f146420186e</guid>
+    <fileName>Assets/Scripts/Equipment/Gun/Gun.cs</fileName>
+    <timeStamp>2024-10-16T20:46:14.1148014+08:00</timeStamp>
+    <typeFullName>
+      <string>Gun</string>
+    </typeFullName>
+    <assembly>Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</assembly>
+  </TypeDate>
+  <TypeDate>
+    <guid>06d0c7a9d62f4340adb5d1d3dc982e8e</guid>
+    <fileName>Assets/Scripts/Equipment/Gun/HandGun.cs</fileName>
+    <timeStamp>2024-10-16T15:42:48.6991787+08:00</timeStamp>
+    <typeFullName>
+      <string>HandGun</string>
+    </typeFullName>
+    <assembly>Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</assembly>
+  </TypeDate>
+  <TypeDate>
+    <guid>8e065625840f43f3b008d2548ab635b7</guid>
+    <fileName>Assets/Scripts/Equipment/Gun/NetGun.cs</fileName>
+    <timeStamp>2024-10-16T15:33:45.8350043+08:00</timeStamp>
+    <typeFullName>
+      <string>NetGun</string>
+    </typeFullName>
+    <assembly>Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</assembly>
+  </TypeDate>
+  <TypeDate>
+    <guid>b2901e9573b94b398715f10c1a8aafd4</guid>
+    <fileName>Assets/Scripts/Equipment/Shield/Shield.cs</fileName>
+    <timeStamp>2024-07-28T18:14:10.8100741+08:00</timeStamp>
+    <typeFullName>
+      <string>Shield</string>
+    </typeFullName>
+    <assembly>Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</assembly>
+  </TypeDate>
+  <TypeDate>
+    <guid>dcabb9e328712384a8a124a7c9f268cf</guid>
+    <fileName>Assets/Scripts/Player/PlayerStates/PlayerAttackState.cs</fileName>
+    <timeStamp>2024-10-17T13:27:54.7434675+08:00</timeStamp>
+    <typeFullName>
+      <string>PlayerAttackState</string>
+    </typeFullName>
+    <assembly>Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</assembly>
+  </TypeDate>
+  <TypeDate>
+    <guid>9474f3825016fb84a946a2ee43bc54a1</guid>
+    <fileName>Assets/Scripts/Player/PlayerStates/PlayerCrouchState.cs</fileName>
+    <timeStamp>2024-07-27T21:31:09.4508302+08:00</timeStamp>
+    <typeFullName>
+      <string>PlayerCrouchState</string>
+    </typeFullName>
+    <assembly>Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</assembly>
+  </TypeDate>
+  <TypeDate>
+    <guid>9cb09c647b41cae448cdcbdc21e60f18</guid>
+    <fileName>Assets/Scripts/Player/PlayerStates/PlayerDashState.cs</fileName>
+    <timeStamp>2024-10-18T12:18:37.0411432+08:00</timeStamp>
+    <typeFullName>
+      <string>PlayerDashState</string>
+    </typeFullName>
+    <assembly>Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</assembly>
+  </TypeDate>
+  <TypeDate>
+    <guid>b68bf005277d6524f978265c2fdef92b</guid>
+    <fileName>Assets/Scripts/Player/PlayerStates/PlayerIdleState.cs</fileName>
+    <timeStamp>2024-07-22T15:18:59.165127+08:00</timeStamp>
+    <typeFullName>
+      <string>PlayerIdleState</string>
+    </typeFullName>
+    <assembly>Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</assembly>
+  </TypeDate>
+  <TypeDate>
+    <guid>3f442900062c43c4fa75f813b98a69cf</guid>
+    <fileName>Assets/Scripts/Player/PlayerStates/PlayerJumpState.cs</fileName>
+    <timeStamp>2024-07-17T21:55:25.3894195+08:00</timeStamp>
+    <typeFullName>
+      <string>PlayerJumpState</string>
+    </typeFullName>
+    <assembly>Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</assembly>
+  </TypeDate>
+  <TypeDate>
+    <guid>711f91b5bca74a94681948b621b23cbf</guid>
+    <fileName>Assets/Scripts/Player/PlayerStates/PlayerMoveState.cs</fileName>
+    <timeStamp>2024-10-27T15:57:33.306372+08:00</timeStamp>
+    <typeFullName>
+      <string>PlayerMoveState</string>
+    </typeFullName>
+    <assembly>Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</assembly>
+  </TypeDate>
+  <TypeDate>
+    <guid>95ca98f5112aea943afe7b06ae29c379</guid>
+    <fileName>Assets/Scripts/Player/PlayerStates/PlayerReloadState.cs</fileName>
+    <timeStamp>2024-10-17T13:27:46.1426177+08:00</timeStamp>
+    <typeFullName>
+      <string>PlayerReloadState</string>
+    </typeFullName>
+    <assembly>Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</assembly>
+  </TypeDate>
+  <TypeDate>
+    <guid>54c36f7a8090fe9498be368c1e918dba</guid>
+    <fileName>Assets/Scripts/Vehicle/VehicleState/VehicleIdleState.cs</fileName>
+    <timeStamp>2024-07-27T19:05:55.2494182+08:00</timeStamp>
+    <typeFullName>
+      <string>VehicleIdleState</string>
+    </typeFullName>
+    <assembly>Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</assembly>
+  </TypeDate>
+  <TypeDate>
+    <guid>92c08cb85a5229c48918f04124f4d1e9</guid>
+    <fileName>Assets/Scripts/Vehicle/VehicleState/VehicleMoveState.cs</fileName>
+    <timeStamp>2024-07-27T19:02:10.4544948+08:00</timeStamp>
+    <typeFullName>
+      <string>VehicleMoveState</string>
+    </typeFullName>
+    <assembly>Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</assembly>
+  </TypeDate>
+  <TypeDate>
+    <guid>b255d224511801340adefe24cd90685d</guid>
+    <fileName>Assets/Scripts/Vehicle/VehicleState/VehicleState.cs</fileName>
+    <timeStamp>2024-07-27T20:45:02.7704948+08:00</timeStamp>
+    <typeFullName>
+      <string>VehicleState</string>
+    </typeFullName>
+    <assembly>Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</assembly>
+  </TypeDate>
+  <TypeDate>
+    <guid>faed79ddf3bb08d429b15aea66a8c677</guid>
+    <fileName>Assets/ExternalAssets/Drones/DroneController/Editor/CameraEditor.cs</fileName>
+    <timeStamp>2024-10-25T18:55:39.895342+08:00</timeStamp>
+    <typeFullName>
+      <string>CameraEditor</string>
+    </typeFullName>
+    <assembly>Assembly-CSharp-Editor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</assembly>
+  </TypeDate>
+  <TypeDate>
+    <guid>f76f4e3a0234d194da27af11ef7f4bdf</guid>
+    <fileName>Assets/ExternalAssets/Hovl Studio/Render Pipelines support/Editor/ShaderChanger.cs</fileName>
+    <timeStamp>2024-10-25T18:55:39.9193424+08:00</timeStamp>
+    <typeFullName>
+      <string>HovlStudio.RPChanger</string>
+    </typeFullName>
+    <assembly>Assembly-CSharp-Editor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</assembly>
+  </TypeDate>
+  <TypeDate>
+    <guid>a6066495e19d4186b20852794022fb0c</guid>
+    <fileName>Assets/Scripts/Entity/EntityState/Base/EntityState.cs</fileName>
+    <timeStamp>2024-07-22T16:15:40.397363+08:00</timeStamp>
+    <typeFullName>
+      <string>EntityState</string>
+    </typeFullName>
+    <assembly>Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</assembly>
+  </TypeDate>
+  <TypeDate>
+    <guid>c0b9d692b3078044392575cebc9f7703</guid>
+    <fileName>Assets/Scripts/Entity/EntityState/Base/EntityStateMachine.cs</fileName>
+    <timeStamp>2024-07-17T17:37:28.4962181+08:00</timeStamp>
+    <typeFullName>
+      <string>EntityStateMachine</string>
+    </typeFullName>
+    <assembly>Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</assembly>
+  </TypeDate>
+  <TypeDate>
+    <guid>70e9bf3f3f07ae64284cd3c5da38eb69</guid>
+    <fileName>Assets/Scripts/Equipment/Gun/Bullet/EmpBullet.cs</fileName>
+    <timeStamp>2024-10-16T20:03:10.0533424+08:00</timeStamp>
+    <typeFullName>
+      <string>EmpBullet</string>
+    </typeFullName>
+    <assembly>Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</assembly>
+  </TypeDate>
+  <TypeDate>
+    <guid>de4f37d5358b8fa4b8df6af633610c10</guid>
+    <fileName>Assets/Scripts/Equipment/Gun/Bullet/NetBullet.cs</fileName>
+    <timeStamp>2024-10-16T18:04:04.2544061+08:00</timeStamp>
+    <typeFullName>
+      <string>NetBullet</string>
+    </typeFullName>
+    <assembly>Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</assembly>
+  </TypeDate>
+  <TypeDate>
+    <guid>92de515eb99b1664cbb78e01fc41838e</guid>
+    <fileName>Assets/Scripts/Player/PlayerStates/Base/PlayerAirState.cs</fileName>
+    <timeStamp>2024-10-18T12:18:37.045825+08:00</timeStamp>
+    <typeFullName>
+      <string>PlayerAirState</string>
+    </typeFullName>
+    <assembly>Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</assembly>
+  </TypeDate>
+  <TypeDate>
+    <guid>1b1bd8a2f24046c40aebe58cbeb018fb</guid>
+    <fileName>Assets/Scripts/Player/PlayerStates/Base/PlayerGroundState.cs</fileName>
+    <timeStamp>2024-10-04T12:08:52.1229735+08:00</timeStamp>
+    <typeFullName>
+      <string>PlayerGroundState</string>
+    </typeFullName>
+    <assembly>Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</assembly>
+  </TypeDate>
+  <TypeDate>
+    <guid>44d7ca3bbed030240b493318bce6aef1</guid>
+    <fileName>Assets/Scripts/Player/PlayerStates/Base/PlayerState.cs</fileName>
+    <timeStamp>2024-10-18T12:18:37.0361351+08:00</timeStamp>
+    <typeFullName>
+      <string>PlayerState</string>
+    </typeFullName>
+    <assembly>Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</assembly>
+  </TypeDate>
+</ArrayOfTypeDate>
