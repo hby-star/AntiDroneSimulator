@@ -95,7 +95,6 @@ public class Drone : Entity
         // To optimize
         if (!targetPlayer)
         {
-
             Player[] players = GameObject.FindObjectsOfType<Player>();
             foreach (var player in players)
             {
@@ -226,10 +225,13 @@ public class Drone : Entity
                                centerY > cameraRect.y && centerY < cameraRect.y + cameraRect.height);
         // 检查物体是否被遮挡
         bool isVisible = true;
+        int ignoreRaycastLayer = 1 << LayerMask.NameToLayer("Ignore Raycast");
+        ignoreRaycastLayer = ~ignoreRaycastLayer;
+
         if (Physics.Linecast(Camera.transform.position,
                 targetPosition +
-                targetPlayerHeight / 2 * Vector3.up,
-                out RaycastHit hit))
+                (targetPlayerHeight / 2) * Vector3.up,
+                out RaycastHit hit, ignoreRaycastLayer))
         {
             if (!hit.collider.CompareTag("Player"))
             {
@@ -238,7 +240,7 @@ public class Drone : Entity
         }
 
         // 计算边界框的位置和大小
-        if (isVisible && isInCameraView && (maxY - minY > minSizeTimesCameraRate || FoundPlayer))
+        if (isVisible && isInCameraView && (maxY - minY > minSizeTimesCameraRate))
         {
             targetRect = new Rect(min.x, displayHeight - max.y, max.x - min.x, max.y - min.y);
             isPlayerDetectedInCamera = true;
@@ -325,9 +327,9 @@ public class Drone : Entity
             // 检查物体是否被遮挡
             isVisible = true;
             if (Physics.Linecast(Camera.transform.position,
-                otherPlayers[i].transform.position +
-                otherPlayers[i].standColliderHeight / 2 * Vector3.up,
-                out RaycastHit _hit))
+                    otherPlayers[i].transform.position +
+                    otherPlayers[i].standColliderHeight / 2 * Vector3.up,
+                    out RaycastHit _hit))
             {
                 if (!_hit.collider.CompareTag("Player"))
                 {
@@ -343,7 +345,6 @@ public class Drone : Entity
             {
                 otherTargetRects[i] = new Rect(0, 0, 0, 0);
             }
-
         }
 
         UIBoxUpdate();
@@ -386,7 +387,8 @@ public class Drone : Entity
         {
             if (otherTargetRects[i].width > 0)
             {
-                otherUiBoxes[i].anchoredPosition = new Vector2(otherTargetRects[i].x - halfDisplayWidth + otherTargetRects[i].width / 2,
+                otherUiBoxes[i].anchoredPosition = new Vector2(
+                    otherTargetRects[i].x - halfDisplayWidth + otherTargetRects[i].width / 2,
                     -otherTargetRects[i].y + halfDisplayHeight - otherTargetRects[i].height / 2);
                 otherUiBoxes[i].sizeDelta = new Vector2(otherTargetRects[i].width, otherTargetRects[i].height);
                 otherUiBoxes[i].gameObject.SetActive(true);
@@ -421,15 +423,15 @@ public class Drone : Entity
         // }
 
         //避障检测-1-ground
-        if(this is AttackDrone)
+        if (this is AttackDrone)
         {
             Gizmos.color = Color.blue;
-
         }
         else
         {
             Gizmos.color = Color.green;
         }
+
         //Gizmos.color = Color.blue;
         foreach (var direction in directions)
         {

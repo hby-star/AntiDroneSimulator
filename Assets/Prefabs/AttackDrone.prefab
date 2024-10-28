@@ -430,7 +430,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 8
-  minDetectSizeInCamera: 0.05
+  minDetectSizeInCamera: 0.04
   initialCameraFov: 0
   uiBoxPrefab: {fileID: 1759393386953110933, guid: 74ae50997a26c944198a7272b0ea8180, type: 3}
   agentUiBoxPrefab: {fileID: 1759393386953110933, guid: 185e0d596ecce7c4f913fd61c2eb2f0a, type: 3}

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1128951837008581930}
   - component: {fileID: 5277183929852212138}
   - component: {fileID: 3796299342600338362}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: RocketBomb
   m_TagString: Bomb
   m_Icon: {fileID: 0}
@@ -83,7 +83,7 @@ GameObject:
   - component: {fileID: 2950851640010392927}
   - component: {fileID: 3625999541657499940}
   - component: {fileID: 1747756997369197008}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Rocket09_Green
   m_TagString: Bomb
   m_Icon: {fileID: 0}

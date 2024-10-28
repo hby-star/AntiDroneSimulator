@@ -213,6 +213,8 @@ public class Swarm : MonoBehaviour
                 bombPosition.y -= drone.bombBelowLength;
                 drone.bomb = Instantiate(bombPrefab, bombPosition, drone.transform.rotation);
                 drone.bomb.transform.parent = drone.transform;
+                drone.FoundPlayer = false;
+                drone.attackDroneHasTarget = false;
             }
         }
     }
