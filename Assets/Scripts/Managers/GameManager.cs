@@ -53,6 +53,12 @@ public class GameManager : MonoBehaviour
             Display.displays[1].Activate(); // 启用Display 2
             Debug.Log("Display 2 activated.");
         }
+
+        // 检测场景
+        if (SceneManager.GetActiveScene().name != "MainMenu")
+        {
+            StartCoroutine(LoadMainMenu());
+        }
     }
 
     public void StartGame()

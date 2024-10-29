@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.XR;
 
 public class UIManager : MonoBehaviour
 {
@@ -42,6 +43,8 @@ public class UIManager : MonoBehaviour
     }
 
     #endregion
+
+    #region PopUps
 
     public GameObject helpPopUp;
     public GameObject settingsPopUp;
@@ -133,16 +136,90 @@ public class UIManager : MonoBehaviour
         gameEndPopUp.SetActive(false);
     }
 
+    #endregion
+
+    #region XR input
+
+    InputDevice _leftController;
+    InputDevice _rightController;
+
+    void XRDeviceStart()
+    {
+        _leftController = InputDevices.GetDeviceAtXRNode(XRNode.LeftHand);
+        _rightController = InputDevices.GetDeviceAtXRNode(XRNode.RightHand);
+    }
+
+    bool IsLeftTriggerPressed()
+    {
+        bool value;
+        _leftController.TryGetFeatureValue(CommonUsages.triggerButton, out value);
+        return value;
+    }
+
+    bool IsRightTriggerPressed()
+    {
+        bool value;
+        _rightController.TryGetFeatureValue(CommonUsages.triggerButton, out value);
+        return value;
+    }
+
+    bool IsLeftGripPressed()
+    {
+        bool value;
+        _leftController.TryGetFeatureValue(CommonUsages.gripButton, out value);
+        return value;
+    }
+
+    bool IsRightGripPressed()
+    {
+        bool value;
+        _rightController.TryGetFeatureValue(CommonUsages.gripButton, out value);
+        return value;
+    }
+
+    bool IsLeftPrimaryButtonPressed()
+    {
+        bool value;
+        _leftController.TryGetFeatureValue(CommonUsages.primaryButton, out value);
+        return value;
+    }
+
+    bool IsRightPrimaryButtonPressed()
+    {
+        bool value;
+        _rightController.TryGetFeatureValue(CommonUsages.primaryButton, out value);
+        return value;
+    }
+
+    bool IsLeftSecondaryButtonPressed()
+    {
+        bool value;
+        _leftController.TryGetFeatureValue(CommonUsages.secondaryButton, out value);
+        return value;
+    }
+
+    bool IsRightSecondaryButtonPressed()
+    {
+        bool value;
+        _rightController.TryGetFeatureValue(CommonUsages.secondaryButton, out value);
+        return value;
+    }
+
+    #endregion
+
+
     void Start()
     {
         HideAllPopUps();
+        XRDeviceStart();
     }
+
 
     void Update()
     {
         if (gameStartPopUp.activeSelf)
         {
-            if (Input.GetMouseButtonDown(0))
+            if (IsLeftGripPressed() || IsRightGripPressed())
             {
                 HideGameStartPopUp();
                 GameManager.Instance.ContinueGame();
@@ -151,7 +228,7 @@ public class UIManager : MonoBehaviour
 
         if (gameEndPopUp.activeSelf)
         {
-            if (Input.GetMouseButtonDown(0))
+            if (IsLeftGripPressed() || IsRightGripPressed())
             {
                 HideGameEndPopUp();
                 GameManager.Instance.ToMainMenu();
@@ -160,25 +237,17 @@ public class UIManager : MonoBehaviour
 
         if (helpPopUp.activeSelf)
         {
-            if (Input.GetMouseButtonDown(0))
+            if (IsLeftGripPressed() || IsRightGripPressed())
             {
-                if (!RectTransformUtility.RectangleContainsScreenPoint(
-                        helpPopUp.transform.GetChild(0).GetComponent<RectTransform>(), Input.mousePosition))
-                {
-                    HideHelpPopUp();
-                }
+                HideHelpPopUp();
             }
         }
 
         if (settingsPopUp.activeSelf)
         {
-            if (Input.GetMouseButtonDown(0))
+            if (IsLeftGripPressed() || IsRightGripPressed())
             {
-                if (!RectTransformUtility.RectangleContainsScreenPoint(
-                        settingsPopUp.transform.GetChild(0).GetComponent<RectTransform>(), Input.mousePosition))
-                {
-                    HideSettings();
-                }
+                HideSettings();
             }
         }
     }
