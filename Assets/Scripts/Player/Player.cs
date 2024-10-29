@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem.XR;
 using UnityEngine.Serialization;
 
 public class Player : Entity
@@ -109,7 +110,7 @@ public class Player : Entity
     {
         for (int i = 0; i < guns.Count; i++)
         {
-            guns[i].playerCamera = Camera;
+            //guns[i].playerCamera = Camera;
             guns[i].gameObject.SetActive(i == index);
         }
 

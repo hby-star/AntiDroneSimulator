@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
+using UnityEngine.XR;
 
 public class InputManager : MonoBehaviour
 {
@@ -49,12 +50,129 @@ public class InputManager : MonoBehaviour
 
     #endregion
 
+
+    #region XR input
+
+    InputDevice _leftController;
+    InputDevice _rightController;
+
+    void XRDeviceStart()
+    {
+        _leftController = InputDevices.GetDeviceAtXRNode(XRNode.LeftHand);
+        _rightController = InputDevices.GetDeviceAtXRNode(XRNode.RightHand);
+    }
+
+    bool IsLeftTriggerPressed()
+    {
+        bool value;
+        _leftController.TryGetFeatureValue(CommonUsages.triggerButton, out value);
+        return value;
+    }
+
+    bool IsRightTriggerPressed()
+    {
+        bool value;
+        _rightController.TryGetFeatureValue(CommonUsages.triggerButton, out value);
+        return value;
+    }
+
+    bool IsLeftGripPressed()
+    {
+        bool value;
+        _leftController.TryGetFeatureValue(CommonUsages.gripButton, out value);
+        return value;
+    }
+
+    bool IsRightGripPressed()
+    {
+        bool value;
+        _rightController.TryGetFeatureValue(CommonUsages.gripButton, out value);
+        return value;
+    }
+
+    bool IsLeftPrimaryButtonPressed()
+    {
+        bool value;
+        _leftController.TryGetFeatureValue(CommonUsages.primaryButton, out value);
+        return value;
+    }
+
+    bool IsRightPrimaryButtonPressed()
+    {
+        bool value;
+        _rightController.TryGetFeatureValue(CommonUsages.primaryButton, out value);
+        return value;
+    }
+
+    bool IsLeftSecondaryButtonPressed()
+    {
+        bool value;
+        _leftController.TryGetFeatureValue(CommonUsages.secondaryButton, out value);
+        return value;
+    }
+
+    bool IsRightSecondaryButtonPressed()
+    {
+        bool value;
+        _rightController.TryGetFeatureValue(CommonUsages.secondaryButton, out value);
+        return value;
+    }
+
+    Vector2 GetLeftControllerPrimary2DAxis()
+    {
+        Vector2 value;
+        _leftController.TryGetFeatureValue(CommonUsages.primary2DAxis, out value);
+        return value;
+    }
+
+    Vector2 GetRightControllerPrimary2DAxis()
+    {
+        Vector2 value;
+        _rightController.TryGetFeatureValue(CommonUsages.primary2DAxis, out value);
+        return value;
+    }
+
+    bool IsLeftMenuButtonPressed()
+    {
+        bool value;
+        _leftController.TryGetFeatureValue(CommonUsages.menuButton, out value);
+        return value;
+    }
+
+    bool IsRightMenuButtonPressed()
+    {
+        bool value;
+        _rightController.TryGetFeatureValue(CommonUsages.menuButton, out value);
+        return value;
+    }
+
+    bool IsLeftControllerPrimary2DAxisClicked()
+    {
+        bool value;
+        _leftController.TryGetFeatureValue(CommonUsages.primary2DAxisClick, out value);
+        return value;
+    }
+
+    bool IsRightControllerPrimary2DAxisClicked()
+    {
+        bool value;
+        _rightController.TryGetFeatureValue(CommonUsages.primary2DAxisClick, out value);
+        return value;
+    }
+
+    #endregion
+
+
     public List<Entity> operateEntities;
     [NonSerialized] public bool operateEntityNow;
     public int operateEntityIndex { get; private set; }
     public Entity currentEntity { get; private set; }
     public Camera currentCamera { get; private set; }
 
+    void Start()
+    {
+        XRDeviceStart();
+    }
 
     void Update()
     {
@@ -116,11 +234,12 @@ public class InputManager : MonoBehaviour
 
     public void ChangeOperateEntity(Entity newEntity)
     {
-        if(!newEntity)
+        if (!newEntity)
         {
             Debug.LogError("ChangeOperateEntity: newEntity is null");
             return;
         }
+
         currentEntity.SetOperate(false);
         currentEntity = newEntity;
         currentEntity.SetOperate(true);
@@ -128,52 +247,59 @@ public class InputManager : MonoBehaviour
 
     void HandlePlayerInput()
     {
+        Vector2 leftControllerPrimary2DAxis = GetLeftControllerPrimary2DAxis();
+        Vector2 rightControllerPrimary2DAxis = GetRightControllerPrimary2DAxis();
+
         // Player Horizontal
-        Messenger<float>.Broadcast(InputEvent.PLAYER_HORIZONTAL_INPUT, Input.GetAxis("Horizontal"));
+        // 在 VR 中可能需要通过手柄的特定轴来模拟水平移动，假设左摇杆的水平轴对应水平移动
+        Messenger<float>.Broadcast(InputEvent.PLAYER_HORIZONTAL_INPUT,  leftControllerPrimary2DAxis.x);
 
         // Player Vertical
-        Messenger<float>.Broadcast(InputEvent.PLAYER_VERTICAL_INPUT, Input.GetAxis("Vertical"));
+        // 假设左摇杆的垂直轴对应垂直移动
+        Messenger<float>.Broadcast(InputEvent.PLAYER_VERTICAL_INPUT, leftControllerPrimary2DAxis.y);
 
         // Player Camera Horizontal
-        Messenger<float>.Broadcast(InputEvent.PLAYER_CAMERA_HORIZONTAL_INPUT, Input.GetAxis("Mouse X"));
+        // VR 中可能没有类似鼠标的相机水平移动，这里可以根据实际需求进行调整，比如通过头部转动等方式模拟相机水平移动，目前暂不处理
+        Messenger<float>.Broadcast(InputEvent.PLAYER_CAMERA_HORIZONTAL_INPUT, rightControllerPrimary2DAxis.x);
 
         // Player Camera Vertical
-        Messenger<float>.Broadcast(InputEvent.PLAYER_CAMERA_VERTICAL_INPUT, Input.GetAxis("Mouse Y"));
+        // 类似相机水平移动
+        Messenger<float>.Broadcast(InputEvent.PLAYER_CAMERA_VERTICAL_INPUT, rightControllerPrimary2DAxis.y);
 
         // Player Jump
-        Messenger<bool>.Broadcast(InputEvent.PLAYER_JUMP_INPUT, Input.GetKeyDown(KeyCode.Space));
+        Messenger<bool>.Broadcast(InputEvent.PLAYER_JUMP_INPUT, IsRightPrimaryButtonPressed());
 
         // Player Attack
-        Messenger<bool>.Broadcast(InputEvent.PLAYER_ATTACK_INPUT, Input.GetMouseButtonDown(0));
+        Messenger<bool>.Broadcast(InputEvent.PLAYER_ATTACK_INPUT, IsRightTriggerPressed());
 
         // Player Reload
-        Messenger<bool>.Broadcast(InputEvent.PLAYER_RELOAD_INPUT, Input.GetMouseButtonDown(2));
+        Messenger<bool>.Broadcast(InputEvent.PLAYER_RELOAD_INPUT, IsRightSecondaryButtonPressed());
 
         // Player Dash
-        Messenger<bool>.Broadcast(InputEvent.PLAYER_DASH_INPUT, Input.GetMouseButtonDown(1));
+        Messenger<bool>.Broadcast(InputEvent.PLAYER_DASH_INPUT, IsLeftTriggerPressed());
 
         // Player Crouch
-        Messenger<bool>.Broadcast(InputEvent.PLAYER_CROUCH_INPUT, Input.GetKeyDown(KeyCode.LeftControl));
+        Messenger<bool>.Broadcast(InputEvent.PLAYER_CROUCH_INPUT, IsLeftGripPressed());
 
         // Player Change Gun
-        Messenger<bool>.Broadcast(InputEvent.PLAYER_CHANGE_GUN_INPUT, Input.GetKeyDown(KeyCode.LeftShift));
+        Messenger<bool>.Broadcast(InputEvent.PLAYER_CHANGE_GUN_INPUT, IsRightGripPressed());
 
         // Interact with vehicle
         // Player enter vehicle
-        Messenger<bool>.Broadcast(InputEvent.VEHICLE_ENTER_EXIT_INPUT, Input.GetKeyDown(KeyCode.E));
+        Messenger<bool>.Broadcast(InputEvent.VEHICLE_ENTER_EXIT_INPUT, false);
 
         // Player use radar
-        Messenger<bool>.Broadcast(InputEvent.VECHILE_RADAR_SWITCH_INPUT, Input.GetKeyDown(KeyCode.Alpha1));
+        Messenger<bool>.Broadcast(InputEvent.VECHILE_RADAR_SWITCH_INPUT, false);
 
         // Player use electric interference
-        Messenger<bool>.Broadcast(InputEvent.VECHILE_ELERTIC_INTERFERENCE_INPUT, Input.GetKeyDown(KeyCode.Alpha2));
+        Messenger<bool>.Broadcast(InputEvent.VECHILE_ELERTIC_INTERFERENCE_INPUT, false);
 
         // Player use emp
-        Messenger<bool>.Broadcast(InputEvent.VECHILE_EMP_USE_INPUT, Input.GetKeyDown(KeyCode.Alpha3));
+        Messenger<bool>.Broadcast(InputEvent.VECHILE_EMP_USE_INPUT, false);
 
         // Interact with shield
         // Player place & pickup shield
-        Messenger<bool>.Broadcast(InputEvent.PLAYER_PLACE_PICKUP_SHIELD_INPUT, Input.GetKeyDown(KeyCode.Q));
+        Messenger<bool>.Broadcast(InputEvent.PLAYER_PLACE_PICKUP_SHIELD_INPUT, false);
     }
 
     void HandleDroneInput()
@@ -217,7 +343,6 @@ public class InputManager : MonoBehaviour
     }
 
 
-
     void HandleGameInput()
     {
         // SKill Game Pause
@@ -232,7 +357,7 @@ public class InputManager : MonoBehaviour
             Messenger.Broadcast(InputEvent.OBSERVER_MODE_INPUT);
         }
 
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (IsLeftPrimaryButtonPressed())
         {
             GameManager.Instance.InGameMenu();
         }

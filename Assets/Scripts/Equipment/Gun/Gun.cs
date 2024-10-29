@@ -7,8 +7,6 @@ public class Gun : Equipment
 
     [Header("UI Info")] public Sprite gunImage;
 
-    public Camera playerCamera;
-
     [Header("Audio Info")] [SerializeField]
     public AudioSource soundSource;
 

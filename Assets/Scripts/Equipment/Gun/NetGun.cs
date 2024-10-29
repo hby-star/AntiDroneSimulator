@@ -21,17 +21,17 @@ public class NetGun : Gun
         SettingsAwake();
     }
 
-    public override void Fire()
-    {
-        base.Fire();
-
-        // Instantiate the net at the center of the screen
-        Vector3 origin = playerCamera.transform.position + playerCamera.transform.forward;
-        GameObject net = Instantiate(netPrefab, origin, Quaternion.identity);
-
-        // Apply an initial forward force to the net
-        Rigidbody rb = net.GetComponent<Rigidbody>();
-        net.transform.forward = playerCamera.transform.forward;
-        rb.velocity = playerCamera.transform.forward * netSpeed;
-    }
+    // public override void Fire()
+    // {
+    //     base.Fire();
+    //
+    //     // Instantiate the net at the center of the screen
+    //     Vector3 origin = playerCamera.transform.position + playerCamera.transform.forward;
+    //     GameObject net = Instantiate(netPrefab, origin, Quaternion.identity);
+    //
+    //     // Apply an initial forward force to the net
+    //     Rigidbody rb = net.GetComponent<Rigidbody>();
+    //     net.transform.forward = playerCamera.transform.forward;
+    //     rb.velocity = playerCamera.transform.forward * netSpeed;
+    // }
 }

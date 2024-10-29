@@ -23,18 +23,18 @@ public class EMPGun : Gun
     }
 
 
-    public override void Fire()
-    {
-        base.Fire();
-
-        // Instantiate the bullet at the center of the screen
-        Vector3 origin = playerCamera.transform.position + playerCamera.transform.forward * 2;
-        GameObject bullet = Instantiate(empBulletPrefab, origin, Quaternion.identity);
-
-        // Apply an initial forward force to the bullet
-        Rigidbody rb = bullet.GetComponent<Rigidbody>();
-        bullet.transform.forward = playerCamera.transform.forward;
-        rb.velocity = playerCamera.transform.forward * empBulletSpeed;
-        rb.useGravity = false;
-    }
+    // public override void Fire()
+    // {
+    //     base.Fire();
+    //
+    //     // Instantiate the bullet at the center of the screen
+    //     Vector3 origin = playerCamera.transform.position + playerCamera.transform.forward * 2;
+    //     GameObject bullet = Instantiate(empBulletPrefab, origin, Quaternion.identity);
+    //
+    //     // Apply an initial forward force to the bullet
+    //     Rigidbody rb = bullet.GetComponent<Rigidbody>();
+    //     bullet.transform.forward = playerCamera.transform.forward;
+    //     rb.velocity = playerCamera.transform.forward * empBulletSpeed;
+    //     rb.useGravity = false;
+    // }
 }
