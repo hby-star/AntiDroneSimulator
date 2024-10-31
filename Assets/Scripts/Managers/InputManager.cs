@@ -279,10 +279,10 @@ public class InputManager : MonoBehaviour
         Messenger<bool>.Broadcast(InputEvent.PLAYER_DASH_INPUT, IsLeftTriggerPressed());
 
         // Player Crouch
-        Messenger<bool>.Broadcast(InputEvent.PLAYER_CROUCH_INPUT, IsLeftGripPressed());
+        Messenger<bool>.Broadcast(InputEvent.PLAYER_CROUCH_INPUT, IsLeftSecondaryButtonPressed());
 
         // Player Change Gun
-        Messenger<bool>.Broadcast(InputEvent.PLAYER_CHANGE_GUN_INPUT, IsRightGripPressed());
+        Messenger<bool>.Broadcast(InputEvent.PLAYER_CHANGE_GUN_INPUT, IsLeftPrimaryButtonPressed());
 
         // Interact with vehicle
         // Player enter vehicle
@@ -357,7 +357,7 @@ public class InputManager : MonoBehaviour
             Messenger.Broadcast(InputEvent.OBSERVER_MODE_INPUT);
         }
 
-        if (IsLeftPrimaryButtonPressed())
+        if (IsLeftPrimaryButtonPressed() || Input.GetKeyDown(KeyCode.Escape))
         {
             GameManager.Instance.InGameMenu();
         }

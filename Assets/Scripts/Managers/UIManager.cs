@@ -54,11 +54,26 @@ public class UIManager : MonoBehaviour
 
     public void HideAllPopUps()
     {
-        helpPopUp.SetActive(false);
-        gameStartPopUp.SetActive(false);
-        gameEndPopUp.SetActive(false);
-        gamePausePopUp.SetActive(false);
-        settingsPopUp.SetActive(false);
+        if (helpPopUp)
+        {
+            helpPopUp.SetActive(false);
+        }
+        if (gameStartPopUp)
+        {
+            gameStartPopUp.SetActive(false);
+        }
+        if (gameEndPopUp)
+        {
+            gameEndPopUp.SetActive(false);
+        }
+        if (gamePausePopUp)
+        {
+            gamePausePopUp.SetActive(false);
+        }
+        if (settingsPopUp)
+        {
+            settingsPopUp.SetActive(false);
+        }
     }
 
     public bool IsPopUpAllHidden()
@@ -217,35 +232,44 @@ public class UIManager : MonoBehaviour
 
     void Update()
     {
-        if (gameStartPopUp.activeSelf)
+        if (gameStartPopUp&&gameStartPopUp.activeSelf)
         {
-            if (IsLeftGripPressed() || IsRightGripPressed())
+            if (IsLeftTriggerPressed() || IsRightTriggerPressed() || Input.GetMouseButtonDown(0))
             {
                 HideGameStartPopUp();
                 GameManager.Instance.ContinueGame();
             }
         }
 
-        if (gameEndPopUp.activeSelf)
+        if (gamePausePopUp&&gamePausePopUp.activeSelf)
         {
-            if (IsLeftGripPressed() || IsRightGripPressed())
+            if (IsLeftTriggerPressed() || IsRightTriggerPressed() || Input.GetMouseButtonDown(0))
+            {
+                HideGamePausePopUp();
+                GameManager.Instance.ContinueGame();
+            }
+        }
+
+        if (gameEndPopUp&&gameEndPopUp.activeSelf || Input.GetMouseButtonDown(0))
+        {
+            if (IsLeftTriggerPressed() || IsRightTriggerPressed())
             {
                 HideGameEndPopUp();
                 GameManager.Instance.ToMainMenu();
             }
         }
 
-        if (helpPopUp.activeSelf)
+        if (helpPopUp&&helpPopUp.activeSelf)
         {
-            if (IsLeftGripPressed() || IsRightGripPressed())
+            if (IsLeftGripPressed() || IsRightGripPressed() || Input.GetKeyDown(KeyCode.Escape))
             {
                 HideHelpPopUp();
             }
         }
 
-        if (settingsPopUp.activeSelf)
+        if (settingsPopUp&&settingsPopUp.activeSelf)
         {
-            if (IsLeftGripPressed() || IsRightGripPressed())
+            if (IsLeftGripPressed() || IsRightGripPressed() || Input.GetKeyDown(KeyCode.Escape))
             {
                 HideSettings();
             }

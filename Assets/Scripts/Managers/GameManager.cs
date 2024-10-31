@@ -135,6 +135,12 @@ public class GameManager : MonoBehaviour
             yield return null;
         }
 
+        GameObject popUps = GameObject.FindWithTag("Level_1_PopUp");
+        UIManager.Instance.gameStartPopUp = popUps.transform.GetChild(0).gameObject;
+        UIManager.Instance.gamePausePopUp = popUps.transform.GetChild(1).gameObject;
+        UIManager.Instance.gameEndPopUp = popUps.transform.GetChild(2).gameObject;
+        UIManager.Instance.HideAllPopUps();
+
         StopGame();
         UIManager.Instance.ShowGameStartPopUp();
     }

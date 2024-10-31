@@ -98,8 +98,8 @@ public class Drone : Entity
             targetPlayer = FindObjectOfType<Player>();
         }
 
-        displayWidth = Screen.width;
-        displayHeight = Screen.height;
+        displayWidth = 1920;
+        displayHeight = 1080;
         if (Display.displays.Length > 1)
         {
             var display = Display.displays[1];

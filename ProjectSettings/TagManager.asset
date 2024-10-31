@@ -11,6 +11,7 @@ TagManager:
   - PlayerCamera
   - Bullet
   - Swarm
+  - Level_1_PopUp
   layers:
   - Default
   - TransparentFX
