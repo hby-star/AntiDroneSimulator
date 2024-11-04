@@ -8,7 +8,7 @@ public class Entity : MonoBehaviour
     public Animator Animator { get; private set; }
     public Rigidbody Rigidbody { get; private set; }
     public Collider Collider { get; private set; }
-    public Camera Camera { get; private set; }
+    public Camera Camera;
 
     protected bool operateNow = false;
 
@@ -21,7 +21,6 @@ public class Entity : MonoBehaviour
         Animator = GetComponentInChildren<Animator>();
         Rigidbody = GetComponent<Rigidbody>();
         Collider = GetComponent<Collider>();
-        Camera = GetComponentInChildren<Camera>();
 
         Rigidbody.freezeRotation = true;
     }

@@ -9,6 +9,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     #region Singleton
+
     private static GameManager _instance;
 
     public static GameManager Instance
@@ -51,7 +52,6 @@ public class GameManager : MonoBehaviour
         if (Display.displays.Length > 1)
         {
             Display.displays[1].Activate(); // 启用Display 2
-            Debug.Log("Display 2 activated.");
         }
     }
 
@@ -109,7 +109,6 @@ public class GameManager : MonoBehaviour
 
     IEnumerator LoadMainMenu()
     {
-
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync("MainMenu");
 
         while (!asyncLoad.isDone)
