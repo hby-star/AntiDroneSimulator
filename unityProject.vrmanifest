@@ -5,7 +5,7 @@
       "app_key": "application.generated.unity.antidronesimulator_vr_steam.exe",
       "launch_type": "url",
       "url": "steam://launch/",
-      "action_manifest_path": "C:\\Users\\dell\\Desktop\\AntiDroneSimulator\\AntiDroneSimulator_vr_steam\\AntiDroneSimulator_vr_steam\\Assets\\StreamingAssets\\SteamVR\\actions.json",
+      "action_manifest_path": "C:\\Users\\21714\\Desktop\\Unity\\AntiDroneSimulator\\AntiDroneSimulator_vr_steam\\AntiDroneSimulator_vr_steam\\Assets\\StreamingAssets\\SteamVR\\actions.json",
       "strings": {
         "en_us": {
           "name": "AntiDroneSimulator_vr_steam [Testing]"
