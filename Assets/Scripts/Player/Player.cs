@@ -329,11 +329,11 @@ public class Player : Entity
         if (UIManager.Instance)
         {
             sensitivityHor = sensitivityVert =
-                UIManager.Instance.settingsPopUp.GetComponent<Settings>().sensitivitySlider.value;
-            soundSource.volume *= UIManager.Instance.settingsPopUp.GetComponent<Settings>().volumeSlider.value;
-            playerStats.maxHeath = UIManager.Instance.settingsPopUp.GetComponent<Settings>().playerHeathSlider.value;
+                SettingsManager.Instance.settings.GetComponent<Settings>().sensitivitySlider.value;
+            soundSource.volume *= SettingsManager.Instance.settings.GetComponent<Settings>().volumeSlider.value;
+            playerStats.maxHeath = SettingsManager.Instance.settings.GetComponent<Settings>().playerHeathSlider.value;
             playerStats.currentHeath = playerStats.maxHeath;
-            moveSpeed = UIManager.Instance.settingsPopUp.GetComponent<Settings>().playerMoveSpeedSlider.value;
+            moveSpeed = SettingsManager.Instance.settings.GetComponent<Settings>().playerMoveSpeedSlider.value;
         }
     }
 

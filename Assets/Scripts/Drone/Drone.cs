@@ -16,9 +16,9 @@ public class Drone : Entity
     {
         if (UIManager.Instance)
         {
-            flySoundSource.volume *= UIManager.Instance.settingsPopUp.GetComponent<Settings>().volumeSlider.value;
+            flySoundSource.volume *= SettingsManager.Instance.settings.GetComponent<Settings>().volumeSlider.value;
             electricInterferenceTime =
-                UIManager.Instance.settingsPopUp.GetComponent<Settings>().empBulletDurationSlider.value;
+                SettingsManager.Instance.settings.GetComponent<Settings>().empBulletDurationSlider.value;
         }
     }
 
@@ -122,7 +122,7 @@ public class Drone : Entity
         halfDisplayHeight = displayHeight / 2;
 
         float divide =
-            Mathf.Ceil(Mathf.Sqrt(UIManager.Instance.settingsPopUp.GetComponent<Settings>().droneNumSlider.value + 1));
+            Mathf.Ceil(Mathf.Sqrt(SettingsManager.Instance.settings.GetComponent<Settings>().droneNumSlider.value + 1));
         float droneViewHeight = Screen.height / divide;
         cameraRate = droneViewHeight / displayHeight;
         minSizeTimesCameraRate = minDetectSizeInCamera * cameraRate;

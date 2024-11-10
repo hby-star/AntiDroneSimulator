@@ -20,7 +20,7 @@ public class DetectDrone : Drone
     {
         if (UIManager.Instance)
         {
-            moveSpeed = UIManager.Instance.settingsPopUp.GetComponent<Settings>().detectDroneSpeedSlider.value;
+            moveSpeed = SettingsManager.Instance.settings.GetComponent<Settings>().detectDroneSpeedSlider.value;
         }
     }
 

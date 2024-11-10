@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5552050711391047747}
   - component: {fileID: 375285433364163277}
   - component: {fileID: 3057411022515400486}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: MainMenuBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34,10 +34,10 @@ RectTransform:
   - {fileID: 6371761162662367984}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 37, y: 119}
-  m_SizeDelta: {x: 590.639, y: 149.603}
+  m_AnchorMin: {x: 0.39821878, y: 0.53038895}
+  m_AnchorMax: {x: 0.63178134, y: 0.633}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: -1.361023, y: -0.39700317}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5552050711391047747
 CanvasRenderer:
@@ -132,7 +132,7 @@ GameObject:
   - component: {fileID: 6371761162662367984}
   - component: {fileID: 2389982102081145866}
   - component: {fileID: 1626809812888739735}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

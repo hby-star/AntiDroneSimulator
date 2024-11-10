@@ -22,7 +22,7 @@ public class Gun : Equipment
     void SettingsAwake()
     {
         if (UIManager.Instance)
-            soundSource.volume *= UIManager.Instance.settingsPopUp.GetComponent<Settings>().volumeSlider.value;
+            soundSource.volume *= SettingsManager.Instance.settings.GetComponent<Settings>().volumeSlider.value;
     }
 
     protected virtual void Awake()

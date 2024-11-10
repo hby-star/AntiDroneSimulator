@@ -7,13 +7,11 @@ using UnityEngine.UI;
 public class InGameMenu : MonoBehaviour
 {
     public Button continueButton;
-    public Button helpButton;
     public Button returnButton;
 
     private void Awake()
     {
         continueButton.onClick.AddListener(Continue);
-        helpButton.onClick.AddListener(Help);
         returnButton.onClick.AddListener(Return);
     }
 
@@ -21,11 +19,6 @@ public class InGameMenu : MonoBehaviour
     {
         UIManager.Instance.HideGamePausePopUp();
         GameManager.Instance.ContinueGame();
-    }
-
-    void Help()
-    {
-        UIManager.Instance.ShowHelpPopUp();
     }
 
     void Return()

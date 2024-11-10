@@ -12,7 +12,7 @@ public class HandGun : Gun
     {
         if (UIManager.Instance)
         {
-            maxBullets = (int)UIManager.Instance.settingsPopUp.GetComponent<Settings>().normalBulletNumSlider.value;
+            maxBullets = (int)SettingsManager.Instance.settings.GetComponent<Settings>().normalBulletNumSlider.value;
             currentBullets = maxBullets;
         }
     }

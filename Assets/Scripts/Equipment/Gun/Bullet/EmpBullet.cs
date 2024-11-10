@@ -12,7 +12,7 @@ public class EmpBullet : MonoBehaviour
     private void Start()
     {
         audioSource = GetComponent<AudioSource>();
-        audioSource.volume = UIManager.Instance.settingsPopUp.GetComponent<Settings>().volumeSlider.value / 2f;
+        audioSource.volume = SettingsManager.Instance.settings.GetComponent<Settings>().volumeSlider.value / 2f;
         audioSource.Play();
     }
 

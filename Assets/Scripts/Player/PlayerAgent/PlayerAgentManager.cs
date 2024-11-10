@@ -10,7 +10,7 @@ public class PlayerAgentManager : MonoBehaviour
     private void Awake()
     {
         playerAgents = GetComponentsInChildren<PlayerAgent>();
-        int playerAgentNum = (int)UIManager.Instance.settingsPopUp.GetComponent<Settings>().agentNumSlider.value;
+        int playerAgentNum = (int)SettingsManager.Instance.settings.GetComponent<Settings>().agentNumSlider.value;
         for (int i = 0; i < playerAgentNum; i++)
         {
             playerAgents[i].gameObject.SetActive(true);

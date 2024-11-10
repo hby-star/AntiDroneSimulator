@@ -132,7 +132,7 @@ public class Swarm : MonoBehaviour
     private void SettingAwake()
     {
         if (UIManager.Instance)
-            droneCount = (int)UIManager.Instance.settingsPopUp.GetComponent<Settings>().droneNumSlider.value;
+            droneCount = (int)SettingsManager.Instance.settings.GetComponent<Settings>().droneNumSlider.value;
     }
 
     private void Awake()

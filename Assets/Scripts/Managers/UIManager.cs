@@ -43,25 +43,21 @@ public class UIManager : MonoBehaviour
 
     #endregion
 
-    public GameObject helpPopUp;
-    public GameObject settingsPopUp;
     public GameObject gameStartPopUp;
     public GameObject gamePausePopUp;
     public GameObject gameEndPopUp;
 
     public void HideAllPopUps()
     {
-        helpPopUp.SetActive(false);
         gameStartPopUp.SetActive(false);
         gameEndPopUp.SetActive(false);
         gamePausePopUp.SetActive(false);
-        settingsPopUp.SetActive(false);
     }
 
     public bool IsPopUpAllHidden()
     {
-        if (!helpPopUp.activeSelf && !gameStartPopUp.activeSelf && !gameEndPopUp.activeSelf &&
-            !gamePausePopUp.activeSelf && !settingsPopUp.activeSelf)
+        if (!gameStartPopUp.activeSelf && !gameEndPopUp.activeSelf &&
+            !gamePausePopUp.activeSelf)
         {
             return true;
         }
@@ -69,26 +65,6 @@ public class UIManager : MonoBehaviour
         {
             return false;
         }
-    }
-
-    public void ShowHelpPopUp()
-    {
-        helpPopUp.SetActive(true);
-    }
-
-    public void HideHelpPopUp()
-    {
-        helpPopUp.SetActive(false);
-    }
-
-    public void ShowSettings()
-    {
-        settingsPopUp.SetActive(true);
-    }
-
-    public void HideSettings()
-    {
-        settingsPopUp.SetActive(false);
     }
 
     public void ShowGameStartPopUp()
@@ -158,28 +134,5 @@ public class UIManager : MonoBehaviour
             }
         }
 
-        if (helpPopUp.activeSelf)
-        {
-            if (Input.GetMouseButtonDown(0))
-            {
-                if (!RectTransformUtility.RectangleContainsScreenPoint(
-                        helpPopUp.transform.GetChild(0).GetComponent<RectTransform>(), Input.mousePosition))
-                {
-                    HideHelpPopUp();
-                }
-            }
-        }
-
-        if (settingsPopUp.activeSelf)
-        {
-            if (Input.GetMouseButtonDown(0))
-            {
-                if (!RectTransformUtility.RectangleContainsScreenPoint(
-                        settingsPopUp.transform.GetChild(0).GetComponent<RectTransform>(), Input.mousePosition))
-                {
-                    HideSettings();
-                }
-            }
-        }
     }
 }

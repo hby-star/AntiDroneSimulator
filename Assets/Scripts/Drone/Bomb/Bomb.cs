@@ -16,8 +16,8 @@ public class Bomb : MonoBehaviour
     {
         if (UIManager.Instance)
         {
-            explosionRadius = UIManager.Instance.settingsPopUp.GetComponent<Settings>().bombRangeSlider.value;
-            damage = UIManager.Instance.settingsPopUp.GetComponent<Settings>().bombDamageSlider.value;
+            explosionRadius = SettingsManager.Instance.settings.GetComponent<Settings>().bombRangeSlider.value;
+            damage = SettingsManager.Instance.settings.GetComponent<Settings>().bombDamageSlider.value;
         }
     }
 

@@ -10,7 +10,7 @@ public class NetGun : Gun
     {
         if (UIManager.Instance)
         {
-            maxBullets = (int)UIManager.Instance.settingsPopUp.GetComponent<Settings>().netBulletNumSlider.value;
+            maxBullets = (int)SettingsManager.Instance.settings.GetComponent<Settings>().netBulletNumSlider.value;
             currentBullets = maxBullets;
         }
     }

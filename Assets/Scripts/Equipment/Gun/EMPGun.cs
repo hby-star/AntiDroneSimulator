@@ -10,7 +10,7 @@ public class EMPGun : Gun
     {
         if (UIManager.Instance)
         {
-            maxBullets = (int)UIManager.Instance.settingsPopUp.GetComponent<Settings>().empBulletNumSlider.value;
+            maxBullets = (int)SettingsManager.Instance.settings.GetComponent<Settings>().empBulletNumSlider.value;
             currentBullets = maxBullets;
         }
     }
