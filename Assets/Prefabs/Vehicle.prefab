@@ -377,6 +377,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3c734e9a5a25ea41a84d5ae67d1e221, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Animator: {fileID: 7029029182324374085}
+  Camera: {fileID: 6845802174153681502}
   moveSpeed: 0
   wheelLf: {fileID: 6926715264568133636}
   wheelRf: {fileID: 8283291675937454038}

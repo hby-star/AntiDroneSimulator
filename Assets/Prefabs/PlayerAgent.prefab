@@ -1072,6 +1072,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cee6ff71c471e84489ee294171ac9c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Animator: {fileID: 3070208345395208274}
   Camera: {fileID: 3064006698835724940}
   playerStats: {fileID: 3822449868297126833}
   playerRenderers:

@@ -116,7 +116,8 @@ public class GameManager : MonoBehaviour
             yield return null;
         }
 
-        UIManager.Instance.HideAllPopUps();
+        //UIManager.Instance.HideAllPopUps();
+        SettingsManager.Instance.settings.SetActive(true);
     }
 
     IEnumerator LoadLevel1()
@@ -128,8 +129,9 @@ public class GameManager : MonoBehaviour
             yield return null;
         }
 
-        StopGame();
-        UIManager.Instance.ShowGameStartPopUp();
+        //StopGame();
+        //UIManager.Instance.ShowGameStartPopUp();
+        SettingsManager.Instance.settings.SetActive(false);
     }
 
     public void InGameMenu()

@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Entity : MonoBehaviour
 {
-    public Animator Animator { get; private set; }
+    public Animator Animator;
     public Rigidbody Rigidbody { get; private set; }
     public Collider Collider { get; private set; }
     public Camera Camera;
@@ -18,7 +18,6 @@ public class Entity : MonoBehaviour
 
     protected virtual void Start()
     {
-        Animator = GetComponentInChildren<Animator>();
         Rigidbody = GetComponent<Rigidbody>();
         Collider = GetComponent<Collider>();
 

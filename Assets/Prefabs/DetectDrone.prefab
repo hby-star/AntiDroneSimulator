@@ -408,6 +408,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9358a16ab856f244193a531ef75c6ac7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Animator: {fileID: 1292195059317171181}
   Camera: {fileID: 2739328518924788778}
   moveSpeed: 12
   minDetectSizeInCamera: 0.03
