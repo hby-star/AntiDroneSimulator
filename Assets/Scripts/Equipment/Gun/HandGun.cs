@@ -10,11 +10,8 @@ public class HandGun : Gun
 
     void SettingsAwake()
     {
-        if (UIManager.Instance)
-        {
-            maxBullets = (int)SettingsManager.Instance.settings.GetComponent<Settings>().normalBulletNumSlider.value;
-            currentBullets = maxBullets;
-        }
+        maxBullets = (int)SettingsManager.Instance.settings.GetComponent<Settings>().normalBulletNumSlider.value;
+        currentBullets = maxBullets;
     }
 
     protected override void Awake()
@@ -29,7 +26,8 @@ public class HandGun : Gun
         base.Fire();
 
         // Play the fire effect
-        ParticleSystem fireEffect = Instantiate(fireEffectPrefab, fireEffectPosition.position, fireEffectPosition.rotation);
+        ParticleSystem fireEffect =
+            Instantiate(fireEffectPrefab, fireEffectPosition.position, fireEffectPosition.rotation);
         fireEffect.transform.parent = fireEffectPosition;
         fireEffect.Play();
 
@@ -53,7 +51,6 @@ public class HandGun : Gun
             }
         }
     }
-
 
 
     private IEnumerator AttackBulletImpact(Vector3 pos, Vector3 normal)

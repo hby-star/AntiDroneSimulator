@@ -14,11 +14,8 @@ public class Bomb : MonoBehaviour
 
     private void SettingsAwake()
     {
-        if (UIManager.Instance)
-        {
-            explosionRadius = SettingsManager.Instance.settings.GetComponent<Settings>().bombRangeSlider.value;
-            damage = SettingsManager.Instance.settings.GetComponent<Settings>().bombDamageSlider.value;
-        }
+        explosionRadius = SettingsManager.Instance.settings.GetComponent<Settings>().bombRangeSlider.value;
+        damage = SettingsManager.Instance.settings.GetComponent<Settings>().bombDamageSlider.value;
     }
 
     void Awake()
@@ -46,6 +43,7 @@ public class Bomb : MonoBehaviour
                 nearbyObject.GetComponent<Player>().TakeDamage(damage);
             }
         }
+
         Destroy(gameObject);
     }
 

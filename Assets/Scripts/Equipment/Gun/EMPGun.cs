@@ -8,11 +8,8 @@ public class EMPGun : Gun
 
     void SettingsAwake()
     {
-        if (UIManager.Instance)
-        {
-            maxBullets = (int)SettingsManager.Instance.settings.GetComponent<Settings>().empBulletNumSlider.value;
-            currentBullets = maxBullets;
-        }
+        maxBullets = (int)SettingsManager.Instance.settings.GetComponent<Settings>().empBulletNumSlider.value;
+        currentBullets = maxBullets;
     }
 
     protected override void Awake()

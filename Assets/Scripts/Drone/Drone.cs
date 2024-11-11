@@ -14,12 +14,9 @@ public class Drone : Entity
 
     void SettingsAwake()
     {
-        if (UIManager.Instance)
-        {
-            flySoundSource.volume *= SettingsManager.Instance.settings.GetComponent<Settings>().volumeSlider.value;
-            electricInterferenceTime =
-                SettingsManager.Instance.settings.GetComponent<Settings>().empBulletDurationSlider.value;
-        }
+        flySoundSource.volume *= SettingsManager.Instance.settings.GetComponent<Settings>().volumeSlider.value;
+        electricInterferenceTime =
+            SettingsManager.Instance.settings.GetComponent<Settings>().empBulletDurationSlider.value;
     }
 
     protected override void Awake()

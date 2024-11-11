@@ -19,10 +19,7 @@ public class AttackDrone : Drone
 
     void SettingsAwake()
     {
-        if (UIManager.Instance)
-        {
-            moveSpeed = SettingsManager.Instance.settings.GetComponent<Settings>().attackDroneSpeedSlider.value;
-        }
+        moveSpeed = SettingsManager.Instance.settings.GetComponent<Settings>().attackDroneSpeedSlider.value;
     }
 
     protected override void Awake()

@@ -89,7 +89,7 @@ public class Swarm : MonoBehaviour
         GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
         foreach (var player in players)
         {
-            Vector3 playerPosition = player.transform.position + Vector3.up*2;
+            Vector3 playerPosition = player.transform.position + Vector3.up * 2;
             playerPositions.Add(playerPosition);
         }
 
@@ -131,8 +131,7 @@ public class Swarm : MonoBehaviour
 
     private void SettingAwake()
     {
-        if (UIManager.Instance)
-            droneCount = (int)SettingsManager.Instance.settings.GetComponent<Settings>().droneNumSlider.value;
+        droneCount = (int)SettingsManager.Instance.settings.GetComponent<Settings>().droneNumSlider.value;
     }
 
     private void Awake()

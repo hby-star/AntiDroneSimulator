@@ -116,7 +116,6 @@ public class GameManager : MonoBehaviour
             yield return null;
         }
 
-        //UIManager.Instance.HideAllPopUps();
         SettingsManager.Instance.settings.SetActive(true);
     }
 
@@ -130,13 +129,14 @@ public class GameManager : MonoBehaviour
         }
 
         //StopGame();
-        //UIManager.Instance.ShowGameStartPopUp();
+        UIManager.Instance.HideAllPopUps();
+        UIManager.Instance.ShowGameStartPopUp();
         SettingsManager.Instance.settings.SetActive(false);
     }
 
     public void InGameMenu()
     {
         UIManager.Instance.ShowGamePausePopUp();
-        StopGame();
+        //StopGame();
     }
 }

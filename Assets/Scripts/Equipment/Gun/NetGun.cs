@@ -8,12 +8,10 @@ public class NetGun : Gun
 
     void SettingsAwake()
     {
-        if (UIManager.Instance)
-        {
-            maxBullets = (int)SettingsManager.Instance.settings.GetComponent<Settings>().netBulletNumSlider.value;
-            currentBullets = maxBullets;
-        }
+        maxBullets = (int)SettingsManager.Instance.settings.GetComponent<Settings>().netBulletNumSlider.value;
+        currentBullets = maxBullets;
     }
+
     protected override void Awake()
     {
         base.Awake();
