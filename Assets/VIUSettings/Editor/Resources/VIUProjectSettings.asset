@@ -16,3 +16,4 @@ MonoBehaviour:
   m_isInstallingOpenVRXRPlugin: 0
   m_ignoreKeys:
   - InitializeonStartup
+  - ApplyVIUActionSetforSteamVRInput

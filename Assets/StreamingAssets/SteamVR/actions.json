@@ -50,6 +50,31 @@
       "type": "boolean"
     },
     {
+      "name": "/actions/default/in/PlayerMove",
+      "type": "vector2",
+      "requirement": "mandatory"
+    },
+    {
+      "name": "/actions/default/in/PlayerCameraMove",
+      "type": "vector2",
+      "requirement": "mandatory"
+    },
+    {
+      "name": "/actions/default/in/PlayerAttack",
+      "type": "boolean",
+      "requirement": "mandatory"
+    },
+    {
+      "name": "/actions/default/in/PlayerJump",
+      "type": "boolean",
+      "requirement": "mandatory"
+    },
+    {
+      "name": "/actions/default/in/PlayerReload",
+      "type": "boolean",
+      "requirement": "mandatory"
+    },
+    {
       "name": "/actions/default/out/Haptic",
       "type": "vibration"
     },
@@ -491,9 +516,7 @@
       "/actions/htc_viu/in/viu_axis_4xy": "Axis4 X&Y",
       "/actions/htc_viu/out/viu_vib_01": "Vibration",
       "/actions/htc_viu/in/viu_skeleton_left": "Skeleton (Left)",
-      "/actions/htc_viu/in/viu_skeleton_right": "Skeleton (Right)",
-      "/actions/htc_viu/in/viu_press_36": "Press08 (Joystick)",
-      "/actions/htc_viu/in/viu_touch_36": "Touch08 (Joystick)"
+      "/actions/htc_viu/in/viu_skeleton_right": "Skeleton (Right)"
     }
   ]
 }

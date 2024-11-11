@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
+using Valve.VR;
 
 public class InputManager : MonoBehaviour
 {
@@ -55,6 +56,16 @@ public class InputManager : MonoBehaviour
     public int operateEntityIndex { get; private set; }
     public Entity currentEntity { get; private set; }
     public Camera currentCamera { get; private set; }
+
+    #region Player Input
+
+    public SteamVR_Action_Vector2 playerMove;
+    public SteamVR_Action_Vector2 playerCameraMove;
+    public SteamVR_Action_Boolean playerJump;
+    public SteamVR_Action_Boolean playerAttack;
+    public SteamVR_Action_Boolean playerReload;
+
+    #endregion
 
     void Start()
     {
@@ -134,25 +145,25 @@ public class InputManager : MonoBehaviour
     void HandlePlayerInput()
     {
         // Player Horizontal
-        Messenger<float>.Broadcast(InputEvent.PLAYER_HORIZONTAL_INPUT, Input.GetAxis("Horizontal"));
+        Messenger<float>.Broadcast(InputEvent.PLAYER_HORIZONTAL_INPUT, playerMove.axis.x);
 
         // Player Vertical
-        Messenger<float>.Broadcast(InputEvent.PLAYER_VERTICAL_INPUT, Input.GetAxis("Vertical"));
+        Messenger<float>.Broadcast(InputEvent.PLAYER_VERTICAL_INPUT, playerMove.axis.y);
 
         // Player Camera Horizontal
-        Messenger<float>.Broadcast(InputEvent.PLAYER_CAMERA_HORIZONTAL_INPUT, Input.GetAxis("Mouse X"));
+        Messenger<float>.Broadcast(InputEvent.PLAYER_CAMERA_HORIZONTAL_INPUT, playerCameraMove.axis.x);
 
         // Player Camera Vertical
-        Messenger<float>.Broadcast(InputEvent.PLAYER_CAMERA_VERTICAL_INPUT, Input.GetAxis("Mouse Y"));
+        Messenger<float>.Broadcast(InputEvent.PLAYER_CAMERA_VERTICAL_INPUT, playerCameraMove.axis.y);
 
         // Player Jump
-        Messenger<bool>.Broadcast(InputEvent.PLAYER_JUMP_INPUT, Input.GetKeyDown(KeyCode.Space));
+        Messenger<bool>.Broadcast(InputEvent.PLAYER_JUMP_INPUT, playerJump.state);
 
         // Player Attack
-        Messenger<bool>.Broadcast(InputEvent.PLAYER_ATTACK_INPUT, Input.GetMouseButtonDown(0));
+        Messenger<bool>.Broadcast(InputEvent.PLAYER_ATTACK_INPUT, playerAttack.state);
 
         // Player Reload
-        Messenger<bool>.Broadcast(InputEvent.PLAYER_RELOAD_INPUT, Input.GetMouseButtonDown(2));
+        Messenger<bool>.Broadcast(InputEvent.PLAYER_RELOAD_INPUT, playerReload.state);
 
         // Player Dash
         Messenger<bool>.Broadcast(InputEvent.PLAYER_DASH_INPUT, Input.GetMouseButtonDown(1));
