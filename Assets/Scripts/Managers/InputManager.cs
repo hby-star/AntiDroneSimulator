@@ -154,7 +154,7 @@ public class InputManager : MonoBehaviour
         Messenger<float>.Broadcast(InputEvent.PLAYER_CAMERA_HORIZONTAL_INPUT, playerCameraMove.axis.x);
 
         // Player Camera Vertical
-        Messenger<float>.Broadcast(InputEvent.PLAYER_CAMERA_VERTICAL_INPUT, playerCameraMove.axis.y);
+        //Messenger<float>.Broadcast(InputEvent.PLAYER_CAMERA_VERTICAL_INPUT, playerCameraMove.axis.y);
 
         // Player Jump
         Messenger<bool>.Broadcast(InputEvent.PLAYER_JUMP_INPUT, playerJump.state);

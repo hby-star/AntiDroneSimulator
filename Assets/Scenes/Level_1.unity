@@ -18913,27 +18913,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 8, y: 3.0000007, z: 3.000002}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!65 &812932589221043787
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8073067839864463373}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.08553529, y: 1.2860794, z: 0.40534967}
-  m_Center: {x: 0.000000020938243, y: -0.15854155, z: 0.0005458045}
 --- !u!65 &814612490358641369
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -35598,27 +35577,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 737906921009568563}
   m_Mesh: {fileID: 4300038, guid: 3a8f58244ff42dd4687b2e136c464c50, type: 3}
---- !u!65 &4819238124756795058
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7104562160602260040}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.069693096, y: 1.2962394, z: 0.2551723}
-  m_Center: {x: 0.0000000809001, y: -0.2165339, z: -0.0021079155}
 --- !u!1 &4828464883368033386
 GameObject:
   m_ObjectHideFlags: 0
@@ -42857,7 +42815,6 @@ GameObject:
   - component: {fileID: 2683639817205859807}
   - component: {fileID: 4300808481196245147}
   - component: {fileID: 6511502042808184966}
-  - component: {fileID: 7369389437847452038}
   m_Layer: 3
   m_Name: Smaw
   m_TagString: Untagged
@@ -43988,7 +43945,6 @@ GameObject:
   - component: {fileID: 3578140073871929817}
   - component: {fileID: 1819065758639049005}
   - component: {fileID: 9132968142780845479}
-  - component: {fileID: 4819238124756795058}
   m_Layer: 3
   m_Name: benelliM4
   m_TagString: Untagged
@@ -44491,9 +44447,9 @@ MonoBehaviour:
   playerStats: {fileID: 8030514294827817849}
   playerRenderers:
   - {fileID: 1938310136765873120}
-  - {fileID: 812932589221043787}
-  - {fileID: 4819238124756795058}
-  - {fileID: 7369389437847452038}
+  - {fileID: 9009123570062718562}
+  - {fileID: 9132968142780845479}
+  - {fileID: 6511502042808184966}
   moveSpeed: 10
   jumpForce: 6
   dashSpeed: 12
@@ -44888,27 +44844,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!65 &7369389437847452038
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6741032461973166129}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.37792897, y: 2.3986394, z: 0.67974603}
-  m_Center: {x: 0.050177045, y: 0.3073937, z: 0.12504576}
 --- !u!1 &7369837722384480055
 GameObject:
   m_ObjectHideFlags: 0
@@ -47664,7 +47599,6 @@ GameObject:
   - component: {fileID: 302926611238318227}
   - component: {fileID: 1921935920192156295}
   - component: {fileID: 9009123570062718562}
-  - component: {fileID: 812932589221043787}
   m_Layer: 3
   m_Name: m4
   m_TagString: Untagged
