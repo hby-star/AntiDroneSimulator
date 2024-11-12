@@ -24,12 +24,11 @@ public class NetGun : Gun
         base.Fire();
 
         // Instantiate the net at the center of the screen
-        Vector3 origin = playerCamera.transform.position + playerCamera.transform.forward;
-        GameObject net = Instantiate(netPrefab, origin, Quaternion.identity);
+        GameObject net = Instantiate(netPrefab, firePosition.position, Quaternion.identity);
 
         // Apply an initial forward force to the net
         Rigidbody rb = net.GetComponent<Rigidbody>();
-        net.transform.forward = playerCamera.transform.forward;
-        rb.velocity = playerCamera.transform.forward * netSpeed;
+        net.transform.forward = firePosition.transform.forward;
+        rb.velocity = firePosition.transform.forward * netSpeed;
     }
 }

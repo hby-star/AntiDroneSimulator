@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4819818843720310}
   - component: {fileID: 198316187487270594}
   - component: {fileID: 199901496000089600}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: BorderLightning
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4853,7 +4853,7 @@ GameObject:
   - component: {fileID: 4472473557064494}
   - component: {fileID: 198207720701571386}
   - component: {fileID: 199629377902509242}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Darkness
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5065,7 +5065,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0, g: 0.04145193, b: 0.10062885, a: 1}
+      maxColor: {r: 0, g: 0.14797664, b: 1, a: 0.26666668}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -9757,8 +9757,8 @@ GameObject:
   - component: {fileID: -2725850957865560884}
   - component: {fileID: 2531462700270569508}
   - component: {fileID: 7049340151138687352}
-  m_Layer: 0
-  m_Name: Projectile 2 energy orb
+  m_Layer: 8
+  m_Name: EmpBullet
   m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9774,7 +9774,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1, z: 0}
-  m_LocalScale: {x: 5, y: 5, z: 5}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 8802921755113316326}
@@ -9868,7 +9868,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 1
   m_Constraints: 0
-  m_CollisionDetection: 1
+  m_CollisionDetection: 2
 --- !u!135 &135262430962562618
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -10033,7 +10033,7 @@ GameObject:
   - component: {fileID: 4145045361821176}
   - component: {fileID: 198831507450239270}
   - component: {fileID: 199100726335174730}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Borders
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10245,7 +10245,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 0.47450984, g: 0.71941483, b: 1, a: 0.1254902}
-      maxColor: {r: 0, g: 0.13262652, b: 0.66666657, a: 1}
+      maxColor: {r: 0, g: 0.0629735, b: 1, a: 0.47843137}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -14933,7 +14933,7 @@ GameObject:
   - component: {fileID: 1007775842088047103}
   - component: {fileID: 3284461296996571548}
   - component: {fileID: 4204840279633286761}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Projectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15148,7 +15148,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0, g: 0.39007854, b: 1, a: 0.56078434}
+      maxColor: {r: 0, g: 0.15270185, b: 1, a: 0.56078434}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -19834,7 +19834,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8802921755113316326}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Visuals
   m_TagString: Untagged
   m_Icon: {fileID: 0}

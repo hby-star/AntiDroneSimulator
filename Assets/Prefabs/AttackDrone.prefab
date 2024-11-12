@@ -450,7 +450,7 @@ MonoBehaviour:
   flySound: {fileID: 8300000, guid: da8cba425f89d414bbfefcafcff846bd, type: 3}
   attackDroneState: 0
   swarm: {fileID: 0}
-  throwBombRadius: 8
+  throwBombRadius: 6
   bombBelowLength: 0.1
 --- !u!82 &7473070086189362181
 AudioSource:

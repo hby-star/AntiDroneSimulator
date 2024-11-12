@@ -3,63 +3,49 @@
   <TypeDate>
     <guid>8e311b4144040124a95acdce7b2130a0</guid>
     <fileName>Assets/Plugins/UnitySweeper/Editor/AssetCollector.cs</fileName>
-    <timeStamp>2024-10-25T18:55:42.9559918+08:00</timeStamp>
-    <typeFullName>
-      <string>UnitySweeper.AssetCollector</string>
-    </typeFullName>
+    <timeStamp>2024-11-04T16:08:53.0499874+08:00</timeStamp>
+    <typeFullName />
     <assembly>Assembly-CSharp-Editor-firstpass, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</assembly>
   </TypeDate>
   <TypeDate>
     <guid>fba9898c1f79c5946a66469f555e7645</guid>
     <fileName>Assets/Plugins/UnitySweeper/Editor/AssetReferenceCollection.cs</fileName>
-    <timeStamp>2024-10-25T18:55:42.957001+08:00</timeStamp>
-    <typeFullName>
-      <string>UnitySweeper.AssetReferenceCollection</string>
-    </typeFullName>
+    <timeStamp>2024-11-04T16:08:53.0509871+08:00</timeStamp>
+    <typeFullName />
     <assembly>Assembly-CSharp-Editor-firstpass, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</assembly>
   </TypeDate>
   <TypeDate>
     <guid>5ed156f8cea39754497ace2fd159b15e</guid>
     <fileName>Assets/Plugins/UnitySweeper/Editor/ClassReferenceCollection.cs</fileName>
-    <timeStamp>2024-10-25T18:55:42.9579965+08:00</timeStamp>
-    <typeFullName>
-      <string>UnitySweeper.ClassReferenceCollection</string>
-    </typeFullName>
+    <timeStamp>2024-11-04T16:08:53.0519889+08:00</timeStamp>
+    <typeFullName />
     <assembly>Assembly-CSharp-Editor-firstpass, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</assembly>
   </TypeDate>
   <TypeDate>
     <guid>aebfe27747678444687bd2d2394bf1e8</guid>
     <fileName>Assets/Plugins/UnitySweeper/Editor/CollectionData.cs</fileName>
-    <timeStamp>2024-10-25T18:55:42.9599941+08:00</timeStamp>
-    <typeFullName>
-      <string>UnitySweeper.CollectionData</string>
-      <string>UnitySweeper.TypeDate</string>
-      <string>UnitySweeper.IReferenceCollection</string>
-    </typeFullName>
+    <timeStamp>2024-11-04T16:08:53.0529871+08:00</timeStamp>
+    <typeFullName />
     <assembly>Assembly-CSharp-Editor-firstpass, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</assembly>
   </TypeDate>
   <TypeDate>
     <guid>fd0ce4e580aff77448dada909bc8f871</guid>
     <fileName>Assets/Plugins/UnitySweeper/Editor/FindUnusedAssetsWindow.cs</fileName>
-    <timeStamp>2024-10-25T18:55:42.9609936+08:00</timeStamp>
-    <typeFullName>
-      <string>UnitySweeper.FindUnusedAssetsWindow</string>
-    </typeFullName>
+    <timeStamp>2024-11-04T16:08:53.0529871+08:00</timeStamp>
+    <typeFullName />
     <assembly>Assembly-CSharp-Editor-firstpass, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</assembly>
   </TypeDate>
   <TypeDate>
     <guid>7fccea81ca76683459b5eb1b63351404</guid>
     <fileName>Assets/Plugins/UnitySweeper/Editor/ShaderReferenceCollection.cs</fileName>
-    <timeStamp>2024-10-25T18:55:42.9619922+08:00</timeStamp>
-    <typeFullName>
-      <string>UnitySweeper.ShaderReferenceCollection</string>
-    </typeFullName>
+    <timeStamp>2024-11-04T16:08:53.053987+08:00</timeStamp>
+    <typeFullName />
     <assembly>Assembly-CSharp-Editor-firstpass, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</assembly>
   </TypeDate>
   <TypeDate>
     <guid>19ec951dbfc0f45d1b8de4b131658d54</guid>
     <fileName>Assets/ExternalAssets/AtomicBomb/RotateCam.cs</fileName>
-    <timeStamp>2024-10-25T18:55:39.555759+08:00</timeStamp>
+    <timeStamp>2024-11-04T16:08:49.1324422+08:00</timeStamp>
     <typeFullName>
       <string>RotateCam</string>
     </typeFullName>
@@ -68,7 +54,7 @@
   <TypeDate>
     <guid>6e6c89658f0ceca439829470f0d36b99</guid>
     <fileName>Assets/Scripts/Drone/AttackDrone.cs</fileName>
-    <timeStamp>2024-10-21T15:49:20.5930422+08:00</timeStamp>
+    <timeStamp>2024-11-11T20:19:15.0384772+08:00</timeStamp>
     <typeFullName>
       <string>AttackDrone</string>
       <string>AttackDrone+AttackDroneState</string>
@@ -78,7 +64,7 @@
   <TypeDate>
     <guid>9358a16ab856f244193a531ef75c6ac7</guid>
     <fileName>Assets/Scripts/Drone/DetectDrone.cs</fileName>
-    <timeStamp>2024-10-21T17:41:43.8235728+08:00</timeStamp>
+    <timeStamp>2024-11-11T20:19:15.0344757+08:00</timeStamp>
     <typeFullName>
       <string>DetectDrone</string>
       <string>DetectDrone+DetectDroneState</string>
@@ -88,7 +74,7 @@
   <TypeDate>
     <guid>6b069ea10f811384580c2057167a4768</guid>
     <fileName>Assets/Scripts/Drone/Drone.cs</fileName>
-    <timeStamp>2024-10-27T20:39:42.6515364+08:00</timeStamp>
+    <timeStamp>2024-11-11T20:19:15.0304759+08:00</timeStamp>
     <typeFullName>
       <string>Drone</string>
       <string>Drone+HitType</string>
@@ -98,7 +84,7 @@
   <TypeDate>
     <guid>bc6fa35e24b8379469127f24fabb5901</guid>
     <fileName>Assets/Scripts/Drone/Swarm.cs</fileName>
-    <timeStamp>2024-10-27T19:21:41.5916811+08:00</timeStamp>
+    <timeStamp>2024-11-11T20:19:15.0094761+08:00</timeStamp>
     <typeFullName>
       <string>Swarm</string>
     </typeFullName>
@@ -107,7 +93,7 @@
   <TypeDate>
     <guid>efe1583a36263ed4ab5133905b8f0a6b</guid>
     <fileName>Assets/Scripts/Entity/Entity.cs</fileName>
-    <timeStamp>2024-10-21T16:50:28.6321717+08:00</timeStamp>
+    <timeStamp>2024-11-10T16:00:04.8368578+08:00</timeStamp>
     <typeFullName>
       <string>Entity</string>
     </typeFullName>
@@ -116,7 +102,7 @@
   <TypeDate>
     <guid>2899d4a4b86e5934388e3648cf973879</guid>
     <fileName>Assets/Scripts/Entity/EntityStats.cs</fileName>
-    <timeStamp>2024-10-07T17:50:11.668018+08:00</timeStamp>
+    <timeStamp>2024-11-04T16:08:53.1774534+08:00</timeStamp>
     <typeFullName>
       <string>EntityStats</string>
     </typeFullName>
@@ -125,7 +111,7 @@
   <TypeDate>
     <guid>0b044f1f941be4b4f8eca9a248c9c96b</guid>
     <fileName>Assets/Scripts/Equipment/Equipment.cs</fileName>
-    <timeStamp>2024-07-26T17:49:45.6413693+08:00</timeStamp>
+    <timeStamp>2024-11-04T16:08:53.1784614+08:00</timeStamp>
     <typeFullName>
       <string>Equipment</string>
       <string>Equipment+EquipmentType</string>
@@ -135,7 +121,7 @@
   <TypeDate>
     <guid>9ad5977751d548b3984608b8396699c5</guid>
     <fileName>Assets/Scripts/Events/InputEvent.cs</fileName>
-    <timeStamp>2024-08-27T23:04:42.8925436+08:00</timeStamp>
+    <timeStamp>2024-11-04T16:08:53.1894525+08:00</timeStamp>
     <typeFullName>
       <string>InputEvent</string>
     </typeFullName>
@@ -144,7 +130,7 @@
   <TypeDate>
     <guid>aa2769f3284ad2f4f8bf7d183c98c110</guid>
     <fileName>Assets/Scripts/Events/Messenger.cs</fileName>
-    <timeStamp>2024-07-22T15:09:40.7137177+08:00</timeStamp>
+    <timeStamp>2024-11-04T16:08:53.1904538+08:00</timeStamp>
     <typeFullName>
       <string>MessengerMode</string>
       <string>MessengerInternal</string>
@@ -160,7 +146,7 @@
   <TypeDate>
     <guid>203889e00016b2b40927ba9bf83f9d67</guid>
     <fileName>Assets/Scripts/Managers/CameraManager.cs</fileName>
-    <timeStamp>2024-10-16T13:33:15.747007+08:00</timeStamp>
+    <timeStamp>2024-11-04T23:48:08.0390817+08:00</timeStamp>
     <typeFullName>
       <string>CameraManager</string>
     </typeFullName>
@@ -169,7 +155,7 @@
   <TypeDate>
     <guid>75aa0e65eb52fe847934df41f2eaa867</guid>
     <fileName>Assets/Scripts/Managers/GameManager.cs</fileName>
-    <timeStamp>2024-10-16T19:14:08.9212906+08:00</timeStamp>
+    <timeStamp>2024-11-12T17:05:47.574409+08:00</timeStamp>
     <typeFullName>
       <string>GameManager</string>
     </typeFullName>
@@ -178,7 +164,7 @@
   <TypeDate>
     <guid>c222e77d4988e9142a1449e5b9436a68</guid>
     <fileName>Assets/Scripts/Managers/InputManager.cs</fileName>
-    <timeStamp>2024-10-27T17:07:40.6147673+08:00</timeStamp>
+    <timeStamp>2024-11-11T20:03:05.1121533+08:00</timeStamp>
     <typeFullName>
       <string>InputManager</string>
     </typeFullName>
@@ -187,7 +173,7 @@
   <TypeDate>
     <guid>600fecb3faffe4f4aa76f199a82bf517</guid>
     <fileName>Assets/Scripts/Managers/SkillManager.cs</fileName>
-    <timeStamp>2024-08-26T21:03:35.7298762+08:00</timeStamp>
+    <timeStamp>2024-11-04T16:08:53.1954524+08:00</timeStamp>
     <typeFullName>
       <string>SkillManager</string>
     </typeFullName>
@@ -196,7 +182,7 @@
   <TypeDate>
     <guid>0f4034e938ceca64aa8fc4aaeec41ebe</guid>
     <fileName>Assets/Scripts/Managers/UIManager.cs</fileName>
-    <timeStamp>2024-10-14T20:17:56.9564408+08:00</timeStamp>
+    <timeStamp>2024-11-12T17:05:47.578409+08:00</timeStamp>
     <typeFullName>
       <string>UIManager</string>
     </typeFullName>
@@ -205,7 +191,7 @@
   <TypeDate>
     <guid>5cee6ff71c471e84489ee294171ac9c5</guid>
     <fileName>Assets/Scripts/Player/Player.cs</fileName>
-    <timeStamp>2024-10-27T20:35:16.8359103+08:00</timeStamp>
+    <timeStamp>2024-11-12T15:12:23.5087678+08:00</timeStamp>
     <typeFullName>
       <string>Player</string>
     </typeFullName>
@@ -214,7 +200,7 @@
   <TypeDate>
     <guid>4a07489178e9bce47bbfb121c3ec6f8d</guid>
     <fileName>Assets/Scripts/Player/PlayerAgent.cs</fileName>
-    <timeStamp>2024-10-28T16:22:24.5932063+08:00</timeStamp>
+    <timeStamp>2024-11-04T16:08:53.200454+08:00</timeStamp>
     <typeFullName>
       <string>PlayerAgent</string>
     </typeFullName>
@@ -223,7 +209,7 @@
   <TypeDate>
     <guid>8be6aede54f24ac488f2b09c5d30a9ec</guid>
     <fileName>Assets/Scripts/Player/PlayerAnimator.cs</fileName>
-    <timeStamp>2024-07-18T23:54:25.6099515+08:00</timeStamp>
+    <timeStamp>2024-11-12T15:06:04.7272741+08:00</timeStamp>
     <typeFullName>
       <string>PlayerAnimator</string>
     </typeFullName>
@@ -232,7 +218,7 @@
   <TypeDate>
     <guid>3b2b8ba219b10bc41a18535f6d2cdd16</guid>
     <fileName>Assets/Scripts/UI/DroneInfo.cs</fileName>
-    <timeStamp>2024-10-19T19:18:44.1162083+08:00</timeStamp>
+    <timeStamp>2024-11-04T16:08:53.2154538+08:00</timeStamp>
     <typeFullName>
       <string>DroneInfo</string>
     </typeFullName>
@@ -241,7 +227,7 @@
   <TypeDate>
     <guid>f8adaf2047f875b42ac55296105d0531</guid>
     <fileName>Assets/Scripts/UI/GunState.cs</fileName>
-    <timeStamp>2024-10-16T15:22:14.6144227+08:00</timeStamp>
+    <timeStamp>2024-11-04T16:08:53.2154538+08:00</timeStamp>
     <typeFullName>
       <string>GunState</string>
     </typeFullName>
@@ -250,7 +236,7 @@
   <TypeDate>
     <guid>2eb4a088d7714dc469f3a754463f1acc</guid>
     <fileName>Assets/Scripts/UI/HealthBarUI.cs</fileName>
-    <timeStamp>2024-10-27T16:35:12.3089594+08:00</timeStamp>
+    <timeStamp>2024-11-04T16:08:53.2164549+08:00</timeStamp>
     <typeFullName>
       <string>HealthBarUI</string>
     </typeFullName>
@@ -259,7 +245,7 @@
   <TypeDate>
     <guid>dbf775b8db495a347bde2a971fd342d3</guid>
     <fileName>Assets/Scripts/UI/InGameMenu.cs</fileName>
-    <timeStamp>2024-10-09T21:16:58.28508+08:00</timeStamp>
+    <timeStamp>2024-11-11T20:43:34.6929098+08:00</timeStamp>
     <typeFullName>
       <string>InGameMenu</string>
     </typeFullName>
@@ -268,7 +254,7 @@
   <TypeDate>
     <guid>1fb3089db83d44146abde244f4cec389</guid>
     <fileName>Assets/Scripts/UI/MainMenu.cs</fileName>
-    <timeStamp>2024-10-06T15:56:46.6469401+08:00</timeStamp>
+    <timeStamp>2024-11-09T18:32:07.3886833+08:00</timeStamp>
     <typeFullName>
       <string>MainMenu</string>
     </typeFullName>
@@ -277,7 +263,7 @@
   <TypeDate>
     <guid>ac2421ed5e7525b48b51722ca721ae9a</guid>
     <fileName>Assets/Scripts/UI/Settings.cs</fileName>
-    <timeStamp>2024-10-15T17:38:08.67975+08:00</timeStamp>
+    <timeStamp>2024-11-04T16:08:53.2204558+08:00</timeStamp>
     <typeFullName>
       <string>Settings</string>
     </typeFullName>
@@ -286,7 +272,7 @@
   <TypeDate>
     <guid>b614b9600aa67fe4fac7066160c5c151</guid>
     <fileName>Assets/Scripts/UI/SwarmInfo.cs</fileName>
-    <timeStamp>2024-10-07T17:52:39.7503911+08:00</timeStamp>
+    <timeStamp>2024-11-04T16:08:53.2214575+08:00</timeStamp>
     <typeFullName>
       <string>SwarmInfo</string>
     </typeFullName>
@@ -295,7 +281,7 @@
   <TypeDate>
     <guid>c3c734e9a5a25ea41a84d5ae67d1e221</guid>
     <fileName>Assets/Scripts/Vehicle/Vehicle.cs</fileName>
-    <timeStamp>2024-10-06T16:23:06.5988454+08:00</timeStamp>
+    <timeStamp>2024-11-04T16:08:53.2234541+08:00</timeStamp>
     <typeFullName>
       <string>Vehicle</string>
     </typeFullName>
@@ -304,7 +290,7 @@
   <TypeDate>
     <guid>c8a286d6045394ccb8d979c50ce306d5</guid>
     <fileName>Assets/ExternalAssets/ModularAirportKit/Scripts/DoorAnimation.cs</fileName>
-    <timeStamp>2024-10-25T18:55:40.0813445+08:00</timeStamp>
+    <timeStamp>2024-11-04T16:08:49.5822476+08:00</timeStamp>
     <typeFullName>
       <string>DoorAnimation</string>
     </typeFullName>
@@ -313,7 +299,7 @@
   <TypeDate>
     <guid>12bd19d0ee517484daa5b9431d285708</guid>
     <fileName>Assets/ExternalAssets/ModularAirportKit/Scripts/Tiled_Texture_Animation.cs</fileName>
-    <timeStamp>2024-10-25T18:55:40.0823414+08:00</timeStamp>
+    <timeStamp>2024-11-04T16:08:49.5822476+08:00</timeStamp>
     <typeFullName>
       <string>Tiled_Texture_Animation</string>
     </typeFullName>
@@ -322,7 +308,7 @@
   <TypeDate>
     <guid>4bf5e7e384f6f8349af2aea390d57f20</guid>
     <fileName>Assets/Scripts/Drone/Bomb/Bomb.cs</fileName>
-    <timeStamp>2024-10-20T20:17:44.1791527+08:00</timeStamp>
+    <timeStamp>2024-11-11T20:19:15.0174746+08:00</timeStamp>
     <typeFullName>
       <string>Bomb</string>
     </typeFullName>
@@ -331,7 +317,7 @@
   <TypeDate>
     <guid>7083aa1a8f1a4b23b6b620aa8373fe6e</guid>
     <fileName>Assets/Scripts/Equipment/Gun/EMPGun.cs</fileName>
-    <timeStamp>2024-10-16T15:33:16.3432771+08:00</timeStamp>
+    <timeStamp>2024-11-12T16:19:36.5484191+08:00</timeStamp>
     <typeFullName>
       <string>EMPGun</string>
     </typeFullName>
@@ -340,7 +326,7 @@
   <TypeDate>
     <guid>a2d444ba32a44edaa14b8f146420186e</guid>
     <fileName>Assets/Scripts/Equipment/Gun/Gun.cs</fileName>
-    <timeStamp>2024-10-16T20:46:14.1148014+08:00</timeStamp>
+    <timeStamp>2024-11-12T15:39:21.2886941+08:00</timeStamp>
     <typeFullName>
       <string>Gun</string>
     </typeFullName>
@@ -349,7 +335,7 @@
   <TypeDate>
     <guid>06d0c7a9d62f4340adb5d1d3dc982e8e</guid>
     <fileName>Assets/Scripts/Equipment/Gun/HandGun.cs</fileName>
-    <timeStamp>2024-10-16T15:42:48.6991787+08:00</timeStamp>
+    <timeStamp>2024-11-12T16:21:19.8561677+08:00</timeStamp>
     <typeFullName>
       <string>HandGun</string>
     </typeFullName>
@@ -358,7 +344,7 @@
   <TypeDate>
     <guid>8e065625840f43f3b008d2548ab635b7</guid>
     <fileName>Assets/Scripts/Equipment/Gun/NetGun.cs</fileName>
-    <timeStamp>2024-10-16T15:33:45.8350043+08:00</timeStamp>
+    <timeStamp>2024-11-12T15:56:07.0057563+08:00</timeStamp>
     <typeFullName>
       <string>NetGun</string>
     </typeFullName>
@@ -367,7 +353,7 @@
   <TypeDate>
     <guid>b2901e9573b94b398715f10c1a8aafd4</guid>
     <fileName>Assets/Scripts/Equipment/Shield/Shield.cs</fileName>
-    <timeStamp>2024-07-28T18:14:10.8100741+08:00</timeStamp>
+    <timeStamp>2024-11-04T16:08:53.1864525+08:00</timeStamp>
     <typeFullName>
       <string>Shield</string>
     </typeFullName>
@@ -376,7 +362,7 @@
   <TypeDate>
     <guid>dcabb9e328712384a8a124a7c9f268cf</guid>
     <fileName>Assets/Scripts/Player/PlayerStates/PlayerAttackState.cs</fileName>
-    <timeStamp>2024-10-17T13:27:54.7434675+08:00</timeStamp>
+    <timeStamp>2024-11-04T16:08:53.2084541+08:00</timeStamp>
     <typeFullName>
       <string>PlayerAttackState</string>
     </typeFullName>
@@ -385,7 +371,7 @@
   <TypeDate>
     <guid>9474f3825016fb84a946a2ee43bc54a1</guid>
     <fileName>Assets/Scripts/Player/PlayerStates/PlayerCrouchState.cs</fileName>
-    <timeStamp>2024-07-27T21:31:09.4508302+08:00</timeStamp>
+    <timeStamp>2024-11-04T16:08:53.209454+08:00</timeStamp>
     <typeFullName>
       <string>PlayerCrouchState</string>
     </typeFullName>
@@ -394,7 +380,7 @@
   <TypeDate>
     <guid>9cb09c647b41cae448cdcbdc21e60f18</guid>
     <fileName>Assets/Scripts/Player/PlayerStates/PlayerDashState.cs</fileName>
-    <timeStamp>2024-10-18T12:18:37.0411432+08:00</timeStamp>
+    <timeStamp>2024-11-04T16:08:53.2104558+08:00</timeStamp>
     <typeFullName>
       <string>PlayerDashState</string>
     </typeFullName>
@@ -403,7 +389,7 @@
   <TypeDate>
     <guid>b68bf005277d6524f978265c2fdef92b</guid>
     <fileName>Assets/Scripts/Player/PlayerStates/PlayerIdleState.cs</fileName>
-    <timeStamp>2024-07-22T15:18:59.165127+08:00</timeStamp>
+    <timeStamp>2024-11-04T16:08:53.2114555+08:00</timeStamp>
     <typeFullName>
       <string>PlayerIdleState</string>
     </typeFullName>
@@ -412,7 +398,7 @@
   <TypeDate>
     <guid>3f442900062c43c4fa75f813b98a69cf</guid>
     <fileName>Assets/Scripts/Player/PlayerStates/PlayerJumpState.cs</fileName>
-    <timeStamp>2024-07-17T21:55:25.3894195+08:00</timeStamp>
+    <timeStamp>2024-11-04T16:08:53.2124551+08:00</timeStamp>
     <typeFullName>
       <string>PlayerJumpState</string>
     </typeFullName>
@@ -421,7 +407,7 @@
   <TypeDate>
     <guid>711f91b5bca74a94681948b621b23cbf</guid>
     <fileName>Assets/Scripts/Player/PlayerStates/PlayerMoveState.cs</fileName>
-    <timeStamp>2024-10-27T15:57:33.306372+08:00</timeStamp>
+    <timeStamp>2024-11-04T16:08:53.213455+08:00</timeStamp>
     <typeFullName>
       <string>PlayerMoveState</string>
     </typeFullName>
@@ -430,7 +416,7 @@
   <TypeDate>
     <guid>95ca98f5112aea943afe7b06ae29c379</guid>
     <fileName>Assets/Scripts/Player/PlayerStates/PlayerReloadState.cs</fileName>
-    <timeStamp>2024-10-17T13:27:46.1426177+08:00</timeStamp>
+    <timeStamp>2024-11-04T16:08:53.213455+08:00</timeStamp>
     <typeFullName>
       <string>PlayerReloadState</string>
     </typeFullName>
@@ -439,7 +425,7 @@
   <TypeDate>
     <guid>54c36f7a8090fe9498be368c1e918dba</guid>
     <fileName>Assets/Scripts/Vehicle/VehicleState/VehicleIdleState.cs</fileName>
-    <timeStamp>2024-07-27T19:05:55.2494182+08:00</timeStamp>
+    <timeStamp>2024-11-04T16:08:53.2244547+08:00</timeStamp>
     <typeFullName>
       <string>VehicleIdleState</string>
     </typeFullName>
@@ -448,7 +434,7 @@
   <TypeDate>
     <guid>92c08cb85a5229c48918f04124f4d1e9</guid>
     <fileName>Assets/Scripts/Vehicle/VehicleState/VehicleMoveState.cs</fileName>
-    <timeStamp>2024-07-27T19:02:10.4544948+08:00</timeStamp>
+    <timeStamp>2024-11-04T16:08:53.2254541+08:00</timeStamp>
     <typeFullName>
       <string>VehicleMoveState</string>
     </typeFullName>
@@ -457,7 +443,7 @@
   <TypeDate>
     <guid>b255d224511801340adefe24cd90685d</guid>
     <fileName>Assets/Scripts/Vehicle/VehicleState/VehicleState.cs</fileName>
-    <timeStamp>2024-07-27T20:45:02.7704948+08:00</timeStamp>
+    <timeStamp>2024-11-04T16:08:53.2254541+08:00</timeStamp>
     <typeFullName>
       <string>VehicleState</string>
     </typeFullName>
@@ -466,25 +452,21 @@
   <TypeDate>
     <guid>faed79ddf3bb08d429b15aea66a8c677</guid>
     <fileName>Assets/ExternalAssets/Drones/DroneController/Editor/CameraEditor.cs</fileName>
-    <timeStamp>2024-10-25T18:55:39.895342+08:00</timeStamp>
-    <typeFullName>
-      <string>CameraEditor</string>
-    </typeFullName>
+    <timeStamp>2024-11-04T16:08:49.4362683+08:00</timeStamp>
+    <typeFullName />
     <assembly>Assembly-CSharp-Editor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</assembly>
   </TypeDate>
   <TypeDate>
     <guid>f76f4e3a0234d194da27af11ef7f4bdf</guid>
     <fileName>Assets/ExternalAssets/Hovl Studio/Render Pipelines support/Editor/ShaderChanger.cs</fileName>
-    <timeStamp>2024-10-25T18:55:39.9193424+08:00</timeStamp>
-    <typeFullName>
-      <string>HovlStudio.RPChanger</string>
-    </typeFullName>
+    <timeStamp>2024-11-09T09:24:12+08:00</timeStamp>
+    <typeFullName />
     <assembly>Assembly-CSharp-Editor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</assembly>
   </TypeDate>
   <TypeDate>
     <guid>a6066495e19d4186b20852794022fb0c</guid>
     <fileName>Assets/Scripts/Entity/EntityState/Base/EntityState.cs</fileName>
-    <timeStamp>2024-07-22T16:15:40.397363+08:00</timeStamp>
+    <timeStamp>2024-11-04T16:08:53.1754491+08:00</timeStamp>
     <typeFullName>
       <string>EntityState</string>
     </typeFullName>
@@ -493,7 +475,7 @@
   <TypeDate>
     <guid>c0b9d692b3078044392575cebc9f7703</guid>
     <fileName>Assets/Scripts/Entity/EntityState/Base/EntityStateMachine.cs</fileName>
-    <timeStamp>2024-07-17T17:37:28.4962181+08:00</timeStamp>
+    <timeStamp>2024-11-04T16:08:53.1764631+08:00</timeStamp>
     <typeFullName>
       <string>EntityStateMachine</string>
     </typeFullName>
@@ -502,7 +484,7 @@
   <TypeDate>
     <guid>70e9bf3f3f07ae64284cd3c5da38eb69</guid>
     <fileName>Assets/Scripts/Equipment/Gun/Bullet/EmpBullet.cs</fileName>
-    <timeStamp>2024-10-16T20:03:10.0533424+08:00</timeStamp>
+    <timeStamp>2024-11-09T18:37:47.6422915+08:00</timeStamp>
     <typeFullName>
       <string>EmpBullet</string>
     </typeFullName>
@@ -511,7 +493,7 @@
   <TypeDate>
     <guid>de4f37d5358b8fa4b8df6af633610c10</guid>
     <fileName>Assets/Scripts/Equipment/Gun/Bullet/NetBullet.cs</fileName>
-    <timeStamp>2024-10-16T18:04:04.2544061+08:00</timeStamp>
+    <timeStamp>2024-11-04T16:08:53.1814544+08:00</timeStamp>
     <typeFullName>
       <string>NetBullet</string>
     </typeFullName>
@@ -520,7 +502,7 @@
   <TypeDate>
     <guid>92de515eb99b1664cbb78e01fc41838e</guid>
     <fileName>Assets/Scripts/Player/PlayerStates/Base/PlayerAirState.cs</fileName>
-    <timeStamp>2024-10-18T12:18:37.045825+08:00</timeStamp>
+    <timeStamp>2024-11-04T16:08:53.2054549+08:00</timeStamp>
     <typeFullName>
       <string>PlayerAirState</string>
     </typeFullName>
@@ -529,7 +511,7 @@
   <TypeDate>
     <guid>1b1bd8a2f24046c40aebe58cbeb018fb</guid>
     <fileName>Assets/Scripts/Player/PlayerStates/Base/PlayerGroundState.cs</fileName>
-    <timeStamp>2024-10-04T12:08:52.1229735+08:00</timeStamp>
+    <timeStamp>2024-11-04T16:08:53.2064542+08:00</timeStamp>
     <typeFullName>
       <string>PlayerGroundState</string>
     </typeFullName>
@@ -538,10 +520,2857 @@
   <TypeDate>
     <guid>44d7ca3bbed030240b493318bce6aef1</guid>
     <fileName>Assets/Scripts/Player/PlayerStates/Base/PlayerState.cs</fileName>
-    <timeStamp>2024-10-18T12:18:37.0361351+08:00</timeStamp>
+    <timeStamp>2024-11-04T16:08:53.2074536+08:00</timeStamp>
     <typeFullName>
       <string>PlayerState</string>
     </typeFullName>
     <assembly>Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</assembly>
+  </TypeDate>
+  <TypeDate>
+    <guid>8486e61a397a7fe408667d79531eff56</guid>
+    <fileName>Assets/SteamVR_Input/SteamVR_Input_Actions.cs</fileName>
+    <timeStamp>2024-11-11T19:07:51.490251+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>6a654b8eac5f28446a78ee53f2372165</guid>
+    <fileName>Assets/SteamVR_Input/SteamVR_Input_ActionSets.cs</fileName>
+    <timeStamp>2024-11-11T19:07:51.4912512+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>dd3721245b7fdfc468a26d3a0d323347</guid>
+    <fileName>Assets/SteamVR_Input/SteamVR_Input_Initialization.cs</fileName>
+    <timeStamp>2024-11-11T19:07:51.4932513+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>df12ee7a60c56c048a4bf2d3267cfcdb</guid>
+    <fileName>Assets/HTC.UnityPlugin/ColliderEvent/ColliderEventCaster.cs</fileName>
+    <timeStamp>2024-02-03T04:48:36+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>c7c0117702a118c4785af444d15be0f5</guid>
+    <fileName>Assets/HTC.UnityPlugin/ColliderEvent/ColliderEventData.cs</fileName>
+    <timeStamp>2024-02-03T04:48:14+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>675ab27a558138a4399a12493d2967b7</guid>
+    <fileName>Assets/HTC.UnityPlugin/ColliderEvent/ColliderEventInterfaces.cs</fileName>
+    <timeStamp>2024-02-03T04:47:11+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>78a9524770a966d45bf7d82c63c4ba1b</guid>
+    <fileName>Assets/HTC.UnityPlugin/ColliderEvent/ExecuteColliderEvents.cs</fileName>
+    <timeStamp>2024-02-03T04:47:21+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>efef082cbe46dca4a99405f88a8a68f7</guid>
+    <fileName>Assets/HTC.UnityPlugin/LiteCoroutine/LiteCoroutine.cs</fileName>
+    <timeStamp>2024-02-03T04:48:49+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>44f0846a1f0a4e240898e5e152a10dad</guid>
+    <fileName>Assets/HTC.UnityPlugin/LiteCoroutine/LiteCoroutineHandle.cs</fileName>
+    <timeStamp>2024-02-03T04:46:49+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>b13033ae00dbe3b489c4d49691923779</guid>
+    <fileName>Assets/HTC.UnityPlugin/LiteCoroutine/LiteCoroutineManager.cs</fileName>
+    <timeStamp>2024-02-03T04:47:59+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>39d2106b260399e438d399d4dbb0aab9</guid>
+    <fileName>Assets/HTC.UnityPlugin/LiteCoroutine/LiteCoroutineUpdater.cs</fileName>
+    <timeStamp>2024-02-03T04:46:40+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>b4539c40cfd27d64186f3d66833b1e5f</guid>
+    <fileName>Assets/HTC.UnityPlugin/LiteCoroutine/LiteCoroutineYieldInstruction.cs</fileName>
+    <timeStamp>2024-02-03T04:48:00+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>beeb9b3469945b24f9f06125cdc2fd51</guid>
+    <fileName>Assets/HTC.UnityPlugin/LiteCoroutine/LiteCoroutineYieldStack.cs</fileName>
+    <timeStamp>2024-02-03T04:48:08+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>0cd608f93c4e5ac4e8c1235dc2b9b6fd</guid>
+    <fileName>Assets/HTC.UnityPlugin/LiteCoroutine/LiteTask.cs</fileName>
+    <timeStamp>2024-02-03T04:45:58+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>1015e2ddb037db04a856b7e5320676c3</guid>
+    <fileName>Assets/HTC.UnityPlugin/Pointer3D/ExecutePointer3DEvents.cs</fileName>
+    <timeStamp>2024-02-03T04:46:03+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>f745266893601d443bdcd597e6c4a2f7</guid>
+    <fileName>Assets/HTC.UnityPlugin/Pointer3D/Pointer3DEventData.cs</fileName>
+    <timeStamp>2024-02-03T04:48:55+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>8b8ba755fd06d6340b549d2a670a25d7</guid>
+    <fileName>Assets/HTC.UnityPlugin/Pointer3D/Pointer3DEventInterfaces.cs</fileName>
+    <timeStamp>2024-02-03T04:47:33+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>b4835de3ad8af1e4caa6b9a5d551c37e</guid>
+    <fileName>Assets/HTC.UnityPlugin/Pointer3D/Pointer3DInputModule.cs</fileName>
+    <timeStamp>2024-02-03T04:48:00+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>3339ad5d500ae594c8b7aedab91f914b</guid>
+    <fileName>Assets/HTC.UnityPlugin/PoseTracker/Pose.cs</fileName>
+    <timeStamp>2024-02-03T04:46:36+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>14b187e9067254b45838db8413ed1b41</guid>
+    <fileName>Assets/HTC.UnityPlugin/PoseTracker/PoseTracker.cs</fileName>
+    <timeStamp>2024-02-03T04:46:07+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>e9f3fe9e59b210c4c8613d485ccfeedd</guid>
+    <fileName>Assets/HTC.UnityPlugin/Utility/Bool3.cs</fileName>
+    <timeStamp>2024-02-03T04:48:44+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>21b30816291318f4a88c43a903b27f57</guid>
+    <fileName>Assets/HTC.UnityPlugin/Utility/ChangeProp.cs</fileName>
+    <timeStamp>2024-02-03T04:46:19+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>4b03504558ad6a1429cf135338de9293</guid>
+    <fileName>Assets/HTC.UnityPlugin/Utility/EnumUtils.cs</fileName>
+    <timeStamp>2024-02-03T04:46:52+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>0ea9671aeed60374b9eea8907b94584d</guid>
+    <fileName>Assets/HTC.UnityPlugin/Utility/RigidPose.cs</fileName>
+    <timeStamp>2024-02-03T04:46:01+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>eec4c287060d7904eb1fa59420904d3b</guid>
+    <fileName>Assets/HTC.UnityPlugin/Utility/SingletonBehaviour.cs</fileName>
+    <timeStamp>2024-02-03T04:48:46+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>826daa2506a45f1469eacd8269c5c081</guid>
+    <fileName>Assets/HTC.UnityPlugin/VRModule/VRModule.cs</fileName>
+    <timeStamp>2024-02-03T04:47:27+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>f29d15c2b330c93448dce7b882ee997a</guid>
+    <fileName>Assets/HTC.UnityPlugin/VRModule/VRModuleBase.cs</fileName>
+    <timeStamp>2024-02-03T04:48:52+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>2fba0d222f8dd1d46b62aa03c7341bca</guid>
+    <fileName>Assets/HTC.UnityPlugin/VRModule/VRModuleDeviceState.cs</fileName>
+    <timeStamp>2024-02-03T04:46:33+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>37ec72c6d94f2f94e97075b50b78e79d</guid>
+    <fileName>Assets/HTC.UnityPlugin/VRModule/VRModuleEvent.cs</fileName>
+    <timeStamp>2024-02-03T04:46:39+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>81f8b9530b6d9a540bea1aedad6061d6</guid>
+    <fileName>Assets/HTC.UnityPlugin/VRModule/VRModuleManager.cs</fileName>
+    <timeStamp>2024-02-03T04:47:27+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>029e307478250d249b4cd69223e9b670</guid>
+    <fileName>Assets/HTC.UnityPlugin/VRModule/VRModuleSettings.cs</fileName>
+    <timeStamp>2024-02-03T04:45:49+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>773c0aa71d18f4d4f9144a6e8c22f723</guid>
+    <fileName>Assets/Scripts/Managers/SettingsManager.cs</fileName>
+    <timeStamp>2024-11-09T18:33:50.9862454+08:00</timeStamp>
+    <typeFullName>
+      <string>SettingsManager</string>
+    </typeFullName>
+    <assembly>Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</assembly>
+  </TypeDate>
+  <TypeDate>
+    <guid>ae5d54879dc73884784e6053bd39953d</guid>
+    <fileName>Assets/Scripts/SteamVR/SteamVR_LaserHandler.cs</fileName>
+    <timeStamp>2024-11-09T18:27:31.8966936+08:00</timeStamp>
+    <typeFullName>
+      <string>SteamVR_LaserHandler</string>
+    </typeFullName>
+    <assembly>Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</assembly>
+  </TypeDate>
+  <TypeDate>
+    <guid>b894f6f57c99a1c46957650bc11d7824</guid>
+    <fileName>Assets/SteamVR/Editor/SteamVR_AutoEnableVR_2018to2019.cs</fileName>
+    <timeStamp>2024-01-18T04:24:17+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>524ac57f667bffd459f44076a7111efb</guid>
+    <fileName>Assets/SteamVR/Editor/SteamVR_AutoEnableVR_2019plus.cs</fileName>
+    <timeStamp>2024-01-18T04:22:45+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>f3c98d5dbcd01ee4ba302d8f71a8d55a</guid>
+    <fileName>Assets/SteamVR/Editor/SteamVR_AutoEnableVR_5.4to2018.cs</fileName>
+    <timeStamp>2024-01-18T04:25:13+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>5ba22c80948c94e44a82b9fd1b3abd0d</guid>
+    <fileName>Assets/SteamVR/Editor/SteamVR_Editor.cs</fileName>
+    <timeStamp>2024-01-18T04:22:53+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>29abf75f7265ccb45b799eac4ab0ca94</guid>
+    <fileName>Assets/SteamVR/Editor/SteamVR_Preferences.cs</fileName>
+    <timeStamp>2024-01-18T04:22:06+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>67867a20919f7db45a2e7034fda1c28e</guid>
+    <fileName>Assets/SteamVR/Editor/SteamVR_RenderModelEditor.cs</fileName>
+    <timeStamp>2024-01-18T04:23:06+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>80087fbbf7bf93a46bb4aea276b19568</guid>
+    <fileName>Assets/SteamVR/Editor/SteamVR_SkyboxEditor.cs</fileName>
+    <timeStamp>2024-01-18T04:23:34+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>d2244eee8a3a4784fb40d1123ff69301</guid>
+    <fileName>Assets/SteamVR/Editor/SteamVR_UnitySettingsWindow.cs</fileName>
+    <timeStamp>2024-01-18T04:24:38+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>73a0556bda803bf4e898751dcfcf21a8</guid>
+    <fileName>Assets/SteamVR/Editor/SteamVR_Update.cs</fileName>
+    <timeStamp>2024-01-18T04:23:18+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>656e3d05f0a289d4ab6f3d44f65c9b6d</guid>
+    <fileName>Assets/SteamVR/Editor/SteamVR_UpdateModeEditor.cs</fileName>
+    <timeStamp>2024-01-18T04:23:03+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>c30a2316e98e1dc4b97e432a1301f85c</guid>
+    <fileName>Assets/SteamVR/Extras/SteamVR_CameraHelper.cs</fileName>
+    <timeStamp>2024-01-18T04:24:25+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>c4bc5db9c652ff8408b7cda0197f87f1</guid>
+    <fileName>Assets/SteamVR/Extras/SteamVR_ForceSteamVRMode.cs</fileName>
+    <timeStamp>2024-01-18T04:24:27+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>501eb8b744f73714fbe7dbdd5e3ef66e</guid>
+    <fileName>Assets/SteamVR/Extras/SteamVR_GazeTracker.cs</fileName>
+    <timeStamp>2024-01-18T04:22:42+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>b2f511c1adaa1e94ebe7ca97bbcabd17</guid>
+    <fileName>Assets/SteamVR/Extras/SteamVR_LaserPointer.cs</fileName>
+    <timeStamp>2024-11-09T16:45:12.5319406+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>ff4f36585e15b1942827390ff1a92502</guid>
+    <fileName>Assets/SteamVR/Extras/SteamVR_TestThrow.cs</fileName>
+    <timeStamp>2024-01-18T04:25:23+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>8b18b36a995ecb04599f35c2741be8d5</guid>
+    <fileName>Assets/SteamVR/Extras/SteamVR_TestTrackedCamera.cs</fileName>
+    <timeStamp>2024-01-18T04:23:41+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>9f2ad3c310c8826479de4aadf38385d7</guid>
+    <fileName>Assets/SteamVR/Input/SteamVR_Action.cs</fileName>
+    <timeStamp>2024-01-18T04:23:58+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>685af21914dfaf6459336bd9e8d1966c</guid>
+    <fileName>Assets/SteamVR/Input/SteamVR_ActionDirections.cs</fileName>
+    <timeStamp>2024-01-18T04:23:08+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>fff79524d13a43d4a995dccedb5085c4</guid>
+    <fileName>Assets/SteamVR/Input/SteamVR_ActionSet.cs</fileName>
+    <timeStamp>2024-01-18T04:25:23+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>672d3f475539e5242af05932e937908b</guid>
+    <fileName>Assets/SteamVR/Input/SteamVR_ActionSet_Manager.cs</fileName>
+    <timeStamp>2024-01-18T04:23:05+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>7c3d755cf6cc936488afcb037b69341e</guid>
+    <fileName>Assets/SteamVR/Input/SteamVR_Action_Boolean.cs</fileName>
+    <timeStamp>2024-01-18T04:23:29+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>a93d780c5506a6047bdaf1009c904c9c</guid>
+    <fileName>Assets/SteamVR/Input/SteamVR_Action_In.cs</fileName>
+    <timeStamp>2024-01-18T04:24:06+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>9432398566c5b434685df0ceda0c736f</guid>
+    <fileName>Assets/SteamVR/Input/SteamVR_Action_Out.cs</fileName>
+    <timeStamp>2024-01-18T04:23:50+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>640f5aa82bb9c714696f842cb8727241</guid>
+    <fileName>Assets/SteamVR/Input/SteamVR_Action_Pose.cs</fileName>
+    <timeStamp>2024-01-18T04:23:01+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>02b1c930c612dbc469d258783cb8be34</guid>
+    <fileName>Assets/SteamVR/Input/SteamVR_Action_Single.cs</fileName>
+    <timeStamp>2024-01-18T04:21:31+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>84215d4427008924ebae4389d3e197e6</guid>
+    <fileName>Assets/SteamVR/Input/SteamVR_Action_Skeleton.cs</fileName>
+    <timeStamp>2024-01-18T04:23:37+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>31ab55ded67f66140977a544d93962ab</guid>
+    <fileName>Assets/SteamVR/Input/SteamVR_Action_Vector2.cs</fileName>
+    <timeStamp>2024-01-18T04:22:14+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>f0d3d2010d570484eb65e1062a1b0e8e</guid>
+    <fileName>Assets/SteamVR/Input/SteamVR_Action_Vector3.cs</fileName>
+    <timeStamp>2024-01-18T04:25:09+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>48b01ecd7f9020044bab37ea4ac8fca3</guid>
+    <fileName>Assets/SteamVR/Input/SteamVR_Action_Vibration.cs</fileName>
+    <timeStamp>2024-01-18T04:22:34+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>27991c206a5e66147bb8ee3ef31c8bac</guid>
+    <fileName>Assets/SteamVR/Input/SteamVR_ActivateActionSetOnLoad.cs</fileName>
+    <timeStamp>2024-01-18T04:22:04+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>16a9b39235339104889bf8e9178fc630</guid>
+    <fileName>Assets/SteamVR/Input/SteamVR_Behaviour_Boolean.cs</fileName>
+    <timeStamp>2024-01-18T04:21:50+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>9a5fb0ca93b55ef4b8d54b512b103341</guid>
+    <fileName>Assets/SteamVR/Input/SteamVR_Behaviour_Pose.cs</fileName>
+    <timeStamp>2024-01-18T04:23:54+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>8be882076514bc846a3ee15c689d0ac4</guid>
+    <fileName>Assets/SteamVR/Input/SteamVR_Behaviour_Single.cs</fileName>
+    <timeStamp>2024-01-18T04:23:41+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>00f6c0d7b5a00aa4a8d38a09a0480032</guid>
+    <fileName>Assets/SteamVR/Input/SteamVR_Behaviour_Skeleton.cs</fileName>
+    <timeStamp>2024-01-18T04:21:29+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>9e4c0a04a2f4ee942ba9bd5d7ceb7266</guid>
+    <fileName>Assets/SteamVR/Input/SteamVR_Behaviour_SkeletonCustom.cs</fileName>
+    <timeStamp>2024-01-18T04:23:57+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>882e9db3ae3cfdf4793461eada0f54b6</guid>
+    <fileName>Assets/SteamVR/Input/SteamVR_Behaviour_Vector2.cs</fileName>
+    <timeStamp>2024-01-18T04:23:39+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>a749ce0534daa1a4c9455e56191c9e93</guid>
+    <fileName>Assets/SteamVR/Input/SteamVR_Behaviour_Vector3.cs</fileName>
+    <timeStamp>2024-01-18T04:24:04+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>2fd04576439b81a438e44cc006d35ebb</guid>
+    <fileName>Assets/SteamVR/Input/SteamVR_DefaultAction.cs</fileName>
+    <timeStamp>2024-01-18T04:22:12+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>52de2eb8a319fcb4aa7dd51c4127f124</guid>
+    <fileName>Assets/SteamVR/Input/SteamVR_DefaultActionSet.cs</fileName>
+    <timeStamp>2024-01-18T04:22:45+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>36fa5b356bc9b9f4792bb2c38b8d8b5f</guid>
+    <fileName>Assets/SteamVR/Input/SteamVR_Input.cs</fileName>
+    <timeStamp>2024-01-18T04:22:16+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>a46ca29bcb0df3e4ea80651c2220adbf</guid>
+    <fileName>Assets/SteamVR/Input/SteamVR_Input_ActionFile.cs</fileName>
+    <timeStamp>2024-01-18T04:24:01+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>b8b3d557389a8d84496ba0aadf2faad5</guid>
+    <fileName>Assets/SteamVR/Input/SteamVR_Input_ActionScopes.cs</fileName>
+    <timeStamp>2024-01-18T04:24:17+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>d74d007b6f4b4674a9cfd320b9389b66</guid>
+    <fileName>Assets/SteamVR/Input/SteamVR_Input_ActionSetUsages.cs</fileName>
+    <timeStamp>2024-01-18T04:24:44+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>7a2acf5cecdd8444c97bc579ba230dde</guid>
+    <fileName>Assets/SteamVR/Input/SteamVR_Input_BindingFile.cs</fileName>
+    <timeStamp>2024-01-18T04:23:27+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>1178c003dbad4854a932b7bc84000ed5</guid>
+    <fileName>Assets/SteamVR/Input/SteamVR_Input_Generator_Names.cs</fileName>
+    <timeStamp>2024-01-18T04:21:46+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>4d10323487cb44348b830bc017eb40b4</guid>
+    <fileName>Assets/SteamVR/Input/SteamVR_Input_References.cs</fileName>
+    <timeStamp>2024-01-18T04:22:37+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>edb9f777bb43d4d4e800dd8a82ba523c</guid>
+    <fileName>Assets/SteamVR/Input/SteamVR_Input_Source.cs</fileName>
+    <timeStamp>2024-01-18T04:25:07+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>c2cbd60e2aad2b7468204d5a69489739</guid>
+    <fileName>Assets/SteamVR/Input/SteamVR_Input_Sources.cs</fileName>
+    <timeStamp>2024-01-18T04:24:24+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>e90911e410742a1498a167540c7865bf</guid>
+    <fileName>Assets/SteamVR/Input/SteamVR_Skeleton_Pose.cs</fileName>
+    <timeStamp>2024-01-18T04:25:01+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>e7418c7dd8f977d4e969202d3fa7e926</guid>
+    <fileName>Assets/SteamVR/Input/SteamVR_Skeleton_Poser.cs</fileName>
+    <timeStamp>2024-01-18T04:24:58+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>5811a8be2382cd440970c707dccb6fb0</guid>
+    <fileName>Assets/SteamVR/Input/SteamVR_UpdateModes.cs</fileName>
+    <timeStamp>2024-01-18T04:22:50+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>8d26b9eddedb33d48be044bb268a57c7</guid>
+    <fileName>Assets/SteamVR/Plugins/openvr_api.cs</fileName>
+    <timeStamp>2024-01-18T04:23:43+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>7fae0ddab09ac324c85494471274d6a4</guid>
+    <fileName>Assets/SteamVR/Scripts/SteamVR.cs</fileName>
+    <timeStamp>2024-01-18T04:23:33+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>1aaa8a3afb932fe478757c1e89cf0cd5</guid>
+    <fileName>Assets/SteamVR/Scripts/SteamVR_Behaviour.cs</fileName>
+    <timeStamp>2024-01-18T04:21:52+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>6bca9ccf900ccc84c887d783321d27e2</guid>
+    <fileName>Assets/SteamVR/Scripts/SteamVR_Camera.cs</fileName>
+    <timeStamp>2024-01-18T04:23:11+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>f5be45115742b07478e21c85fcc233ec</guid>
+    <fileName>Assets/SteamVR/Scripts/SteamVR_CameraFlip.cs</fileName>
+    <timeStamp>2024-01-18T04:25:16+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>5828f252c3c228f4b931f66c21e525c4</guid>
+    <fileName>Assets/SteamVR/Scripts/SteamVR_CameraMask.cs</fileName>
+    <timeStamp>2024-01-18T04:22:51+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>49a86c1078ce4314b9c4224560e031b9</guid>
+    <fileName>Assets/SteamVR/Scripts/SteamVR_Ears.cs</fileName>
+    <timeStamp>2024-01-18T04:22:35+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>c871825e556a1f140a5118ccf59e64d2</guid>
+    <fileName>Assets/SteamVR/Scripts/SteamVR_EnumEqualityComparer.cs</fileName>
+    <timeStamp>2024-01-18T04:24:31+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>44cb57742f235524189e5d8af1c4f3cc</guid>
+    <fileName>Assets/SteamVR/Scripts/SteamVR_Events.cs</fileName>
+    <timeStamp>2024-01-18T04:22:30+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>c9da270df5147d24597cc106058c1fa7</guid>
+    <fileName>Assets/SteamVR/Scripts/SteamVR_ExternalCamera.cs</fileName>
+    <timeStamp>2024-01-18T04:24:33+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>7294a236dff50fc44b22361c6187a574</guid>
+    <fileName>Assets/SteamVR/Scripts/SteamVR_ExternalCamera_LegacyManager.cs</fileName>
+    <timeStamp>2024-01-18T04:23:17+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>2ad1e469d4e3e04489f9a36419f1a4f8</guid>
+    <fileName>Assets/SteamVR/Scripts/SteamVR_Fade.cs</fileName>
+    <timeStamp>2024-01-18T04:22:06+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>b2d1785fa0c551e408b6c94398847b76</guid>
+    <fileName>Assets/SteamVR/Scripts/SteamVR_Frustum.cs</fileName>
+    <timeStamp>2024-01-18T04:24:13+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>ea22dba3baf2ecc4d886bf2444444228</guid>
+    <fileName>Assets/SteamVR/Scripts/SteamVR_IK.cs</fileName>
+    <timeStamp>2024-01-18T04:25:02+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>a5a6a70209b6e6345bfe18b02314a54e</guid>
+    <fileName>Assets/SteamVR/Scripts/SteamVR_LoadLevel.cs</fileName>
+    <timeStamp>2024-01-18T04:24:03+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>e7afc8c74d1f73b458705e0b946292a0</guid>
+    <fileName>Assets/SteamVR/Scripts/SteamVR_Menu.cs</fileName>
+    <timeStamp>2024-01-18T04:24:59+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>46fe9e0b23166454c8cb73040321d78c</guid>
+    <fileName>Assets/SteamVR/Scripts/SteamVR_Overlay.cs</fileName>
+    <timeStamp>2024-01-18T04:22:32+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>1f0522eaef74d984591c060d05a095c8</guid>
+    <fileName>Assets/SteamVR/Scripts/SteamVR_PlayArea.cs</fileName>
+    <timeStamp>2024-01-18T04:21:57+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>e979227f3384fac4b8ca0b3550bf005c</guid>
+    <fileName>Assets/SteamVR/Scripts/SteamVR_Render.cs</fileName>
+    <timeStamp>2024-01-18T04:25:01+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>5890e3cad70bea64d91aef9145ba3454</guid>
+    <fileName>Assets/SteamVR/Scripts/SteamVR_RenderModel.cs</fileName>
+    <timeStamp>2024-01-18T04:22:51+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>68724c1151b69be48b992a00fd8d9b6b</guid>
+    <fileName>Assets/SteamVR/Scripts/SteamVR_RingBuffer.cs</fileName>
+    <timeStamp>2024-01-18T04:23:08+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>b7f99b5209bd86441a74f3b0c7aab951</guid>
+    <fileName>Assets/SteamVR/Scripts/SteamVR_Settings.cs</fileName>
+    <timeStamp>2024-01-18T04:24:17+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>13a43e992568b8e48b4bd489b9d96f40</guid>
+    <fileName>Assets/SteamVR/Scripts/SteamVR_Skybox.cs</fileName>
+    <timeStamp>2024-01-18T04:21:48+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>7f4097fabec5d2b4da2b861750319952</guid>
+    <fileName>Assets/SteamVR/Scripts/SteamVR_SphericalProjection.cs</fileName>
+    <timeStamp>2024-01-18T04:23:32+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>55da3adbb5d30254c97687991608dda0</guid>
+    <fileName>Assets/SteamVR/Scripts/SteamVR_TrackedCamera.cs</fileName>
+    <timeStamp>2024-01-18T04:22:47+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>d37c2cf88f7c59f4c8cf5d3812568143</guid>
+    <fileName>Assets/SteamVR/Scripts/SteamVR_TrackedObject.cs</fileName>
+    <timeStamp>2024-01-18T04:24:40+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>2578089a96464b348a5399c795afc7b7</guid>
+    <fileName>Assets/SteamVR/Scripts/SteamVR_TrackingReferenceManager.cs</fileName>
+    <timeStamp>2024-01-18T04:22:03+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>be3c3a084f7b29b4880b42b4cfbf4d8f</guid>
+    <fileName>Assets/SteamVR/Scripts/SteamVR_Utils.cs</fileName>
+    <timeStamp>2024-01-18T04:24:22+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>5162205b778d01647b0d6a2c523b2518</guid>
+    <fileName>Assets/SteamVR/WindowsHelper/SteamVR_Windows_Editor_Helper.cs</fileName>
+    <timeStamp>2024-01-18T04:22:43+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>d0888fc20af439842855fe2843577b32</guid>
+    <fileName>Assets/SteamVR_Input/ActionSetClasses/SteamVR_Input_ActionSet_buggy.cs</fileName>
+    <timeStamp>2024-11-11T19:07:51.4832512+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>816b2a1da17f0004fa46340268368728</guid>
+    <fileName>Assets/SteamVR_Input/ActionSetClasses/SteamVR_Input_ActionSet_default.cs</fileName>
+    <timeStamp>2024-11-11T19:07:51.4812503+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>247afa3911fa9024fbac6cffabe88e43</guid>
+    <fileName>Assets/SteamVR_Input/ActionSetClasses/SteamVR_Input_ActionSet_htc_viu.cs</fileName>
+    <timeStamp>2024-11-11T19:07:51.4862514+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>60cf0221b2f2bb349ba0ce1f56800684</guid>
+    <fileName>Assets/SteamVR_Input/ActionSetClasses/SteamVR_Input_ActionSet_mixedreality.cs</fileName>
+    <timeStamp>2024-11-11T19:07:51.4842582+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>15c821dd72aa3c34b94d398d2db0c029</guid>
+    <fileName>Assets/SteamVR_Input/ActionSetClasses/SteamVR_Input_ActionSet_platformer.cs</fileName>
+    <timeStamp>2024-11-11T19:07:51.4822507+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>15f64663d9bea784b8060d7fbcdc2b23</guid>
+    <fileName>Assets/Hovl Studio/HSFiles/Scripts/HS_CallBackParent.cs</fileName>
+    <timeStamp>2024-11-09T09:22:45+08:00</timeStamp>
+    <typeFullName>
+      <string>HS_CallBackParent</string>
+    </typeFullName>
+    <assembly>Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</assembly>
+  </TypeDate>
+  <TypeDate>
+    <guid>605a456cfc02f6b499a64717539a27e8</guid>
+    <fileName>Assets/Hovl Studio/HSFiles/Scripts/HS_ProjectileMover.cs</fileName>
+    <timeStamp>2024-11-09T09:23:17+08:00</timeStamp>
+    <typeFullName>
+      <string>HS_ProjectileMover</string>
+    </typeFullName>
+    <assembly>Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</assembly>
+  </TypeDate>
+  <TypeDate>
+    <guid>49a4c106c4cee7649a8283163bb3da5f</guid>
+    <fileName>Assets/HTC.UnityPlugin/LiteCoroutine/Examples/LiteCoroutineExample.cs</fileName>
+    <timeStamp>2024-02-03T04:46:51+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>2df1ac29bcc7317469cc7e9735207ac7</guid>
+    <fileName>Assets/HTC.UnityPlugin/LiteCoroutine/Examples/LiteTaskExample.cs</fileName>
+    <timeStamp>2024-02-03T04:46:32+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>9f9c5828c37d1954b9fb9d3bb29dd8d4</guid>
+    <fileName>Assets/HTC.UnityPlugin/Pointer3D/Raycaster/Pointer3DRaycaster.cs</fileName>
+    <timeStamp>2024-02-03T04:47:48+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>c8c3f25a28b4f824f825e53629c17c25</guid>
+    <fileName>Assets/HTC.UnityPlugin/Pointer3D/RaycastMethod/CanvasRaycastMethod.cs</fileName>
+    <timeStamp>2024-02-03T04:48:16+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>d518a00ceacb57f4d94b3cc806d60f40</guid>
+    <fileName>Assets/HTC.UnityPlugin/Pointer3D/RaycastMethod/CanvasRaycastTarget.cs</fileName>
+    <timeStamp>2024-02-03T04:48:28+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>8c9420a09e290c841b7b2d06794807bf</guid>
+    <fileName>Assets/HTC.UnityPlugin/Pointer3D/RaycastMethod/GraphicRaycastMethod.cs</fileName>
+    <timeStamp>2024-02-03T04:47:35+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>7ceb8992058aca84bbc9c5ad19fd776f</guid>
+    <fileName>Assets/HTC.UnityPlugin/Pointer3D/RaycastMethod/Physics2DRaycastMethod.cs</fileName>
+    <timeStamp>2024-02-03T04:47:25+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>f26c248b16aef5b419526eee6ea07d5f</guid>
+    <fileName>Assets/HTC.UnityPlugin/Pointer3D/RaycastMethod/PhysicsRaycastMethod.cs</fileName>
+    <timeStamp>2024-02-03T04:48:51+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>439e39578810e8e4eb5cba21261e40b1</guid>
+    <fileName>Assets/HTC.UnityPlugin/Pointer3D/RaySegmentGenerator/DefaultGenerator.cs</fileName>
+    <timeStamp>2024-02-03T04:46:48+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>4da06ab1072a44a419406789d8054158</guid>
+    <fileName>Assets/HTC.UnityPlugin/Pointer3D/RaySegmentGenerator/ProjectileGenerator.cs</fileName>
+    <timeStamp>2024-02-03T04:46:54+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>3bbea028ca7f78247810066972fce5f2</guid>
+    <fileName>Assets/HTC.UnityPlugin/Pointer3D/RaySegmentGenerator/ProjectionGenerator.cs</fileName>
+    <timeStamp>2024-02-03T04:46:42+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>c5cd07a7e01a17748a407247b3e6e63b</guid>
+    <fileName>Assets/HTC.UnityPlugin/Pointer3D/StandaloneRaycaster/StandaloneEventData.cs</fileName>
+    <timeStamp>2024-02-03T04:48:14+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>1431a138d57828a4dbd0673ce9cf7d1c</guid>
+    <fileName>Assets/HTC.UnityPlugin/Pointer3D/StandaloneRaycaster/StandaloneRaycaster.cs</fileName>
+    <timeStamp>2024-02-03T04:46:07+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>c22335a0b312e194083a530ec5d1285c</guid>
+    <fileName>Assets/HTC.UnityPlugin/Pointer3D/TouchPointer/TouchPointerEventData.cs</fileName>
+    <timeStamp>2024-02-03T04:48:12+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>d4ffd12767d72cc4c9674d6da90326d2</guid>
+    <fileName>Assets/HTC.UnityPlugin/Pointer3D/TouchPointer/TouchPointerRaycaster.cs</fileName>
+    <timeStamp>2024-02-03T04:48:27+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>9e409dd2a7f3fb54395fe167509d5596</guid>
+    <fileName>Assets/HTC.UnityPlugin/PoseTracker/Base/BasePoseModifier.cs</fileName>
+    <timeStamp>2024-02-03T04:47:46+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>504afcc250536544783532c6917db893</guid>
+    <fileName>Assets/HTC.UnityPlugin/PoseTracker/Base/BasePoseTracker.cs</fileName>
+    <timeStamp>2024-02-03T04:46:57+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>fce4b6465cea4cf48907cbc80c24008b</guid>
+    <fileName>Assets/HTC.UnityPlugin/PoseTracker/Base/IPoseModifier.cs</fileName>
+    <timeStamp>2024-02-03T04:48:59+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>479fafe862ba83c45a3ff14e2e2475a7</guid>
+    <fileName>Assets/HTC.UnityPlugin/PoseTracker/Base/IPoseTracker.cs</fileName>
+    <timeStamp>2024-02-03T04:46:50+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>ca9c1e6a0b47180478d395f5081879f4</guid>
+    <fileName>Assets/HTC.UnityPlugin/PoseTracker/Editor/PoseEaserEditor.cs</fileName>
+    <timeStamp>2024-02-03T04:48:17+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>ce3bb4f3ff68da14bbc4ad2cc60f74ad</guid>
+    <fileName>Assets/HTC.UnityPlugin/PoseTracker/Editor/PoseFreezerEditor.cs</fileName>
+    <timeStamp>2024-02-03T04:48:18+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>2ea444548ca136c4db1faed2c0336bb1</guid>
+    <fileName>Assets/HTC.UnityPlugin/PoseTracker/PoseModifiers/PoseDirection.cs</fileName>
+    <timeStamp>2024-02-03T04:46:32+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>b94db5e6392a8004a8880d13e66933ff</guid>
+    <fileName>Assets/HTC.UnityPlugin/PoseTracker/PoseModifiers/PoseEaser.cs</fileName>
+    <timeStamp>2024-02-03T04:48:03+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>ae14cc904f9070c40929848db1242d56</guid>
+    <fileName>Assets/HTC.UnityPlugin/PoseTracker/PoseModifiers/PoseFreezer.cs</fileName>
+    <timeStamp>2024-02-03T04:47:57+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>a1f88538543e79041b87e6b5ed32c724</guid>
+    <fileName>Assets/HTC.UnityPlugin/PoseTracker/PoseModifiers/PoseLookAtNearestCanvas.cs</fileName>
+    <timeStamp>2024-02-03T04:47:49+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>15e4d85dc1bd6124aa83b6d6d84f849f</guid>
+    <fileName>Assets/HTC.UnityPlugin/PoseTracker/PoseModifiers/PoseStablizer.cs</fileName>
+    <timeStamp>2024-02-03T04:46:08+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>d8ae63e74744f834f849f19cda445b50</guid>
+    <fileName>Assets/HTC.UnityPlugin/Utility/Attribute/CustomOrderedEnumAttribute.cs</fileName>
+    <timeStamp>2024-02-03T04:48:30+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>4b6d385cd4b273648885cb9721ea92de</guid>
+    <fileName>Assets/HTC.UnityPlugin/Utility/Attribute/FlagsFromEnumAttribute.cs</fileName>
+    <timeStamp>2024-02-03T04:46:53+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>aa4d0352bd261f94cb4b6f07a74039e4</guid>
+    <fileName>Assets/HTC.UnityPlugin/Utility/Container/EnumArray.cs</fileName>
+    <timeStamp>2024-02-03T04:47:55+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>16ef55a2c00446c4bbd1925c7ee532ab</guid>
+    <fileName>Assets/HTC.UnityPlugin/Utility/Container/IndexedSet.cs</fileName>
+    <timeStamp>2024-02-03T04:46:09+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>945f4d561dba4514796d1d45533e4bfb</guid>
+    <fileName>Assets/HTC.UnityPlugin/Utility/Container/IndexedTable.cs</fileName>
+    <timeStamp>2024-02-03T04:47:40+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>5017607f7584d3249880505364a84b16</guid>
+    <fileName>Assets/HTC.UnityPlugin/Utility/Container/OrderedIndexedSet.cs</fileName>
+    <timeStamp>2024-02-03T04:46:56+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>7463f80599f23ab419953af2cadbc05c</guid>
+    <fileName>Assets/HTC.UnityPlugin/Utility/Container/OrderedIndexedTable.cs</fileName>
+    <timeStamp>2024-02-03T04:47:19+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>fcd64c240bbf22f4aaf6faa9191fbe29</guid>
+    <fileName>Assets/HTC.UnityPlugin/Utility/ContainerPool/DictionaryPool.cs</fileName>
+    <timeStamp>2024-02-03T04:48:59+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>10b5b8794a6a6f84eacaf9c50ac66e2e</guid>
+    <fileName>Assets/HTC.UnityPlugin/Utility/ContainerPool/IndexedSetPool.cs</fileName>
+    <timeStamp>2024-02-03T04:46:04+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>db967d649a06103489f6c98487ba40a0</guid>
+    <fileName>Assets/HTC.UnityPlugin/Utility/ContainerPool/ListPool.cs</fileName>
+    <timeStamp>2024-02-03T04:48:34+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>2084fc7f3907d82448e94c933b09d154</guid>
+    <fileName>Assets/HTC.UnityPlugin/Utility/ContainerPool/ObjectPool.cs</fileName>
+    <timeStamp>2024-02-03T04:46:18+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>5d9fc5b8405c92145879d1549863ce51</guid>
+    <fileName>Assets/HTC.UnityPlugin/Utility/Editor/Bool3Drawer.cs</fileName>
+    <timeStamp>2024-02-03T04:47:05+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>f478c368a43d44541984b8abaafb7c77</guid>
+    <fileName>Assets/HTC.UnityPlugin/Utility/HandJoint/HandJointName.cs</fileName>
+    <timeStamp>2024-02-03T04:48:53+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>6ad66127590afb04dbf9a8683050cc48</guid>
+    <fileName>Assets/HTC.UnityPlugin/Utility/HandJoint/JointPose.cs</fileName>
+    <timeStamp>2024-02-03T04:47:12+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>71e10a6c8bc50f348a3bcd045dce48c3</guid>
+    <fileName>Assets/HTC.UnityPlugin/ViveInputUtility/Scripts/VIUSettings.cs</fileName>
+    <timeStamp>2024-02-03T04:47:16+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>33ad858ea7711da40819f403f2321cf0</guid>
+    <fileName>Assets/HTC.UnityPlugin/ViveInputUtility/Scripts/VIUSyntheticDevice.cs</fileName>
+    <timeStamp>2024-02-03T04:46:37+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>4b2f32102a5f2364a911a4855320f8f8</guid>
+    <fileName>Assets/HTC.UnityPlugin/ViveInputUtility/Scripts/VIUVersion.cs</fileName>
+    <timeStamp>2024-02-03T04:46:52+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>971f2b1383825c64caf7fbef7ed749b7</guid>
+    <fileName>Assets/HTC.UnityPlugin/VRModule/Editor/VRModuleManagerEditor.cs</fileName>
+    <timeStamp>2024-02-03T04:47:41+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>ef8bf44feed5f7b48a5112ffd141ec77</guid>
+    <fileName>Assets/HTC.UnityPlugin/VRModule/Modules/GoogleVRModule.cs</fileName>
+    <timeStamp>2024-02-03T04:48:48+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>7c2308c7558878b469ce44fab128787a</guid>
+    <fileName>Assets/HTC.UnityPlugin/VRModule/Modules/OculusVRModule.cs</fileName>
+    <timeStamp>2024-02-03T04:47:22+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>0e0e5ed4e9ca6be48a06942c46602703</guid>
+    <fileName>Assets/HTC.UnityPlugin/VRModule/Modules/SimulatorModule.cs</fileName>
+    <timeStamp>2024-02-03T04:46:01+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>8d16d22094763fa4faee238061ad8b07</guid>
+    <fileName>Assets/HTC.UnityPlugin/VRModule/Modules/SteamVRModule.cs</fileName>
+    <timeStamp>2024-02-03T04:47:35+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>63112e2cdad1c0945ade1ed20474623b</guid>
+    <fileName>Assets/HTC.UnityPlugin/VRModule/Modules/SteamVRv2Module.cs</fileName>
+    <timeStamp>2024-02-03T04:47:08+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>f4b3abcc1410ab147a6494768911be35</guid>
+    <fileName>Assets/HTC.UnityPlugin/VRModule/Modules/UnityEngineVRModule.cs</fileName>
+    <timeStamp>2024-02-03T04:48:53+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>0d348577042d02641be79bc442179384</guid>
+    <fileName>Assets/HTC.UnityPlugin/VRModule/Modules/UnityEngineVRModule_2017_1.cs</fileName>
+    <timeStamp>2024-02-03T04:45:58+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>d6490d198811b7c41b8c66ced6fd9187</guid>
+    <fileName>Assets/HTC.UnityPlugin/VRModule/Modules/UnityEngineVRModule_2017_2.cs</fileName>
+    <timeStamp>2024-02-03T04:48:29+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>3a14032772e1fbd4cbcaf915771a3dda</guid>
+    <fileName>Assets/HTC.UnityPlugin/VRModule/Modules/UnityEngineVRModule_5_5.cs</fileName>
+    <timeStamp>2024-02-03T04:46:41+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>17db0c50ae75d544cbe66221f8ab147f</guid>
+    <fileName>Assets/HTC.UnityPlugin/VRModule/Modules/UnityEngineVRModule_5_6.cs</fileName>
+    <timeStamp>2024-02-03T04:46:10+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>b7c51369aa6fced4d98702c805edfa58</guid>
+    <fileName>Assets/HTC.UnityPlugin/VRModule/Modules/UnityXRModule.cs</fileName>
+    <timeStamp>2024-02-03T04:48:01+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>2efae89139886cb47a7654a577102450</guid>
+    <fileName>Assets/HTC.UnityPlugin/VRModule/Modules/UnityXRModuleBase.cs</fileName>
+    <timeStamp>2024-02-03T04:46:33+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>765f6c3b42ad00f45a1754277953f54d</guid>
+    <fileName>Assets/HTC.UnityPlugin/VRModule/Modules/UnityXRModuleUtil.cs</fileName>
+    <timeStamp>2024-02-03T04:47:20+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>1ae3cbaf7eb82324db91077381b3f903</guid>
+    <fileName>Assets/HTC.UnityPlugin/VRModule/Modules/WaveVRModule.cs</fileName>
+    <timeStamp>2024-02-03T04:46:13+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>bd11329d8161ce34bb120da6da465be6</guid>
+    <fileName>Assets/HTC.UnityPlugin/VRModule/Submodules/ViveHandTrackingSubmodule.cs</fileName>
+    <timeStamp>2024-02-03T04:48:07+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>5ef93011b1de3e9449ebebd5c1df71cd</guid>
+    <fileName>Assets/HTC.UnityPlugin/VRModule/Submodules/WaveHandTrackingSubmodule.cs</fileName>
+    <timeStamp>2024-02-03T04:47:06+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>5425af3a156798241b4d951963e3b772</guid>
+    <fileName>Assets/HTC.UnityPlugin/VRModule/Submodules/WaveTrackerSubmodule.cs</fileName>
+    <timeStamp>2024-02-03T04:46:59+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>7afb828b54112d44a954293deb857a1c</guid>
+    <fileName>Assets/Scripts/Player/PlayerAgent/PlayerAgentManager.cs</fileName>
+    <timeStamp>2024-11-09T18:38:24.2125953+08:00</timeStamp>
+    <typeFullName>
+      <string>PlayerAgentManager</string>
+    </typeFullName>
+    <assembly>Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</assembly>
+  </TypeDate>
+  <TypeDate>
+    <guid>59250d64a1ce9a44891e9bb0b3d71e6b</guid>
+    <fileName>Assets/SteamVR/Input/BehaviourUnityEvents/SteamVR_Behaviour_BooleanEvent.cs</fileName>
+    <timeStamp>2024-01-18T04:22:51+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>d77e49c3174e18045ab27a1029c6a977</guid>
+    <fileName>Assets/SteamVR/Input/BehaviourUnityEvents/SteamVR_Behaviour_PoseEvent.cs</fileName>
+    <timeStamp>2024-01-18T04:24:45+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>f0abecbe8a5e4e04dab8f886e1d6d070</guid>
+    <fileName>Assets/SteamVR/Input/BehaviourUnityEvents/SteamVR_Behaviour_Pose_ConnectedChangedEvent.cs</fileName>
+    <timeStamp>2024-01-18T04:25:09+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>bc42b626f4ef1264ebfc0393f40df5c9</guid>
+    <fileName>Assets/SteamVR/Input/BehaviourUnityEvents/SteamVR_Behaviour_Pose_DeviceIndexChangedEvent.cs</fileName>
+    <timeStamp>2024-01-18T04:24:21+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>62c981c44fe9a6046bb0766cb96bdf65</guid>
+    <fileName>Assets/SteamVR/Input/BehaviourUnityEvents/SteamVR_Behaviour_Pose_TrackingChangedEvent.cs</fileName>
+    <timeStamp>2024-01-18T04:22:59+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>b8fd33c9d8ff2114a8b6a59629165318</guid>
+    <fileName>Assets/SteamVR/Input/BehaviourUnityEvents/SteamVR_Behaviour_SingleEvent.cs</fileName>
+    <timeStamp>2024-01-18T04:24:18+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>c56ae57c82c46674ea85a60fd6ba9334</guid>
+    <fileName>Assets/SteamVR/Input/BehaviourUnityEvents/SteamVR_Behaviour_SkeletonEvent.cs</fileName>
+    <timeStamp>2024-01-18T04:24:28+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>431bf7eb5ceb24a448dc44a2ed8d8243</guid>
+    <fileName>Assets/SteamVR/Input/BehaviourUnityEvents/SteamVR_Behaviour_Skeleton_ConnectedChangedEvent.cs</fileName>
+    <timeStamp>2024-01-18T04:22:27+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>7461d65099840d840af0e25e6afda525</guid>
+    <fileName>Assets/SteamVR/Input/BehaviourUnityEvents/SteamVR_Behaviour_Skeleton_TrackingChangedEvent.cs</fileName>
+    <timeStamp>2024-01-18T04:23:20+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>091545c123a858440b2e32a3f299a923</guid>
+    <fileName>Assets/SteamVR/Input/BehaviourUnityEvents/SteamVR_Behaviour_Vector2Event.cs</fileName>
+    <timeStamp>2024-01-18T04:21:37+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>99c31ec1b21aa424987b0162f9971dc6</guid>
+    <fileName>Assets/SteamVR/Input/BehaviourUnityEvents/SteamVR_Behaviour_Vector3Event.cs</fileName>
+    <timeStamp>2024-01-18T04:23:53+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>806facaa17de95d4794b0acbbad1268d</guid>
+    <fileName>Assets/SteamVR/Input/Editor/SteamVR_CopyExampleInputFiles.cs</fileName>
+    <timeStamp>2024-01-18T04:23:34+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>8c0dec2678a8ce94dbdd749500441172</guid>
+    <fileName>Assets/SteamVR/Input/Editor/SteamVR_Input_ActionManifest_Manager.cs</fileName>
+    <timeStamp>2024-01-18T04:23:42+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>074d66e09af4e46429424ca09a9c3402</guid>
+    <fileName>Assets/SteamVR/Input/Editor/SteamVR_Input_ActionSetPropertyEditor.cs</fileName>
+    <timeStamp>2024-01-18T04:21:35+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>779685f855764aa449874336c160b4d0</guid>
+    <fileName>Assets/SteamVR/Input/Editor/SteamVR_Input_Action_Boolean_PropertyEditor.cs</fileName>
+    <timeStamp>2024-01-18T04:23:23+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>2800414421e3d124486646cbf8206a64</guid>
+    <fileName>Assets/SteamVR/Input/Editor/SteamVR_Input_Action_GenericPropertyEditor.cs</fileName>
+    <timeStamp>2024-01-18T04:22:05+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>7f01bda1d81aff44b8832e1779ef392f</guid>
+    <fileName>Assets/SteamVR/Input/Editor/SteamVR_Input_Action_In_PropertyEditor.cs</fileName>
+    <timeStamp>2024-01-18T04:23:32+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>bc5014b5bd4c9254885346ccb2479e34</guid>
+    <fileName>Assets/SteamVR/Input/Editor/SteamVR_Input_Action_Out_PropertyEditor.cs</fileName>
+    <timeStamp>2024-01-18T04:24:21+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>6c580c8ee65b2064b9cecf9c8a56b126</guid>
+    <fileName>Assets/SteamVR/Input/Editor/SteamVR_Input_Action_Pose_PropertyEditor.cs</fileName>
+    <timeStamp>2024-01-18T04:23:11+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>ef30f8b815c7563459f9bb661516015e</guid>
+    <fileName>Assets/SteamVR/Input/Editor/SteamVR_Input_Action_PropertyEditor.cs</fileName>
+    <timeStamp>2024-01-18T04:25:07+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>4830402dc20240e4ea78925fdf5cb924</guid>
+    <fileName>Assets/SteamVR/Input/Editor/SteamVR_Input_Action_Single_PropertyEditor.cs</fileName>
+    <timeStamp>2024-01-18T04:22:33+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>67e9f92e8ad511b47ac9bd0e49834d0f</guid>
+    <fileName>Assets/SteamVR/Input/Editor/SteamVR_Input_Action_Skeleton_PropertyEditor.cs</fileName>
+    <timeStamp>2024-01-18T04:23:07+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>44945f1de2d06c843bbacc0c37a431c2</guid>
+    <fileName>Assets/SteamVR/Input/Editor/SteamVR_Input_Action_Vector2_PropertyEditor.cs</fileName>
+    <timeStamp>2024-01-18T04:22:30+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>08029b867fa0bbf4bb41613c2ebb449e</guid>
+    <fileName>Assets/SteamVR/Input/Editor/SteamVR_Input_Action_Vector3_PropertyEditor.cs</fileName>
+    <timeStamp>2024-01-18T04:21:36+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>6687413c4fe847b418c7a33716013e07</guid>
+    <fileName>Assets/SteamVR/Input/Editor/SteamVR_Input_Action_Vibration_PropertyEditor.cs</fileName>
+    <timeStamp>2024-01-18T04:23:05+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>03dc30b5b3080b44ab840459bbaf7b78</guid>
+    <fileName>Assets/SteamVR/Input/Editor/SteamVR_Input_EditorWindow.cs</fileName>
+    <timeStamp>2024-01-18T04:21:32+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>dcf3113e82474c541960a24c222f07b3</guid>
+    <fileName>Assets/SteamVR/Input/Editor/SteamVR_Input_Generator.cs</fileName>
+    <timeStamp>2024-01-18T04:24:50+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>4f3a55cce07b5da49ad2dfb86baea564</guid>
+    <fileName>Assets/SteamVR/Input/Editor/SteamVR_Input_LiveWindow.cs</fileName>
+    <timeStamp>2024-01-18T04:22:40+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>7397a60f6d7fe3942bf26563dad77fe2</guid>
+    <fileName>Assets/SteamVR/Input/Editor/SteamVR_Input_PostProcessBuild.cs</fileName>
+    <timeStamp>2024-01-18T04:23:18+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>4dc9de3af3d42194abc1380cc3a5cc61</guid>
+    <fileName>Assets/SteamVR/Input/Editor/SteamVR_Skeleton_PoserEditor.cs</fileName>
+    <timeStamp>2024-01-18T04:22:39+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>7434e43635fb2924583f5e0f2fb6ed3a</guid>
+    <fileName>Assets/SteamVR/InteractionSystem/SnapTurn/SnapTurn.cs</fileName>
+    <timeStamp>2024-01-18T04:23:20+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>0015164b45b01e24499396ed322983f5</guid>
+    <fileName>Assets/Hovl Studio/HSFiles/Scripts/For demo scenes/HS_DemoShooting.cs</fileName>
+    <timeStamp>2024-11-09T09:22:38+08:00</timeStamp>
+    <typeFullName>
+      <string>HS_DemoShooting</string>
+    </typeFullName>
+    <assembly>Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</assembly>
+  </TypeDate>
+  <TypeDate>
+    <guid>1c92ffcf2d9bbfe4ea769d9c5ea360f9</guid>
+    <fileName>Assets/Hovl Studio/HSFiles/Scripts/For demo scenes/HS_DemoShootingNeo.cs</fileName>
+    <timeStamp>2024-11-09T09:22:48+08:00</timeStamp>
+    <typeFullName>
+      <string>Hovl.VFX.HS_DemoShootingNeo</string>
+    </typeFullName>
+    <assembly>Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</assembly>
+  </TypeDate>
+  <TypeDate>
+    <guid>44274e700897d1a40af0423ae63b7ffd</guid>
+    <fileName>Assets/Hovl Studio/HSFiles/Scripts/For demo scenes/HS_PoolableCycler.cs</fileName>
+    <timeStamp>2024-11-09T09:23:05+08:00</timeStamp>
+    <typeFullName>
+      <string>CGT.Pooling.HS_PoolableCycler</string>
+    </typeFullName>
+    <assembly>Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</assembly>
+  </TypeDate>
+  <TypeDate>
+    <guid>4ad04c63ab892ea45b1dbc2bd2ba2f3b</guid>
+    <fileName>Assets/Hovl Studio/HSFiles/Scripts/Pooling/HS_Poolable.cs</fileName>
+    <timeStamp>2024-11-09T09:23:07+08:00</timeStamp>
+    <typeFullName>
+      <string>CGT.Pooling.HS_Poolable</string>
+    </typeFullName>
+    <assembly>Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</assembly>
+  </TypeDate>
+  <TypeDate>
+    <guid>e24e5edf476da5a44b3f3ac815c09647</guid>
+    <fileName>Assets/Hovl Studio/HSFiles/Scripts/Pooling/HS_PoolableManager.cs</fileName>
+    <timeStamp>2024-11-09T09:24:06+08:00</timeStamp>
+    <typeFullName>
+      <string>CGT.Pooling.HS_PoolableManager</string>
+    </typeFullName>
+    <assembly>Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</assembly>
+  </TypeDate>
+  <TypeDate>
+    <guid>01ba9e4bb4faca74dbdd294a723b62e1</guid>
+    <fileName>Assets/Hovl Studio/HSFiles/Scripts/Pooling/HS_PoolRejoinMode.cs</fileName>
+    <timeStamp>2024-11-09T09:22:39+08:00</timeStamp>
+    <typeFullName>
+      <string>CGT.Pooling.HS_PoolRejoinMode</string>
+    </typeFullName>
+    <assembly>Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</assembly>
+  </TypeDate>
+  <TypeDate>
+    <guid>f15a9b8586b86c94f8eb2f15d57b479a</guid>
+    <fileName>Assets/HTC.UnityPlugin/Pointer3D/Raycaster/Base/BaseFallbackCamRaycaster.cs</fileName>
+    <timeStamp>2024-02-03T04:48:49+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>0ac3e7e60e114984485e02a25f08dc83</guid>
+    <fileName>Assets/HTC.UnityPlugin/Pointer3D/Raycaster/Base/BaseMultiMethodRaycaster.cs</fileName>
+    <timeStamp>2024-02-03T04:45:56+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>c066a9805efda9045abe5b8b880e9ad5</guid>
+    <fileName>Assets/HTC.UnityPlugin/Pointer3D/RaycastMethod/Base/BaseRaycastMethod.cs</fileName>
+    <timeStamp>2024-02-03T04:48:10+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>9ee3ffbc38491014db9b91574a6e581e</guid>
+    <fileName>Assets/HTC.UnityPlugin/Pointer3D/RaycastMethod/Base/IRaycastMethod.cs</fileName>
+    <timeStamp>2024-02-03T04:47:47+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>1d6790ed95536ff4fb09b0617b956bbd</guid>
+    <fileName>Assets/HTC.UnityPlugin/Pointer3D/RaySegmentGenerator/Base/BaseRaySegmentGenerator.cs</fileName>
+    <timeStamp>2024-02-03T04:46:15+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>2b05f196de8b00e4891220e91f9c2918</guid>
+    <fileName>Assets/HTC.UnityPlugin/Pointer3D/RaySegmentGenerator/Base/IRaySegmentGenerator.cs</fileName>
+    <timeStamp>2024-02-03T04:46:28+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>ff43dd5c21b34834aa349b5c9f2c88fb</guid>
+    <fileName>Assets/HTC.UnityPlugin/Utility/Attribute/Editor/CustomOrderedEnumAttributeDrawer.cs</fileName>
+    <timeStamp>2024-02-03T04:49:00+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>c0d590f5d0a8d6441951b3a5e3f0e238</guid>
+    <fileName>Assets/HTC.UnityPlugin/Utility/Attribute/Editor/FlagsFromEnumAttributeDrawer.cs</fileName>
+    <timeStamp>2024-02-03T04:48:11+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>680835c5339879f4f939b030d192f3c8</guid>
+    <fileName>Assets/HTC.UnityPlugin/Utility/Container/Editor/EnumArrayDrawer.cs</fileName>
+    <timeStamp>2024-02-03T04:47:12+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>c6bfcc2dbafdb6c4facfe1dccad64d7f</guid>
+    <fileName>Assets/HTC.UnityPlugin/ViveInputUtility/Examples/10.ControllerTooltips/ModeManager.cs</fileName>
+    <timeStamp>2024-02-03T04:48:14+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>7db24d6277613b5489e64a5251e30234</guid>
+    <fileName>Assets/HTC.UnityPlugin/ViveInputUtility/Examples/10.ControllerTooltips/SelectColorUIController.cs</fileName>
+    <timeStamp>2024-02-03T04:47:25+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>3d1b74c4162c0ed419d62c6071d736af</guid>
+    <fileName>Assets/HTC.UnityPlugin/ViveInputUtility/Scripts/ControllerTooltip/DefaultTooltipPrefab.cs</fileName>
+    <timeStamp>2024-02-03T04:46:44+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>50c3114128a71ad4a80e400cfa3188fa</guid>
+    <fileName>Assets/HTC.UnityPlugin/ViveInputUtility/Scripts/ControllerTooltip/DefaultTooltipRenderDataAsset.cs</fileName>
+    <timeStamp>2024-02-03T04:46:57+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>1ff5dcf5d85a78343b09d86b9818cd89</guid>
+    <fileName>Assets/HTC.UnityPlugin/ViveInputUtility/Scripts/ControllerTooltip/DefaultTooltipRenderer.cs</fileName>
+    <timeStamp>2024-02-03T04:46:18+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>19a7a1b205bdb124c9eb8fddf899138d</guid>
+    <fileName>Assets/HTC.UnityPlugin/ViveInputUtility/Scripts/ControllerTooltip/TooltipRenderDataAssetBase.cs</fileName>
+    <timeStamp>2024-02-03T04:46:12+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>98c7c18feac50034e9d194fa56d59086</guid>
+    <fileName>Assets/HTC.UnityPlugin/ViveInputUtility/Scripts/ControllerTooltip/TooltipRendererBase.cs</fileName>
+    <timeStamp>2024-02-03T04:47:42+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>2a1992a9d48a9b242a859e077b4275c0</guid>
+    <fileName>Assets/HTC.UnityPlugin/ViveInputUtility/Scripts/ControllerTooltip/TooltipRigAsset.cs</fileName>
+    <timeStamp>2024-02-03T04:46:28+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>805888151002d97419dafcbc70fea01d</guid>
+    <fileName>Assets/HTC.UnityPlugin/ViveInputUtility/Scripts/Editor/VIUProjectSettings.cs</fileName>
+    <timeStamp>2024-02-03T04:47:25+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>d61962b06b63ea449b3d9b24513b1a4a</guid>
+    <fileName>Assets/HTC.UnityPlugin/ViveInputUtility/Scripts/Editor/VIUSettingsEditor.cs</fileName>
+    <timeStamp>2024-02-03T04:48:29+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>37292473ea7658142b4917d403c8b9ee</guid>
+    <fileName>Assets/HTC.UnityPlugin/ViveInputUtility/Scripts/Editor/VIUVersionCheck.cs</fileName>
+    <timeStamp>2024-02-03T04:46:39+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>0591253b1e4ff56479b4a28c80b71b51</guid>
+    <fileName>Assets/HTC.UnityPlugin/ViveInputUtility/Scripts/Editor/XRPluginManagementUtils.cs</fileName>
+    <timeStamp>2024-02-03T04:45:52+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>2c1e088ce10ab7d4c87f03fd1f2dfcae</guid>
+    <fileName>Assets/HTC.UnityPlugin/ViveInputUtility/Scripts/Misc/BasicGrabbable.cs</fileName>
+    <timeStamp>2024-02-03T04:46:30+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>afea3b80346a74d4bb1ccdcd457390bf</guid>
+    <fileName>Assets/HTC.UnityPlugin/ViveInputUtility/Scripts/Misc/ControllerManagerSample.cs</fileName>
+    <timeStamp>2024-02-03T04:47:58+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>242d8d10c2601f848b82b850e1d677e1</guid>
+    <fileName>Assets/HTC.UnityPlugin/ViveInputUtility/Scripts/Misc/DeviceInputDebugger.cs</fileName>
+    <timeStamp>2024-02-03T04:46:21+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>a8deef80f4da8a44f858a453c0f74ecf</guid>
+    <fileName>Assets/HTC.UnityPlugin/ViveInputUtility/Scripts/Misc/ExternalCameraHook.cs</fileName>
+    <timeStamp>2024-02-03T04:47:54+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>c4bf95405e4df2245ab1dadaa3452321</guid>
+    <fileName>Assets/HTC.UnityPlugin/ViveInputUtility/Scripts/Misc/GrabbableBase.cs</fileName>
+    <timeStamp>2024-02-03T04:48:13+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>aa380deb7f1437a4c8678ec04f101197</guid>
+    <fileName>Assets/HTC.UnityPlugin/ViveInputUtility/Scripts/Misc/GuideLineDrawer.cs</fileName>
+    <timeStamp>2024-02-03T04:47:54+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>6f3df327f56cabb4783bcde07510e988</guid>
+    <fileName>Assets/HTC.UnityPlugin/ViveInputUtility/Scripts/Misc/HandJointUpdater.cs</fileName>
+    <timeStamp>2024-02-03T04:47:14+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>079afddb0d7f05e40bcb44383f149949</guid>
+    <fileName>Assets/HTC.UnityPlugin/ViveInputUtility/Scripts/Misc/MaterialChanger.cs</fileName>
+    <timeStamp>2024-02-03T04:45:54+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>cecce3f724b63824a858c964a8a84e1a</guid>
+    <fileName>Assets/HTC.UnityPlugin/ViveInputUtility/Scripts/Misc/OverlayKeyboardSample.cs</fileName>
+    <timeStamp>2024-02-03T04:48:20+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>6f62138db21b7ec439beba5c9b61c2d9</guid>
+    <fileName>Assets/HTC.UnityPlugin/ViveInputUtility/Scripts/Misc/RenderModelHook.cs</fileName>
+    <timeStamp>2024-02-03T04:47:15+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>56d295652c296b049959c933d5db7951</guid>
+    <fileName>Assets/HTC.UnityPlugin/ViveInputUtility/Scripts/Misc/ReticlePoser.cs</fileName>
+    <timeStamp>2024-02-03T04:47:01+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>bcf697fb9de885d47b4c990c8a58936a</guid>
+    <fileName>Assets/HTC.UnityPlugin/ViveInputUtility/Scripts/Misc/SteamVRCameraHook.cs</fileName>
+    <timeStamp>2024-02-03T04:48:07+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>d95cee40c33260044b37578281bc98a3</guid>
+    <fileName>Assets/HTC.UnityPlugin/ViveInputUtility/Scripts/Misc/StickyGrabbable.cs</fileName>
+    <timeStamp>2024-02-03T04:48:31+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>4f753025abc16bb45bbc83939f863bfb</guid>
+    <fileName>Assets/HTC.UnityPlugin/ViveInputUtility/Scripts/Misc/Teleportable.cs</fileName>
+    <timeStamp>2024-02-03T04:46:56+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>9f59faebdf94f26448cbfbfbe222b044</guid>
+    <fileName>Assets/HTC.UnityPlugin/ViveInputUtility/Scripts/Misc/TouchReticlePoser.cs</fileName>
+    <timeStamp>2024-02-03T04:47:48+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>326f9add24fafee418bdcd053a0324a0</guid>
+    <fileName>Assets/HTC.UnityPlugin/ViveInputUtility/Scripts/Misc/VRCameraHook.cs</fileName>
+    <timeStamp>2024-02-03T04:46:35+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>c0ae3d73ff223ae43b16f69db83cc54b</guid>
+    <fileName>Assets/HTC.UnityPlugin/ViveInputUtility/Scripts/VIUSettingsPartials/BindingUISettings.cs</fileName>
+    <timeStamp>2024-02-03T04:48:11+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>2ca1bcbe63347b449a1af131686f196b</guid>
+    <fileName>Assets/HTC.UnityPlugin/ViveInputUtility/Scripts/VIUSettingsPartials/DaydreamSettings.cs</fileName>
+    <timeStamp>2024-02-03T04:46:31+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>f3af8081dcf19ca41b1fbabc1ade9660</guid>
+    <fileName>Assets/HTC.UnityPlugin/ViveInputUtility/Scripts/VIUSettingsPartials/ExternalCameraSettings.cs</fileName>
+    <timeStamp>2024-02-03T04:48:52+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>d03f3ee2248612d48bb6ff9d521e0055</guid>
+    <fileName>Assets/HTC.UnityPlugin/ViveInputUtility/Scripts/VIUSettingsPartials/OculusSettings.cs</fileName>
+    <timeStamp>2024-02-03T04:48:21+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>9c004bf8934762145a4ba4e505db4103</guid>
+    <fileName>Assets/HTC.UnityPlugin/ViveInputUtility/Scripts/VIUSettingsPartials/OpenVRSettings.cs</fileName>
+    <timeStamp>2024-02-03T04:47:45+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>0584f1c4c2fadeb48b7f102b40ee8ca2</guid>
+    <fileName>Assets/HTC.UnityPlugin/ViveInputUtility/Scripts/VIUSettingsPartials/SimulatorSettings.cs</fileName>
+    <timeStamp>2024-02-03T04:45:52+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>73c352c235905084aa5998d0f06ced4d</guid>
+    <fileName>Assets/HTC.UnityPlugin/ViveInputUtility/Scripts/VIUSettingsPartials/UnityNativeVRSettings.cs</fileName>
+    <timeStamp>2024-02-03T04:47:18+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>b6c0b272ed0591f4cbfcc029be830232</guid>
+    <fileName>Assets/HTC.UnityPlugin/ViveInputUtility/Scripts/VIUSettingsPartials/UnityXRSettings.cs</fileName>
+    <timeStamp>2024-02-03T04:48:01+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>9383b6d77973fd64cb81667b40063bb1</guid>
+    <fileName>Assets/HTC.UnityPlugin/ViveInputUtility/Scripts/VIUSettingsPartials/WaveVRSettings.cs</fileName>
+    <timeStamp>2024-02-03T04:47:38+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>1ef2272bf13df804f93135bad41885ae</guid>
+    <fileName>Assets/HTC.UnityPlugin/ViveInputUtility/Scripts/ViveColliderEvent/ViveColliderEventCaster.cs</fileName>
+    <timeStamp>2024-02-03T04:46:17+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>3d56742afa1365641b45ecd15d6153a2</guid>
+    <fileName>Assets/HTC.UnityPlugin/ViveInputUtility/Scripts/ViveColliderEvent/ViveColliderEventData.cs</fileName>
+    <timeStamp>2024-02-03T04:46:44+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>db1ddb2a6686e9b4ca73911ae17152f9</guid>
+    <fileName>Assets/HTC.UnityPlugin/ViveInputUtility/Scripts/ViveInput/ControllerState.cs</fileName>
+    <timeStamp>2024-02-03T04:48:33+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>d411276c604086141ae1eff2b8bf37b8</guid>
+    <fileName>Assets/HTC.UnityPlugin/ViveInputUtility/Scripts/ViveInput/ViveInput.cs</fileName>
+    <timeStamp>2024-02-03T04:48:25+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>96b8a4405402c8a4e90d5418f476d25f</guid>
+    <fileName>Assets/HTC.UnityPlugin/ViveInputUtility/Scripts/ViveInput/ViveInputButtonMask.cs</fileName>
+    <timeStamp>2024-02-03T04:47:41+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>9d199422eb9dfb1498c1bd1b2b320bad</guid>
+    <fileName>Assets/HTC.UnityPlugin/ViveInputUtility/Scripts/ViveInput/ViveInputStatic.cs</fileName>
+    <timeStamp>2024-02-03T04:47:46+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>93ab9066e8186884da64ee239717c741</guid>
+    <fileName>Assets/HTC.UnityPlugin/ViveInputUtility/Scripts/ViveInput/ViveInputVirtualButton.cs</fileName>
+    <timeStamp>2024-02-03T04:47:38+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>8ba41add75de4d841964b1a2821e1b70</guid>
+    <fileName>Assets/HTC.UnityPlugin/ViveInputUtility/Scripts/VivePose/ViveJointPoseTracker.cs</fileName>
+    <timeStamp>2024-02-03T04:47:33+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>9f5306be5e1185844905bb31df1d47b8</guid>
+    <fileName>Assets/HTC.UnityPlugin/ViveInputUtility/Scripts/VivePose/VivePose.cs</fileName>
+    <timeStamp>2024-02-03T04:47:48+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>e5e4a91a1ea589946bbc26cc584c3e3d</guid>
+    <fileName>Assets/HTC.UnityPlugin/ViveInputUtility/Scripts/VivePose/VivePoseGet.cs</fileName>
+    <timeStamp>2024-02-03T04:48:41+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>8fdc450c311d1e94291658aa5ec57b9b</guid>
+    <fileName>Assets/HTC.UnityPlugin/ViveInputUtility/Scripts/VivePose/VivePoseTracker.cs</fileName>
+    <timeStamp>2024-02-03T04:47:36+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>940d1e8e53ab15349af970bd722f06c2</guid>
+    <fileName>Assets/HTC.UnityPlugin/ViveInputUtility/Scripts/VivePose/ViveRigidPoseTracker.cs</fileName>
+    <timeStamp>2024-02-03T04:47:39+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>22483ebe86156a348b744a051dd69b6d</guid>
+    <fileName>Assets/HTC.UnityPlugin/ViveInputUtility/Scripts/ViveRaycaster/VivePointerEventData.cs</fileName>
+    <timeStamp>2024-02-03T04:46:19+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>174b153ed154e784a8bd7e3b391fe253</guid>
+    <fileName>Assets/HTC.UnityPlugin/ViveInputUtility/Scripts/ViveRaycaster/ViveRaycaster.cs</fileName>
+    <timeStamp>2024-02-03T04:46:10+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>c00a409f621cb2c429be3c7396f4fa99</guid>
+    <fileName>Assets/HTC.UnityPlugin/ViveInputUtility/Scripts/ViveRole/ViveRole.cs</fileName>
+    <timeStamp>2024-02-03T04:48:10+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>4f21e9f542d73914180798bfa4c535d0</guid>
+    <fileName>Assets/HTC.UnityPlugin/ViveInputUtility/Scripts/ViveRole/ViveRoleBindingsHelper.cs</fileName>
+    <timeStamp>2024-02-03T04:46:55+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>54700b8b41e967244be6803d06dadfb0</guid>
+    <fileName>Assets/HTC.UnityPlugin/ViveInputUtility/Scripts/ViveRole/ViveRoleEnum.cs</fileName>
+    <timeStamp>2024-02-03T04:46:59+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>2308116a0a01d9e469ab2693ceacbe9a</guid>
+    <fileName>Assets/HTC.UnityPlugin/ViveInputUtility/Scripts/ViveRole/ViveRoleMap.cs</fileName>
+    <timeStamp>2024-02-03T04:46:20+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>6df2ab5a47129594a9020fe8084014e8</guid>
+    <fileName>Assets/HTC.UnityPlugin/ViveInputUtility/Scripts/ViveRole/ViveRoleMapHandler.cs</fileName>
+    <timeStamp>2024-02-03T04:47:14+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>31b4476583620864ea3c7afa60609ba2</guid>
+    <fileName>Assets/HTC.UnityPlugin/ViveInputUtility/Scripts/ViveRole/ViveRoleProperty.cs</fileName>
+    <timeStamp>2024-02-03T04:46:34+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>387fb5d74b1a932479013876b27a0e1e</guid>
+    <fileName>Assets/HTC.UnityPlugin/ViveInputUtility/Scripts/ViveRole/ViveRoleSetter.cs</fileName>
+    <timeStamp>2024-02-03T04:46:40+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>3ed2561d406e73a48af2cdd0594e9516</guid>
+    <fileName>Assets/HTC.UnityPlugin/VRModule/Modules/Editor/GoogleVRModuleEditor.cs</fileName>
+    <timeStamp>2024-02-03T04:46:45+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>bcd15f6aecadeae40a05d47638446aeb</guid>
+    <fileName>Assets/HTC.UnityPlugin/VRModule/Modules/Editor/OculusVRModuleEditor.cs</fileName>
+    <timeStamp>2024-02-03T04:48:06+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>de219d81bd5f2054fb730d1e02ca64dc</guid>
+    <fileName>Assets/HTC.UnityPlugin/VRModule/Modules/Editor/SteamVRModuleEditor.cs</fileName>
+    <timeStamp>2024-02-03T04:48:36+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>b0504fe5a4f391a419cf1ebd6d696c56</guid>
+    <fileName>Assets/HTC.UnityPlugin/VRModule/Modules/Editor/UnityEngineVRModuleEditor.cs</fileName>
+    <timeStamp>2024-02-03T04:47:58+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>fc02ecd46efaec0469f5c9a170948d4f</guid>
+    <fileName>Assets/HTC.UnityPlugin/VRModule/Modules/Editor/WaveVRModuleEditor.cs</fileName>
+    <timeStamp>2024-02-03T04:48:58+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>885f3b7a2ef0fb349ad568a788bd02be</guid>
+    <fileName>Assets/HTC.UnityPlugin/VRModule/Submodules/Editor/ViveHandTrackingSubmoduleEditor.cs</fileName>
+    <timeStamp>2024-02-03T04:47:31+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>046805e30dfdcd24f9468140ab1e051c</guid>
+    <fileName>Assets/HTC.UnityPlugin/VRModule/Submodules/PartialSettings/ViveHandTrackingSubmoduleSettings.cs</fileName>
+    <timeStamp>2024-02-03T04:45:50+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>df264d308dc9d3d4fa06e05dc4e440b2</guid>
+    <fileName>Assets/HTC.UnityPlugin/VRModule/Submodules/PartialSettings/WaveHandTrackingSubmoduleSettings.cs</fileName>
+    <timeStamp>2024-02-03T04:48:37+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>296ea9d9277d82344942d7bba6c6b674</guid>
+    <fileName>Assets/HTC.UnityPlugin/VRModule/Submodules/PartialSettings/WaveTrackerSubmoduleSettings.cs</fileName>
+    <timeStamp>2024-02-03T04:46:26+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>5753eb2ea31673c4687c2d60c64f4990</guid>
+    <fileName>Assets/Scripts/Equipment/Gun/Bullet/NormalBullet.cs</fileName>
+    <timeStamp>2024-11-12T16:57:14.663288+08:00</timeStamp>
+    <typeFullName>
+      <string>NormalBullet</string>
+    </typeFullName>
+    <assembly>Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</assembly>
+  </TypeDate>
+  <TypeDate>
+    <guid>1731d642c0b250b48bb8cdfb153d9792</guid>
+    <fileName>Assets/SteamVR/InteractionSystem/Core/Scripts/BodyCollider.cs</fileName>
+    <timeStamp>2024-01-18T04:21:50+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>1f32883eed859804dbb0c5fedac91496</guid>
+    <fileName>Assets/SteamVR/InteractionSystem/Core/Scripts/CircularDrive.cs</fileName>
+    <timeStamp>2024-01-18T04:21:58+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>ad77666522338cf49ba83b80b25e6476</guid>
+    <fileName>Assets/SteamVR/InteractionSystem/Core/Scripts/ComplexThrowable.cs</fileName>
+    <timeStamp>2024-01-18T04:24:10+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>8ca2cc563cc33f542a5d9f8f661184ba</guid>
+    <fileName>Assets/SteamVR/InteractionSystem/Core/Scripts/ControllerHoverHighlight.cs</fileName>
+    <timeStamp>2024-01-18T04:23:43+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>5f3294e06115d0047a2ac7659a11b168</guid>
+    <fileName>Assets/SteamVR/InteractionSystem/Core/Scripts/CustomEvents.cs</fileName>
+    <timeStamp>2024-01-18T04:22:56+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>6f3bba2c36dd79242b3157dbcd876bf2</guid>
+    <fileName>Assets/SteamVR/InteractionSystem/Core/Scripts/DebugUI.cs</fileName>
+    <timeStamp>2024-01-18T04:23:13+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>5240357a2468cdc4291b266bee3cb9b9</guid>
+    <fileName>Assets/SteamVR/InteractionSystem/Core/Scripts/DestroyOnDetachedFromHand.cs</fileName>
+    <timeStamp>2024-01-18T04:22:44+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>69cad530c565c714491a326c21accb90</guid>
+    <fileName>Assets/SteamVR/InteractionSystem/Core/Scripts/DestroyOnParticleSystemDeath.cs</fileName>
+    <timeStamp>2024-01-18T04:23:09+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>7ba84888c9d4c504cb752a3904551a6c</guid>
+    <fileName>Assets/SteamVR/InteractionSystem/Core/Scripts/DestroyOnTriggerEnter.cs</fileName>
+    <timeStamp>2024-01-18T04:23:29+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>65ef702aaa09d3f46a75659678b1a711</guid>
+    <fileName>Assets/SteamVR/InteractionSystem/Core/Scripts/DistanceHaptics.cs</fileName>
+    <timeStamp>2024-01-18T04:23:04+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>4d1c07a6449b0ca439ee6fac5f6f7d83</guid>
+    <fileName>Assets/SteamVR/InteractionSystem/Core/Scripts/DontDestroyOnLoad.cs</fileName>
+    <timeStamp>2024-01-18T04:22:38+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>88a2ccbdad9948c45b28f5e63902705b</guid>
+    <fileName>Assets/SteamVR/InteractionSystem/Core/Scripts/EnumFlags.cs</fileName>
+    <timeStamp>2024-01-18T04:23:39+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>ecd73422fbc4be54a9f4d8f3972f8579</guid>
+    <fileName>Assets/SteamVR/InteractionSystem/Core/Scripts/Equippable.cs</fileName>
+    <timeStamp>2024-01-18T04:25:06+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>6043f3be9a21bd74281f9770463bea00</guid>
+    <fileName>Assets/SteamVR/InteractionSystem/Core/Scripts/FallbackCameraController.cs</fileName>
+    <timeStamp>2024-01-18T04:22:57+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>99eaa65760d05f74b811106b4945924e</guid>
+    <fileName>Assets/SteamVR/InteractionSystem/Core/Scripts/GrabTypes.cs</fileName>
+    <timeStamp>2024-01-18T04:23:53+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>29e3e4511966ba94d8ba0b98c6c62f82</guid>
+    <fileName>Assets/SteamVR/InteractionSystem/Core/Scripts/Hand.cs</fileName>
+    <timeStamp>2024-01-18T04:22:06+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>2820b584f2917744bafbfd2f8f387225</guid>
+    <fileName>Assets/SteamVR/InteractionSystem/Core/Scripts/HandCollider.cs</fileName>
+    <timeStamp>2024-01-18T04:22:05+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>1e75fe4b0c190eb4ba97e59f062510e9</guid>
+    <fileName>Assets/SteamVR/InteractionSystem/Core/Scripts/HandPhysics.cs</fileName>
+    <timeStamp>2024-01-18T04:21:56+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>817521c5973e4ee45905ee97df3c38ad</guid>
+    <fileName>Assets/SteamVR/InteractionSystem/Core/Scripts/HapticRack.cs</fileName>
+    <timeStamp>2024-01-18T04:23:35+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>eb6d6653511aff5409d0827d4e3b79ea</guid>
+    <fileName>Assets/SteamVR/InteractionSystem/Core/Scripts/HideOnHandFocusLost.cs</fileName>
+    <timeStamp>2024-01-18T04:25:03+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>2c0e35ef0cc211b408d2d7e7eb0f850d</guid>
+    <fileName>Assets/SteamVR/InteractionSystem/Core/Scripts/HoverButton.cs</fileName>
+    <timeStamp>2024-01-18T04:22:07+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>f5a1be5da1c87864582d778e52de4e9b</guid>
+    <fileName>Assets/SteamVR/InteractionSystem/Core/Scripts/IgnoreHovering.cs</fileName>
+    <timeStamp>2024-01-18T04:25:15+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>c9e05292e0d62b542ac5bba92674a86d</guid>
+    <fileName>Assets/SteamVR/InteractionSystem/Core/Scripts/InputModule.cs</fileName>
+    <timeStamp>2024-01-18T04:24:33+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>b93b6a877adcbf94c89a9d6e0c0e844d</guid>
+    <fileName>Assets/SteamVR/InteractionSystem/Core/Scripts/Interactable.cs</fileName>
+    <timeStamp>2024-01-18T04:24:18+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>78549ac336d4d37418a4d4e0d981f91f</guid>
+    <fileName>Assets/SteamVR/InteractionSystem/Core/Scripts/InteractableDebug.cs</fileName>
+    <timeStamp>2024-01-18T04:23:24+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>c4153b26428ccf041950b92c057812a3</guid>
+    <fileName>Assets/SteamVR/InteractionSystem/Core/Scripts/InteractableHoverEvents.cs</fileName>
+    <timeStamp>2024-01-18T04:24:26+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>c9f83db71b9a6764abf964ab7679f035</guid>
+    <fileName>Assets/SteamVR/InteractionSystem/Core/Scripts/ItemPackage.cs</fileName>
+    <timeStamp>2024-01-18T04:24:34+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>57468e6cbae21894fa42c90413c294ff</guid>
+    <fileName>Assets/SteamVR/InteractionSystem/Core/Scripts/ItemPackageReference.cs</fileName>
+    <timeStamp>2024-01-18T04:22:49+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>43e53a985809f0949b9a42cc2a6888c9</guid>
+    <fileName>Assets/SteamVR/InteractionSystem/Core/Scripts/ItemPackageSpawner.cs</fileName>
+    <timeStamp>2024-01-18T04:22:28+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>49a60120b932b59409171f5ff611b639</guid>
+    <fileName>Assets/SteamVR/InteractionSystem/Core/Scripts/LinearAnimation.cs</fileName>
+    <timeStamp>2024-01-18T04:22:34+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>634b98c3ef8bc6d4f834f80a4613a4a4</guid>
+    <fileName>Assets/SteamVR/InteractionSystem/Core/Scripts/LinearAnimator.cs</fileName>
+    <timeStamp>2024-01-18T04:23:00+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>bb07dbf09f9933e49b22c82d8428c53b</guid>
+    <fileName>Assets/SteamVR/InteractionSystem/Core/Scripts/LinearAudioPitch.cs</fileName>
+    <timeStamp>2024-01-18T04:24:19+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>5a3622562855c9a40a14846ffdc8bfe4</guid>
+    <fileName>Assets/SteamVR/InteractionSystem/Core/Scripts/LinearBlendshape.cs</fileName>
+    <timeStamp>2024-01-18T04:22:52+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>13d876e5d485004448f3e7b57eece9ab</guid>
+    <fileName>Assets/SteamVR/InteractionSystem/Core/Scripts/LinearDisplacement.cs</fileName>
+    <timeStamp>2024-01-18T04:21:48+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>8c81a27fd18a29444be92481fe681f4b</guid>
+    <fileName>Assets/SteamVR/InteractionSystem/Core/Scripts/LinearDrive.cs</fileName>
+    <timeStamp>2024-01-18T04:23:43+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>46f8e9e70f68ee3418ad85992778c116</guid>
+    <fileName>Assets/SteamVR/InteractionSystem/Core/Scripts/LinearMapping.cs</fileName>
+    <timeStamp>2024-01-18T04:22:32+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>d9172bbb2e6dd7e4a86c0d1ea19b7e49</guid>
+    <fileName>Assets/SteamVR/InteractionSystem/Core/Scripts/ModalThrowable.cs</fileName>
+    <timeStamp>2024-01-18T04:24:46+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>202a6e24b48d1684398409c47161adcb</guid>
+    <fileName>Assets/SteamVR/InteractionSystem/Core/Scripts/Player.cs</fileName>
+    <timeStamp>2024-01-18T04:21:58+08:00</timeStamp>
+    <typeFullName>
+      <string>Player</string>
+    </typeFullName>
+    <assembly>Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</assembly>
+  </TypeDate>
+  <TypeDate>
+    <guid>1a125d9df683e2a49b12babced273360</guid>
+    <fileName>Assets/SteamVR/InteractionSystem/Core/Scripts/PlaySound.cs</fileName>
+    <timeStamp>2024-01-18T04:21:52+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>847a4fd831847974bb8d16b469b643e3</guid>
+    <fileName>Assets/SteamVR/InteractionSystem/Core/Scripts/RenderModel.cs</fileName>
+    <timeStamp>2024-01-18T04:23:38+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>7d623a50b67320940b97e93e31d0a21b</guid>
+    <fileName>Assets/SteamVR/InteractionSystem/Core/Scripts/SeeThru.cs</fileName>
+    <timeStamp>2024-01-18T04:23:31+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>0584375ad2f33ef4da0b276de8507487</guid>
+    <fileName>Assets/SteamVR/InteractionSystem/Core/Scripts/SleepOnAwake.cs</fileName>
+    <timeStamp>2024-01-18T04:21:33+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>f53662f45a4454944a06629fec9c941e</guid>
+    <fileName>Assets/SteamVR/InteractionSystem/Core/Scripts/SoundDeparent.cs</fileName>
+    <timeStamp>2024-01-18T04:25:15+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>32c1c9a5bbab2e54280027c0ecaf42db</guid>
+    <fileName>Assets/SteamVR/InteractionSystem/Core/Scripts/SoundPlayOneshot.cs</fileName>
+    <timeStamp>2024-01-18T04:22:14+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>6ad167161b0bf8e4d9c038db358e0a28</guid>
+    <fileName>Assets/SteamVR/InteractionSystem/Core/Scripts/SpawnAndAttachAfterControllerIsTracking.cs</fileName>
+    <timeStamp>2024-01-18T04:23:10+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>f4a03a51c550b92478a559cf694ce118</guid>
+    <fileName>Assets/SteamVR/InteractionSystem/Core/Scripts/SpawnAndAttachToHand.cs</fileName>
+    <timeStamp>2024-01-18T04:25:14+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>ffefbea063cab884ca33e5a449e5c22c</guid>
+    <fileName>Assets/SteamVR/InteractionSystem/Core/Scripts/Throwable.cs</fileName>
+    <timeStamp>2024-01-18T04:25:23+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>53cd2ef2dd3d5d64e96af4420220d1d2</guid>
+    <fileName>Assets/SteamVR/InteractionSystem/Core/Scripts/UIElement.cs</fileName>
+    <timeStamp>2024-01-18T04:22:46+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>ba42448c9a2fa44409034eead650b5f4</guid>
+    <fileName>Assets/SteamVR/InteractionSystem/Core/Scripts/Unparent.cs</fileName>
+    <timeStamp>2024-01-18T04:24:19+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>d4dbb95c6efc21548ac6d079a65a2d50</guid>
+    <fileName>Assets/SteamVR/InteractionSystem/Core/Scripts/Util.cs</fileName>
+    <timeStamp>2024-01-18T04:24:41+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>783750eec4c41da428b7651515146d14</guid>
+    <fileName>Assets/SteamVR/InteractionSystem/Core/Scripts/VelocityEstimator.cs</fileName>
+    <timeStamp>2024-01-18T04:23:24+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>ea1001a6626353541ab4d4b39f4c3569</guid>
+    <fileName>Assets/SteamVR/InteractionSystem/Hints/Scripts/ControllerButtonHints.cs</fileName>
+    <timeStamp>2024-01-18T04:25:02+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>f2f2850d002f14a47bff32fdf73df53e</guid>
+    <fileName>Assets/SteamVR/InteractionSystem/Longbow/Scripts/ArcheryTarget.cs</fileName>
+    <timeStamp>2024-01-18T04:25:12+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>d520699ed41daaf48b924d994ac87378</guid>
+    <fileName>Assets/SteamVR/InteractionSystem/Longbow/Scripts/Arrow.cs</fileName>
+    <timeStamp>2024-01-18T04:24:42+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>d85480da87762944399dab6c99985eef</guid>
+    <fileName>Assets/SteamVR/InteractionSystem/Longbow/Scripts/ArrowHand.cs</fileName>
+    <timeStamp>2024-01-18T04:24:45+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>f195fe0cc42f49241a3c7521a19fa350</guid>
+    <fileName>Assets/SteamVR/InteractionSystem/Longbow/Scripts/ArrowheadRotation.cs</fileName>
+    <timeStamp>2024-01-18T04:25:10+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>429a484b95998f84eaa98fa068caa5e9</guid>
+    <fileName>Assets/SteamVR/InteractionSystem/Longbow/Scripts/Balloon.cs</fileName>
+    <timeStamp>2024-01-18T04:22:27+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>667230ade3b20b641a0ba08bdfd760fc</guid>
+    <fileName>Assets/SteamVR/InteractionSystem/Longbow/Scripts/BalloonColliders.cs</fileName>
+    <timeStamp>2024-01-18T04:23:05+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>ec82b6ce2e2435444a434107cddceb0b</guid>
+    <fileName>Assets/SteamVR/InteractionSystem/Longbow/Scripts/BalloonHapticBump.cs</fileName>
+    <timeStamp>2024-01-18T04:25:06+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>cc1b8e5b8c3365a49b0274fb637151d6</guid>
+    <fileName>Assets/SteamVR/InteractionSystem/Longbow/Scripts/BalloonSpawner.cs</fileName>
+    <timeStamp>2024-01-18T04:24:35+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>012bb97850e84ad4c890dcab506009bc</guid>
+    <fileName>Assets/SteamVR/InteractionSystem/Longbow/Scripts/ExplosionWobble.cs</fileName>
+    <timeStamp>2024-01-18T04:21:29+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>f86ab2e727cd09f43849955c5b35f490</guid>
+    <fileName>Assets/SteamVR/InteractionSystem/Longbow/Scripts/FireSource.cs</fileName>
+    <timeStamp>2024-01-18T04:25:19+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>30032368544f1a341976db391b260507</guid>
+    <fileName>Assets/SteamVR/InteractionSystem/Longbow/Scripts/Longbow.cs</fileName>
+    <timeStamp>2024-01-18T04:22:12+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>dc121f192dd724945a1998a9c1f1727d</guid>
+    <fileName>Assets/SteamVR/InteractionSystem/Longbow/Scripts/SoundBowClick.cs</fileName>
+    <timeStamp>2024-01-18T04:24:50+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>68cfc2d5837cbbb4fadf8b044ca88bb1</guid>
+    <fileName>Assets/SteamVR/InteractionSystem/Samples/BuggyBuddy/BuggyBuddy.cs</fileName>
+    <timeStamp>2024-01-18T04:23:08+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>835b6b0bed899be43a580366974d84eb</guid>
+    <fileName>Assets/SteamVR/InteractionSystem/Samples/BuggyBuddy/BuggyController.cs</fileName>
+    <timeStamp>2024-01-18T04:23:36+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>2eafe1c4f43002f4a9ae978daba0d0f7</guid>
+    <fileName>Assets/SteamVR/InteractionSystem/Samples/BuggyBuddy/LockToPoint.cs</fileName>
+    <timeStamp>2024-01-18T04:22:10+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>a97b732be32dc884885a1af270088489</guid>
+    <fileName>Assets/SteamVR/InteractionSystem/Samples/BuggyBuddy/trackCam.cs</fileName>
+    <timeStamp>2024-01-18T04:24:06+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>9799564b983d9664b824f7b9b2ff8d88</guid>
+    <fileName>Assets/SteamVR/InteractionSystem/Samples/BuggyBuddy/trackObj.cs</fileName>
+    <timeStamp>2024-01-18T04:23:52+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>0ca7ca2b4b28e184ea4ecc51ddd31f36</guid>
+    <fileName>Assets/SteamVR/InteractionSystem/Samples/BuggyBuddy/WheelDust.cs</fileName>
+    <timeStamp>2024-01-18T04:21:40+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>013214146096fa74898db952aa9b2da2</guid>
+    <fileName>Assets/SteamVR/InteractionSystem/Samples/Grenade/Grenade.cs</fileName>
+    <timeStamp>2024-01-18T04:21:29+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>2e6e0fb6a756a434b9faeea744a9920c</guid>
+    <fileName>Assets/SteamVR/InteractionSystem/Samples/JoeJeff/JoeJeff.cs</fileName>
+    <timeStamp>2024-01-18T04:22:09+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>2c178cd2631c07944bc48d4c9d824edb</guid>
+    <fileName>Assets/SteamVR/InteractionSystem/Samples/JoeJeff/JoeJeffController.cs</fileName>
+    <timeStamp>2024-01-18T04:22:07+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>4614a07f51836eb48bfe11b75633be31</guid>
+    <fileName>Assets/SteamVR/InteractionSystem/Samples/JoeJeff/JoeJeffGestures.cs</fileName>
+    <timeStamp>2024-01-18T04:22:31+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>d8c45beb4f5e7a949a8b61f306ff7c66</guid>
+    <fileName>Assets/SteamVR/InteractionSystem/Samples/JoeJeff/ProceduralHats.cs</fileName>
+    <timeStamp>2024-01-18T04:24:45+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>fdc6e48706c13fa4a8f807ff0f16e9de</guid>
+    <fileName>Assets/SteamVR/InteractionSystem/Samples/Scripts/ButtonEffect.cs</fileName>
+    <timeStamp>2024-01-18T04:25:22+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>80df3856ba408c944a3cf528cf7bad83</guid>
+    <fileName>Assets/SteamVR/InteractionSystem/Samples/Scripts/ButtonExample.cs</fileName>
+    <timeStamp>2024-01-18T04:23:35+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>79e7ef0af37bbcb40ab89c4cc2481018</guid>
+    <fileName>Assets/SteamVR/InteractionSystem/Samples/Scripts/ControllerHintsExample.cs</fileName>
+    <timeStamp>2024-01-18T04:23:26+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>294fb0b20d456c749966ea34ca82355a</guid>
+    <fileName>Assets/SteamVR/InteractionSystem/Samples/Scripts/CustomSkeletonHelper.cs</fileName>
+    <timeStamp>2024-01-18T04:22:05+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>158d046322c150348bfed00c688d3142</guid>
+    <fileName>Assets/SteamVR/InteractionSystem/Samples/Scripts/FloppyHand.cs</fileName>
+    <timeStamp>2024-01-18T04:21:50+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>6a7c27a46b80a6445bffe44ea9e91cd0</guid>
+    <fileName>Assets/SteamVR/InteractionSystem/Samples/Scripts/FlowerPlanted.cs</fileName>
+    <timeStamp>2024-01-18T04:23:10+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>8bb563c4e716d2c4181e187d9be248db</guid>
+    <fileName>Assets/SteamVR/InteractionSystem/Samples/Scripts/InteractableExample.cs</fileName>
+    <timeStamp>2024-01-18T04:23:41+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>4390f3b73c731c846a0cc863c72d7a1e</guid>
+    <fileName>Assets/SteamVR/InteractionSystem/Samples/Scripts/Planting.cs</fileName>
+    <timeStamp>2024-01-18T04:22:28+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>f05229f3db0d24a4e9df9f11919f341a</guid>
+    <fileName>Assets/SteamVR/InteractionSystem/Samples/Scripts/RenderModelChangerUI.cs</fileName>
+    <timeStamp>2024-01-18T04:25:08+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>48c26627b0786bd489db7ad471de1a5e</guid>
+    <fileName>Assets/SteamVR/InteractionSystem/Samples/Scripts/SkeletonUIOptions.cs</fileName>
+    <timeStamp>2024-01-18T04:22:34+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>037de2161ddbc6f4e96de7dd85ea6686</guid>
+    <fileName>Assets/SteamVR/InteractionSystem/Samples/Scripts/TargetHitEffect.cs</fileName>
+    <timeStamp>2024-01-18T04:21:32+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>ec342cce029750947a79c83ea47c42b9</guid>
+    <fileName>Assets/SteamVR/InteractionSystem/Samples/Scripts/TargetMeasurement.cs</fileName>
+    <timeStamp>2024-01-18T04:25:05+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>54a4af4cc6b48a9449034f15c9691985</guid>
+    <fileName>Assets/SteamVR/InteractionSystem/Samples/Scripts/URPMaterialSwitcher.cs</fileName>
+    <timeStamp>2024-01-18T04:22:47+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>e591913e9a140ee44b7837c4fd22aeb4</guid>
+    <fileName>Assets/SteamVR/InteractionSystem/Samples/Squishy/SquishyToy.cs</fileName>
+    <timeStamp>2024-01-18T04:24:57+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>b8d4cc6cf300b3e4bb1411c4e041030c</guid>
+    <fileName>Assets/SteamVR/InteractionSystem/Teleport/Scripts/AllowTeleportWhileAttachedToHand.cs</fileName>
+    <timeStamp>2024-01-18T04:24:17+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>ebcc975aa3c1d5240936c86b600ca2a5</guid>
+    <fileName>Assets/SteamVR/InteractionSystem/Teleport/Scripts/ChaperoneInfo.cs</fileName>
+    <timeStamp>2024-01-18T04:25:04+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>dc3be917a80086a48b97933694257f09</guid>
+    <fileName>Assets/SteamVR/InteractionSystem/Teleport/Scripts/IgnoreTeleportTrace.cs</fileName>
+    <timeStamp>2024-01-18T04:24:50+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>f260935093f73f241bfaa1578e5e5506</guid>
+    <fileName>Assets/SteamVR/InteractionSystem/Teleport/Scripts/Teleport.cs</fileName>
+    <timeStamp>2024-01-18T04:25:11+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>a043c731a29ecd745a9270fbf002ee68</guid>
+    <fileName>Assets/SteamVR/InteractionSystem/Teleport/Scripts/TeleportArc.cs</fileName>
+    <timeStamp>2024-01-18T04:23:59+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>84a4f15a3179f1d4993aded11f4d0232</guid>
+    <fileName>Assets/SteamVR/InteractionSystem/Teleport/Scripts/TeleportArea.cs</fileName>
+    <timeStamp>2024-01-18T04:23:38+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>c6bc348d47e14444f9ca466d8cf06d46</guid>
+    <fileName>Assets/SteamVR/InteractionSystem/Teleport/Scripts/TeleportMarkerBase.cs</fileName>
+    <timeStamp>2024-01-18T04:24:29+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>e0135c95e70592e4fac2f29e7b78abcf</guid>
+    <fileName>Assets/SteamVR/InteractionSystem/Teleport/Scripts/TeleportPoint.cs</fileName>
+    <timeStamp>2024-01-18T04:24:53+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>eedfa54ef02254a428194e8de8e14d75</guid>
+    <fileName>Assets/SteamVR/InteractionSystem/Teleport/Scripts/TeleportURPHelper.cs</fileName>
+    <timeStamp>2024-01-18T04:25:07+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>2096d9bc8547a3345935dcce472f5d3b</guid>
+    <fileName>Assets/HTC.UnityPlugin/UPMRegistryTool/Editor/Scripts/Configs/RegistryToolSettings.cs</fileName>
+    <timeStamp>2024-02-03T04:46:18+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>0c37116a629e2794dbf195fb65b30d0d</guid>
+    <fileName>Assets/HTC.UnityPlugin/UPMRegistryTool/Editor/Scripts/Utils/ManifestUtils.cs</fileName>
+    <timeStamp>2024-02-03T04:45:57+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>dc16ea157beef4e4eb7f46740134c5d7</guid>
+    <fileName>Assets/HTC.UnityPlugin/UPMRegistryTool/Editor/Scripts/Utils/RegistryInfo.cs</fileName>
+    <timeStamp>2024-02-03T04:48:35+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>3a09985700f7e3a409e9ca16dbf03b67</guid>
+    <fileName>Assets/HTC.UnityPlugin/UPMRegistryTool/Editor/Scripts/Utils/SimpleJSON.cs</fileName>
+    <timeStamp>2024-02-03T04:46:41+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>385dea1d22ea0974ab003b814c424e74</guid>
+    <fileName>Assets/HTC.UnityPlugin/ViveInputUtility/Examples/2.2DDragDrop/Scripts/DragImage.cs</fileName>
+    <timeStamp>2024-02-03T04:46:39+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>4f257d69a05becf47965723a292df31f</guid>
+    <fileName>Assets/HTC.UnityPlugin/ViveInputUtility/Examples/2.2DDragDrop/Scripts/DropImage.cs</fileName>
+    <timeStamp>2024-02-03T04:46:55+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>57b3603583a38f74aaa1747e70bc984d</guid>
+    <fileName>Assets/HTC.UnityPlugin/ViveInputUtility/Examples/2.2DDragDrop/Scripts/DropObject.cs</fileName>
+    <timeStamp>2024-02-03T04:47:02+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>4de27f8a07624fa4bb7fa09ba9bb07a9</guid>
+    <fileName>Assets/HTC.UnityPlugin/ViveInputUtility/Examples/3.3DDrag/Scripts/Draggable.cs</fileName>
+    <timeStamp>2024-02-03T04:46:54+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>1b5e11ea8e364f847958ae185ddf06fa</guid>
+    <fileName>Assets/HTC.UnityPlugin/ViveInputUtility/Examples/3.3DDrag/Scripts/PlayGroundManager.cs</fileName>
+    <timeStamp>2024-02-03T04:46:13+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>265c0af89cb371f43858d7edba00d15b</guid>
+    <fileName>Assets/HTC.UnityPlugin/ViveInputUtility/Examples/4.Teleport/Scripts/ImageAlphaRaycastFilter.cs</fileName>
+    <timeStamp>2024-02-03T04:46:22+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>98e2feabd543add4d9446392f79bf4a4</guid>
+    <fileName>Assets/HTC.UnityPlugin/ViveInputUtility/Examples/5.ColliderEvent/Scripts/GravitySwitch.cs</fileName>
+    <timeStamp>2024-02-03T04:47:42+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>67a775f6996bf304f8899ccf07e029a2</guid>
+    <fileName>Assets/HTC.UnityPlugin/ViveInputUtility/Examples/5.ColliderEvent/Scripts/ResetButton.cs</fileName>
+    <timeStamp>2024-02-03T04:47:11+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>0ee012eca24e76e4dac8fce388ea951c</guid>
+    <fileName>Assets/HTC.UnityPlugin/ViveInputUtility/Examples/6.ControllerManagerSample/Scripts/ChangeMaterialToButtonsColor.cs</fileName>
+    <timeStamp>2024-02-03T04:46:01+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>82f13b6073133754e85a2098fffc779b</guid>
+    <fileName>Assets/HTC.UnityPlugin/ViveInputUtility/Examples/6.ControllerManagerSample/Scripts/ShowMenuOnClick.cs</fileName>
+    <timeStamp>2024-02-03T04:47:27+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>464cbdc121d1b72428c28867e893f7f4</guid>
+    <fileName>Assets/HTC.UnityPlugin/ViveInputUtility/Examples/6.ControllerManagerSample/Scripts/SpawnObjectOnTriggerExit.cs</fileName>
+    <timeStamp>2024-02-03T04:46:50+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>8345bcafc720093489fb5e1618ef27dd</guid>
+    <fileName>Assets/HTC.UnityPlugin/ViveInputUtility/Examples/8.NearFieldHandInteraction/Scripts/Ball.cs</fileName>
+    <timeStamp>2024-02-03T04:47:28+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>73af61870e8a6314f9aaa1ccc98ca8c4</guid>
+    <fileName>Assets/HTC.UnityPlugin/ViveInputUtility/Examples/8.NearFieldHandInteraction/Scripts/CubeSlider.cs</fileName>
+    <timeStamp>2024-02-03T04:47:18+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>db37736e19fad4c46910ece46a00bab0</guid>
+    <fileName>Assets/HTC.UnityPlugin/ViveInputUtility/Examples/8.NearFieldHandInteraction/Scripts/HoverEventHandler.cs</fileName>
+    <timeStamp>2024-02-03T04:48:34+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>0ee712aadd6c89c479e7317ae4fbd959</guid>
+    <fileName>Assets/HTC.UnityPlugin/ViveInputUtility/Examples/8.NearFieldHandInteraction/Scripts/ItemSpawner.cs</fileName>
+    <timeStamp>2024-02-03T04:46:02+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>a47b2fcd57c58ac42adb442452c65fef</guid>
+    <fileName>Assets/HTC.UnityPlugin/ViveInputUtility/Examples/8.NearFieldHandInteraction/Scripts/Lever.cs</fileName>
+    <timeStamp>2024-02-03T04:47:51+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>b9bd53bdc17e8874295c72213da4cc61</guid>
+    <fileName>Assets/HTC.UnityPlugin/ViveInputUtility/Examples/8.NearFieldHandInteraction/Scripts/MaterialSwitcher.cs</fileName>
+    <timeStamp>2024-02-03T04:48:05+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>105e9f46b3c72cc47b1a26bbaa24b6c9</guid>
+    <fileName>Assets/HTC.UnityPlugin/ViveInputUtility/Examples/8.NearFieldHandInteraction/Scripts/PushButton.cs</fileName>
+    <timeStamp>2024-02-03T04:46:03+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>a392693ba5951d04d86fd2515b32a504</guid>
+    <fileName>Assets/HTC.UnityPlugin/ViveInputUtility/Examples/9.TrackedHandUGUIInteraction/Scripts/TransformScrollAndScaler.cs</fileName>
+    <timeStamp>2024-02-03T04:47:50+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>e038909a6547ef64f850aedb13ccc471</guid>
+    <fileName>Assets/HTC.UnityPlugin/ViveInputUtility/Examples/Shared/Scripts/CustomDeviceHeight.cs</fileName>
+    <timeStamp>2024-02-03T04:48:38+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>df4beb0892124f446a0da79494d51dd0</guid>
+    <fileName>Assets/HTC.UnityPlugin/ViveInputUtility/Examples/Shared/Scripts/RendererColorChanger.cs</fileName>
+    <timeStamp>2024-02-03T04:48:37+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>c212744ac23f9bf4baadfd5cdb908ada</guid>
+    <fileName>Assets/HTC.UnityPlugin/ViveInputUtility/Scripts/ControllerTooltip/Editor/TooltipRenderDataAssetBaseEditor.cs</fileName>
+    <timeStamp>2024-02-03T04:48:11+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>012f2da3e91258842886055939b74067</guid>
+    <fileName>Assets/HTC.UnityPlugin/ViveInputUtility/Scripts/ControllerTooltip/Editor/TooltipRigAssetEditor.cs</fileName>
+    <timeStamp>2024-02-03T04:45:48+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>5a3887adb9ccae64ea9278583ee1ddf3</guid>
+    <fileName>Assets/HTC.UnityPlugin/ViveInputUtility/Scripts/Editor/CI/CIUtils.cs</fileName>
+    <timeStamp>2024-02-03T04:47:02+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>fb8c500e999ec3e4cb81bfeba5dcf30e</guid>
+    <fileName>Assets/HTC.UnityPlugin/ViveInputUtility/Scripts/Editor/VRPlatformSettings/DaydreamSettings.cs</fileName>
+    <timeStamp>2024-02-03T04:48:56+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>d8e0130e4f596a54b8f2354b10c0347f</guid>
+    <fileName>Assets/HTC.UnityPlugin/ViveInputUtility/Scripts/Editor/VRPlatformSettings/OculusGoSettings.cs</fileName>
+    <timeStamp>2024-02-03T04:48:31+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>70f20a2d334c57a48b5e6b0ba4fdd6e0</guid>
+    <fileName>Assets/HTC.UnityPlugin/ViveInputUtility/Scripts/Editor/VRPlatformSettings/OculusSettings.cs</fileName>
+    <timeStamp>2024-02-03T04:47:16+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>1bbe202b3222ba04aa5789598af0d1c9</guid>
+    <fileName>Assets/HTC.UnityPlugin/ViveInputUtility/Scripts/Editor/VRPlatformSettings/OpenVRSettings.cs</fileName>
+    <timeStamp>2024-02-03T04:46:13+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>f9b5e18357a77734582d793fbcf2634c</guid>
+    <fileName>Assets/HTC.UnityPlugin/ViveInputUtility/Scripts/Editor/VRPlatformSettings/OpenXRAndroidOculusSettings.cs</fileName>
+    <timeStamp>2024-02-03T04:48:55+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>bd1b5618fbab6a34dbd7a3237b393089</guid>
+    <fileName>Assets/HTC.UnityPlugin/ViveInputUtility/Scripts/Editor/VRPlatformSettings/OpenXRAndroidWaveSettings.cs</fileName>
+    <timeStamp>2024-02-03T04:48:08+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>f48ab0c0de8d82346bcb2b301e0cca3c</guid>
+    <fileName>Assets/HTC.UnityPlugin/ViveInputUtility/Scripts/Editor/VRPlatformSettings/OpenXRDesktopSettings.cs</fileName>
+    <timeStamp>2024-02-03T04:48:53+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>9d4ec763a3ed18d4db044da7874559d8</guid>
+    <fileName>Assets/HTC.UnityPlugin/ViveInputUtility/Scripts/Editor/VRPlatformSettings/SimulatorSettings.cs</fileName>
+    <timeStamp>2024-02-03T04:47:46+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>76065ffeaba0ac8448a9af1c15729f72</guid>
+    <fileName>Assets/HTC.UnityPlugin/ViveInputUtility/Scripts/Editor/VRPlatformSettings/UnityXRSettings.cs</fileName>
+    <timeStamp>2024-02-03T04:47:20+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>d682ce765c334a8489f92ce7a4a3aad9</guid>
+    <fileName>Assets/HTC.UnityPlugin/ViveInputUtility/Scripts/Editor/VRPlatformSettings/WaveVRSettings.cs</fileName>
+    <timeStamp>2024-02-03T04:48:29+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>652f26e9284c9984e8376e0f98db47dd</guid>
+    <fileName>Assets/HTC.UnityPlugin/ViveInputUtility/Scripts/Editor/VRPlatformSettings/WindowsMRSettings.cs</fileName>
+    <timeStamp>2024-02-03T04:47:10+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>9b2893be0c6820249acac4f70c310bcc</guid>
+    <fileName>Assets/HTC.UnityPlugin/ViveInputUtility/Scripts/Misc/Editor/RenderModelHookEditor.cs</fileName>
+    <timeStamp>2024-02-03T04:47:44+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>3da6ce048533cea43878fb2a54edef80</guid>
+    <fileName>Assets/HTC.UnityPlugin/ViveInputUtility/Scripts/Misc/ExCamConfigInterface/ExCamConfigInterfaceDraggableLabel.cs</fileName>
+    <timeStamp>2024-02-03T04:46:45+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>b8329080bef86e84091f2f7d9c246b92</guid>
+    <fileName>Assets/HTC.UnityPlugin/ViveInputUtility/Scripts/Misc/ExCamConfigInterface/ExCamConfigInterfacePanelController.cs</fileName>
+    <timeStamp>2024-02-03T04:48:02+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>dff4f77bef9b47744831dc032321acd5</guid>
+    <fileName>Assets/HTC.UnityPlugin/ViveInputUtility/Scripts/Misc/OculusVRExtension/OculusHandRenderModel.cs</fileName>
+    <timeStamp>2024-02-03T04:48:37+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>d42871cd11ff1b84791ee885bc0bd8c2</guid>
+    <fileName>Assets/HTC.UnityPlugin/ViveInputUtility/Scripts/Misc/OculusVRExtension/VIUOculusVRRenderModel.cs</fileName>
+    <timeStamp>2024-02-03T04:48:25+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>5faf2603c40ba204eb3569627ff1c3d1</guid>
+    <fileName>Assets/HTC.UnityPlugin/ViveInputUtility/Scripts/Misc/OculusVRExtension/VIUOvrAvatar.cs</fileName>
+    <timeStamp>2024-02-03T04:47:06+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>d155b2fb879cd9044889166d1721df9d</guid>
+    <fileName>Assets/HTC.UnityPlugin/ViveInputUtility/Scripts/Misc/OculusVRExtension/VIUOvrAvatarComponent.cs</fileName>
+    <timeStamp>2024-02-03T04:48:23+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>a1948bdcd9101994fad6a52bc97f1747</guid>
+    <fileName>Assets/HTC.UnityPlugin/ViveInputUtility/Scripts/Misc/SteamVRExtension/VIUSteamVRRenderModel.cs</fileName>
+    <timeStamp>2024-02-03T04:47:49+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>6d4e377c0cb877c4aa40fbac96daab75</guid>
+    <fileName>Assets/HTC.UnityPlugin/ViveInputUtility/Scripts/Misc/SteamVRExtension/VIUSteamVRRenderModelLoader.cs</fileName>
+    <timeStamp>2024-02-03T04:47:13+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>a692fb4e9320a134cb92f586bab25d39</guid>
+    <fileName>Assets/HTC.UnityPlugin/ViveInputUtility/Scripts/Misc/WaveVRExtension/VIUWaveVRRenderModel.cs</fileName>
+    <timeStamp>2024-02-03T04:47:51+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>cff098012cf904e4785b16f2920968b6</guid>
+    <fileName>Assets/HTC.UnityPlugin/ViveInputUtility/Scripts/ViveInput/Editor/ControllerButtonMaskDrawer.cs</fileName>
+    <timeStamp>2024-02-03T04:48:20+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>101252612f45dab41bdf6dd5f4110d35</guid>
+    <fileName>Assets/HTC.UnityPlugin/ViveInputUtility/Scripts/ViveInput/Editor/ViveInputVirtualButtonEditor.cs</fileName>
+    <timeStamp>2024-02-03T04:46:02+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>78b94ded620fdd64ca175c8d9bad0ee6</guid>
+    <fileName>Assets/HTC.UnityPlugin/ViveInputUtility/Scripts/ViveRole/BindingInterface/BindingInterfaceConfigPanelController.cs</fileName>
+    <timeStamp>2024-02-03T04:47:21+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>ef0b16736a3c80142a3d93f8b77cf995</guid>
+    <fileName>Assets/HTC.UnityPlugin/ViveInputUtility/Scripts/ViveRole/BindingInterface/BindingInterfaceDeviceItem.cs</fileName>
+    <timeStamp>2024-02-03T04:48:47+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>0702b282f65fea14fb2a1264fc8b0a58</guid>
+    <fileName>Assets/HTC.UnityPlugin/ViveInputUtility/Scripts/ViveRole/BindingInterface/BindingInterfaceDevicePanelController.cs</fileName>
+    <timeStamp>2024-02-03T04:45:54+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>2aea897927fa7bd41a57ea8faafdb365</guid>
+    <fileName>Assets/HTC.UnityPlugin/ViveInputUtility/Scripts/ViveRole/BindingInterface/BindingInterfaceRoleButtonItem.cs</fileName>
+    <timeStamp>2024-02-03T04:46:28+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>3f3236748e205bc4f8edae2b70de113b</guid>
+    <fileName>Assets/HTC.UnityPlugin/ViveInputUtility/Scripts/ViveRole/BindingInterface/BindingInterfaceRolePanelController.cs</fileName>
+    <timeStamp>2024-02-03T04:46:46+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>63dda72f193755248a0d560ba97f8722</guid>
+    <fileName>Assets/HTC.UnityPlugin/ViveInputUtility/Scripts/ViveRole/BindingInterface/BindingInterfaceRoleSetBindingItem.cs</fileName>
+    <timeStamp>2024-02-03T04:47:09+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>0b18a9703817b4e49afa83028949f791</guid>
+    <fileName>Assets/HTC.UnityPlugin/ViveInputUtility/Scripts/ViveRole/BindingInterface/BindingInterfaceRoleSetButtonItem.cs</fileName>
+    <timeStamp>2024-02-03T04:45:56+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>6c4e61108c773b44ea56a358d2cec76c</guid>
+    <fileName>Assets/HTC.UnityPlugin/ViveInputUtility/Scripts/ViveRole/BindingInterface/BindingInterfaceRoleSetPanelController.cs</fileName>
+    <timeStamp>2024-02-03T04:47:13+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>3de4cc72829dff14a9141c9bcba2fd79</guid>
+    <fileName>Assets/HTC.UnityPlugin/ViveInputUtility/Scripts/ViveRole/BindingInterface/BindingInterfaceSpriteManager.cs</fileName>
+    <timeStamp>2024-02-03T04:46:45+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>2bb82cf103eba9a4b8db364c6e68015c</guid>
+    <fileName>Assets/HTC.UnityPlugin/ViveInputUtility/Scripts/ViveRole/Editor/ViveRolePropertyDrawer.cs</fileName>
+    <timeStamp>2024-02-03T04:46:29+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>5a5aeed66a43cff45a5818d6413bdbd4</guid>
+    <fileName>Assets/HTC.UnityPlugin/ViveInputUtility/Scripts/ViveRole/Editor/ViveRoleSetterEditor.cs</fileName>
+    <timeStamp>2024-02-03T04:47:03+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>7c9aafe2a41a40b49998c1d09fc49110</guid>
+    <fileName>Assets/HTC.UnityPlugin/ViveInputUtility/Scripts/ViveRole/RoleMaps/BodyRole.cs</fileName>
+    <timeStamp>2024-02-03T04:47:24+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>2f7e7ed3f89fec64d90a9e7b27b5ff20</guid>
+    <fileName>Assets/HTC.UnityPlugin/ViveInputUtility/Scripts/ViveRole/RoleMaps/ControllerRole.cs</fileName>
+    <timeStamp>2024-02-03T04:46:33+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>404bfc469262da64581fa64073e16681</guid>
+    <fileName>Assets/HTC.UnityPlugin/ViveInputUtility/Scripts/ViveRole/RoleMaps/DeviceRole.cs</fileName>
+    <timeStamp>2024-02-03T04:46:47+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>7c42c2a7294d85e49810332c9c01a7d8</guid>
+    <fileName>Assets/HTC.UnityPlugin/ViveInputUtility/Scripts/ViveRole/RoleMaps/HandRole.cs</fileName>
+    <timeStamp>2024-02-03T04:47:22+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>b1a028134162ee242a76973399e58aff</guid>
+    <fileName>Assets/HTC.UnityPlugin/ViveInputUtility/Scripts/ViveRole/RoleMaps/PrimaryHandRole.cs</fileName>
+    <timeStamp>2024-02-03T04:47:59+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>f185c0b0ec6cf3e4cb3303c8181a1f0a</guid>
+    <fileName>Assets/HTC.UnityPlugin/ViveInputUtility/Scripts/ViveRole/RoleMaps/TrackedHandRole.cs</fileName>
+    <timeStamp>2024-02-03T04:48:50+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>f2db60966d21dd24ea9ee7340d079bdd</guid>
+    <fileName>Assets/HTC.UnityPlugin/ViveInputUtility/Scripts/ViveRole/RoleMaps/TrackerRole.cs</fileName>
+    <timeStamp>2024-02-03T04:48:52+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>3bca11e0534f4e742846c41cf3f1ff29</guid>
+    <fileName>Assets/SteamVR/InteractionSystem/Samples/BuggyBuddy/Audio/AmbientSound.cs</fileName>
+    <timeStamp>2024-01-18T04:22:21+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>7396a895f6aa9584998a6012e966b5c7</guid>
+    <fileName>Assets/HTC.UnityPlugin/ViveInputUtility/Scripts/Misc/SteamVRExtension/Editor/VIUSteamVRActionFile.cs</fileName>
+    <timeStamp>2024-02-03T04:47:17+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>5645441d9f4d8b94980d01d300678bed</guid>
+    <fileName>Assets/HTC.UnityPlugin/ViveInputUtility/Scripts/Misc/SteamVRExtension/Editor/VIUSteamVRBindingFile.cs</fileName>
+    <timeStamp>2024-02-03T04:47:00+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>26b018b07b2f1d34bb2d1f2518fa10a3</guid>
+    <fileName>Assets/HTC.UnityPlugin/ViveInputUtility/Scripts/Misc/SteamVRExtension/Editor/VIUSteamVRLoadJsonFileBase.cs</fileName>
+    <timeStamp>2024-02-03T04:46:23+08:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>9e021993f4995244a993c9ea9116761d</guid>
+    <fileName>Assets/HTC.UnityPlugin/ViveInputUtility/Scripts/Misc/SteamVRExtension/Editor/VIUSteamVRRenderModelEditor.cs</fileName>
+    <timeStamp>2024-02-03T04:47:46+08:00</timeStamp>
+    <typeFullName />
   </TypeDate>
 </ArrayOfTypeDate>

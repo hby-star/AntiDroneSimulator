@@ -103,28 +103,33 @@ public class UIManager : MonoBehaviour
     public void ShowGamePausePopUp()
     {
         gamePausePopUp.SetActive(true);
+        GameManager.Instance.StopGameInput();
     }
 
     public void HideGamePausePopUp()
     {
         gamePausePopUp.SetActive(false);
+        GameManager.Instance.ContinueGameInput();
     }
 
     public void ShowGameEndWinPopUp()
     {
         gameEndPopUp.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "任务成功!";
         gameEndPopUp.SetActive(true);
+        GameManager.Instance.StopGameInput();
     }
 
     public void ShowGameEndLosePopUp()
     {
         gameEndPopUp.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "任务失败!";
         gameEndPopUp.SetActive(true);
+        GameManager.Instance.StopGameInput();
     }
 
     public void HideGameEndPopUp()
     {
         gameEndPopUp.SetActive(false);
+        GameManager.Instance.ContinueGameInput();
     }
 
     void Start()
@@ -143,13 +148,11 @@ public class UIManager : MonoBehaviour
     void OnGameStartContinueButtonClick()
     {
         HideGameStartPopUp();
-        GameManager.Instance.ContinueGame();
     }
 
     void OnGamePauseContinueButtonClick()
     {
         HideGamePausePopUp();
-        GameManager.Instance.ContinueGame();
     }
 
     void OnGamePauseReturnMainMenuButtonClick()

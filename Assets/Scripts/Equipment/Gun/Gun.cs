@@ -15,6 +15,7 @@ public class Gun : Equipment
     [SerializeField] public AudioClip reloadSound;
     [SerializeField] public AudioClip fireSound;
 
+    [Header("Gun Info")] public Transform firePosition;
     public int currentBullets;
     public int maxBullets;
     public bool isReloading;

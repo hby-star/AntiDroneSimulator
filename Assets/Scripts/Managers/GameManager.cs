@@ -98,13 +98,11 @@ public class GameManager : MonoBehaviour
     public void GameSuccess()
     {
         UIManager.Instance.ShowGameEndWinPopUp();
-        StopGame();
     }
 
     public void GameFail()
     {
         UIManager.Instance.ShowGameEndLosePopUp();
-        StopGame();
     }
 
     IEnumerator LoadMainMenu()

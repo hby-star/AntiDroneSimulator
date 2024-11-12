@@ -8,6 +8,6 @@ public class PlayerAnimator : MonoBehaviour
 
     private void AnimationFinished()
     {
-        Player.AnimationFinished();
+        Player.StateMachine.CurrentState.AnimationFinished();
     }
 }

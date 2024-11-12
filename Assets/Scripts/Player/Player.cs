@@ -107,13 +107,15 @@ public class Player : Entity
         SetGun(currentGunIndex);
 
         isShiledPlaced = false;
-
-        // Cursor.lockState = CursorLockMode.Locked;
-        // Cursor.visible = false;
     }
 
     private void SetGun(int index)
     {
+        if (guns.Count == 0)
+        {
+            return;
+        }
+
         for (int i = 0; i < guns.Count; i++)
         {
             guns[i].playerCamera = Camera;
@@ -125,6 +127,11 @@ public class Player : Entity
 
     public void ChangeGun()
     {
+        if (guns.Count <= 1)
+        {
+            return;
+        }
+
         currentGunIndex++;
         if (currentGunIndex >= guns.Count)
         {
@@ -137,7 +144,7 @@ public class Player : Entity
 
     public bool CanAttack()
     {
-        if (currentEquipment is Gun gun)
+        if (guns.Count > 0 && currentEquipment && currentEquipment is Gun gun)
         {
             return gun.CanFire();
         }
@@ -147,7 +154,7 @@ public class Player : Entity
 
     public void Attack()
     {
-        if (currentEquipment is Gun gun)
+        if (guns.Count > 0 && currentEquipment && currentEquipment is Gun gun)
         {
             gun.Fire();
         }
@@ -155,7 +162,7 @@ public class Player : Entity
 
     public bool CanReload()
     {
-        if (currentEquipment is Gun gun)
+        if (guns.Count > 0 && currentEquipment && currentEquipment is Gun gun)
         {
             return gun.CanReload();
         }
@@ -165,7 +172,7 @@ public class Player : Entity
 
     public void ReloadStart()
     {
-        if (currentEquipment is Gun gun)
+        if (guns.Count > 0 && currentEquipment && currentEquipment is Gun gun)
         {
             gun.ReloadStart();
         }
@@ -173,7 +180,7 @@ public class Player : Entity
 
     public void ReloadEnd()
     {
-        if (currentEquipment is Gun gun)
+        if (guns.Count > 0 && currentEquipment && currentEquipment is Gun gun)
         {
             gun.ReloadEnd();
         }
@@ -326,15 +333,12 @@ public class Player : Entity
 
     private void SettingsAwake()
     {
-        if (UIManager.Instance)
-        {
-            sensitivityHor = sensitivityVert =
-                SettingsManager.Instance.settings.GetComponent<Settings>().sensitivitySlider.value;
-            soundSource.volume *= SettingsManager.Instance.settings.GetComponent<Settings>().volumeSlider.value;
-            playerStats.maxHeath = SettingsManager.Instance.settings.GetComponent<Settings>().playerHeathSlider.value;
-            playerStats.currentHeath = playerStats.maxHeath;
-            moveSpeed = SettingsManager.Instance.settings.GetComponent<Settings>().playerMoveSpeedSlider.value;
-        }
+        sensitivityHor = sensitivityVert =
+            SettingsManager.Instance.settings.GetComponent<Settings>().sensitivitySlider.value;
+        soundSource.volume *= SettingsManager.Instance.settings.GetComponent<Settings>().volumeSlider.value;
+        playerStats.maxHeath = SettingsManager.Instance.settings.GetComponent<Settings>().playerHeathSlider.value;
+        playerStats.currentHeath = playerStats.maxHeath;
+        moveSpeed = SettingsManager.Instance.settings.GetComponent<Settings>().playerMoveSpeedSlider.value;
     }
 
     protected override void Start()
@@ -355,12 +359,6 @@ public class Player : Entity
         StateMachine.CurrentState.Update();
 
         MouseLookUpdate();
-    }
-
-
-    public void AnimationFinished()
-    {
-        StateMachine.CurrentState.AnimationFinished();
     }
 
     private void OnDrawGizmosSelected()
