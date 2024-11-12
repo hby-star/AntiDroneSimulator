@@ -29,6 +29,15 @@ public class Player : Entity
 
     [Header("Stats Info")] public EntityStats playerStats;
     public List<Collider> playerRenderers;
+    public GameObject playerInfo;
+
+    void PlayerInfoDisplayUpdate()
+    {
+        if (InfoInput)
+        {
+            playerInfo.SetActive(!playerInfo.activeSelf );
+        }
+    }
 
     public void TakeDamage(float damage)
     {
@@ -360,6 +369,8 @@ public class Player : Entity
         StateMachine.CurrentState.Update();
 
         MouseLookUpdate();
+
+        PlayerInfoDisplayUpdate();
     }
 
     private void OnDrawGizmosSelected()
@@ -441,6 +452,7 @@ public class Player : Entity
     [NonSerialized] public float VerticalInput;
     [NonSerialized] public bool JumpInput;
     [NonSerialized] public bool DashInput;
+    [NonSerialized] public bool InfoInput;
     [NonSerialized] public bool CrouchInput;
     [NonSerialized] public bool AttackInput;
     [NonSerialized] public bool ReloadInput;
@@ -461,6 +473,7 @@ public class Player : Entity
         VerticalInput = 0;
         JumpInput = false;
         DashInput = false;
+        InfoInput = false;
         CrouchInput = false;
         AttackInput = false;
         ReloadInput = false;
@@ -484,6 +497,7 @@ public class Player : Entity
         Messenger<float>.AddListener(InputEvent.PLAYER_VERTICAL_INPUT, (value) => { VerticalInput = value; });
         Messenger<bool>.AddListener(InputEvent.PLAYER_JUMP_INPUT, (value) => { JumpInput = value; });
         Messenger<bool>.AddListener(InputEvent.PLAYER_DASH_INPUT, (value) => { DashInput = value; });
+        Messenger<bool>.AddListener(InputEvent.PLAYER_INFO_DISPLAY_INPUT, (value) => { InfoInput = value; });
         Messenger<bool>.AddListener(InputEvent.PLAYER_CROUCH_INPUT, (value) => { CrouchInput = value; });
         Messenger<bool>.AddListener(InputEvent.PLAYER_ATTACK_INPUT, (value) => { AttackInput = value; });
         Messenger<bool>.AddListener(InputEvent.PLAYER_RELOAD_INPUT, (value) => { ReloadInput = value; });
@@ -518,6 +532,7 @@ public class Player : Entity
         Messenger<float>.RemoveListener(InputEvent.PLAYER_VERTICAL_INPUT, (value) => { VerticalInput = value; });
         Messenger<bool>.RemoveListener(InputEvent.PLAYER_JUMP_INPUT, (value) => { JumpInput = value; });
         Messenger<bool>.RemoveListener(InputEvent.PLAYER_DASH_INPUT, (value) => { DashInput = value; });
+        Messenger<bool>.RemoveListener(InputEvent.PLAYER_INFO_DISPLAY_INPUT, (value) => { InfoInput = value; });
         Messenger<bool>.RemoveListener(InputEvent.PLAYER_CROUCH_INPUT, (value) => { CrouchInput = value; });
         Messenger<bool>.RemoveListener(InputEvent.PLAYER_ATTACK_INPUT, (value) => { AttackInput = value; });
         Messenger<bool>.RemoveListener(InputEvent.PLAYER_RELOAD_INPUT, (value) => { ReloadInput = value; });

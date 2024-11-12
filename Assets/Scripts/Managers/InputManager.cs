@@ -65,21 +65,13 @@ public class InputManager : MonoBehaviour
     public SteamVR_Action_Boolean playerAttack;
     public SteamVR_Action_Boolean playerReload;
     public SteamVR_Action_Boolean playerDash;
-    public SteamVR_Action_Boolean playerCrouch;
+    public SteamVR_Action_Boolean playerInfoDisplay;
+    //public SteamVR_Action_Boolean playerCrouch;
     public SteamVR_Action_Boolean playerChangeGun;
     public SteamVR_Action_Boolean playerPlacePickupShield;
     public SteamVR_Action_Boolean playerGamePause;
     public SteamVR_Action_Boolean playerStopGame;
     public SteamVR_Action_Boolean playerObserverMode;
-
-
-    private float playerInputInterval = 0.5f;
-    private float playerCrouchTimer = 0f;
-    private float playerChangeGunTimer = 0f;
-    private float playerPlacePickupShieldTimer = 0f;
-    private float playerGamePauseTimer = 0f;
-    private float playerStopGameTimer = 0f;
-    private float playerObserverModeTimer = 0f;
 
     #endregion
 
@@ -175,22 +167,22 @@ public class InputManager : MonoBehaviour
         //Messenger<float>.Broadcast(InputEvent.PLAYER_CAMERA_VERTICAL_INPUT, playerCameraMove.axis.y);
 
         // Player Jump
-        Messenger<bool>.Broadcast(InputEvent.PLAYER_JUMP_INPUT, playerJump.state);
+        Messenger<bool>.Broadcast(InputEvent.PLAYER_JUMP_INPUT, playerJump.lastStateDown);
 
         // Player Attack
-        Messenger<bool>.Broadcast(InputEvent.PLAYER_ATTACK_INPUT, playerAttack.state);
+        Messenger<bool>.Broadcast(InputEvent.PLAYER_ATTACK_INPUT, playerAttack.lastStateDown);
 
         // Player Reload
-        Messenger<bool>.Broadcast(InputEvent.PLAYER_RELOAD_INPUT, playerReload.state);
+        Messenger<bool>.Broadcast(InputEvent.PLAYER_RELOAD_INPUT, playerReload.lastStateDown);
 
         // Player Dash
-        Messenger<bool>.Broadcast(InputEvent.PLAYER_DASH_INPUT, playerDash.state);
+        Messenger<bool>.Broadcast(InputEvent.PLAYER_DASH_INPUT, playerDash.lastStateDown);
 
         // Player Crouch
-        Messenger<bool>.Broadcast(InputEvent.PLAYER_CROUCH_INPUT, playerCrouch.state);
+        // Messenger<bool>.Broadcast(InputEvent.PLAYER_CROUCH_INPUT, playerCrouch.lastStateDown);
 
         // Player Change Gun
-        Messenger<bool>.Broadcast(InputEvent.PLAYER_CHANGE_GUN_INPUT, playerChangeGun.state);
+        Messenger<bool>.Broadcast(InputEvent.PLAYER_CHANGE_GUN_INPUT, playerChangeGun.lastStateDown);
 
         // Interact with vehicle
         // Player enter vehicle
@@ -207,7 +199,7 @@ public class InputManager : MonoBehaviour
 
         // Interact with shield
         // Player place & pickup shield
-        Messenger<bool>.Broadcast(InputEvent.PLAYER_PLACE_PICKUP_SHIELD_INPUT, playerPlacePickupShield.state);
+        Messenger<bool>.Broadcast(InputEvent.PLAYER_PLACE_PICKUP_SHIELD_INPUT, playerPlacePickupShield.lastStateDown);
     }
 
     void HandleDroneInput()
@@ -255,18 +247,18 @@ public class InputManager : MonoBehaviour
     void HandleGameInput()
     {
         // SKill Game Pause
-        if (playerGamePause.state)
+        if (playerStopGame.lastStateDown)
         {
             Messenger.Broadcast(InputEvent.GAME_PAUSE_INPUT);
         }
 
         // SKill Observer Mode
-        if (playerObserverMode.state)
+        if (playerObserverMode.lastStateDown)
         {
             Messenger.Broadcast(InputEvent.OBSERVER_MODE_INPUT);
         }
 
-        if (playerStopGame.state)
+        if (playerGamePause.lastStateDown)
         {
             GameManager.Instance.InGameMenu();
         }
