@@ -145,6 +145,62 @@ namespace Valve.VR
             }
         }
         
+        public virtual SteamVR_Action_Boolean PlayerDash
+        {
+            get
+            {
+                return SteamVR_Actions.default_PlayerDash;
+            }
+        }
+        
+        public virtual SteamVR_Action_Boolean PlayerCrouch
+        {
+            get
+            {
+                return SteamVR_Actions.default_PlayerCrouch;
+            }
+        }
+        
+        public virtual SteamVR_Action_Boolean PlayerChangeGun
+        {
+            get
+            {
+                return SteamVR_Actions.default_PlayerChangeGun;
+            }
+        }
+        
+        public virtual SteamVR_Action_Boolean PlayerShield
+        {
+            get
+            {
+                return SteamVR_Actions.default_PlayerShield;
+            }
+        }
+        
+        public virtual SteamVR_Action_Boolean PlayerGamePause
+        {
+            get
+            {
+                return SteamVR_Actions.default_PlayerGamePause;
+            }
+        }
+        
+        public virtual SteamVR_Action_Boolean PlayerStopGame
+        {
+            get
+            {
+                return SteamVR_Actions.default_PlayerStopGame;
+            }
+        }
+        
+        public virtual SteamVR_Action_Boolean PlayerObserverMode
+        {
+            get
+            {
+                return SteamVR_Actions.default_PlayerObserverMode;
+            }
+        }
+        
         public virtual SteamVR_Action_Vibration Haptic
         {
             get

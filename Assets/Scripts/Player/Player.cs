@@ -127,6 +127,7 @@ public class Player : Entity
 
     public void ChangeGun()
     {
+
         if (guns.Count <= 1)
         {
             return;

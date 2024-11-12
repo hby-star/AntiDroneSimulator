@@ -472,6 +472,27 @@ MonoBehaviour:
   playerReload:
     actionPath: /actions/default/in/PlayerReload
     needsReinit: 0
+  playerDash:
+    actionPath: /actions/default/in/PlayerDash
+    needsReinit: 0
+  playerCrouch:
+    actionPath: /actions/default/in/PlayerCrouch
+    needsReinit: 0
+  playerChangeGun:
+    actionPath: /actions/default/in/PlayerChangeGun
+    needsReinit: 0
+  playerPlacePickupShield:
+    actionPath: /actions/default/in/PlayerShield
+    needsReinit: 0
+  playerGamePause:
+    actionPath: /actions/default/in/PlayerGamePause
+    needsReinit: 0
+  playerStopGame:
+    actionPath: /actions/default/in/PlayerStopGame
+    needsReinit: 0
+  playerObserverMode:
+    actionPath: /actions/default/in/PlayerObserverMode
+    needsReinit: 0
 --- !u!114 &177480485
 MonoBehaviour:
   m_ObjectHideFlags: 0

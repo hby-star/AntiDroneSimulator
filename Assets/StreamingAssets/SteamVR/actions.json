@@ -75,6 +75,40 @@
       "requirement": "mandatory"
     },
     {
+      "name": "/actions/default/in/PlayerDash",
+      "type": "boolean",
+      "requirement": "mandatory"
+    },
+    {
+      "name": "/actions/default/in/PlayerCrouch",
+      "type": "boolean"
+    },
+    {
+      "name": "/actions/default/in/PlayerChangeGun",
+      "type": "boolean",
+      "requirement": "mandatory"
+    },
+    {
+      "name": "/actions/default/in/PlayerShield",
+      "type": "boolean",
+      "requirement": "mandatory"
+    },
+    {
+      "name": "/actions/default/in/PlayerGamePause",
+      "type": "boolean",
+      "requirement": "mandatory"
+    },
+    {
+      "name": "/actions/default/in/PlayerStopGame",
+      "type": "boolean",
+      "requirement": "mandatory"
+    },
+    {
+      "name": "/actions/default/in/PlayerObserverMode",
+      "type": "boolean",
+      "requirement": "mandatory"
+    },
+    {
       "name": "/actions/default/out/Haptic",
       "type": "vibration"
     },

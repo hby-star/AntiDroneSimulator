@@ -49,6 +49,20 @@ namespace Valve.VR
         
         private static SteamVR_Action_Boolean p_default_PlayerReload;
         
+        private static SteamVR_Action_Boolean p_default_PlayerDash;
+        
+        private static SteamVR_Action_Boolean p_default_PlayerCrouch;
+        
+        private static SteamVR_Action_Boolean p_default_PlayerChangeGun;
+        
+        private static SteamVR_Action_Boolean p_default_PlayerShield;
+        
+        private static SteamVR_Action_Boolean p_default_PlayerGamePause;
+        
+        private static SteamVR_Action_Boolean p_default_PlayerStopGame;
+        
+        private static SteamVR_Action_Boolean p_default_PlayerObserverMode;
+        
         private static SteamVR_Action_Vibration p_default_Haptic;
         
         private static SteamVR_Action_Vector2 p_platformer_Move;
@@ -282,6 +296,62 @@ namespace Valve.VR
             get
             {
                 return SteamVR_Actions.p_default_PlayerReload.GetCopy<SteamVR_Action_Boolean>();
+            }
+        }
+        
+        public static SteamVR_Action_Boolean default_PlayerDash
+        {
+            get
+            {
+                return SteamVR_Actions.p_default_PlayerDash.GetCopy<SteamVR_Action_Boolean>();
+            }
+        }
+        
+        public static SteamVR_Action_Boolean default_PlayerCrouch
+        {
+            get
+            {
+                return SteamVR_Actions.p_default_PlayerCrouch.GetCopy<SteamVR_Action_Boolean>();
+            }
+        }
+        
+        public static SteamVR_Action_Boolean default_PlayerChangeGun
+        {
+            get
+            {
+                return SteamVR_Actions.p_default_PlayerChangeGun.GetCopy<SteamVR_Action_Boolean>();
+            }
+        }
+        
+        public static SteamVR_Action_Boolean default_PlayerShield
+        {
+            get
+            {
+                return SteamVR_Actions.p_default_PlayerShield.GetCopy<SteamVR_Action_Boolean>();
+            }
+        }
+        
+        public static SteamVR_Action_Boolean default_PlayerGamePause
+        {
+            get
+            {
+                return SteamVR_Actions.p_default_PlayerGamePause.GetCopy<SteamVR_Action_Boolean>();
+            }
+        }
+        
+        public static SteamVR_Action_Boolean default_PlayerStopGame
+        {
+            get
+            {
+                return SteamVR_Actions.p_default_PlayerStopGame.GetCopy<SteamVR_Action_Boolean>();
+            }
+        }
+        
+        public static SteamVR_Action_Boolean default_PlayerObserverMode
+        {
+            get
+            {
+                return SteamVR_Actions.p_default_PlayerObserverMode.GetCopy<SteamVR_Action_Boolean>();
             }
         }
         
@@ -736,6 +806,13 @@ namespace Valve.VR
                     SteamVR_Actions.default_PlayerAttack,
                     SteamVR_Actions.default_PlayerJump,
                     SteamVR_Actions.default_PlayerReload,
+                    SteamVR_Actions.default_PlayerDash,
+                    SteamVR_Actions.default_PlayerCrouch,
+                    SteamVR_Actions.default_PlayerChangeGun,
+                    SteamVR_Actions.default_PlayerShield,
+                    SteamVR_Actions.default_PlayerGamePause,
+                    SteamVR_Actions.default_PlayerStopGame,
+                    SteamVR_Actions.default_PlayerObserverMode,
                     SteamVR_Actions.default_Haptic,
                     SteamVR_Actions.platformer_Move,
                     SteamVR_Actions.platformer_Jump,
@@ -807,6 +884,13 @@ namespace Valve.VR
                     SteamVR_Actions.default_PlayerAttack,
                     SteamVR_Actions.default_PlayerJump,
                     SteamVR_Actions.default_PlayerReload,
+                    SteamVR_Actions.default_PlayerDash,
+                    SteamVR_Actions.default_PlayerCrouch,
+                    SteamVR_Actions.default_PlayerChangeGun,
+                    SteamVR_Actions.default_PlayerShield,
+                    SteamVR_Actions.default_PlayerGamePause,
+                    SteamVR_Actions.default_PlayerStopGame,
+                    SteamVR_Actions.default_PlayerObserverMode,
                     SteamVR_Actions.platformer_Move,
                     SteamVR_Actions.platformer_Jump,
                     SteamVR_Actions.buggy_Steering,
@@ -879,6 +963,13 @@ namespace Valve.VR
                     SteamVR_Actions.default_PlayerAttack,
                     SteamVR_Actions.default_PlayerJump,
                     SteamVR_Actions.default_PlayerReload,
+                    SteamVR_Actions.default_PlayerDash,
+                    SteamVR_Actions.default_PlayerCrouch,
+                    SteamVR_Actions.default_PlayerChangeGun,
+                    SteamVR_Actions.default_PlayerShield,
+                    SteamVR_Actions.default_PlayerGamePause,
+                    SteamVR_Actions.default_PlayerStopGame,
+                    SteamVR_Actions.default_PlayerObserverMode,
                     SteamVR_Actions.platformer_Jump,
                     SteamVR_Actions.buggy_Brake,
                     SteamVR_Actions.buggy_Reset,
@@ -953,6 +1044,13 @@ namespace Valve.VR
                     SteamVR_Actions.default_PlayerAttack,
                     SteamVR_Actions.default_PlayerJump,
                     SteamVR_Actions.default_PlayerReload,
+                    SteamVR_Actions.default_PlayerDash,
+                    SteamVR_Actions.default_PlayerCrouch,
+                    SteamVR_Actions.default_PlayerChangeGun,
+                    SteamVR_Actions.default_PlayerShield,
+                    SteamVR_Actions.default_PlayerGamePause,
+                    SteamVR_Actions.default_PlayerStopGame,
+                    SteamVR_Actions.default_PlayerObserverMode,
                     SteamVR_Actions.platformer_Move,
                     SteamVR_Actions.platformer_Jump,
                     SteamVR_Actions.buggy_Steering,
@@ -1022,6 +1120,13 @@ namespace Valve.VR
             SteamVR_Actions.p_default_PlayerAttack = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/default/in/PlayerAttack")));
             SteamVR_Actions.p_default_PlayerJump = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/default/in/PlayerJump")));
             SteamVR_Actions.p_default_PlayerReload = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/default/in/PlayerReload")));
+            SteamVR_Actions.p_default_PlayerDash = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/default/in/PlayerDash")));
+            SteamVR_Actions.p_default_PlayerCrouch = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/default/in/PlayerCrouch")));
+            SteamVR_Actions.p_default_PlayerChangeGun = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/default/in/PlayerChangeGun")));
+            SteamVR_Actions.p_default_PlayerShield = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/default/in/PlayerShield")));
+            SteamVR_Actions.p_default_PlayerGamePause = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/default/in/PlayerGamePause")));
+            SteamVR_Actions.p_default_PlayerStopGame = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/default/in/PlayerStopGame")));
+            SteamVR_Actions.p_default_PlayerObserverMode = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/default/in/PlayerObserverMode")));
             SteamVR_Actions.p_default_Haptic = ((SteamVR_Action_Vibration)(SteamVR_Action.Create<SteamVR_Action_Vibration>("/actions/default/out/Haptic")));
             SteamVR_Actions.p_platformer_Move = ((SteamVR_Action_Vector2)(SteamVR_Action.Create<SteamVR_Action_Vector2>("/actions/platformer/in/Move")));
             SteamVR_Actions.p_platformer_Jump = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/platformer/in/Jump")));
