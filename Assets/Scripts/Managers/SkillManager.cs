@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Valve.VR;
 
 public class SkillManager : MonoBehaviour
 {
@@ -43,13 +44,18 @@ public class SkillManager : MonoBehaviour
     public bool IsPaused { get; private set; }
     public bool IsObserving { get; private set; }
     public Camera SavedCamera { get; private set; }
-    public Camera TempCamera { get; private set; }
+    public Camera TempCamera;
+
+    public SteamVR_Action_Vector2 playerMove;
+    public SteamVR_Action_Vector2 playerCameraMove;
 
     void Start()
     {
         IsPaused = false;
         IsObserving = false;
-        CreateTempCamera();
+
+        TempCamera.enabled = false;
+        TempCamera.gameObject.SetActive(false);
     }
 
     void Update()
@@ -129,12 +135,12 @@ public class SkillManager : MonoBehaviour
         float moveSpeed = 50f;
         float rotateSpeed = 500f;
 
-        float h = (Input.GetKey(KeyCode.A) ? -1 : 0) + (Input.GetKey(KeyCode.D) ? 1 : 0);
-        float v = (Input.GetKey(KeyCode.W) ? 1 : 0) + (Input.GetKey(KeyCode.S) ? -1 : 0);
+        float h = playerMove.axis.x;
+        float v = playerMove.axis.y;
         h *= moveSpeed * Time.unscaledDeltaTime;
         v *= moveSpeed * Time.unscaledDeltaTime;
-        float x = Input.GetAxis("Mouse X") * rotateSpeed * Time.unscaledDeltaTime;
-        float y = Input.GetAxis("Mouse Y") * rotateSpeed * Time.unscaledDeltaTime;
+        float x = playerCameraMove.axis.x * rotateSpeed * Time.unscaledDeltaTime;
+        float y = playerCameraMove.axis.y * rotateSpeed * Time.unscaledDeltaTime;
 
         // 前后和左右移动
         TempCamera.transform.Translate(new Vector3(h, 0, v));
