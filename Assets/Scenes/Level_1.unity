@@ -46569,9 +46569,9 @@ MonoBehaviour:
   standColliderHeight: 1.75
   crouchColliderHeight: 1.18
   guns:
-  - {fileID: 2683639817205859807}
   - {fileID: 302926611238318227}
   - {fileID: 3578140073871929817}
+  - {fileID: 2683639817205859807}
   shieldPrefab: {fileID: 609340164047278902, guid: 40098e15728d83b4d8b2c8b7b70ff70f, type: 3}
   interactRange: 2
   sensitivityHor: 9

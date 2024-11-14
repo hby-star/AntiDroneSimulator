@@ -14,8 +14,7 @@ public class GunState : MonoBehaviour
 
     private void Start()
     {
-        if (gunImage)
-            player.onGunChanged += UpdateGunUI;
+        player.onGunChanged += UpdateGunUI;
 
         foreach (var gun in player.guns)
         {
