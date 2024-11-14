@@ -121,8 +121,9 @@ GameObject:
   m_Component:
   - component: {fileID: 7631266924420557123}
   - component: {fileID: 477008373635351508}
+  - component: {fileID: 4423645199264873581}
   m_Layer: 5
-  m_Name: UI_HeathBar
+  m_Name: PlayerHeathBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -201,6 +202,20 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &4423645199264873581
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7631266924420557148}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2eb4a088d7714dc469f3a754463f1acc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stats: {fileID: 0}
+  slider: {fileID: 477008373635351508}
 --- !u!1 &7631266924564912994
 GameObject:
   m_ObjectHideFlags: 0

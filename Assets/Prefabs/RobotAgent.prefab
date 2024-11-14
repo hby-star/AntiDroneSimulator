@@ -167,7 +167,7 @@ GameObject:
   - component: {fileID: 521357566041653798}
   - component: {fileID: 521357566030582400}
   - component: {fileID: 2202441973213496687}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Robot_Soldier_Rifle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -188,6 +188,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3512471194743465166}
+  - {fileID: 3526755660661848072}
   m_Father: {fileID: 521357566041654224}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!137 &521357566030582400
@@ -261,6 +262,7 @@ MonoBehaviour:
   soundSource: {fileID: 5629123051306617436}
   reloadSound: {fileID: 8300000, guid: 4d065ebd0386b9345ac4ec4d5377f76d, type: 3}
   fireSound: {fileID: 8300000, guid: c38f401c04613df4eb2208602e58adcb, type: 3}
+  firePosition: {fileID: 3526755660661848072}
   currentBullets: 5
   maxBullets: 5
   isReloading: 0
@@ -2910,6 +2912,7 @@ MonoBehaviour:
   playerRenderers:
   - {fileID: 924474824027069575}
   - {fileID: 2592330694193852518}
+  playerInfo: {fileID: 0}
   moveSpeed: 10
   jumpForce: 6
   dashSpeed: 12
@@ -3061,6 +3064,37 @@ Transform:
   - {fileID: 6980868431621059147}
   m_Father: {fileID: 8792423271740381854}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4446140214544830941
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3526755660661848072}
+  m_Layer: 10
+  m_Name: firePosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3526755660661848072
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4446140214544830941}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.31429955, y: 0.633416, z: -0.32468155, w: 0.62815756}
+  m_LocalPosition: {x: 1.394, y: 0.43, z: 0.204}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 521357566041653798}
+  m_LocalEulerAnglesHint: {x: 53.724, y: 90, z: -0.943}
 --- !u!1 &5105392975883124406
 GameObject:
   m_ObjectHideFlags: 0
@@ -3071,7 +3105,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3512471194743465166}
   - component: {fileID: 2592330694193852518}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}

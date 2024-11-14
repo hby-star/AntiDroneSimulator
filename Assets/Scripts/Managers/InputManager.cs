@@ -178,6 +178,9 @@ public class InputManager : MonoBehaviour
         // Player Dash
         Messenger<bool>.Broadcast(InputEvent.PLAYER_DASH_INPUT, playerDash.lastStateDown);
 
+        // Player Info Display
+        Messenger<bool>.Broadcast(InputEvent.PLAYER_INFO_DISPLAY_INPUT, playerInfoDisplay.lastStateDown);
+
         // Player Crouch
         // Messenger<bool>.Broadcast(InputEvent.PLAYER_CROUCH_INPUT, playerCrouch.lastStateDown);
 

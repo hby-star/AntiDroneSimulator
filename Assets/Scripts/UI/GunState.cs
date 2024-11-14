@@ -14,13 +14,16 @@ public class GunState : MonoBehaviour
 
     private void Start()
     {
-        player.onGunChanged += UpdateGunUI;
+        if (gunImage)
+            player.onGunChanged += UpdateGunUI;
+
         foreach (var gun in player.guns)
         {
             gun.onBulletCountChanged += UpdateGunBulletCount;
         }
 
-        gunImage.sprite = player.guns[0].gunImage;
+        if (gunImage)
+            gunImage.sprite = player.guns[0].gunImage;
         bulletCount.text = player.guns[0].currentBullets + " / " + player.guns[0].maxBullets;
     }
 
@@ -29,7 +32,8 @@ public class GunState : MonoBehaviour
         Gun currentGun = player.currentEquipment as Gun;
         if (currentGun)
         {
-            gunImage.sprite = currentGun.gunImage;
+            if (gunImage)
+                gunImage.sprite = currentGun.gunImage;
             bulletCount.text = currentGun.currentBullets + " / " + currentGun.maxBullets;
         }
     }

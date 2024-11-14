@@ -86,7 +86,8 @@ public class PlayerAgent : MonoBehaviour
     {
         yield return new WaitForSeconds(0.5f);
         Gun gun = self.currentEquipment as Gun;
-        gun.playerCamera.transform.LookAt(targetPosition);
+        gun.firePosition.position = gun.transform.position + (targetPosition - gun.transform.position).normalized;
+        gun.firePosition.forward = (targetPosition - gun.transform.position).normalized;
         if (self.CanAttack())
         {
             self.StateMachine.ChangeState(self.AttackState);
