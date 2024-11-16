@@ -44,7 +44,7 @@ public class GunState : MonoBehaviour
         {
             if (currentGun.isReloading)
             {
-                bulletCount.text = "Reloading...";
+                bulletCount.text = "装弹...";
             }
             else
             {

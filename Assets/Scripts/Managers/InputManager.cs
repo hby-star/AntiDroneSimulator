@@ -188,6 +188,12 @@ public class InputManager : MonoBehaviour
         // Player Change Gun
         Messenger<bool>.Broadcast(InputEvent.PLAYER_CHANGE_GUN_INPUT, playerChangeGun.lastStateDown);
 
+        // Player Send Signal To Robot
+        if (playerSendSignal.lastStateDown)
+        {
+            Messenger.Broadcast(InputEvent.PLAYER_SEND_SIGNAL_INPUT);
+        }
+
         // Interact with vehicle
         // Player enter vehicle
         Messenger<bool>.Broadcast(InputEvent.VEHICLE_ENTER_EXIT_INPUT, Input.GetKeyDown(KeyCode.E));
