@@ -43,4 +43,6 @@ public class SettingsManager : MonoBehaviour
 
     public GameObject settings;
 
+    public GameObject whisper;
+
 }

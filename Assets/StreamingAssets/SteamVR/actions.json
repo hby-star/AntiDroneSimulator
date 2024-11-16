@@ -1,6 +1,156 @@
 {
   "actions": [
     {
+      "name": "/actions/legacy/in/left_axis0_press",
+      "type": "boolean",
+      "requirement": "optional"
+    },
+    {
+      "name": "/actions/legacy/in/left_axis0_touch",
+      "type": "boolean",
+      "requirement": "optional"
+    },
+    {
+      "name": "/actions/legacy/in/left_axis0_value",
+      "type": "vector2",
+      "requirement": "optional"
+    },
+    {
+      "name": "/actions/legacy/in/left_axis1_press",
+      "type": "boolean",
+      "requirement": "optional"
+    },
+    {
+      "name": "/actions/legacy/in/left_axis1_touch",
+      "type": "boolean",
+      "requirement": "optional"
+    },
+    {
+      "name": "/actions/legacy/in/left_axis1_value",
+      "type": "vector1",
+      "requirement": "optional"
+    },
+    {
+      "name": "/actions/legacy/in/left_axis2_press",
+      "type": "boolean",
+      "requirement": "optional"
+    },
+    {
+      "name": "/actions/legacy/in/left_axis2_touch",
+      "type": "boolean",
+      "requirement": "optional"
+    },
+    {
+      "name": "/actions/legacy/in/left_axis2_value1",
+      "type": "vector1",
+      "requirement": "optional"
+    },
+    {
+      "name": "/actions/legacy/in/left_grip_press",
+      "type": "boolean",
+      "requirement": "optional"
+    },
+    {
+      "name": "/actions/legacy/in/left_grip_touch",
+      "type": "boolean",
+      "requirement": "optional"
+    },
+    {
+      "name": "/actions/legacy/in/left_a_press",
+      "type": "boolean",
+      "requirement": "optional"
+    },
+    {
+      "name": "/actions/legacy/in/left_a_touch",
+      "type": "boolean",
+      "requirement": "optional"
+    },
+    {
+      "name": "/actions/legacy/in/left_applicationmenu_press",
+      "type": "boolean",
+      "requirement": "optional"
+    },
+    {
+      "name": "/actions/legacy/in/left_applicationmenu_touch",
+      "type": "boolean",
+      "requirement": "optional"
+    },
+    {
+      "name": "/actions/legacy/in/right_axis0_press",
+      "type": "boolean",
+      "requirement": "optional"
+    },
+    {
+      "name": "/actions/legacy/in/right_axis0_touch",
+      "type": "boolean",
+      "requirement": "optional"
+    },
+    {
+      "name": "/actions/legacy/in/right_axis0_value",
+      "type": "vector2",
+      "requirement": "optional"
+    },
+    {
+      "name": "/actions/legacy/in/right_axis1_press",
+      "type": "boolean",
+      "requirement": "optional"
+    },
+    {
+      "name": "/actions/legacy/in/right_axis1_touch",
+      "type": "boolean",
+      "requirement": "optional"
+    },
+    {
+      "name": "/actions/legacy/in/right_axis1_value",
+      "type": "vector1",
+      "requirement": "optional"
+    },
+    {
+      "name": "/actions/legacy/in/right_axis2_press",
+      "type": "boolean",
+      "requirement": "optional"
+    },
+    {
+      "name": "/actions/legacy/in/right_axis2_touch",
+      "type": "boolean",
+      "requirement": "optional"
+    },
+    {
+      "name": "/actions/legacy/in/right_axis2_value1",
+      "type": "vector1",
+      "requirement": "optional"
+    },
+    {
+      "name": "/actions/legacy/in/right_grip_press",
+      "type": "boolean",
+      "requirement": "optional"
+    },
+    {
+      "name": "/actions/legacy/in/right_grip_touch",
+      "type": "boolean",
+      "requirement": "optional"
+    },
+    {
+      "name": "/actions/legacy/in/right_a_press",
+      "type": "boolean",
+      "requirement": "optional"
+    },
+    {
+      "name": "/actions/legacy/in/right_a_touch",
+      "type": "boolean",
+      "requirement": "optional"
+    },
+    {
+      "name": "/actions/legacy/in/right_applicationmenu_press",
+      "type": "boolean",
+      "requirement": "optional"
+    },
+    {
+      "name": "/actions/legacy/in/right_applicationmenu_touch",
+      "type": "boolean",
+      "requirement": "optional"
+    },
+    {
       "name": "/actions/default/in/InteractUI",
       "type": "boolean"
     },
@@ -48,65 +198,6 @@
     {
       "name": "/actions/default/in/SnapTurnRight",
       "type": "boolean"
-    },
-    {
-      "name": "/actions/default/in/PlayerMove",
-      "type": "vector2",
-      "requirement": "mandatory"
-    },
-    {
-      "name": "/actions/default/in/PlayerCameraMove",
-      "type": "vector2",
-      "requirement": "mandatory"
-    },
-    {
-      "name": "/actions/default/in/PlayerAttack",
-      "type": "boolean",
-      "requirement": "mandatory"
-    },
-    {
-      "name": "/actions/default/in/PlayerJump",
-      "type": "boolean",
-      "requirement": "mandatory"
-    },
-    {
-      "name": "/actions/default/in/PlayerReload",
-      "type": "boolean",
-      "requirement": "mandatory"
-    },
-    {
-      "name": "/actions/default/in/PlayerDash",
-      "type": "boolean",
-      "requirement": "mandatory"
-    },
-    {
-      "name": "/actions/default/in/PlayerCrouch",
-      "type": "boolean"
-    },
-    {
-      "name": "/actions/default/in/PlayerChangeGun",
-      "type": "boolean",
-      "requirement": "mandatory"
-    },
-    {
-      "name": "/actions/default/in/PlayerShield",
-      "type": "boolean",
-      "requirement": "mandatory"
-    },
-    {
-      "name": "/actions/default/in/PlayerGamePause",
-      "type": "boolean",
-      "requirement": "mandatory"
-    },
-    {
-      "name": "/actions/default/in/PlayerStopGame",
-      "type": "boolean",
-      "requirement": "mandatory"
-    },
-    {
-      "name": "/actions/default/in/PlayerObserverMode",
-      "type": "boolean",
-      "requirement": "mandatory"
     },
     {
       "name": "/actions/default/out/Haptic",
@@ -374,6 +465,10 @@
   ],
   "action_sets": [
     {
+      "name": "/actions/legacy",
+      "usage": "leftright"
+    },
+    {
       "name": "/actions/default",
       "usage": "single"
     },
@@ -395,6 +490,10 @@
     }
   ],
   "default_bindings": [
+    {
+      "controller_type": "pico_controller",
+      "binding_url": "SteamVRPicoControllerBindings.json"
+    },
     {
       "controller_type": "vive_controller",
       "binding_url": "bindings_vive_controller.json"

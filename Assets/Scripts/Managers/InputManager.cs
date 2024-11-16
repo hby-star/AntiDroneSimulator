@@ -68,7 +68,8 @@ public class InputManager : MonoBehaviour
     public SteamVR_Action_Boolean playerInfoDisplay;
     //public SteamVR_Action_Boolean playerCrouch;
     public SteamVR_Action_Boolean playerChangeGun;
-    public SteamVR_Action_Boolean playerPlacePickupShield;
+    public SteamVR_Action_Boolean playerSendSignal;
+    //public SteamVR_Action_Boolean playerPlacePickupShield;
     public SteamVR_Action_Boolean playerGamePause;
     public SteamVR_Action_Boolean playerStopGame;
     public SteamVR_Action_Boolean playerObserverMode;
@@ -164,7 +165,7 @@ public class InputManager : MonoBehaviour
         Messenger<float>.Broadcast(InputEvent.PLAYER_CAMERA_HORIZONTAL_INPUT, playerCameraMove.axis.x);
 
         // Player Camera Vertical
-        //Messenger<float>.Broadcast(InputEvent.PLAYER_CAMERA_VERTICAL_INPUT, playerCameraMove.axis.y);
+        // Messenger<float>.Broadcast(InputEvent.PLAYER_CAMERA_VERTICAL_INPUT, playerCameraMove.axis.y);
 
         // Player Jump
         Messenger<bool>.Broadcast(InputEvent.PLAYER_JUMP_INPUT, playerJump.lastStateDown);
@@ -202,7 +203,7 @@ public class InputManager : MonoBehaviour
 
         // Interact with shield
         // Player place & pickup shield
-        Messenger<bool>.Broadcast(InputEvent.PLAYER_PLACE_PICKUP_SHIELD_INPUT, playerPlacePickupShield.lastStateDown);
+        // Messenger<bool>.Broadcast(InputEvent.PLAYER_PLACE_PICKUP_SHIELD_INPUT, playerPlacePickupShield.lastStateDown);
     }
 
     void HandleDroneInput()

@@ -324,7 +324,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3753267199196915466, guid: 2427db213faebae4888e0bcd6192b009, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -5.2948914
+      value: -5.2949066
       objectReference: {fileID: 0}
     - target: {fileID: 5543625270674044392, guid: 2427db213faebae4888e0bcd6192b009, type: 3}
       propertyPath: m_Pivot.x
@@ -3677,6 +3677,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   settings: {fileID: 158828779}
+  whisper: {fileID: 2519665164241313524}
 --- !u!4 &1618317295
 Transform:
   m_ObjectHideFlags: 0
@@ -5615,8 +5616,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 4149931642046668589}
+  m_Children: []
   m_Father: {fileID: 1618317295}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!224 &902596562918249951 stripped
@@ -5624,23 +5624,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 5543625270674044392, guid: 2427db213faebae4888e0bcd6192b009, type: 3}
   m_PrefabInstance: {fileID: 399957456687837768}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1288665468628579290
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4149931642046668589}
-  - component: {fileID: 3855264502690095429}
-  m_Layer: 0
-  m_Name: DemoMic
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1001 &1626524568294392830
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5715,6 +5698,7 @@ GameObject:
   m_Component:
   - component: {fileID: 617886125254308530}
   - component: {fileID: 8489846270718649768}
+  - component: {fileID: 8489846270718649769}
   m_Layer: 0
   m_Name: Whisper
   m_TagString: Untagged
@@ -5733,35 +5717,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &3855264502690095429
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1288665468628579290}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3bc03a4c19604ea394e364f8fc632928, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxLengthSec: 5
-  loop: 1
-  frequency: 16000
-  chunksLengthSec: 0.5
-  echo: 0
-  useVad: 0
-  vadUpdateRateSec: 0.1
-  vadContextSec: 30
-  vadLastSec: 1.25
-  vadThd: 1
-  vadFreqThd: 100
-  vadIndicatorImage: {fileID: 0}
-  vadStop: 0
-  dropVadPart: 1
-  vadStopTime: 3
-  microphoneDropdown: {fileID: 588708018}
-  microphoneDefaultLabel: None
 --- !u!114 &3958177787114811927 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6766597295723850914, guid: 2427db213faebae4888e0bcd6192b009, type: 3}
@@ -5773,21 +5728,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!4 &4149931642046668589
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1288665468628579290}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 617886125254308530}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &4302926448669849767
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6121,6 +6061,35 @@ MonoBehaviour:
   tokensTimestamps: 0
   speedUp: 0
   audioCtx: 0
+--- !u!114 &8489846270718649769
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2519665164241313524}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3bc03a4c19604ea394e364f8fc632928, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxLengthSec: 5
+  loop: 1
+  frequency: 16000
+  chunksLengthSec: 0.5
+  echo: 0
+  useVad: 0
+  vadUpdateRateSec: 0.1
+  vadContextSec: 30
+  vadLastSec: 1.25
+  vadThd: 1
+  vadFreqThd: 100
+  vadIndicatorImage: {fileID: 0}
+  vadStop: 0
+  dropVadPart: 1
+  vadStopTime: 3
+  microphoneDropdown: {fileID: 588708018}
+  microphoneDefaultLabel: None
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

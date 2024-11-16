@@ -609,40 +609,40 @@ MonoBehaviour:
   - {fileID: 7282585531778735169}
   player: {fileID: 7282585531778735169}
   playerMove:
-    actionPath: /actions/default/in/PlayerMove
+    actionPath: /actions/legacy/in/left_axis0_value
     needsReinit: 0
   playerCameraMove:
-    actionPath: /actions/default/in/PlayerCameraMove
+    actionPath: /actions/legacy/in/right_axis0_value
     needsReinit: 0
   playerJump:
-    actionPath: /actions/default/in/PlayerJump
+    actionPath: /actions/legacy/in/right_a_press
     needsReinit: 0
   playerAttack:
-    actionPath: /actions/default/in/PlayerAttack
+    actionPath: /actions/legacy/in/right_axis1_press
     needsReinit: 0
   playerReload:
-    actionPath: /actions/default/in/PlayerReload
+    actionPath: /actions/legacy/in/right_applicationmenu_press
     needsReinit: 0
   playerDash:
-    actionPath: /actions/default/in/PlayerDash
+    actionPath: /actions/legacy/in/left_axis1_press
     needsReinit: 0
   playerInfoDisplay:
-    actionPath: /actions/default/in/PlayerCrouch
+    actionPath: /actions/legacy/in/left_axis2_press
     needsReinit: 0
   playerChangeGun:
-    actionPath: /actions/default/in/PlayerChangeGun
+    actionPath: /actions/legacy/in/right_axis2_press
     needsReinit: 0
-  playerPlacePickupShield:
-    actionPath: /actions/default/in/PlayerShield
+  playerSendSignal:
+    actionPath: /actions/legacy/in/left_a_press
     needsReinit: 0
   playerGamePause:
-    actionPath: /actions/default/in/PlayerGamePause
+    actionPath: /actions/legacy/in/left_applicationmenu_press
     needsReinit: 0
   playerStopGame:
-    actionPath: /actions/default/in/PlayerStopGame
+    actionPath: /actions/legacy/in/left_axis0_press
     needsReinit: 0
   playerObserverMode:
-    actionPath: /actions/default/in/PlayerObserverMode
+    actionPath: /actions/legacy/in/right_axis0_press
     needsReinit: 0
 --- !u!114 &177480485
 MonoBehaviour:
@@ -658,10 +658,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TempCamera: {fileID: 55310030}
   playerMove:
-    actionPath: /actions/default/in/PlayerMove
+    actionPath: /actions/legacy/in/left_axis0_value
     needsReinit: 0
   playerCameraMove:
-    actionPath: /actions/default/in/PlayerCameraMove
+    actionPath: /actions/legacy/in/right_axis0_value
     needsReinit: 0
 --- !u!114 &177480486
 MonoBehaviour:
