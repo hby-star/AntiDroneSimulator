@@ -122,6 +122,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c26e0f141db028b43ba00293322564f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerAgentManager: {fileID: 0}
   signalState: {fileID: 3439604802680487609}
   robotMoveState: {fileID: 536132113557183492}
   robotAttackState: {fileID: 765091293663328473}
@@ -484,7 +485,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u81EA\u52A8\u653B\u51FB"
+  m_text: "\u505C\u6B62\u653B\u51FB"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 74159781eeda1e34fba6224523bdac80, type: 2}
   m_sharedMaterial: {fileID: 5330067171682054267, guid: 74159781eeda1e34fba6224523bdac80, type: 2}

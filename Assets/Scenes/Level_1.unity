@@ -1258,6 +1258,10 @@ PrefabInstance:
       propertyPath: leader
       value: 
       objectReference: {fileID: 7282585531778735169}
+    - target: {fileID: 345354350445792521, guid: 9f12044e6186bca4f8f4749c9bed781f, type: 3}
+      propertyPath: basePosition
+      value: 
+      objectReference: {fileID: 968877504}
     - target: {fileID: 3105060480163727786, guid: 9f12044e6186bca4f8f4749c9bed781f, type: 3}
       propertyPath: m_Name
       value: RobotAgent (3)
@@ -1339,6 +1343,10 @@ PrefabInstance:
       propertyPath: leader
       value: 
       objectReference: {fileID: 7282585531778735169}
+    - target: {fileID: 345354350445792521, guid: 9f12044e6186bca4f8f4749c9bed781f, type: 3}
+      propertyPath: basePosition
+      value: 
+      objectReference: {fileID: 968877504}
     - target: {fileID: 3105060480163727786, guid: 9f12044e6186bca4f8f4749c9bed781f, type: 3}
       propertyPath: m_Name
       value: RobotAgent (1)
@@ -3148,6 +3156,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 968877504}
   - {fileID: 1996352579}
   - {fileID: 327184518}
   - {fileID: 977270755}
@@ -3166,6 +3175,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7afb828b54112d44a954293deb857a1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  robotMoveState: 1
+  robotAttackState: 1
 --- !u!1 &751070458
 GameObject:
   m_ObjectHideFlags: 0
@@ -4636,6 +4647,37 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 953747641}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &968877503
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 968877504}
+  m_Layer: 0
+  m_Name: Base
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &968877504
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 968877503}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.6, y: 0, z: -3.122}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 727356399}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &971487722
 GameObject:
   m_ObjectHideFlags: 0
@@ -4753,6 +4795,10 @@ PrefabInstance:
       propertyPath: leader
       value: 
       objectReference: {fileID: 7282585531778735169}
+    - target: {fileID: 345354350445792521, guid: 9f12044e6186bca4f8f4749c9bed781f, type: 3}
+      propertyPath: basePosition
+      value: 
+      objectReference: {fileID: 968877504}
     - target: {fileID: 3105060480163727786, guid: 9f12044e6186bca4f8f4749c9bed781f, type: 3}
       propertyPath: m_Name
       value: RobotAgent (2)
@@ -12122,6 +12168,10 @@ PrefabInstance:
       propertyPath: leader
       value: 
       objectReference: {fileID: 7282585531778735169}
+    - target: {fileID: 345354350445792521, guid: 9f12044e6186bca4f8f4749c9bed781f, type: 3}
+      propertyPath: basePosition
+      value: 
+      objectReference: {fileID: 968877504}
     - target: {fileID: 3105060480163727786, guid: 9f12044e6186bca4f8f4749c9bed781f, type: 3}
       propertyPath: m_Name
       value: RobotAgent
@@ -19561,6 +19611,10 @@ PrefabInstance:
       propertyPath: swarm
       value: 
       objectReference: {fileID: 6428153316477632498}
+    - target: {fileID: 6069695840775697530, guid: 0589e9a9a685c274b8d811a62db5cc24, type: 3}
+      propertyPath: playerAgentManager
+      value: 
+      objectReference: {fileID: 727356400}
     - target: {fileID: 6644466345332898529, guid: 0589e9a9a685c274b8d811a62db5cc24, type: 3}
       propertyPath: stats
       value: 

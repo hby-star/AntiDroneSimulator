@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using Valve.VR;
@@ -14,6 +15,7 @@ public class WhisperUI : MonoBehaviour
     private WhisperStream stream;
     private bool isRecording;
 
+    public PlayerAgentManager playerAgentManager;
     public TextMeshProUGUI signalState;
     public TextMeshProUGUI robotMoveState;
     public TextMeshProUGUI robotAttackState;
@@ -36,7 +38,46 @@ public class WhisperUI : MonoBehaviour
 
     private void OnFinished(string finalResult)
     {
-        signalState.text = "命令: " + finalResult;
+        string text = "命令: ";
+        if (finalResult.Contains("自动跟随"))
+        {
+            text += "自动跟随";
+            robotMoveState.text = "自动跟随";
+            playerAgentManager.SetRobotMoveState(PlayerAgentManager.RobotMoveState.Follow);
+        }
+        else if (finalResult.Contains("原地待命"))
+        {
+            text += "原地待命";
+            robotMoveState.text = "原地待命";
+            playerAgentManager.SetRobotMoveState(PlayerAgentManager.RobotMoveState.Stay);
+        }
+        else if (finalResult.Contains("返回基地"))
+        {
+            text += "返回基地";
+            robotMoveState.text = "返回基地";
+            playerAgentManager.SetRobotMoveState(PlayerAgentManager.RobotMoveState.Return);
+        }
+        else if (finalResult.Contains("自动攻击"))
+        {
+            text += "自动攻击";
+            robotAttackState.text = "自动攻击";
+            playerAgentManager.SetRobotAttackState(PlayerAgentManager.RobotAttackState.Attack);
+        }
+        else if (finalResult.Contains("停止攻击"))
+        {
+            text += "停止攻击";
+            robotAttackState.text = "停止攻击";
+            playerAgentManager.SetRobotAttackState(PlayerAgentManager.RobotAttackState.Stop);
+        }
+        else
+        {
+            text += "无法识别";
+            playerAgentManager.SetRobotMoveState(PlayerAgentManager.RobotMoveState.Stay);
+            playerAgentManager.SetRobotAttackState(PlayerAgentManager.RobotAttackState.Stop);
+        }
+
+
+        signalState.text = text;
         isRecording = false;
     }
 

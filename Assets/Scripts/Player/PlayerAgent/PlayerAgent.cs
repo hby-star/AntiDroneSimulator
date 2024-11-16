@@ -13,10 +13,18 @@ public class PlayerAgent : MonoBehaviour
     public float distanceToLeader;
     public float attackDistance;
 
+    public int robotId;
+    public PlayerAgentManager.RobotMoveState moveState;
+    public PlayerAgentManager.RobotAttackState attackState;
+    public Transform basePosition;
+
     void Awake()
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
         self = GetComponent<Player>();
+
+        moveState = PlayerAgentManager.RobotMoveState.Stay;
+        attackState = PlayerAgentManager.RobotAttackState.Stop;
     }
 
     void Start()
@@ -28,8 +36,21 @@ public class PlayerAgent : MonoBehaviour
 
     void Update()
     {
-        AttackUpdate();
-        MoveUpdate();
+        if(attackState == PlayerAgentManager.RobotAttackState.Attack)
+        {
+            AttackUpdate();
+        }
+
+        if(moveState == PlayerAgentManager.RobotMoveState.Follow)
+        {
+            FollowUpdate();
+        }
+        else if(moveState == PlayerAgentManager.RobotMoveState.Return)
+        {
+            ReturnUpdate();
+        }
+
+        MoveToDestinationUpdate();
     }
 
     float lastAttackTime = 0;
@@ -104,7 +125,7 @@ public class PlayerAgent : MonoBehaviour
     float lastUpdateDestinationTime = 0;
     float updateDestinationInterval = 0.5f;
 
-    void MoveUpdate()
+    void MoveToDestinationUpdate()
     {
         if (navMeshAgent.desiredVelocity != Vector3.zero)
         {
@@ -129,7 +150,10 @@ public class PlayerAgent : MonoBehaviour
                 self.StateMachine.ChangeState(self.IdleState);
             }
         }
+    }
 
+    void FollowUpdate()
+    {
         if (Time.time - lastUpdateDestinationTime < updateDestinationInterval)
         {
             return;
@@ -145,6 +169,18 @@ public class PlayerAgent : MonoBehaviour
         else
         {
             navMeshAgent.SetDestination(transform.position);
+        }
+    }
+
+    void ReturnUpdate()
+    {
+        if(Vector3.Distance(transform.position, basePosition.position) < distanceToLeader)
+        {
+            navMeshAgent.SetDestination(transform.position);
+        }
+        else
+        {
+            navMeshAgent.SetDestination(basePosition.position);
         }
     }
 
