@@ -1,0 +1,30 @@
+KAT Universinal SDK V 1.4
+
+[Welcome]
+This is KAT universal SDK for unity. You can develope with all KAT devices without adapte work.
+All devices follow the same interface which named KATNativeSDK class.
+For simplest usage, just drag the prefab[KATDemoWalker] to your scene and enable openxr support in unity.
+For further development, comments in KATNativeSDK.cs show all SDK features.
+
+[release note]
+1.4   Add Nexus Support for PC Editor
+1.3   Add GetSDKInterfaceVersion function
+1.2.1 Make Unreal or Unity Editor no longer lock the KATNativeSDK.dll file under KAT Gateway , KAT Inderstury or Device Emulator folder.
+1.2   Change KATNativeSDK to KATSDKWarpper which is a warpper to load library under KAT Gateway or KAT Inderstury folder. so sdk will be version independ.
+1.1   Add supports for Android standalone devices(Meta Quest Series, pico, yvr and etc.), demos are worked on Android devices now.
+
+[issues]
+1.1 Haptics is not supported for Android standalone devices, we are working on it.
+    Sitting module is not supported for Android standalone devices, we are working on it.
+
+[Demos]
+1.Get Devices Demo : This demo shows query all KAT Devices, to get their name, type, and also serial number
+2.Raw Data Data: This demo guides you to get raw data from KATNavieSDK, include connection states, body rotation as quaternion, speed with local direction as Vector3
+3.Walk Demo: Walk with your KAT Treadmill devices!
+4.C2 Extension And ExtraData Demo: This demo shows how to use extensions such as haptic engine, led in KAT Walk C2, and grant more data like single foot state, speed and etc.
+
+[Legacy Devices]
+Vibration for WalkC, MiniS and terrain function for 3DT need import legacy extension support packages
+1. Vibration For KAT Walk C1 / MiniS : See WalkC_MiniS Class
+2. 3DT Terrain API : See _3DTerrainPlatform
+Legacy support demo with KAT 3DT will coming soon

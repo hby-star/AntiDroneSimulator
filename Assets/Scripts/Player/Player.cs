@@ -35,7 +35,7 @@ public class Player : Entity
     {
         if (InfoInput)
         {
-            playerInfo.SetActive(!playerInfo.activeSelf );
+            playerInfo.SetActive(!playerInfo.activeSelf);
         }
     }
 
@@ -136,7 +136,6 @@ public class Player : Entity
 
     public void ChangeGun()
     {
-
         if (guns.Count <= 1)
         {
             return;
@@ -339,6 +338,16 @@ public class Player : Entity
             playerRenderersBounds.Add(corners);
         }
         // Optimize End
+
+        // KAT Awake
+        var lib_name = KATNativeSDK.sdk_warpper_lib;
+        if (Application.platform == RuntimePlatform.WindowsEditor ||
+            Application.platform == RuntimePlatform.WindowsPlayer)
+        {
+            lib_name += ".dll";
+        }
+
+        KATNativeSDK.sdkLoader = new NativeFunctionLoader(lib_name);
     }
 
     private void SettingsAwake()
@@ -415,8 +424,17 @@ public class Player : Entity
     {
         if (operateNow && !GameManager.Instance.IsGamePaused)
         {
-            MouseXLookUpdate();
-            MouseYLookUpdate();
+            var ws = KATNativeSDK.GetWalkStatus();
+
+            if (ws.connected)
+            {
+                targetX.rotation = Quaternion.Slerp(targetX.rotation, ws.bodyRotationRaw, Time.deltaTime * 5);
+            }
+            else
+            {
+                MouseXLookUpdate();
+                MouseYLookUpdate();
+            }
         }
     }
 
@@ -484,6 +502,8 @@ public class Player : Entity
         PlayerUseVehicleRadarInput = false;
         PlayerUseVehicleElectromagneticInterferenceInput = false;
         PlayerPlacePickupShieldInput = false;
+        Rigidbody.velocity = Vector3.zero;
+        Rigidbody.angularVelocity = Vector3.zero;
     }
 
     void OnEnable()
@@ -558,4 +578,11 @@ public class Player : Entity
     }
 
     #endregion
+
+    private void OnDestroy()
+    {
+#if UNITY_EDITOR_WIN
+        KATNativeSDK.UnloadSDKLibrary();
+#endif
+    }
 }
