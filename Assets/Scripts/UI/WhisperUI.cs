@@ -45,6 +45,12 @@ public class WhisperUI : MonoBehaviour
             robotMoveState.text = "自动跟随";
             playerAgentManager.SetRobotMoveState(PlayerAgentManager.RobotMoveState.Follow);
         }
+        else if (finalResult.Contains("跟着我"))
+        {
+            text += "跟着我";
+            robotMoveState.text = "自动跟随";
+            playerAgentManager.SetRobotMoveState(PlayerAgentManager.RobotMoveState.Follow);
+        }
         else if (finalResult.Contains("原地待命"))
         {
             text += "原地待命";

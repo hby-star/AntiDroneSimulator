@@ -420,6 +420,10 @@ public class Player : Entity
 
     private float verticalRot = 0;
 
+    public float smoothFactor = 0.1f;
+    private Quaternion targetRotation;
+    private Quaternion currentRotation;
+
     void MouseLookUpdate()
     {
         if (operateNow && !GameManager.Instance.IsGamePaused)
@@ -428,7 +432,11 @@ public class Player : Entity
 
             if (ws.connected)
             {
-                targetX.rotation = Quaternion.Slerp(targetX.rotation, ws.bodyRotationRaw, Time.deltaTime * 5);
+                targetRotation = Quaternion.Euler(0, ws.bodyRotationRaw.eulerAngles.y, 0);
+                currentRotation = Quaternion.LookRotation(targetX.forward);
+                // 使用Slerp对旋转进行平滑处理
+                Quaternion newRotation = Quaternion.Slerp(currentRotation, targetRotation, smoothFactor);
+                targetX.forward = newRotation * Vector3.forward;
             }
             else
             {

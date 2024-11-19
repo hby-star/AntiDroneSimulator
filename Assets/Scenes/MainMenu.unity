@@ -324,7 +324,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3753267199196915466, guid: 2427db213faebae4888e0bcd6192b009, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -5.2949066
+      value: -5.2948914
       objectReference: {fileID: 0}
     - target: {fileID: 5543625270674044392, guid: 2427db213faebae4888e0bcd6192b009, type: 3}
       propertyPath: m_Pivot.x
@@ -6051,7 +6051,7 @@ MonoBehaviour:
   noContext: 1
   singleSegment: 1
   enableTokens: 0
-  initialPrompt: "\u81EA\u52A8\u8DDF\u968F\n\u539F\u5730\u5F85\u547D\n\u8FD4\u56DE\u57FA\u5730\n\u81EA\u52A8\u653B\u51FB\n\u505C\u6B62\u653B\u51FB"
+  initialPrompt: "\u81EA\u52A8\u8DDF\u968F\n\u8DDF\u7740\u6211\n\u539F\u5730\u5F85\u547D\n\u8FD4\u56DE\u57FA\u5730\n\u81EA\u52A8\u653B\u51FB\n\u505C\u6B62\u653B\u51FB"
   stepSec: 2
   keepSec: 0.2
   lengthSec: 4

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
@@ -155,11 +156,38 @@ public class InputManager : MonoBehaviour
 
     void HandlePlayerInput()
     {
-        // Player Horizontal
-        Messenger<float>.Broadcast(InputEvent.PLAYER_HORIZONTAL_INPUT, playerMove.axis.x);
+        var ws = KATNativeSDK.GetWalkStatus();
+        if (ws.connected)
+        {
+            Vector3 playerForward = player.transform.forward;
+            Vector3 playerRight = player.transform.right;
+            Vector3 moveSpeed = ws.moveSpeed;
 
-        // Player Vertical
-        Messenger<float>.Broadcast(InputEvent.PLAYER_VERTICAL_INPUT, playerMove.axis.y);
+            float forward = Vector3.Dot(playerForward, moveSpeed);
+            float right = Vector3.Dot(playerRight, moveSpeed);
+
+            // Player Horizontal
+            if(Mathf.Abs(right) > 0.1f)
+                Messenger<float>.Broadcast(InputEvent.PLAYER_HORIZONTAL_INPUT, -right);
+            else
+                Messenger<float>.Broadcast(InputEvent.PLAYER_HORIZONTAL_INPUT, 0);
+
+            // Player Vertical
+            if(Mathf.Abs(forward) > 0.1f)
+                Messenger<float>.Broadcast(InputEvent.PLAYER_VERTICAL_INPUT, forward);
+            else
+                Messenger<float>.Broadcast(InputEvent.PLAYER_VERTICAL_INPUT, 0);
+        }
+        else
+        {
+            // Player Horizontal
+            Messenger<float>.Broadcast(InputEvent.PLAYER_HORIZONTAL_INPUT, playerMove.axis.x);
+
+            // Player Vertical
+            Messenger<float>.Broadcast(InputEvent.PLAYER_VERTICAL_INPUT, playerMove.axis.y);
+        }
+
+
 
         // Player Camera Horizontal
         Messenger<float>.Broadcast(InputEvent.PLAYER_CAMERA_HORIZONTAL_INPUT, playerCameraMove.axis.x);

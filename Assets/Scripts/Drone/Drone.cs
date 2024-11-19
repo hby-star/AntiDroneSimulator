@@ -272,6 +272,7 @@ public class Drone : Entity
         {
             if (!otherPlayers[i])
             {
+                otherTargetRects[i] = new Rect(0, 0, 0, 0);
                 continue;
             }
 
