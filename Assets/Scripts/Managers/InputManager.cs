@@ -58,6 +58,8 @@ public class InputManager : MonoBehaviour
     public Entity currentEntity { get; private set; }
     public Camera currentCamera { get; private set; }
 
+    public bool isInputValid = true;
+
     #region Player Input
 
     public SteamVR_Action_Vector2 playerMove;
@@ -84,6 +86,11 @@ public class InputManager : MonoBehaviour
 
     void Update()
     {
+        if (!isInputValid)
+        {
+            return;
+        }
+
         HandleGameInput();
         //HandleViewSwitch();
 

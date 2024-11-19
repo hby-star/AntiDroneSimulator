@@ -73,6 +73,8 @@ public class Settings : MonoBehaviour
 
     [Header("无人机集群")] public Slider droneNumSlider;
     public TextMeshProUGUI droneNumText;
+    public Slider detectDroneRateSlider;
+    public TextMeshProUGUI detectDroneRateText;
     public Slider detectDroneSpeedSlider;
     public TextMeshProUGUI detectDroneSpeedText;
     public Slider attackDroneSpeedSlider;
@@ -86,6 +88,12 @@ public class Settings : MonoBehaviour
     {
         int droneNum = (int)droneNumSlider.value;
         droneNumText.text = droneNum.ToString();
+    }
+
+    void UpdateDetectDroneRateText()
+    {
+        int detectDroneRate = (int)(detectDroneRateSlider.value * 10);
+        detectDroneRateText.text = "0." + detectDroneRate.ToString();
     }
 
     void UpdateDetectDroneSpeedText()
@@ -130,7 +138,7 @@ public class Settings : MonoBehaviour
     void UpdateVolumeText()
     {
         int volume = (int)(volumeSlider.value * 10);
-        volumeText.text = volume.ToString();
+        volumeText.text = "0." + volume.ToString();
     }
 
     #endregion
@@ -153,13 +161,14 @@ public class Settings : MonoBehaviour
 
         // 无人机集群
         public float droneNum;
+        public float detectDroneRate;
         public float detectDroneSpeed;
         public float attackDroneSpeed;
         public float bombRange;
         public float bombDamage;
 
         // 系统
-        public float sensitivity;
+        //public float sensitivity;
         public float volume;
     }
 
@@ -178,13 +187,14 @@ public class Settings : MonoBehaviour
 
         // 无人机集群
         droneNumSlider.onValueChanged.AddListener(delegate { UpdateDroneNumText(); });
+        detectDroneRateSlider.onValueChanged.AddListener(delegate { UpdateDetectDroneRateText(); });
         detectDroneSpeedSlider.onValueChanged.AddListener(delegate { UpdateDetectDroneSpeedText(); });
         attackDroneSpeedSlider.onValueChanged.AddListener(delegate { UpdateAttackDroneSpeedText(); });
         bombRangeSlider.onValueChanged.AddListener(delegate { UpdateBombRangeText(); });
         bombDamageSlider.onValueChanged.AddListener(delegate { UpdateBombDamageText(); });
 
         // 系统
-        sensitivitySlider.onValueChanged.AddListener(delegate { UpdateSensitivityText(); });
+        //sensitivitySlider.onValueChanged.AddListener(delegate { UpdateSensitivityText(); });
         volumeSlider.onValueChanged.AddListener(delegate { UpdateVolumeText(); });
 
         LoadSettings();
@@ -203,6 +213,7 @@ public class Settings : MonoBehaviour
 
         // 无人机集群
         UpdateDroneNumText();
+        UpdateDetectDroneRateText();
         UpdateDetectDroneSpeedText();
         UpdateAttackDroneSpeedText();
         UpdateBombRangeText();
@@ -236,13 +247,14 @@ public class Settings : MonoBehaviour
 
             // 无人机集群
             droneNumSlider.value = settingsData.droneNum;
+            detectDroneRateSlider.value = settingsData.detectDroneRate;
             detectDroneSpeedSlider.value = settingsData.detectDroneSpeed;
             attackDroneSpeedSlider.value = settingsData.attackDroneSpeed;
             bombRangeSlider.value = settingsData.bombRange;
             bombDamageSlider.value = settingsData.bombDamage;
 
             // 系统
-            sensitivitySlider.value = settingsData.sensitivity;
+            //sensitivitySlider.value = settingsData.sensitivity;
             volumeSlider.value = settingsData.volume;
         }
         else
@@ -260,13 +272,14 @@ public class Settings : MonoBehaviour
 
                 // 无人机集群
                 droneNum = droneNumSlider.value,
+                detectDroneRate = detectDroneRateSlider.value,
                 detectDroneSpeed = detectDroneSpeedSlider.value,
                 attackDroneSpeed = attackDroneSpeedSlider.value,
                 bombRange = bombRangeSlider.value,
                 bombDamage = bombDamageSlider.value,
 
                 // 系统
-                sensitivity = sensitivitySlider.value,
+                //sensitivity = sensitivitySlider.value,
                 volume = volumeSlider.value
             };
         }
@@ -285,13 +298,14 @@ public class Settings : MonoBehaviour
 
         // 无人机集群
         settingsData.droneNum = droneNumSlider.value;
+        settingsData.detectDroneRate = detectDroneRateSlider.value;
         settingsData.detectDroneSpeed = detectDroneSpeedSlider.value;
         settingsData.attackDroneSpeed = attackDroneSpeedSlider.value;
         settingsData.bombRange = bombRangeSlider.value;
         settingsData.bombDamage = bombDamageSlider.value;
 
         // 系统
-        settingsData.sensitivity = sensitivitySlider.value;
+        //settingsData.sensitivity = sensitivitySlider.value;
         settingsData.volume = volumeSlider.value;
 
         string json = JsonUtility.ToJson(settingsData);

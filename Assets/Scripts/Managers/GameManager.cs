@@ -74,13 +74,13 @@ public class GameManager : MonoBehaviour
 
     public void StopGameInput()
     {
-        InputManager.Instance.gameObject.SetActive(false);
+        InputManager.Instance.isInputValid = false;
         GameObject.FindWithTag("Player").GetComponent<Player>().ZeroInput();
     }
 
     public void ContinueGameInput()
     {
-        InputManager.Instance.gameObject.SetActive(true);
+        InputManager.Instance.isInputValid = true;
     }
 
     public void ContinueGame()
@@ -135,6 +135,6 @@ public class GameManager : MonoBehaviour
     public void InGameMenu()
     {
         UIManager.Instance.ShowGamePausePopUp();
-        //StopGame();
+        StopGame();
     }
 }

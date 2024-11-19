@@ -91,45 +91,45 @@ public class UIManager : MonoBehaviour
     public void ShowGameStartPopUp()
     {
         gameStartPopUp.SetActive(true);
-        GameManager.Instance.StopGameInput();
+        GameManager.Instance.StopGame();
     }
 
     public void HideGameStartPopUp()
     {
         gameStartPopUp.SetActive(false);
-        GameManager.Instance.ContinueGameInput();
+        GameManager.Instance.ContinueGame();
     }
 
     public void ShowGamePausePopUp()
     {
         gamePausePopUp.SetActive(true);
-        GameManager.Instance.StopGameInput();
+        GameManager.Instance.StopGame();
     }
 
     public void HideGamePausePopUp()
     {
         gamePausePopUp.SetActive(false);
-        GameManager.Instance.ContinueGameInput();
+        GameManager.Instance.ContinueGame();
     }
 
     public void ShowGameEndWinPopUp()
     {
         gameEndPopUp.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "任务成功!";
         gameEndPopUp.SetActive(true);
-        GameManager.Instance.StopGameInput();
+        GameManager.Instance.StopGame();
     }
 
     public void ShowGameEndLosePopUp()
     {
         gameEndPopUp.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "任务失败!";
         gameEndPopUp.SetActive(true);
-        GameManager.Instance.StopGameInput();
+        GameManager.Instance.StopGame();
     }
 
     public void HideGameEndPopUp()
     {
         gameEndPopUp.SetActive(false);
-        GameManager.Instance.ContinueGameInput();
+        GameManager.Instance.ContinueGame();
     }
 
     void Start()
@@ -167,25 +167,35 @@ public class UIManager : MonoBehaviour
         GameManager.Instance.ToMainMenu();
     }
 
-    // void Update()
-    // {
-    //     if (gameStartPopUp.activeSelf)
-    //     {
-    //         if (Input.GetMouseButtonDown(0))
-    //         {
-    //             HideGameStartPopUp();
-    //             GameManager.Instance.ContinueGame();
-    //         }
-    //     }
-    //
-    //     if (gameEndPopUp.activeSelf)
-    //     {
-    //         if (Input.GetMouseButtonDown(0))
-    //         {
-    //             HideGameEndPopUp();
-    //             GameManager.Instance.ToMainMenu();
-    //         }
-    //     }
-    //
-    // }
+    void Update()
+    {
+        if (gameStartPopUp.activeSelf)
+        {
+            if(InputManager.Instance.playerAttack.lastStateDown || InputManager.Instance.playerDash.lastStateDown)
+            {
+                OnGameStartContinueButtonClick();
+            }
+        }
+
+        if (gamePausePopUp.activeSelf)
+        {
+            if (InputManager.Instance.playerJump.lastStateDown)
+            {
+                OnGamePauseContinueButtonClick();
+            }
+            else if (InputManager.Instance.playerReload.lastStateDown)
+            {
+                OnGamePauseReturnMainMenuButtonClick();
+            }
+        }
+
+        if (gameEndPopUp.activeSelf)
+        {
+            if(InputManager.Instance.playerAttack.lastStateDown || InputManager.Instance.playerDash.lastStateDown)
+            {
+                OnGameEndContinueButtonClick();
+            }
+        }
+
+    }
 }
