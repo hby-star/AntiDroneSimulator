@@ -428,21 +428,8 @@ public class Player : Entity
     {
         if (operateNow && !GameManager.Instance.IsGamePaused)
         {
-            var ws = KATNativeSDK.GetWalkStatus();
-
-            if (ws.connected)
-            {
-                targetRotation = Quaternion.Euler(0, ws.bodyRotationRaw.eulerAngles.y, 0);
-                currentRotation = Quaternion.LookRotation(targetX.forward);
-                // 使用Slerp对旋转进行平滑处理
-                Quaternion newRotation = Quaternion.Slerp(currentRotation, targetRotation, smoothFactor);
-                targetX.forward = newRotation * Vector3.forward;
-            }
-            else
-            {
-                MouseXLookUpdate();
-                MouseYLookUpdate();
-            }
+            MouseXLookUpdate();
+            MouseYLookUpdate();
         }
     }
 

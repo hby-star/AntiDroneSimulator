@@ -68,10 +68,14 @@ public class InputManager : MonoBehaviour
     public SteamVR_Action_Boolean playerAttack;
     public SteamVR_Action_Boolean playerReload;
     public SteamVR_Action_Boolean playerDash;
+
     public SteamVR_Action_Boolean playerInfoDisplay;
+
     //public SteamVR_Action_Boolean playerCrouch;
     public SteamVR_Action_Boolean playerChangeGun;
+
     public SteamVR_Action_Boolean playerSendSignal;
+
     //public SteamVR_Action_Boolean playerPlacePickupShield;
     public SteamVR_Action_Boolean playerGamePause;
     public SteamVR_Action_Boolean playerStopGame;
@@ -149,17 +153,16 @@ public class InputManager : MonoBehaviour
 
     public void ChangeOperateEntity(Entity newEntity)
     {
-        if(!newEntity)
+        if (!newEntity)
         {
             Debug.LogError("ChangeOperateEntity: newEntity is null");
             return;
         }
+
         currentEntity.SetOperate(false);
         currentEntity = newEntity;
         currentEntity.SetOperate(true);
     }
-
-
 
     void HandlePlayerInput()
     {
@@ -174,16 +177,16 @@ public class InputManager : MonoBehaviour
             float right = Vector3.Dot(playerRight, moveSpeed);
 
             // Player Horizontal
-            if(Mathf.Abs(right) > 0.1f)
+            if (Mathf.Abs(right) > 0.1f)
                 Messenger<float>.Broadcast(InputEvent.PLAYER_HORIZONTAL_INPUT, -right);
             else
-                Messenger<float>.Broadcast(InputEvent.PLAYER_HORIZONTAL_INPUT, 0);
+                Messenger<float>.Broadcast(InputEvent.PLAYER_HORIZONTAL_INPUT, playerMove.axis.x);
 
             // Player Vertical
-            if(Mathf.Abs(forward) > 0.1f)
+            if (Mathf.Abs(forward) > 0.1f)
                 Messenger<float>.Broadcast(InputEvent.PLAYER_VERTICAL_INPUT, forward);
             else
-                Messenger<float>.Broadcast(InputEvent.PLAYER_VERTICAL_INPUT, 0);
+                Messenger<float>.Broadcast(InputEvent.PLAYER_VERTICAL_INPUT, playerMove.axis.y);
         }
         else
         {
@@ -194,10 +197,20 @@ public class InputManager : MonoBehaviour
             Messenger<float>.Broadcast(InputEvent.PLAYER_VERTICAL_INPUT, playerMove.axis.y);
         }
 
-
+        if (ws.connected)
+        {
+            Quaternion targetRotation = Quaternion.Euler(0, ws.bodyRotationRaw.eulerAngles.y, 0);
+            Quaternion currentRotation = Quaternion.LookRotation(player.targetX.forward);
+            // 使用Slerp对旋转进行平滑处理
+            Quaternion newRotation = Quaternion.Slerp(currentRotation, targetRotation, player.smoothFactor);
+            player.targetX.forward = newRotation * Vector3.forward;
+        }
+        else
+        {
+            Messenger<float>.Broadcast(InputEvent.PLAYER_CAMERA_HORIZONTAL_INPUT, playerCameraMove.axis.x);
+        }
 
         // Player Camera Horizontal
-        Messenger<float>.Broadcast(InputEvent.PLAYER_CAMERA_HORIZONTAL_INPUT, playerCameraMove.axis.x);
 
         // Player Camera Vertical
         // Messenger<float>.Broadcast(InputEvent.PLAYER_CAMERA_VERTICAL_INPUT, playerCameraMove.axis.y);
@@ -286,7 +299,6 @@ public class InputManager : MonoBehaviour
         // Player exit vehicle
         Messenger<bool>.Broadcast(InputEvent.VEHICLE_ENTER_EXIT_INPUT, Input.GetKeyDown(KeyCode.E));
     }
-
 
 
     void HandleGameInput()
