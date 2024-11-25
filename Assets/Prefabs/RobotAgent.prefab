@@ -2910,8 +2910,13 @@ MonoBehaviour:
   Camera: {fileID: 3064006698835724940}
   playerStats: {fileID: 3822449868297126833}
   playerRenderers:
-  - {fileID: 924474824027069575}
-  - {fileID: 2592330694193852518}
+  - {fileID: 521357566030582400}
+  - {fileID: 521357566030582412}
+  - {fileID: 521357566030582414}
+  - {fileID: 521357566030582408}
+  - {fileID: 521357566030582410}
+  - {fileID: 521357566030582404}
+  - {fileID: 521357566030582406}
   playerInfo: {fileID: 0}
   moveSpeed: 10
   jumpForce: 6
@@ -2928,6 +2933,7 @@ MonoBehaviour:
   maximumVert: 30
   targetX: {fileID: 3350307846567314072}
   targetY: {fileID: 1967988209635551556}
+  smoothFactor: 0.1
   soundSource: {fileID: 5629123051306617436}
   dashSound: {fileID: 8300000, guid: e7b8be42c3a5e97418b0417f3b4e94cd, type: 3}
   isLeader: 0
@@ -3010,6 +3016,10 @@ MonoBehaviour:
   leader: {fileID: 0}
   distanceToLeader: 8
   attackDistance: 15
+  robotId: 0
+  moveState: 0
+  attackState: 0
+  basePosition: {fileID: 0}
 --- !u!195 &7395950425422527895
 NavMeshAgent:
   m_ObjectHideFlags: 0

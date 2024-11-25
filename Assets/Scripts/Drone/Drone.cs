@@ -79,8 +79,8 @@ public class Drone : Entity
     float minSizeTimesCameraRate;
 
     // List<Vector3[]> playerRenderersBounds = new List<Vector3[]>();
-    List<Collider> playerRenderers = new List<Collider>();
-    List<List<Collider>> otherPlayerRenderers = new List<List<Collider>>();
+    List<Renderer> playerRenderers = new List<Renderer>();
+    List<List<Renderer>> otherPlayerRenderers = new List<List<Renderer>>();
     Rect cameraRect;
     // Optimize End
 
@@ -133,15 +133,15 @@ public class Drone : Entity
 
     public void CameraUpdate()
     {
-        if (playerRenderers.Count == 0)
+        playerRenderers = targetPlayer.playerRenderers;
+        otherPlayerRenderers.Clear();
+        otherTargetRects.Clear();
+        for (int i = 0; i < otherPlayers.Count; i++)
         {
-            playerRenderers = targetPlayer.playerRenderers;
-            for (int i = 0; i < otherPlayers.Count; i++)
-            {
-                otherPlayerRenderers.Add(otherPlayers[i].playerRenderers);
-                otherTargetRects.Add(new Rect(0, 0, 0, 0));
-            }
+            otherPlayerRenderers.Add(otherPlayers[i].playerRenderers);
+            otherTargetRects.Add(new Rect(0, 0, 0, 0));
         }
+
 
         Vector3 targetPosition = targetPlayer.transform.position;
         float targetPlayerHeight = targetPlayer.standColliderHeight;

@@ -28,7 +28,7 @@ public class Player : Entity
     #region Stats
 
     [Header("Stats Info")] public EntityStats playerStats;
-    public List<Collider> playerRenderers;
+    public List<Renderer> playerRenderers;
     public GameObject playerInfo;
 
     void PlayerInfoDisplayUpdate()

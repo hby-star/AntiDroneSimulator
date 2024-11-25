@@ -21258,7 +21258,7 @@ Transform:
   m_GameObject: {fileID: 7368328798681503994}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -5.46, y: 0.111, z: 48.42}
+  m_LocalPosition: {x: -5.46, y: 0, z: 48.42}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -27803,7 +27803,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5922658083374432374, guid: 2e58cd4c167883b4b98dfbf7773784f8, type: 3}
       propertyPath: m_SizeDelta.y
-      value: -1339
+      value: -1228.9
       objectReference: {fileID: 0}
     - target: {fileID: 5922658083374432374, guid: 2e58cd4c167883b4b98dfbf7773784f8, type: 3}
       propertyPath: m_LocalPosition.x
@@ -27835,11 +27835,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5922658083374432374, guid: 2e58cd4c167883b4b98dfbf7773784f8, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -1121
+      value: -1121.0001
       objectReference: {fileID: 0}
     - target: {fileID: 5922658083374432374, guid: 2e58cd4c167883b4b98dfbf7773784f8, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 565.5
+      value: 482.92496
       objectReference: {fileID: 0}
     - target: {fileID: 5922658083374432374, guid: 2e58cd4c167883b4b98dfbf7773784f8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -39944,8 +39944,8 @@ SkinnedMeshRenderer:
   m_BlendShapeWeights: []
   m_RootBone: {fileID: 6921701326691841368}
   m_AABB:
-    m_Center: {x: -0.03508258, y: 0.08604586, z: 0.21989773}
-    m_Extent: {x: 1.2355316, y: 0.35679126, z: 0.68339074}
+    m_Center: {x: -0.03508258, y: 0.08604586, z: 0.10766107}
+    m_Extent: {x: 1.2355316, y: 0.35679126, z: 0.5711544}
   m_DirtyAABB: 0
 --- !u!23 &5388459135618955102
 MeshRenderer:
@@ -46773,8 +46773,8 @@ MonoBehaviour:
   Camera: {fileID: 1929743384}
   playerStats: {fileID: 8030514294827817849}
   playerRenderers:
-  - {fileID: 1938310136765873120}
-  - {fileID: 854414511}
+  - {fileID: 5386570993288771892}
+  - {fileID: 854414514}
   playerInfo: {fileID: 335600624}
   moveSpeed: 10
   jumpForce: 6

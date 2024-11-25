@@ -199,11 +199,11 @@ public class InputManager : MonoBehaviour
 
         if (ws.connected)
         {
-            Quaternion targetRotation = Quaternion.Euler(0, ws.bodyRotationRaw.eulerAngles.y, 0);
-            Quaternion currentRotation = Quaternion.LookRotation(player.targetX.forward);
+            Quaternion targetRotation = ws.bodyRotationRaw;
+            Quaternion currentRotation = Quaternion.LookRotation(player.transform.forward);
             // 使用Slerp对旋转进行平滑处理
             Quaternion newRotation = Quaternion.Slerp(currentRotation, targetRotation, player.smoothFactor);
-            player.targetX.forward = newRotation * Vector3.forward;
+            player.transform.LookAt(player.transform.position + newRotation * Vector3.forward);
         }
         else
         {
