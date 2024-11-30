@@ -1,118 +1,22 @@
 # AntiDroneSimulator
 
-## 1. 玩家设计
+## 1. 项目简介
 
-### 1.1 基础操作
+​	本项目使用Unity进行开发，在此项目中，玩家与无人机集群进行对抗。无人机集群使用人工蜂群算法（改）进行组织，玩家有多种枪械可供选择，每种枪械特点不同。支持自定义无人机集群，玩家等。支持双屏显示，单个屏幕下仅显示玩家视角，双屏时可额外显示无人机视角；接入[OpenAI whisper](https://openai.com/index/whisper/)模型进行语音识别控制队友的行动。
 
-* 移动
-  * [W]	[A]	[S]	[D]
-  
-* 转动视角
-  * [MouseX]	[MouseY]
+## 2. 项目进展
 
-* 跳跃
-  * [Space]
+​	目前已开发出windows和Steam VR版，见 [Release](https://github.com/hby-star/AntiDroneSimulator/releases])。Steam VR版适配Pico Controller和KAT walk mini S。
 
-* 开火
-  * [Mouse 0]
+## 3. 用户手册
 
-* 装弹
-  * [Mouse 2]
+​	见项目目录下 [UserManual.md](https://github.com/hby-star/AntiDroneSimulator/blob/vr_steam/UserManual.md) 。
 
-* 翻滚
-  * [Mouse 1]
+## 4. 演示
 
-* 蹲下、起立
-  * [LeftControl]
+​	见项目下[Video](https://github.com/hby-star/AntiDroneSimulator/tree/vr_steam/Video)文件夹
 
-* 换枪
-  * [LeftShift]
+## 5. Thanks to:
 
-* 与车辆交互
-
-  * 上车
-    * [E]
-  * 使用雷达
-    * [Alpha1]
-  * 使用电磁干扰
-    * [Alpha2]
-  * 使用电磁脉冲
-    * [Alpha3]
-
-* 与盾牌交互
-
-  * 放置、捡起盾牌
-  * [Q]
-
-### 1.2 枪支设计
-
-* 手枪
-  * 发射普通子弹，可摧毁无人机
-
-* 便携式网枪
-  * 发射网型子弹，可包住无人机使其失去行动能力
-
-* 电磁脉冲枪
-  * 发射干扰弹，可使无人机失灵5秒
-
-
-
-
-## 2. 无人机设计
-
-### 2.1 基础无人机
-
-* 使用摄像头探测并锁定敌人
-* 使用雷达检测周围障碍物并避障
-* 根据命令进行移动
-
-### 2.2 侦查无人机
-
-* 速度较快
-* 无目标时，在基地周围进行巡逻
-* 有目标时，可锁定并追踪敌人
-
-### 2.3 攻击无人机
-
-* 速度较慢，但可携带炸弹攻击敌人
-* 无目标时，在基地待机
-* 有目标时，从基地携带炸弹，飞往敌人所在地并投掷炸弹，随后返回基地装填炸弹。
-
-
-
-## 3. 无人机蜂群设计
-
-* 蜂群由基地和一定数量的无人机组成
-* 基地有固定位置，可向无人机集群接收和发送消息，指挥无人机蜂群。同时可为攻击无人机补充弹药。
-* 无人机由攻击无人机和侦查无人机组成，比例为7:3
-
-
-
-## 4. 车辆设计
-
-### 4.1 基础操作
-
-* 移动
-  * [W]	[A]	[S]	[D]
-  
-* 下车
-  * [E]
-
-
-### 4.2 功能设计
-
-* 雷达探测无人机
-* 电磁干扰无人机
-* 电磁脉冲摧毁无人机
-
-
-
-## 5. 技能设计
-
-* 暂停游戏
-  * [P]
-
-* 观察者模式
-  * [O]
-
-
+* https://github.com/Macoron/whisper.unity A Unity3d bindings for [whisper.cpp](https://github.com/ggerganov/whisper.cpp). It provides high-performance inference of [OpenAI's Whisper](https://github.com/openai/whisper) automatic speech recognition (ASR) model running on your local machine.
+* [Free Assets](https://github.com/hby-star/AntiDroneSimulator/tree/vr_steam/Assets/ExternalAssets ) from [Unity Asset Store](https://assetstore.unity.com/) .
