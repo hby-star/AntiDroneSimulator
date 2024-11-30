@@ -6,7 +6,7 @@
 
 ## 2. 项目进展
 
-​	目前已开发出windows和Steam VR版，见 [Release](https://github.com/hby-star/AntiDroneSimulator/releases])。Steam VR版适配Pico Controller和KAT walk mini S。
+​	目前已开发出windows和Steam VR版，见 [Release](https://github.com/hby-star/AntiDroneSimulator/releases)。Steam VR版适配Pico Controller和KAT walk mini S。
 
 ## 3. 用户手册
 
