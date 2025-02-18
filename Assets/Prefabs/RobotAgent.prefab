@@ -167,7 +167,7 @@ GameObject:
   - component: {fileID: 521357566041653798}
   - component: {fileID: 521357566030582400}
   - component: {fileID: 2202441973213496687}
-  m_Layer: 10
+  m_Layer: 7
   m_Name: Robot_Soldier_Rifle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -186,9 +186,7 @@ Transform:
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 3512471194743465166}
-  - {fileID: 3526755660661848072}
+  m_Children: []
   m_Father: {fileID: 521357566041654224}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!137 &521357566030582400
@@ -1926,6 +1924,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 3512471194743465166}
+  - {fileID: 3526755660661848072}
   - {fileID: 521357566041654246}
   - {fileID: 521357566041654270}
   - {fileID: 521357566041654262}
@@ -2910,13 +2910,8 @@ MonoBehaviour:
   Camera: {fileID: 3064006698835724940}
   playerStats: {fileID: 3822449868297126833}
   playerRenderers:
-  - {fileID: 521357566030582400}
-  - {fileID: 521357566030582412}
-  - {fileID: 521357566030582414}
-  - {fileID: 521357566030582408}
-  - {fileID: 521357566030582410}
-  - {fileID: 521357566030582404}
-  - {fileID: 521357566030582406}
+  - {fileID: 924474824027069575}
+  - {fileID: 2592330694193852518}
   playerInfo: {fileID: 0}
   moveSpeed: 10
   jumpForce: 6
@@ -3083,7 +3078,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3526755660661848072}
-  m_Layer: 10
+  m_Layer: 7
   m_Name: firePosition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3098,13 +3093,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4446140214544830941}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.31429955, y: 0.633416, z: -0.32468155, w: 0.62815756}
-  m_LocalPosition: {x: 1.394, y: 0.43, z: 0.204}
+  m_LocalRotation: {x: 0.5069281, y: 0.49297458, z: 0.49297458, w: 0.5069281}
+  m_LocalPosition: {x: 0.89530337, y: -0.034415856, z: 0.23953328}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 521357566041653798}
-  m_LocalEulerAnglesHint: {x: 53.724, y: 90, z: -0.943}
+  m_Father: {fileID: 521357566041654244}
+  m_LocalEulerAnglesHint: {x: 1.599, y: 90, z: 90}
 --- !u!1 &5105392975883124406
 GameObject:
   m_ObjectHideFlags: 0
@@ -3115,7 +3110,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3512471194743465166}
   - component: {fileID: 2592330694193852518}
-  m_Layer: 10
+  m_Layer: 7
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3130,12 +3125,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5105392975883124406}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: -0.4518899, w: 0.89207375}
-  m_LocalPosition: {x: 0.996, y: 0.934, z: 0.137}
+  m_LocalRotation: {x: -0, y: -0, z: -0.014005763, w: 0.99990195}
+  m_LocalPosition: {x: 0.25312138, y: -0.03915191, z: 0.17253321}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 521357566041653798}
+  m_Father: {fileID: 521357566041654244}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -53.73}
 --- !u!65 &2592330694193852518
 BoxCollider:

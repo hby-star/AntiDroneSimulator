@@ -79,8 +79,8 @@ public class Drone : Entity
     float minSizeTimesCameraRate;
 
     // List<Vector3[]> playerRenderersBounds = new List<Vector3[]>();
-    List<Renderer> playerRenderers = new List<Renderer>();
-    List<List<Renderer>> otherPlayerRenderers = new List<List<Renderer>>();
+    List<Collider> playerRenderers = new List<Collider>();
+    List<List<Collider>> otherPlayerRenderers = new List<List<Collider>>();
     Rect cameraRect;
     // Optimize End
 
